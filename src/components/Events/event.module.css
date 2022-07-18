@@ -1,0 +1,70 @@
+/* events */
+.eventWrapper .image img{
+    width: 100%;
+}
+.eventWrapper .content{
+    padding: 10px 0 0;
+    border: 1px solid rgb(255 255 255 / 40%);
+}
+.eventWrapper .content h3{
+color: #fff;
+font-size: 20px;
+}
+
+.eventWrapper span{
+color: #fff;
+font-size: 12px;
+}
+.eventWrapper svg{
+    margin-right: 5px;
+}
+.galleryBorder{
+    border-top: 1px solid rgb(255 255 255 / 40%);
+    border-bottom: 1px solid rgb(255 255 255 / 40%);
+    padding: 10px 0;
+}
+.borderRight{
+    border-right: 1px solid rgb(255 255 255 / 40%);
+    padding-right: 1rem!important;
+    padding-left: 1rem!important;
+}
+.borderRight:last-child{
+    border-right: 0;
+}
+.galleryBtn {
+
+}
+.galleryBtn button{
+    background: #343434 !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    opacity: 0.8;
+    font-weight: 400 !important;
+}
+.dateDiv{
+
+}
+.eventWrapper .title{
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+.dateDiv .date{
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.locationDiv{
+
+}
+.locationDiv .location{
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.entryDiv{
+
+}
+.entryDiv .entry{
+    font-size: 26px;
+    font-weight: 500;
+}

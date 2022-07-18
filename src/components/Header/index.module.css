@@ -1,0 +1,51 @@
+.logo{
+    color: #fff !important;
+    font-size: 22px;
+    font-weight: 800;
+}
+.navLink{
+    gap: 20px;
+    /* justify-content: center !important; */
+    width: 100%;
+    padding-left: 20px !important;
+}
+.navLink a{
+    color: #fff !important;
+}
+.navLink a:first-child{
+    /* color: #14F195 !important; */
+    font-weight: 600;
+}
+.navLink a{
+    font-size: 14px;
+}
+.last{
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+.customIcon svg{
+    color: #fff;
+    font-size: 20px;
+}
+.dropdownBtn button{
+    color: #fff !important;
+    font-size: 14px;
+}
+.soon{
+    background: #6f6f6f;
+    padding: 0px 5px;
+    font-size: 12px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.navLink .disabledLink{
+    color: rgb(255 255 255 / 70%) !important;
+}
+@media screen and (max-width:991px) {
+    .navLink{
+        gap: 10px;
+    }
+    .last{
+        justify-content: flex-start;
+    }
+}

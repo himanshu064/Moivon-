@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #262626 !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.navbar{
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+.section{
+  padding: 40px 0;
+}
+.navbar-light .navbar-toggler{
+  color: #fff !important;
+}
+.navbar-light .navbar-toggler-icon{
+  background-image: url(./svgs/menu.svg) !important;
+}
+.nav_dropdown .dropdown-menu a{
+color: #000 !important;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 2px;
+}
+.swiper-button-prev{
+  background: #a6a6a6;
+}
+.swiper-button-next{
+  background: #fff;
+}
+.swiper-button-next::after, .swiper-button-prev::after{
+  font-size: 16px !important;
+}
+.swiper-button-prev::after{
+  color: #fff;
+}
+.swiper-button-next::after{
+  color: #000;
+}
+svg{
+  color: #fff;
+  font-size: 20px;
+}
+a{
+  text-decoration: none !important;
+}

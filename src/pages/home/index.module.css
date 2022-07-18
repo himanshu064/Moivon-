@@ -1,0 +1,72 @@
+.heroSection{
+    padding: 40px 0
+}
+.heroHeading{
+    position: relative;
+}
+.heroHeading h1{
+    font-size: 70px;
+    line-height: 90px;
+}
+.heroHeading .spanHead{
+    color: #fff;
+    position: absolute;
+    right: -1%;
+    top: 105px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+.spanHead::before{
+    content: "";
+    position: absolute;
+    border-left: 1px solid #fff;
+    height: 100%;
+    left: -20px;
+    opacity: 0.8;
+}
+.heroIcons svg{
+    font-size: 34px;
+    color: #fff;
+    margin-right: 10px;
+}
+.heroIcons span{
+    color: #fff;
+    font-size: 14px;
+}
+.countWrapper{
+    border-right: 1px solid rgb(255 255 255 / 40%);
+}
+.customRow .customCol:last-child .countWrapper{
+    border-right: 0;
+}
+.countWrapper .title{
+    font-size: 50px;
+    font-weight: 600;
+    color: #fff;
+}
+.countWrapper p{
+    font-size: 14px;
+}
+.sliderTeam{
+    position: relative;
+}
+.slider{
+    padding-left: 140px;
+    position: relative;
+}
+.bottomSection{
+    padding: 80px 0;
+}
+
+
+
+@media screen and (max-width:1100px) {
+    .slider{
+        padding-left: 60px;
+    }
+}
+@media screen and (max-width:600px) {
+    .slider{
+        padding-left: 10px;
+    }
+}
