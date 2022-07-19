@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Button from "../../components/Button";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
+import EventsInfo from "../EventsInfo";
 
 const teamData = [
   {
@@ -69,24 +70,8 @@ function Events() {
                     </span>
                   </div>
                 </div>
-                <div className={styles.galleryBorder}>
-                  <div className="d-flex justify-content-between">
-                    <div
-                      className={`${styles.galleryBtn} ${styles.borderRight}`}
-                    >
-                      <Button>Gallery</Button>
-                    </div>
-                    <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
-                      <span className={styles.title}>Date</span>
-                      <span className={styles.date}>30 june</span>
-                    </div>
-                    <div
-                      className={`${styles.locationDiv}  ${styles.borderRight}`}
-                    >
-                      <span className={styles.title}>Location</span>
-                      <span className={styles.location}>Bourbon st.40</span>
-                    </div>
-                  </div>
+                <div className="gallery-border">
+                  <EventsInfo />
                 </div>
 
                 <div className="d-flex justify-content-between align-items-center py-2 px-3">

@@ -1,9 +1,10 @@
 .text {
     font-weight: 400;
-font-size: 18px;
-line-height: 30px;
+font-size: 14px;
+line-height: 26px;
 letter-spacing: 0.2px;
-color: #FFFFFF;
+color: var(--theme-white-light);
+font-family: var(--sans-regular);
   }
   
   

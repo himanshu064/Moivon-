@@ -1,0 +1,55 @@
+.footerSection{
+  background:  #1B1B1B;
+}
+.footerSection h3{
+  font-size: 12px;
+line-height: 150%;
+font-weight: 500;
+font-family: var(--sans-medium);
+text-transform: uppercase;
+color: var(--theme-white);
+}
+.footerSection ul{
+  padding-left: 0;
+  list-style: none;
+}
+.footerSection ul li{
+  color: var(--theme-white-light);
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.copyRight p{
+  margin-bottom: 0;
+}
+
+
+
+/* form */
+
+
+.formGroup{
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--theme-black);
+}
+.formGroup label{
+  color: var(--theme-white);
+  padding-left: 0.75rem;
+  padding-top: 0.375rem;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--sans-medium);
+}
+.formGroup input{
+  background: none;
+  border: 0;
+}
+.formGroup input:focus{
+  box-shadow: none;
+  background: none;
+}
+.formGroup  input:-internal-autofill-selected{
+  background-color: unset !important;
+}

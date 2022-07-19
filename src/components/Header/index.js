@@ -1,6 +1,4 @@
 import React from "react";
-import { ReactComponent as TwitterSvg } from "../../svgs/twitter.svg";
-import { ReactComponent as RemoteSvg } from "../../svgs/remote.svg";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";

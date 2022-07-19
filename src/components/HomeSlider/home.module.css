@@ -1,0 +1,30 @@
+/* slider css */
+
+.wrapper{
+    text-align: center;
+    color: #fff;
+}
+.content{
+    margin: 20px 0;
+}
+.wrapper img{
+    filter: grayscale(1);
+    height: 370px;
+    object-fit: cover;
+}
+.content h3{
+    font-weight: 500;
+font-size: 18px;
+line-height: 27px;
+text-indent: 2px;
+font-feature-settings: 'liga' off;
+color: #FFFFFF;
+}
+.content h4{
+    font-weight: 400;
+font-size: 18px;
+line-height: 27px;
+text-indent: 2px;
+font-feature-settings: 'liga' off;
+color: #FFFFFF;
+}

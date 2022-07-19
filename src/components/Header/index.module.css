@@ -10,7 +10,7 @@
     padding-left: 20px !important;
 }
 .navLink a{
-    color: #fff !important;
+    color: var(--theme-white) !important;
 }
 .navLink a:first-child{
     /* color: #14F195 !important; */
@@ -24,22 +24,22 @@
     white-space: nowrap;
 }
 .customIcon svg{
-    color: #fff;
+    color: var(--theme-white);
     font-size: 20px;
 }
 .dropdownBtn button{
-    color: #fff !important;
+    color: var(--theme-white) !important;
     font-size: 14px;
 }
 .soon{
-    background: #6f6f6f;
+    background: var(--theme-black-light);
     padding: 0px 5px;
     font-size: 12px;
     display: inline-block;
     margin-left: 5px;
 }
 .navLink .disabledLink{
-    color: rgb(255 255 255 / 70%) !important;
+    color: var(--theme-white-light) !important;
 }
 @media screen and (max-width:991px) {
     .navLink{

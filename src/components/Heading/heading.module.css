@@ -1,10 +1,15 @@
 .heading {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 60px;
     line-height: 75px;
-    letter-spacing: 0.2px;
-    color: #FFFFFF;
+    letter-spacing: -0.02em;
+    color: var(--theme-white);
     text-transform: uppercase;
+    font-family: var(--manrope-bold) !important;
+  }
+  .subHeading{
+    font-size: 48px;
+    line-height: 120%;
   }
   
   @media screen and (max-width:768px) {
