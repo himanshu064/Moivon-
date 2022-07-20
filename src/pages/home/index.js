@@ -7,9 +7,7 @@ import Heading from "../../components/Heading";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 import HomeSlider from "../../components/HomeSlider";
-import Events from "../../components/Events";
-
-import { BsPlayCircle } from "react-icons/bs";
+import EventSlider from "../../components/EventSlider";
 import { FiArrowUpRight } from "react-icons/fi";
 import EventsInfo from "../../components/EventsInfo";
 import HomeForm from "../../components/Form";
@@ -139,7 +137,7 @@ function Home() {
           </Row>
         </Container>
         <div className={`mx-0 ${styles.slider}`}>
-          <Events />
+          <EventSlider />
         </div>
       </section>
       <section className={`section ${styles.connectionSection}`}>
