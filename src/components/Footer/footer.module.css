@@ -53,3 +53,12 @@ color: var(--theme-white);
 .formGroup  input:-internal-autofill-selected{
   background-color: unset !important;
 }
+
+
+@media screen and (max-width:768px) {
+  .logo{
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}

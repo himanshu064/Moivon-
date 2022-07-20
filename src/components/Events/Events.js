@@ -2,30 +2,42 @@ import React from "react";
 import styles from "./event.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import Button from "../../components/Button";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
-import EventsInfo from "../EventsInfo";
+import Button from "../../components/Button";
 
-const teamData = [
+const eventData = [
   {
-    image: "/img/slider-1.webp",
+    image: "/img/event-1.png",
+    title: "Art Member Monday",
   },
   {
-    image: "/img/slider-1.webp",
+    image: "/img/event-2.png",
+    title: "Art Member Monday",
   },
   {
-    image: "/img/slider-1.webp",
+    image: "/img/event-3.png",
+    title: "Art Member Monday",
   },
   {
-    image: "/img/slider-1.webp",
+    image: "/img/event-1.png",
+    title: "Art Member Monday",
+  },
+  {
+    image: "/img/event-2.png",
+    title: "Art Member Monday",
   },
 ];
 function Events() {
+  const pagination = {
+    clickable: true,
+  };
   return (
     <>
       <Swiper
@@ -38,6 +50,10 @@ function Events() {
         breakpoints={{
           // when window width is >= 640px
           0: {
+            slidesPerView: 1.1,
+          },
+          // when window width is >= 576px
+          576: {
             slidesPerView: 1.5,
           },
           // when window width is >= 768px
@@ -50,15 +66,31 @@ function Events() {
           },
         }}
       >
-        {teamData?.map((data) => (
+        {eventData?.map((data) => (
           <SwiperSlide>
             <div className={styles.eventWrapper}>
               <div className={styles.image}>
-                <img src="/img/event-1.png" alt="" />
+                <Swiper
+                  modules={[Pagination]}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  pagination={pagination}
+                  onSlideChange={() => console.log("slide change")}
+                  onSwiper={(swiper) => console.log(swiper)}
+                >
+                  {eventData?.map((data) => (
+                    <SwiperSlide>
+                      <img src={data?.image} alt="" />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+              <div className={styles.galleryBtn}>
+                <Button>Gallery</Button>
               </div>
               <div className={styles.content}>
                 <div className="d-flex justify-content-between px-3">
-                  <h3>Art Member Monday</h3>
+                  <h3>{data?.title}</h3>
                   <div className="d-flex gap-2">
                     <span className="d-flex">
                       <AiOutlineStar />

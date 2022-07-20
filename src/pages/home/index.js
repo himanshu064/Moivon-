@@ -87,7 +87,7 @@ function Home() {
       <section className={`section ${styles.bottomSection}`}>
         <Container>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="mb-4">
               <div className={styles.paddingRight}>
                 <Heading variant="subHeading">
                   Most popular
@@ -122,13 +122,13 @@ function Home() {
         <Container>
           <Row>
             <Col md={6}>
-              <Heading mb="50" variant="subHeading">
+              <Heading variant="subHeading">
                 Upcoming events
                 <br /> for you{" "}
               </Heading>
             </Col>
             <Col md={6}>
-              <div className="d-flex justify-content-end align-items-center">
+              <div className="d-flex justify-content-end align-items-center mb-4">
                 <a href="#">
                   <span>
                     View All <FiArrowUpRight />
@@ -186,7 +186,7 @@ function Home() {
       <section className={`section ${styles.contactSection}`}>
         <Container>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="mb-4">
               <div className={`${styles.contactWrapper} ${styles.paddingR}`}>
                 <Heading variant="subHeading">
                   CONTACT US FOR ANY

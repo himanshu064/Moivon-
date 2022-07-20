@@ -7,6 +7,7 @@ import Button from "../Button";
 import { FiSearch } from "react-icons/fi";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { BiMenuAltRight } from "react-icons/bi";
 
 function Header() {
   return (
@@ -17,7 +18,9 @@ function Header() {
             <Navbar.Brand className={styles.logo} href="#">
               <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle aria-controls="basic-navbar-nav">
+              <BiMenuAltRight />
+            </Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className={styles.navLink + " me-auto"}>
                 <NavDropdown

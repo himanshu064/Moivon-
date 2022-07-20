@@ -44,3 +44,13 @@ font-size: 12px;
     font-size: 12px;
     text-transform: uppercase;
 }
+
+@media screen and (max-width:520px) {
+    .gridDiv{
+        grid-template-columns: 50% 50%;
+        gap: 20px;
+    }
+    .borderRight{
+        border-right: 0;
+    }
+}

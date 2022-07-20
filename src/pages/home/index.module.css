@@ -125,6 +125,25 @@
         font-size: 40px !important;
         line-height: 55px !important;
     }
+    .bottomSection{
+        padding: 40px 0;
+    }
+    .largeLogoDiv{
+        border-left: 0;
+    }
+    .paddingR{
+        padding-right: 20px;
+    }
+    .paddingAll{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .connectionSection{
+        padding: 40px 0 40px;
+    }
+    .contactSection{
+        padding: 50px 0;
+    }
 }
 @media screen and (max-width:600px) {
     .slider{
@@ -134,5 +153,12 @@
 @media screen and (max-width:576px) {
     .countWrapper{
         border-right: 0;
+    }
+    .bgImg{
+        padding: 50px 0;
+    }
+    .heroHeading h1{
+        font-size: 30px !important;
+        line-height: 45px !important;
     }
 }

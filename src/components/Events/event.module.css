@@ -36,11 +36,16 @@ font-size: 12px;
     }
     
     .galleryBtn button{
-        background: var(--theme-black-light) !important;
-        color: var(--theme-white-light) !important;
-        font-size: 12px !important;
-        font-weight: 400 !important;
-        text-transform: uppercase;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(52, 52, 52, 0.2) !important;
+    backdrop-filter: blur(16px);
+    color: #E8E8E8 !important;
+    z-index: 1;
     }
     .gridDiv{
         display: grid !important;

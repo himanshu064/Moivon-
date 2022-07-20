@@ -34,7 +34,9 @@ const HomeForm = () => {
         <Form.Label>WRITE A MESSAGE</Form.Label>
         <Form.Control as="textarea" placeholder="Enter your message" />
       </Form.Group>
-      <div className={`d-flex gap-4 align-items-center ${styles.btnDiv}`}>
+      <div
+        className={`d-flex gap-4 align-items-center flex-wrap ${styles.btnDiv}`}
+      >
         <Button type="primary">Submit</Button>
         <Text>
           By clicking “Subscribe”, I agree to share

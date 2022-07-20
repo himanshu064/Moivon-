@@ -69,8 +69,8 @@ code {
 
 
 .navbar{
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 .section{
   padding: 40px 0;
@@ -78,7 +78,6 @@ code {
 .navbar-light .navbar-toggler{
   color: var(--theme-white) !important;
 }
-/* s */
 .nav_dropdown .dropdown-menu a{
 color: #000 !important;
 }
@@ -115,6 +114,14 @@ color: #000 !important;
 .swiper-button-next::before{
   background-image: url(/public/img/next.svg);
 }
+.swiper-pagination-bullet{
+  background: var(--theme-white) !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active{
+  background: var(--theme-black) !important;
+  opacity: 1 !important;
+}
 svg{
   color: var(--theme-white);
   font-size: 20px;
@@ -140,4 +147,10 @@ input:focus, textarea:focus, button:focus{
 .border-b{
   border-bottom: 2px solid var(--border-color);
   padding: 10px 0;
+}
+
+@media screen and (max-width:768px) {
+  .section{
+    padding: 20px 0;
+  }
 }

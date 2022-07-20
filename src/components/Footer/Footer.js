@@ -11,14 +11,14 @@ const Footer = () => {
       <section className={`${styles.footerSection} section`}>
         <Container>
           <Row className="mb-4">
-            <Col md={8}>
+            <Col sm={8}>
               <Row>
-                <Col md={3}>
+                <Col xs={6} sm={6} md={3}>
                   <div className={styles.logo}>
                     <img src="/img/moivon.png" alt="logo" />
                   </div>
                 </Col>
-                <Col md={3}>
+                <Col xs={6} sm={6} md={3}>
                   <h3>EVENTS</h3>
                   <ul>
                     <li>All Events</li>
@@ -29,7 +29,7 @@ const Footer = () => {
                     <li>Individual</li>
                   </ul>
                 </Col>
-                <Col md={3}>
+                <Col xs={6} sm={6} md={3}>
                   <h3>NAVIGATION</h3>
                   <ul>
                     <li>Upcoming events</li>
@@ -39,7 +39,7 @@ const Footer = () => {
                     <li>Contact us</li>
                   </ul>
                 </Col>
-                <Col md={3}>
+                <Col xs={6} sm={6} md={3}>
                   <h3>social media</h3>
                   <ul>
                     <li>Instagram</li>
@@ -50,7 +50,7 @@ const Footer = () => {
                 </Col>
               </Row>
             </Col>
-            <Col md={4}>
+            <Col sm={4}>
               <div className={styles.subscribeSection}>
                 <h3 className="mb-3">Subscribe for updates</h3>
                 <Form>
@@ -76,7 +76,7 @@ const Footer = () => {
             </Col>
             <Col md={6}>
               <div className="text-center">
-                <ul className="d-flex gap-3 justify-content-center mb-0">
+                <ul className="d-flex gap-3 justify-content-center mb-0 flex-wrap">
                   <li>Privacy Policy</li>
                   <li>Terms and Conditions</li>
                   <li>Acceptable Use Policy</li>

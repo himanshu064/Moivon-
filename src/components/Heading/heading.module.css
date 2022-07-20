@@ -18,3 +18,9 @@
       line-height: 55px !important;
     }
   }
+  @media screen and (max-width:576px) {
+    .heading{
+      font-size: 30px !important;
+      line-height: 45px !important;
+    }
+  }
