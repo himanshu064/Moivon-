@@ -20,9 +20,9 @@ function Home() {
       <section className={`${styles.heroSection} section`}>
         <Container>
           <Row>
-            <Col md={8}>
-              <div className={styles.heroHeading}>
-                <Heading mb="50">More of the events you love </Heading>
+            <Col lg={8}>
+              <div className={styles.heroHeading + " mb-5"}>
+                <Heading>More of the events you love </Heading>
                 <span className={styles.spanHead}>
                   Welcome to Moivon! A connection to creative events, curated
                   for you.
@@ -32,11 +32,11 @@ function Home() {
                 </span>
               </div>
               <div
-                className={`${styles.heroIcons} d-flex gap-4 align-items-center`}
+                className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
               >
                 <Button type="primary">Discover events</Button>
                 <span>
-                  <BsPlayCircle /> Video of our events
+                  <img src="/img/video.svg" alt="video" /> Video of our events
                 </span>
               </div>
             </Col>
@@ -48,19 +48,19 @@ function Home() {
           <Row>
             <Col lg={8}>
               <Row className={styles.customRow}>
-                <Col md={4} className={styles.customCol}>
+                <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
                     <Heading mb="5">2400+</Heading>
                     <Text>Art Events</Text>
                   </div>
                 </Col>
-                <Col md={4} className={styles.customCol}>
+                <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
                     <Heading mb="5">1200+</Heading>
                     <Text>Positive Reviews</Text>
                   </div>
                 </Col>
-                <Col md={4} className={styles.customCol}>
+                <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
                     <Heading mb="5">80</Heading>
                     <Text>Top Locations</Text>

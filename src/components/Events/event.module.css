@@ -18,17 +18,44 @@ font-size: 12px;
 .eventWrapper svg{
     margin-right: 5px;
 }
-
-
-
 .eventWrapper .title{
     display: block;
     font-size: 12px;
     text-transform: uppercase;
     color: var(--theme-white-light) !important;
 }
+/* events */
 
-.entryDiv .entry{
-    font-size: 26px;
-    font-weight: 500;
-}
+    .borderRight{
+        border-right: 2px solid var(--border-color);
+        padding-right: 1rem!important;
+        padding-left: 1rem!important;
+    }
+    .borderRight:last-child{
+        border-right: 0;
+    }
+    
+    .galleryBtn button{
+        background: var(--theme-black-light) !important;
+        color: var(--theme-white-light) !important;
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        text-transform: uppercase;
+    }
+    .gridDiv{
+        display: grid !important;
+        grid-template-columns: 33% 33% 33%;
+    }
+    
+     .title{
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: var(--theme-white-light) !important;
+    }
+     .date, .location, .entry{
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+    
+    

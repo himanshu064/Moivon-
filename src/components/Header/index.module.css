@@ -37,6 +37,7 @@
     font-size: 12px;
     display: inline-block;
     margin-left: 5px;
+    color: var(--theme-white-light);
 }
 .navLink .disabledLink{
     color: var(--theme-white-light) !important;

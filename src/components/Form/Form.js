@@ -34,11 +34,11 @@ const HomeForm = () => {
         <Form.Label>WRITE A MESSAGE</Form.Label>
         <Form.Control as="textarea" placeholder="Enter your message" />
       </Form.Group>
-      <div className="d-flex gap-2 align-items-center">
+      <div className={`d-flex gap-4 align-items-center ${styles.btnDiv}`}>
         <Button type="primary">Submit</Button>
         <Text>
-          By clicking “Subscribe”, I agree to share my contact information with
-          Moivon.
+          By clicking “Subscribe”, I agree to share
+          <br /> my contact information with Moivon.
         </Text>
       </div>
     </Form>

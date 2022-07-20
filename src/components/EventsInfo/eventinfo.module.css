@@ -9,6 +9,9 @@ font-size: 12px;
     padding-right: 1rem!important;
     padding-left: 1rem!important;
 }
+.borderRight:first-child{
+    padding-left: 0 !important;
+}
 .borderRight:last-child{
     border-right: 0;
 }
@@ -22,9 +25,8 @@ font-size: 12px;
 }
 .gridDiv{
     display: grid !important;
-    grid-template-columns: 33% 33% 33%;
-    place-content: center;
-    place-items: center;
+    grid-template-columns: 30% 20% 50%;
+    
 }
 
  .title{

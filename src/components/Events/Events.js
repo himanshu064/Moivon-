@@ -70,16 +70,25 @@ function Events() {
                     </span>
                   </div>
                 </div>
-                <div className="gallery-border">
-                  <EventsInfo />
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center py-2 px-3">
-                  <div className={styles.entryDiv}>
-                    <span className={styles.title}>Entry fee</span>
-                    <span className={styles.entry}>$150,00</span>
+                <div className="gallery-border" style={{ borderBottom: "0" }}>
+                  <div className={styles.gridDiv}>
+                    <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
+                      <span className={styles.title}>Date</span>
+                      <span className={styles.date}>30 june</span>
+                    </div>
+                    <div
+                      className={`${styles.locationDiv}  ${styles.borderRight}`}
+                    >
+                      <span className={styles.title}>Location</span>
+                      <span className={styles.location}>Bourbon st, 40</span>
+                    </div>
+                    <div
+                      className={`${styles.entryDiv}  ${styles.borderRight}`}
+                    >
+                      <span className={styles.title}>Entry fee</span>
+                      <span className={styles.entry}>$150,00</span>
+                    </div>
                   </div>
-                  <Button variant="primary">Read more</Button>
                 </div>
               </div>
             </div>

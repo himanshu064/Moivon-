@@ -26,3 +26,9 @@
 .formGroup  input:-internal-autofill-selected{
     background-color: unset !important;
 }
+.btnDiv button{
+    width: 212px;
+}
+.btnDiv p{
+    margin-bottom: 0;
+}

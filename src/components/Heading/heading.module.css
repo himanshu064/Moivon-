@@ -14,7 +14,7 @@
   
   @media screen and (max-width:768px) {
     .heading{
-      font-size: 40px;
-      line-height: 55px;
+      font-size: 40px !important;
+      line-height: 55px !important;
     }
   }

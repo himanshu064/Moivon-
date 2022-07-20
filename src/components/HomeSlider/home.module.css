@@ -8,7 +8,6 @@
     margin: 20px 0;
 }
 .wrapper img{
-    filter: grayscale(1);
     height: 370px;
     object-fit: cover;
 }

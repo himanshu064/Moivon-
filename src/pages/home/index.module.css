@@ -24,14 +24,13 @@
     left: -20px;
     opacity: 0.8;
 }
-.heroIcons svg{
-    font-size: 34px;
-    color: var(--theme-white);
+.heroIcons img{
     margin-right: 10px;
 }
 .heroIcons span{
     color: var(--theme-white);
     font-size: 14px;
+    font-family: var(--sans-medium);
 }
 .countWrapper{
     border-right: 2px solid var(--border-color);
@@ -102,14 +101,38 @@
 }
 
 
-
+@media screen and (max-width:1349px) {
+    .heroHeading .spanHead{
+        position: unset;
+    }
+    .spanHead::before{
+        display: none;
+    }
+    .heroIcons{
+        margin-top: 20px;
+    }
+}
 @media screen and (max-width:1100px) {
     .slider{
         padding-left: 60px;
+    }
+    .paddingRight{
+        padding-right: 30px;
+    }
+}
+@media screen and (max-width:768px) {
+    .heroHeading h1{
+        font-size: 40px !important;
+        line-height: 55px !important;
     }
 }
 @media screen and (max-width:600px) {
     .slider{
         padding-left: 10px;
+    }
+}
+@media screen and (max-width:576px) {
+    .countWrapper{
+        border-right: 0;
     }
 }
