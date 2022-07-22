@@ -25,7 +25,7 @@ function Event({ event }) {
             spaceBetween={0}
             slidesPerView={1}
             pagination={pagination}
-            navigation={true}
+            navigation={false}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
           >

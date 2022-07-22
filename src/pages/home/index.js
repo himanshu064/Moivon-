@@ -136,9 +136,12 @@ function Home() {
             </Col>
           </Row>
         </Container>
-        <div className={`mx-0 ${styles.slider}`}>
-          <EventSlider />
-        </div>
+        <Container>
+          {/* ${styles.slider} */}
+          <div className={`mx-0 `}>
+            <EventSlider />
+          </div>
+        </Container>
       </section>
       <section className={`section ${styles.connectionSection}`}>
         <div className={styles.paddingAll}>
