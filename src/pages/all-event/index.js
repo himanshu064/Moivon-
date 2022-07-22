@@ -119,7 +119,33 @@ const eventData = [
 ];
 
 function AllEvent() {
-  const [key, setKey] = useState("home");
+  const [key, setKey] = useState("AllEvent");
+
+  const RenderEvent = () => {
+    return (
+      <Row>
+        {eventData?.map((data) => (
+          <Col md={4} className="mb-3">
+            <Event event={data} />
+          </Col>
+        ))}
+      </Row>
+    );
+  };
+
+  const ALL_COMPONENT = {
+    AllEvent: RenderEvent,
+    Classic: RenderEvent,
+    Gallery: RenderEvent,
+    Feature: RenderEvent,
+    Design: RenderEvent,
+    Individual: RenderEvent,
+  };
+
+  const randomTabContent = () => {
+    const DyanmicComponet = ALL_COMPONENT[key];
+    return <DyanmicComponet />;
+  };
 
   return (
     <>
@@ -127,76 +153,35 @@ function AllEvent() {
         <Container>
           <Row>
             <Col md={12}>
-              <div className={styles.navHead}>
-                <Heading>Events</Heading>
-                <Button variant="outline">Sort</Button>
+              <div className={styles.navHead + " mb-4"}>
+                <div
+                  className={`d-flex align-items-center gap-5 ${styles.topHead}`}
+                >
+                  <Heading mb="0" variant="subHeading">
+                    Events
+                  </Heading>
+                  <Tabs
+                    id="controlled-tab-example"
+                    activeKey={key}
+                    onSelect={(k) => setKey(k)}
+                    className={`mb-3 customTab`}
+                  >
+                    <Tab eventKey="AllEvent" title="All events"></Tab>
+                    <Tab eventKey="Classic" title="CLASSIC MUSEUM"></Tab>
+                    <Tab eventKey="Gallery" title="GALLERY"></Tab>
+                    <Tab eventKey="Feature" title="FEATURE VENUE"></Tab>
+                    <Tab eventKey="Design" title="DESIGN CONVETION"></Tab>
+                    <Tab eventKey="Individual" title="INDIVIDUAL"></Tab>
+                  </Tabs>
+                </div>
+                <div className={styles.sortBtn}>
+                  <Button type="outline">Sort</Button>
+                </div>
               </div>
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Tabs
-                id="controlled-tab-example"
-                activeKey={key}
-                onSelect={(k) => setKey(k)}
-                className="mb-3"
-              >
-                <Tab eventKey="events" title="All events">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-                <Tab eventKey="classic" title="CLASSIC MUSEUM">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-                <Tab eventKey="gallery" title="GALLERY">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-                <Tab eventKey="feature" title="FEATURE VENUE">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-                <Tab eventKey="design" title="DESIGN CONVETION">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-                <Tab eventKey="individual" title="INDIVIDUAL">
-                  <Row>
-                    {eventData?.map((data) => (
-                      <Col md={4} className="mb-3">
-                        <Event event={data} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Tab>
-              </Tabs>
-            </Col>
+            <Col>{randomTabContent()}</Col>
           </Row>
         </Container>
       </section>

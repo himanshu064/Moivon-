@@ -195,7 +195,12 @@ function Home() {
                   Moivon’s events - you can contact us and we will reply as soon
                   as possible
                 </Text>
-                <img src="/img/contact.png" alt="contact" width="100%" />
+                <img
+                  src="/img/contact.png"
+                  alt="contact"
+                  width="100%"
+                  height="252"
+                />
               </div>
             </Col>
             <Col md={6}>

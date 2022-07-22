@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./event.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, Navigation } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -21,10 +21,11 @@ function Event({ event }) {
       <div className={styles.eventWrapper}>
         <div className={styles.image}>
           <Swiper
-            modules={[Pagination]}
+            modules={[Pagination, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
             pagination={pagination}
+            navigation={true}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
           >

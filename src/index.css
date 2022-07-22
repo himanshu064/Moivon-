@@ -117,6 +117,7 @@ color: #000 !important;
 .swiper-pagination-bullet{
   background: var(--theme-white) !important;
   opacity: 1 !important;
+  border-radius: 2px !important;
 }
 .swiper-pagination-bullet-active{
   background: var(--theme-black) !important;
@@ -147,6 +148,30 @@ input:focus, textarea:focus, button:focus{
 .border-b{
   border-bottom: 2px solid var(--border-color);
   padding: 10px 0;
+}
+.customTab{
+  border-bottom: 0 !important;
+}
+.customTab li.nav-item {
+  margin-right: 20px;
+}
+.customTab .nav-link.active{
+  background-color: unset !important;
+  border: 0;
+  color: var(--theme-white) !important;
+  border-bottom: 1px solid var(--theme-white) !important;
+}
+.customTab  .nav-link{
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 150%;
+  color: var(--theme-white-light);
+  display: inline-block;
+  padding: 0 !important; 
+  border: 0 !important;
+}
+.customTab .nav-link:focus, .customTab .nav-link:hover{
+color: var(--theme-white);
 }
 
 @media screen and (max-width:768px) {
