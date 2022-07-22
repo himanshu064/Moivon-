@@ -11,6 +11,7 @@ import EventSlider from "../../components/EventSlider";
 import { FiArrowUpRight } from "react-icons/fi";
 import EventsInfo from "../../components/EventsInfo";
 import HomeForm from "../../components/Form";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -127,11 +128,11 @@ function Home() {
             </Col>
             <Col md={6}>
               <div className="d-flex justify-content-end align-items-center mb-4">
-                <a href="#">
+                <Link to="/all-events">
                   <span>
                     View All <FiArrowUpRight />
                   </span>
-                </a>
+                </Link>
               </div>
             </Col>
           </Row>
