@@ -1,0 +1,38 @@
+.imgSlider{
+    position: relative;
+}
+.imgSlider  img{
+    width: 100%;
+}
+
+
+/* form css */
+
+.formGroup label{
+    font-size: 14px;
+    color: var(--theme-white);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.formGroup input{
+    background: var(--theme-black-light);
+    border: 0;
+    border-radius: 0;
+    height: 25px;
+    color: var(--theme-white);
+}
+.formGroup textarea{
+    background: #D9D9D9;
+    border: 0;
+    border-radius: 0;
+    resize: none;
+    color: var(--theme-black) !important;
+}
+.formGroup input:focus{
+    box-shadow: none;
+    background:var(--theme-black-light);
+}
+.formGroup textarea:focus{
+    box-shadow: none;
+    background: #D9D9D9;
+}

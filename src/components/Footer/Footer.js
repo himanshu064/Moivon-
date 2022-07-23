@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Text from "../Text";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,7 +16,9 @@ const Footer = () => {
               <Row>
                 <Col xs={6} sm={6} md={3}>
                   <div className={styles.logo}>
-                    <img src="/img/moivon.png" alt="logo" />
+                    <Link to="/">
+                      <img src="/img/moivon.png" alt="logo" />
+                    </Link>
                   </div>
                 </Col>
                 <Col xs={6} sm={6} md={3}>
