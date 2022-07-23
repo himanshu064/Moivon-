@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import AllEvent from "./pages/all-event";
 import EventDetail from "./pages/event-detail";
 import Home from "./pages/home";
+import UploadEvent from "./pages/upload-event";
 
 function NavigationRoutes() {
   return (
@@ -14,6 +15,7 @@ function NavigationRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/all-events" element={<AllEvent />} />
         <Route path="/event-detail" element={<EventDetail />} />
+        <Route path="/upload-event" element={<UploadEvent />} />
       </Routes>
       <Footer />
     </>

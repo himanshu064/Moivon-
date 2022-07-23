@@ -8,6 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiMenuAltRight } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,7 +16,7 @@ function Header() {
       <header>
         <Navbar bg="transparent" expand="lg">
           <Container>
-            <Navbar.Brand className={styles.logo} href="#">
+            <Navbar.Brand className={styles.logo} href="/">
               <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -28,7 +29,9 @@ function Header() {
                   id="basic-nav-dropdown"
                   className={"nav_dropdown"}
                 >
-                  <NavDropdown.Item href="#action/3.1">One</NavDropdown.Item>
+                  <NavDropdown.Item href="/all-events">
+                    All Events
+                  </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Two</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">Three</NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -64,7 +67,9 @@ function Header() {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-                <Button type="primary">Upload event</Button>
+                <Link to="/upload-event">
+                  <Button type="primary">Upload event</Button>
+                </Link>
               </div>
             </Navbar.Collapse>
           </Container>
