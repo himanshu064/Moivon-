@@ -7,19 +7,24 @@ import { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import Text from "../Text";
 
 const sliderData = [
   {
     image: "/img/slider-main.png",
+    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
   },
   {
     image: "/img/slider-main.png",
+    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
   },
   {
     image: "/img/slider-main.png",
+    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
   },
   {
     image: "/img/slider-main.png",
+    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
   },
 ];
 function HomeSlider() {
@@ -53,6 +58,7 @@ function HomeSlider() {
               <div className={styles.image}>
                 <img src={data?.image} alt="slider" width="100%" />
               </div>
+              <Text>{data?.text}</Text>
             </div>
           </SwiperSlide>
         ))}

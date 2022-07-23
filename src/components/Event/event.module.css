@@ -1,6 +1,7 @@
 /* events */
 .eventWrapper{
     position: relative;
+    margin-bottom: 20px;
 }
 .eventWrapper .image img{
     width: 100%;
