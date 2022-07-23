@@ -8,6 +8,7 @@ import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { prepareImageSrc } from "../../utils/api";
 import { formatCurrency } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
 function Event({ event }) {
   const pagination = {
@@ -42,7 +43,7 @@ function Event({ event }) {
         <div className={styles.content}>
           <div className="d-flex justify-content-between px-3">
             <h3 className="truncate-1" title={event.title}>
-              {event.title}
+              <Link to={`/event/${event.id}`}>{event.title}</Link>
             </h3>
             <div className="d-flex gap-2">
               <span className="d-flex">

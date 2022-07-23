@@ -54,7 +54,7 @@ function EventSlider() {
       >
         {data?.data?.data?.map((event) => (
           <SwiperSlide key={event.id}>
-            <Event event={event.attributes} />
+            <Event event={{ id: event.id, ...event.attributes }} />
           </SwiperSlide>
         ))}
       </Swiper>

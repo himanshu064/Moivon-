@@ -30,7 +30,12 @@ function AllEvent() {
       <Row>
         {data?.data?.data?.map((event) => (
           <Col md={4} className="mb-3" key={event.id}>
-            <Event event={event.attributes} />
+            <Event
+              event={{
+                id: event.id,
+                ...event.attributes,
+              }}
+            />
           </Col>
         ))}
       </Row>

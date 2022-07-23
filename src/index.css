@@ -56,9 +56,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--theme-black) !important;
   font-family: var(--sans-regular) !important;
-  background-image: url(/public/img/bg.svg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.backgroundHome {
+  background-image: url(/public/img/bg.svg);
 }
 
 code {

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
-
+import { useParams } from "react-router-dom";
+import { utcToZonedTime } from "date-fns-tz";
+import { format } from "date-fns";
+import { useQuery } from "@tanstack/react-query";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -14,88 +17,38 @@ import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 import Event from "../../components/Event";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { fetchAllEvent, fetchSingleEvent } from "../../services/Events";
+import { prepareImageSrc } from "../../utils/api";
+import { formatCurrency } from "../../utils/helpers";
 
-const eventImg = [
-  {
-    image: "/img/detail-img.png",
-  },
-  {
-    image: "/img/detail-img.png",
-  },
-  {
-    image: "/img/detail-img.png",
-  },
-];
-
-const eventData = [
-  {
-    image: "/img/event-1.png",
-    title: "Art1 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art2 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-3.png",
-    title: "Art3 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-];
 function EventDetail() {
   const pagination = {
     clickable: true,
   };
+
+  const { eventId } = useParams();
+
+  // fetching single event to show
+  const { data, isLoading, isError, error } = useQuery(
+    ALL_QUERIES.QUERY_SINGLE_EVENT({ eventId }),
+    () => fetchSingleEvent({ eventId })
+  );
+
+  // fetching all events to show at the bottom
+  const {
+    data: allEventsData,
+    isLoading: allEventsIsLoading,
+    isError: allEventsIsError,
+    error: allEventError,
+  } = useQuery(ALL_QUERIES.QUERY_ALL_EVENTS(), fetchAllEvent);
+
+  if (isLoading) return <p>Loading .... </p>;
+
+  if (isError) return <p>{error}</p>;
+
+  console.log(data, "Data from a single query!");
+
   return (
     <>
       <section className="section">
@@ -107,7 +60,7 @@ function EventDetail() {
                   className={`${styles.eventHead} d-flex align-items-center gap-3`}
                 >
                   <Heading mb="0" variant="subHeading">
-                    365 Frames-Days
+                    {data?.data?.data?.attributes?.title}
                   </Heading>
                   <span className={styles.type}>CLASSIC MUSEUM</span>
                 </div>
@@ -127,11 +80,16 @@ function EventDetail() {
                   onSlideChange={() => console.log("slide change")}
                   onSwiper={(swiper) => console.log(swiper)}
                 >
-                  {eventImg?.map((data) => (
-                    <SwiperSlide>
-                      <img src={data?.image} alt="" />
-                    </SwiperSlide>
-                  ))}
+                  {data?.data?.data?.attributes?.image?.data?.map(
+                    (imageData) => (
+                      <SwiperSlide key={imageData.id}>
+                        <img
+                          src={prepareImageSrc(imageData?.attributes?.url)}
+                          alt={imageData?.attributes?.alternativeText}
+                        />
+                      </SwiperSlide>
+                    )
+                  )}
                 </Swiper>
               </div>
             </Col>
@@ -140,7 +98,12 @@ function EventDetail() {
                 <div className={styles.gridDiv}>
                   <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
                     <span className={styles.title}>Date</span>
-                    <span className={styles.date}>30 june</span>
+                    <span className={styles.date}>
+                      {format(
+                        new Date(data?.data?.data?.attributes?.dates),
+                        "dd LLL yyyy"
+                      )}
+                    </span>
                   </div>
                   <div
                     className={`${styles.locationDiv}  ${styles.borderRight}`}
@@ -150,21 +113,28 @@ function EventDetail() {
                   </div>
                   <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
                     <span className={styles.title}>DOORS OPEN</span>
-                    <span className={styles.entry}>11:30 AM</span>
+                    <span className={styles.entry}>
+                      {format(
+                        new Date(
+                          utcToZonedTime(
+                            data?.data?.data?.attributes?.dates,
+                            "utc"
+                          )
+                        ),
+                        "HH:MM a"
+                      )}
+                    </span>
                   </div>
                   <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
                     <span className={styles.title}>Entry fee</span>
-                    <span className={styles.entry}>$150,00</span>
+                    <span className={styles.entry}>
+                      {formatCurrency(data?.data?.data?.attributes?.price)}
+                    </span>
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>About event</h3>
-                  <Text>
-                    Libero et, lorem consectetur ac augue nisl. Nunc accumsan
-                    rhoncus congue quisque at praesentyi vulputate consectetur.
-                    Eu, auctor duis egestas nulla molestie. Amet, justo, id arcu
-                    donec id congue morbi.
-                  </Text>
+                  <Text>{data?.data?.data?.attributes?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>VENUE</h3>
@@ -216,13 +186,19 @@ function EventDetail() {
         <Container>
           {/* ${styles.slider} */}
           <div className={`mx-0 `}>
-            <Row>
-              {eventData?.map((data) => (
-                <Col md={4}>
-                  <Event event={data} />
-                </Col>
-              ))}
-            </Row>
+            {allEventsIsLoading ? (
+              <p>Loading....</p>
+            ) : allEventsIsError ? (
+              <p>{allEventError}</p>
+            ) : (
+              <Row>
+                {allEventsData?.data?.data?.map((event) => (
+                  <Col key={event.id} md={4}>
+                    <Event event={{ id: event.id, ...event.attributes }} />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </div>
         </Container>
       </section>

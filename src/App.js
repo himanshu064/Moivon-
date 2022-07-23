@@ -1,5 +1,6 @@
 import React from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NavigationRoutes from "./routes";
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationRoutes />
+      <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

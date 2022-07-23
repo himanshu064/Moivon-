@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -14,6 +14,13 @@ import HomeForm from "../../components/Form";
 import { Link } from "react-router-dom";
 
 function Home() {
+  useEffect(() => {
+    document.querySelector("body").classList.add("backgroundHome");
+
+    return () => {
+      document.querySelector("body").classList.remove("backgroundHome");
+    };
+  }, []);
   return (
     <>
       <section className={`${styles.heroSection} section`}>
