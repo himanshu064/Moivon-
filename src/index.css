@@ -1,56 +1,56 @@
 /* Google sans font */
 @font-face {
-  font-family: 'Google sans Regular';
+  font-family: "Google sans Regular";
   src: url(/public/fonts/google-sans/ProductSans-Regular.ttf);
 }
 @font-face {
-  font-family: 'Google sans Medium';
+  font-family: "Google sans Medium";
   src: url(/public/fonts/google-sans/ProductSans-Medium.ttf);
 }
 @font-face {
-  font-family: 'Google sans Bold';
+  font-family: "Google sans Bold";
   src: url(/public/fonts/google-sans/ProductSans-Bold.ttf);
 }
 
 /* manrope font */
 @font-face {
-  font-family: 'Manrope Regular';
+  font-family: "Manrope Regular";
   src: url(/public/fonts/manrope/Manrope-Regular.ttf);
 }
 @font-face {
-  font-family: 'Manrope Medium';
+  font-family: "Manrope Medium";
   src: url(/public/fonts/manrope/Manrope-Medium.ttf);
 }
 @font-face {
-  font-family: 'Manrope Bold';
+  font-family: "Manrope Bold";
   src: url(/public/fonts/manrope/Manrope-Bold.ttf);
 }
 @font-face {
-  font-family: 'Manrope SemiBold';
+  font-family: "Manrope SemiBold";
   src: url(/public/fonts/manrope/Manrope-SemiBold.ttf);
 }
 
 :root {
-  --theme-white: #F8F8F8;
+  --theme-white: #f8f8f8;
   --theme-black: #252525;
-  --theme-white-light: #A6A6A6;
+  --theme-white-light: #a6a6a6;
   --theme-black-light: #343434;
   --border-color: #575757;
   --color-black: #000000;
   --color-white: #ffffff;
-  --sans-regular: 'Google sans Regular';
-  --sans-medium: 'Google sans Medium';
-  --sans-bold: 'Google sans Bold';
-  --manrope-regular: 'Manrope Regular';
-  --manrope-medium: 'Manrope Medium';
-  --manrope-bold: 'Manrope Bold';
-  --manrope-semibold: 'Manrope SemiBold';
+  --sans-regular: "Google sans Regular";
+  --sans-medium: "Google sans Medium";
+  --sans-bold: "Google sans Bold";
+  --manrope-regular: "Manrope Regular";
+  --manrope-medium: "Manrope Medium";
+  --manrope-bold: "Manrope Bold";
+  --manrope-semibold: "Manrope SemiBold";
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,124 +58,136 @@ body {
   font-family: var(--sans-regular) !important;
   background-image: url(/public/img/bg.svg);
   background-size: cover;
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-
-.navbar{
+.navbar {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
-.section{
+.section {
   padding: 40px 0;
 }
-.navbar-light .navbar-toggler{
+.navbar-light .navbar-toggler {
   color: var(--theme-white) !important;
 }
-.nav_dropdown .dropdown-menu a{
-color: #000 !important;
+.nav_dropdown .dropdown-menu a {
+  color: #000 !important;
 }
 
-.swiper-button-next, .swiper-button-prev{
+.swiper-button-next,
+.swiper-button-prev {
   width: 40px !important;
   height: 40px !important;
   border-radius: 2px;
 }
-.swiper-button-prev{
+.swiper-button-prev {
   background: #a6a6a6;
   backdrop-filter: blur(12px);
 }
-.swiper-button-next{
+.swiper-button-next {
   background: var(--theme-white);
   backdrop-filter: blur(12px);
 }
 
-.swiper-button-prev:after, .swiper-button-next:after{
+.swiper-button-prev:after,
+.swiper-button-next:after {
   display: none;
 }
-.swiper-button-prev::before, .swiper-button-next::before{
+.swiper-button-prev::before,
+.swiper-button-next::before {
   content: "";
   width: 18px;
   height: 18px;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
-.swiper-button-prev::before{
+.swiper-button-prev::before {
   background-image: url(/public/img/back.svg);
 }
-.swiper-button-next::before{
+.swiper-button-next::before {
   background-image: url(/public/img/next.svg);
 }
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   background: var(--theme-white) !important;
   opacity: 1 !important;
   border-radius: 2px !important;
 }
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
   background: var(--theme-black) !important;
   opacity: 1 !important;
 }
-svg{
+svg {
   color: var(--theme-white);
   font-size: 20px;
 }
-a{
+a {
   text-decoration: none !important;
   color: var(--theme-white) !important;
 }
-span{
+span {
   color: var(--theme-white);
 }
-input, textarea{
+input,
+textarea {
   color: var(--theme-white) !important;
 }
-input:focus, textarea:focus, button:focus{
+input:focus,
+textarea:focus,
+button:focus {
   box-shadow: none !important;
 }
-.gallery-border{
+.gallery-border {
   border-top: 2px solid var(--border-color);
   border-bottom: 2px solid var(--border-color);
   padding: 10px 0;
 }
-.border-b{
+.border-b {
   border-bottom: 2px solid var(--border-color);
   padding: 10px 0;
 }
-.customTab{
+.customTab {
   border-bottom: 0 !important;
 }
 .customTab li.nav-item {
   margin-right: 20px;
 }
-.customTab .nav-link.active{
+.customTab .nav-link.active {
   background-color: unset !important;
   border: 0;
   color: var(--theme-white) !important;
   border-bottom: 1px solid var(--theme-white) !important;
 }
-.customTab  .nav-link{
+.customTab .nav-link {
   font-size: 14px;
   text-transform: uppercase;
   line-height: 150%;
   color: var(--theme-white-light);
   display: inline-block;
-  padding: 0 !important; 
+  padding: 0 !important;
   border: 0 !important;
 }
-.customTab .nav-link:focus, .customTab .nav-link:hover{
-color: var(--theme-white);
+.customTab .nav-link:focus,
+.customTab .nav-link:hover {
+  color: var(--theme-white);
 }
 
-@media screen and (max-width:768px) {
-  .section{
+.truncate-1 {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
     padding: 20px 0;
   }
 }

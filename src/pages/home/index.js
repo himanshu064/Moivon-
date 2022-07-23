@@ -139,7 +139,7 @@ function Home() {
         </Container>
         <Container>
           {/* ${styles.slider} */}
-          <div className={`mx-0 `}>
+          <div className={`mx-0`}>
             <EventSlider />
           </div>
         </Container>

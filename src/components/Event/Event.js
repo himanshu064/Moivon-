@@ -3,14 +3,11 @@ import styles from "./event.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+import { format } from "date-fns";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
+import { prepareImageSrc } from "../../utils/api";
+import { formatCurrency } from "../../utils/helpers";
 
 function Event({ event }) {
   const pagination = {
@@ -29,9 +26,12 @@ function Event({ event }) {
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
           >
-            {event?.gallery?.map((data) => (
-              <SwiperSlide>
-                <img src={data?.image} alt="" />
+            {event?.image?.data?.map((imageData) => (
+              <SwiperSlide key={imageData.id}>
+                <img
+                  src={prepareImageSrc(imageData?.attributes?.url)}
+                  alt={imageData?.attributes?.alternativeText}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -41,7 +41,9 @@ function Event({ event }) {
         </div>
         <div className={styles.content}>
           <div className="d-flex justify-content-between px-3">
-            <h3>{event.title}</h3>
+            <h3 className="truncate-1" title={event.title}>
+              {event.title}
+            </h3>
             <div className="d-flex gap-2">
               <span className="d-flex">
                 <AiOutlineStar />
@@ -57,7 +59,9 @@ function Event({ event }) {
             <div className={styles.gridDiv}>
               <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
                 <span className={styles.title}>Date</span>
-                <span className={styles.date}>30 june</span>
+                <span className={styles.date}>
+                  {format(new Date(event?.dates), "dd LLL yyyy")}
+                </span>
               </div>
               <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
                 <span className={styles.title}>Location</span>
@@ -65,7 +69,9 @@ function Event({ event }) {
               </div>
               <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
                 <span className={styles.title}>Entry fee</span>
-                <span className={styles.entry}>$150,00</span>
+                <span className={styles.entry}>
+                  {formatCurrency(event?.price)}
+                </span>
               </div>
             </div>
           </div>

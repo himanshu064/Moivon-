@@ -1,152 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./eventslider.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { useQuery } from "@tanstack/react-query";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import Event from "../Event/Event";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { fetchAllEvent } from "../../services/Events";
 
-const eventData = [
-  {
-    image: "/img/event-1.png",
-    title: "Art1 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art2 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-3.png",
-    title: "Art3 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-1.png",
-    title: "Art4 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art5 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-];
 function EventSlider() {
+  const { data, isLoading, isError, error } = useQuery(
+    ALL_QUERIES.QUERY_ALL_EVENTS(),
+    fetchAllEvent
+  );
   const pagination = {
     clickable: true,
   };
+
+  if (isLoading) return <p>Loading .... </p>;
+
+  if (isError) return <p>{error}</p>;
+
+  console.log(data, "data");
+
   return (
     <>
       <Swiper
@@ -175,9 +52,9 @@ function EventSlider() {
           },
         }}
       >
-        {eventData?.map((data) => (
-          <SwiperSlide>
-            <Event event={data} />
+        {data?.data?.data?.map((event) => (
+          <SwiperSlide key={event.id}>
+            <Event event={event.attributes} />
           </SwiperSlide>
         ))}
       </Swiper>

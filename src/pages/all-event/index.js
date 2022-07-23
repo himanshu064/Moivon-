@@ -3,130 +3,34 @@ import Event from "../../components/Event";
 import styles from "./index.module.css";
 
 import Container from "react-bootstrap/Container";
+import { useQuery } from "@tanstack/react-query";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-
-const eventData = [
-  {
-    image: "/img/event-1.png",
-    title: "Art1 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art2 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-3.png",
-    title: "Art3 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-1.png",
-    title: "Art4 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art5 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-      {
-        image: "/img/event-3.png",
-      },
-      {
-        image: "/img/event-1.png",
-      },
-      {
-        image: "/img/event-2.png",
-      },
-    ],
-  },
-];
+import { fetchAllEvent } from "../../services/Events";
+import { ALL_QUERIES } from "../../utils/endpoints";
 
 function AllEvent() {
   const [key, setKey] = useState("AllEvent");
 
+  const { data, isLoading, isError, error } = useQuery(
+    ALL_QUERIES.QUERY_ALL_EVENTS(),
+    fetchAllEvent
+  );
+
+  if (isLoading) return <p>Loading .... </p>;
+
+  if (isError) return <p>{error}</p>;
+
   const RenderEvent = () => {
     return (
       <Row>
-        {eventData?.map((data) => (
-          <Col md={4} className="mb-3">
-            <Event event={data} />
+        {data?.data?.data?.map((event) => (
+          <Col md={4} className="mb-3" key={event.id}>
+            <Event event={event.attributes} />
           </Col>
         ))}
       </Row>
