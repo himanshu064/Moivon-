@@ -6,5 +6,8 @@ letter-spacing: 0.2px;
 color: var(--theme-white-light);
 font-family: var(--sans-regular);
   }
+  .white{
+    color: var(--color-white) !important;
+  }
   
   

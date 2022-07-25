@@ -3,6 +3,18 @@
 .wrapper{
     text-align: center;
     color: #fff;
+    position: relative;
+}
+.wrapper p{
+    position: absolute;
+    top: 30px;
+    right: 15%;
+    width: 167px;
+    text-align: left;
+    background: var(--theme-white);
+    font-size: 12px;
+    padding: 5px;
+    color: var(--theme-black);
 }
 .content{
     margin: 20px 0;

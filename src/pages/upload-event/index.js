@@ -45,7 +45,9 @@ function UploadEvent() {
             </Col>
             <Col md={7}>
               <div className="d-flex justify-content-between flex-wrap">
-                <Text>UPLOAD UP TO 5 IMAGES/ VIDEOS (10 MB MAX)</Text>
+                <Text variant="white">
+                  UPLOAD UP TO 5 IMAGES/ VIDEOS (10 MB MAX)
+                </Text>
                 <Text>PREVIEW</Text>
               </div>
             </Col>
