@@ -173,7 +173,22 @@ input:focus, textarea:focus, button:focus{
 .customTab .nav-link:focus, .customTab .nav-link:hover{
 color: var(--theme-white);
 }
-
+.react-datetime-picker__wrapper{
+  background: #343434;
+  border: 0 !important;
+}
+.react-datetime-picker{
+  width: 100%;
+}
+:focus-visible {
+  outline: none !important;
+}
+.react-datetime-picker__wrapper span{
+  color: var(--theme-white);
+}
+.react-calendar span, .react-calendar__month-view__weekdays{
+  color: var(--theme-black);
+}
 @media screen and (max-width:768px) {
   .section{
     padding: 20px 0;

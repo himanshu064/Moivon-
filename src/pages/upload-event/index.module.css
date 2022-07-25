@@ -21,12 +21,25 @@
     height: 25px;
     color: var(--theme-white);
 }
+.formGroup select{
+    color: var(--theme-white);
+}
+.formGroup select option{
+    color: var(--theme-black);
+}
+svg{
+    color: var(--theme-white);
+    stroke: var(--theme-white);
+}
+button:hover svg, button:focus svg{
+    stroke: var(--theme-white) !important;
+}
 .formGroup textarea{
-    background: #D9D9D9;
+    background: rgba(109, 109, 109, 0.5);
     border: 0;
     border-radius: 0;
     resize: none;
-    color: var(--theme-black) !important;
+    color: var(--theme-white) !important;
 }
 .formGroup input:focus{
     box-shadow: none;
@@ -34,5 +47,19 @@
 }
 .formGroup textarea:focus{
     box-shadow: none;
-    background: #D9D9D9;
+    background: rgba(109, 109, 109, 0.5);
+}
+p{
+    font-family: var(--manrope-bold) !important;
+}
+.uploadDiv{
+    position: relative;
+}
+.uploadDiv input{
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
+.uploadDiv p{
+    margin-bottom: 0;
 }
