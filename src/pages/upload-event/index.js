@@ -8,11 +8,10 @@ import Button from "../../components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Form from "react-bootstrap/Form";
+import DateTimePicker from "react-datetime-picker";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+
 import Text from "../../components/Text";
 
 const eventImg = [
@@ -31,24 +30,17 @@ function UploadEvent() {
   const pagination = {
     clickable: true,
   };
+  const [value, onChange] = useState(new Date());
   return (
     <>
       <section className="section">
         <Container>
-          <Row>
+          <Row className="mb-4 border-b">
             <Col md={12}>
               <div className={` ${styles.topHead}`}>
                 <Heading mb="0" variant="subHeading">
                   UPLOAD
                 </Heading>
-              </div>
-            </Col>
-            <Col md={7}>
-              <div className="d-flex justify-content-between flex-wrap">
-                <Text variant="white">
-                  UPLOAD UP TO 5 IMAGES/ VIDEOS (10 MB MAX)
-                </Text>
-                <Text>PREVIEW</Text>
               </div>
             </Col>
           </Row>
@@ -71,6 +63,17 @@ function UploadEvent() {
                   ))}
                 </Swiper>
               </div>
+
+              <div className="d-flex justify-content-between flex-wrap mt-3">
+                <Text>PREVIEW</Text>
+                <Text variant="white">
+                  UPLOAD UP TO 5 IMAGES/ VIDEOS (10 MB MAX)
+                </Text>
+                <div className={styles.uploadDiv}>
+                  <input type="file" />
+                  <Text>UPLOAD</Text>
+                </div>
+              </div>
             </Col>
             <Col md={5} className="mb-3">
               <Form className="ps-2 ">
@@ -81,14 +84,15 @@ function UploadEvent() {
                   <Form.Label>Title:</Form.Label>
                   <Form.Control type="text" />
                 </Form.Group>
+                <Form.Group
+                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                  controlId="formGroupDate"
+                >
+                  <Form.Label>Date:</Form.Label>
+
+                  <DateTimePicker onChange={onChange} value={value} />
+                </Form.Group>
                 <div className="d-flex gap-3">
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId="formGroupDate"
-                  >
-                    <Form.Label>Date:</Form.Label>
-                    <Form.Control type="text" />
-                  </Form.Group>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
                     controlId="formGroupGenre"
@@ -96,8 +100,6 @@ function UploadEvent() {
                     <Form.Label>Genre:</Form.Label>
                     <Form.Control type="tel" />
                   </Form.Group>
-                </div>
-                <div className="d-flex gap-3">
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
                     controlId="formGroupPrice"
@@ -105,14 +107,15 @@ function UploadEvent() {
                     <Form.Label>price:</Form.Label>
                     <Form.Control type="text" />
                   </Form.Group>
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId="formGroupLocation"
-                  >
-                    <Form.Label>location:</Form.Label>
-                    <Form.Control type="text" />
-                  </Form.Group>
                 </div>
+
+                <Form.Group
+                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                  controlId="formGroupLocation"
+                >
+                  <Form.Label>location:</Form.Label>
+                  <Form.Control type="text" />
+                </Form.Group>
 
                 <Form.Group
                   className={`${styles.formGroup} mb-3`}

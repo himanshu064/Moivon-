@@ -60,6 +60,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.truncate-1 {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .backgroundHome {
   background-image: url(/public/img/bg.svg);
 }
@@ -181,14 +188,23 @@ button:focus {
 .customTab .nav-link:hover {
   color: var(--theme-white);
 }
-
-.truncate-1 {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.react-datetime-picker__wrapper {
+  background: #343434;
+  border: 0 !important;
 }
-
+.react-datetime-picker {
+  width: 100%;
+}
+:focus-visible {
+  outline: none !important;
+}
+.react-datetime-picker__wrapper span {
+  color: var(--theme-white);
+}
+.react-calendar span,
+.react-calendar__month-view__weekdays {
+  color: var(--theme-black);
+}
 @media screen and (max-width: 768px) {
   .section {
     padding: 20px 0;
