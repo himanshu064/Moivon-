@@ -10,19 +10,20 @@ import Text from "../../components/Text";
 import Button from "../../components/Button";
 import { postQuery } from "../../services/Queries";
 
+const validationSchema = yup.object({
+  name: yup.string().required("Required"),
+  email: yup.string().email("Invalid Email").required("Required"),
+  message: yup.string().required("Required"),
+});
+
 const HomeForm = () => {
   const toastId = useRef(null);
-  const validationSchema = yup.object({
-    name: yup.string().required("Required"),
-    email: yup.string().email("Invalid Email").required("Required"),
-    message: yup.string().required("Required"),
-  });
 
   const mutation = useMutation((newQuery) => postQuery({ query: newQuery }), {
     onSuccess: () => {
       toast.remove(toastId.current);
-      reset();
       const successId = toast.success("Query submitted successfully!");
+      reset();
       setTimeout(() => toast.remove(successId), 3000);
     },
   });
@@ -37,9 +38,7 @@ const HomeForm = () => {
 
   const onFormSubmit = (data) => {
     toastId.current = toast.loading("Submitting query!");
-    console.log(toastId.current, " toastId.current ");
     mutation.mutate(data);
-    console.log(data, "Data of the form goes here!");
   };
 
   return (

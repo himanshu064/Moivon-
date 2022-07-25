@@ -1,65 +1,72 @@
-.imgSlider{
-    position: relative;
+.imgSlider {
+  position: relative;
 }
-.imgSlider  img{
-    width: 100%;
+.imgSlider img {
+  width: 100%;
 }
-
 
 /* form css */
 
-.formGroup label{
-    font-size: 14px;
-    color: var(--theme-white);
-    font-weight: 400;
-    text-transform: uppercase;
+.formGroup label {
+  font-size: 14px;
+  color: var(--theme-white);
+  font-weight: 400;
+  text-transform: uppercase;
 }
-.formGroup input{
-    background: var(--theme-black-light);
-    border: 0;
-    border-radius: 0;
-    height: 25px;
-    color: var(--theme-white);
+.formGroup input,
+.formGroup select {
+  background: var(--theme-black-light);
+  border: 0;
+  border-radius: 0;
+  height: 30px;
+  color: var(--theme-white);
 }
-.formGroup select{
-    color: var(--theme-white);
+.formGroup select {
+  color: var(--theme-white);
 }
-.formGroup select option{
-    color: var(--theme-black);
+.formGroup select option {
+  color: var(--theme-white);
 }
-svg{
-    color: var(--theme-white);
-    stroke: var(--theme-white);
+svg {
+  color: var(--theme-white);
+  stroke: var(--theme-white);
 }
-button:hover svg, button:focus svg{
-    stroke: var(--theme-white) !important;
+button:hover svg,
+button:focus svg {
+  stroke: var(--theme-white) !important;
 }
-.formGroup textarea{
-    background: rgba(109, 109, 109, 0.5);
-    border: 0;
-    border-radius: 0;
-    resize: none;
-    color: var(--theme-white) !important;
+.formGroup textarea {
+  background: rgba(109, 109, 109, 0.5);
+  border: 0;
+  border-radius: 0;
+  resize: none;
+  color: var(--theme-white) !important;
 }
-.formGroup input:focus{
-    box-shadow: none;
-    background:var(--theme-black-light);
+.formGroup input:focus {
+  box-shadow: none;
+  background: var(--theme-black-light);
 }
-.formGroup textarea:focus{
-    box-shadow: none;
-    background: rgba(109, 109, 109, 0.5);
+.formGroup textarea:focus {
+  box-shadow: none;
+  background: rgba(109, 109, 109, 0.5);
 }
-p{
-    font-family: var(--manrope-bold) !important;
+p {
+  font-family: var(--manrope-bold) !important;
 }
-.uploadDiv{
-    position: relative;
+.uploadDiv {
+  position: relative;
 }
-.uploadDiv input{
-    position: absolute;
-    width: 100%;
-    opacity: 0;
+.uploadDiv input {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
 }
-.uploadDiv p{
-    margin-bottom: 0;
+.uploadDiv p {
+  margin-bottom: 0;
+}
+
+.upload-placeholder {
+  min-height: 400px;
+  background-color: var(--theme-black);
+  border: 2px solid var(--border-color);
 }
