@@ -74,6 +74,7 @@ code {
 }
 .section{
   padding: 40px 0;
+  position: relative;
 }
 .navbar-light .navbar-toggler{
   color: var(--theme-white) !important;
@@ -88,7 +89,7 @@ color: #000 !important;
   border-radius: 2px;
 }
 .swiper-button-prev{
-  background: #a6a6a6;
+  background: var(--theme-white);
   backdrop-filter: blur(12px);
 }
 .swiper-button-next{
@@ -188,6 +189,9 @@ color: var(--theme-white);
 }
 .react-calendar span, .react-calendar__month-view__weekdays{
   color: var(--theme-black);
+}
+.dropdown-item{
+  color: var(--theme-black) !important;
 }
 @media screen and (max-width:768px) {
   .section{

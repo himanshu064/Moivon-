@@ -24,7 +24,7 @@
   
   .outline{
     background: var(--theme-black-light) !important;
-border: 1.2px solid var(--theme-white) !important;
+border: 2px solid var(--theme-white-light) !important;
 color: var(--theme-white) !important;
 padding: 8px 16px !important;
   }
