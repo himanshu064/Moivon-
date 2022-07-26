@@ -67,7 +67,7 @@ function Header() {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-                <Link to="/upload-event">
+                <Link to="/upload-event" className={styles.uploadButton}>
                   <Button type="primary">Upload event</Button>
                 </Link>
               </div>
