@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -12,8 +12,12 @@ import { FiArrowUpRight } from "react-icons/fi";
 import EventsInfo from "../../components/EventsInfo";
 import HomeForm from "../../components/Form";
 import { Link } from "react-router-dom";
+import { useBackgroundImage } from "../../hooks/useBackgroundImage";
+import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 
 function Home() {
+  useBackgroundImage();
+  useBackgroundVideo();
   return (
     <>
       <section className={`${styles.heroSection} section`}>
