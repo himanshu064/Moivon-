@@ -231,9 +231,7 @@ button:focus {
   .customGridClass .date, .customGridClass .location, .customGridClass .entry{
   font-size: 12px !important;
   }
-  .form-label{
-    margin-bottom: 0 !important;
-  }
+ 
 
 @media screen and (max-width: 768px) {
   .section {
