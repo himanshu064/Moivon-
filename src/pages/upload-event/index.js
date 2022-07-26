@@ -13,6 +13,7 @@ import DateTimePicker from "react-datetime-picker";
 import "swiper/css";
 
 import Text from "../../components/Text";
+import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 
 const eventImg = [
   {
@@ -30,6 +31,7 @@ function UploadEvent() {
   const pagination = {
     clickable: true,
   };
+  useBackgroundVideo();
   const [value, onChange] = useState(new Date());
   return (
     <>
