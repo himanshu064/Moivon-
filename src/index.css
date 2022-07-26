@@ -199,12 +199,23 @@ button:focus {
 .dropdown-item {
   color: var(--theme-black) !important;
 }
-.event-single-slider .swiper-button-prev, .event-single-slider .swiper-button-next{
+.event-single-slider .swiper-button-prev,
+.event-single-slider .swiper-button-next {
   display: none;
 }
-.all-event-slider .swiper-wrapper .swiper-slide:hover .swiper-button-prev{
+.all-event-slider:hover .swiper-button-prev,
+.all-event-slider:hover .swiper-button-next {
+  display: flex !important;
+}
+
+.hide-gallery-btn {
+  display: none;
+}
+
+.all-event-slider:hover ~ .show-gallery-btn {
   display: block !important;
 }
+
 @media screen and (max-width: 768px) {
   .section {
     padding: 20px 0;

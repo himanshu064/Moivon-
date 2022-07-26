@@ -12,16 +12,19 @@ import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 
-function Event({ event, customClass }) {
+function Event({ event, showArrowOnHover, showGalleryOnHover }) {
   const pagination = {
     clickable: true,
   };
   return (
     <>
       <div className={styles.eventWrapper}>
-        <div className={styles.image}>
+        <div
+          className={`${styles.image} event-single-slider ${
+            showArrowOnHover ? "all-event-slider" : ""
+          }`}
+        >
           <Swiper
-            className={`${customClass} event-single-slider`}
             modules={[Pagination, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
@@ -37,7 +40,11 @@ function Event({ event, customClass }) {
             ))}
           </Swiper>
         </div>
-        <div className={styles.galleryBtn}>
+        <div
+          className={`${styles.galleryBtn} hide-gallery-btn ${
+            showGalleryOnHover ? "show-gallery-btn" : ""
+          }`}
+        >
           <Button>Gallery</Button>
         </div>
         <div className={styles.content}>

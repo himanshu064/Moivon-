@@ -16,7 +16,7 @@ function Header() {
       <header>
         <Navbar bg="transparent" expand="lg">
           <Container>
-            <Navbar.Brand className={styles.logo} href="/">
+            <Navbar.Brand className={styles.logo} as={Link} to="/">
               <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -29,7 +29,7 @@ function Header() {
                   id="basic-nav-dropdown"
                   className={"nav_dropdown"}
                 >
-                  <NavDropdown.Item href="/all-events">
+                  <NavDropdown.Item as={Link} to="/all-events">
                     All Events
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Two</NavDropdown.Item>
