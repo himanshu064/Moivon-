@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -50,8 +51,8 @@ function UploadEvent() {
   const mutation = useMutation(
     (newQuery) =>
       createPublicEvent({
-        files: newQuery.images,
-        json_data: newQuery,
+        images: newQuery.images,
+        json_data: newQuery.data,
       }),
     {
       onSuccess: () => {
@@ -72,9 +73,6 @@ function UploadEvent() {
     const uploadableFiles = [];
     let isSomeFilesSkipped = false;
     let errorMessage = "";
-
-    console.log(files, "files");
-    // return;
 
     Array.from(files).forEach((file) => {
       const isAllowed = checkMaxFileSize(file.size, MAX_IMAGE_SIZE_IN_MB);
@@ -100,16 +98,14 @@ function UploadEvent() {
     }
 
     // set the images back to state
-
     setImages(uploadableFiles);
   };
 
   const onAddEvent = (data) => {
     toastId.current = toast.loading("Creating event...");
-    console.log(data, "data from api here");
     mutation.mutate({
       images: images.map((image) => image.raw),
-      json_data: data,
+      data,
     });
   };
 
@@ -176,7 +172,6 @@ function UploadEvent() {
                 <div className={styles.uploadDiv}>
                   <input
                     type="file"
-                    multiple
                     onChange={onImageChange}
                     accept="image/*"
                   />
@@ -279,7 +274,7 @@ function UploadEvent() {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  disabled={!isDirty || !isValid}
+                  disabled={!isDirty || !isValid || images.length === 0}
                 >
                   Submit
                 </Button>

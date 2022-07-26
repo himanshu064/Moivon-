@@ -10,10 +10,10 @@ export const fetchSingleEvent = async ({ eventId }) => {
   return axiosInstance.get(ALL_ENDPOINTS.BUILD_SINGLE_EVENT({ eventId }));
 };
 
-export const createPublicEvent = ({ files, json_data }) => {
+export const createPublicEvent = ({ images, json_data }) => {
   const formData = new FormData();
-
-  formData.append("files.image", JSON.stringify(files));
+  // append multiple images
+  images.forEach((image) => formData.append("files.image", image, image.name));
   formData.append(
     "data",
     JSON.stringify({
