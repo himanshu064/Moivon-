@@ -126,7 +126,7 @@ function AllEvent() {
       <Row>
         {eventData?.map((data) => (
           <Col md={4} className="mb-3">
-            <Event event={data} />
+            <Event customClass="all-event-slider" event={data} />
           </Col>
         ))}
       </Row>

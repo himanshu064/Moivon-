@@ -55,7 +55,7 @@
 }
 .gridDiv{
     display: grid !important;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 18% 25% 25% 32%;
 }
 
  .title{

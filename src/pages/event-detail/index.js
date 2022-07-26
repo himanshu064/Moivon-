@@ -165,10 +165,25 @@ function EventDetail() {
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>About event</h3>
                   <Text>
-                    Libero et, lorem consectetur ac augue nisl. Nunc accumsan
-                    rhoncus congue quisque at praesentyi vulputate consectetur.
-                    Eu, auctor duis egestas nulla molestie. Amet, justo, id arcu
-                    donec id congue morbi.
+                    “I try to make work that joins the seductions of wishful
+                    thinking with the criticality of knowing better,” Barbara
+                    Kruger has said. An incisive critic of popular culture,
+                    Kruger addresses the viewer directly as a way of exposing
+                    the power dynamics underlying identity, desire, and
+                    consumerism. Kruger’s large-scale commission for MoMA will
+                    envelop the Marron Family Atrium with the artist’s bold
+                    textual statements about truth, belief, and power. Combining
+                    images drawn from mass-media photographs with provocatively
+                    concise language, Kruger has been creating explorations of
+                    social relationships imbued with her distinctive sense of
+                    urgency and humor for more than 40 years. MoMA’s
+                    installation will tap into the artist’s long-standing
+                    interest in architecture to immerse viewers in a
+                    thought-provoking environment, offering multiple points of
+                    entry and perspective. With characteristic force, the work
+                    will explore the ways that relationships between spatial and
+                    political power invariably relate to considerations of
+                    inclusion and exclusion, dominance and agency.
                   </Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>

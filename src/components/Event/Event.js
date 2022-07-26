@@ -12,7 +12,7 @@ import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 
-function Event({ event }) {
+function Event({ event, customClass }) {
   const pagination = {
     clickable: true,
   };
@@ -21,11 +21,12 @@ function Event({ event }) {
       <div className={styles.eventWrapper}>
         <div className={styles.image}>
           <Swiper
+            className={`${customClass} event-single-slider`}
             modules={[Pagination, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
             pagination={pagination}
-            navigation={false}
+            navigation={true}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
           >
