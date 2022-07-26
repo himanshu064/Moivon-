@@ -49,7 +49,7 @@ button:hover svg, button:focus svg{
     box-shadow: none;
     background: rgba(109, 109, 109, 0.5);
 }
-p{
+.uploadSection p{
     font-family: var(--manrope-bold) !important;
 }
 .uploadDiv{

@@ -35,7 +35,7 @@ function UploadEvent() {
   const [value, onChange] = useState(new Date());
   return (
     <>
-      <section className="section">
+      <section className={`section ${styles.uploadSection}`}>
         <Container>
           <Row className="mb-4 border-b">
             <Col md={12}>

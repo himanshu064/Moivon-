@@ -16,7 +16,7 @@ function EventsInfo() {
         </div>
         <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
           <span className={styles.title}>Location</span>
-          <span className={styles.location}>Bourbon st, 40</span>
+          <span className={styles.location}></span>
         </div>
       </div>
     </>

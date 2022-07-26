@@ -64,7 +64,7 @@ const Footer = () => {
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="email"
-                      placeholder="Enter your  email"
+                      placeholder="Enter your email to get updates"
                     />
                   </Form.Group>
                 </Form>

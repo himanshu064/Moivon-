@@ -1,8 +1,4 @@
-.logo{
-    color: #fff !important;
-    font-size: 22px;
-    font-weight: 800;
-}
+
 .navLink{
     gap: 20px;
     /* justify-content: center !important; */
@@ -12,10 +8,7 @@
 .navLink a{
     color: var(--theme-white) !important;
 }
-.navLink a:first-child{
-    /* color: #14F195 !important; */
-    font-weight: 600;
-}
+
 .navLink a{
     font-size: 14px;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -37,7 +37,7 @@ function Home() {
               <div
                 className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
               >
-                <Button type="primary">Discover events</Button>
+                <Button type="primary">Explore Now</Button>
                 <span>
                   <img src="/img/video.svg" alt="video" /> Video of our events
                 </span>
@@ -49,7 +49,7 @@ function Home() {
       <section className="section">
         <Container>
           <Row>
-            <Col lg={8}>
+            <Col lg={7}>
               <Row className={styles.customRow}>
                 <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
@@ -124,13 +124,10 @@ function Home() {
       <section className="section">
         <Container>
           <Row>
-            <Col md={6}>
-              <Heading variant="subHeading">
-                Upcoming events
-                <br /> for you{" "}
-              </Heading>
+            <Col md={8}>
+              <Heading variant="subHeading">Upcoming for you </Heading>
             </Col>
-            <Col md={6}>
+            <Col md={4}>
               <div className="d-flex justify-content-end align-items-center mb-4">
                 <Link to="/all-events">
                   <span>

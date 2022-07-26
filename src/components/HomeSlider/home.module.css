@@ -9,12 +9,13 @@
     position: absolute;
     top: 30px;
     right: 15%;
-    width: 167px;
+    width: 177px;
     text-align: left;
     background: var(--theme-white);
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px;
     color: var(--theme-black);
+    font-family: var(--sans-regular) !important;
 }
 .content{
     margin: 20px 0;
