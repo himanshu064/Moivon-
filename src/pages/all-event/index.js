@@ -126,7 +126,12 @@ function AllEvent() {
       <Row>
         {eventData?.map((data) => (
           <Col md={4} className="mb-3">
-            <Event event={data} showArrowOnHover showGalleryOnHover />
+            <Event
+              event={data}
+              showArrowOnHover
+              showGalleryOnHover
+              customGridClass="customGridClass"
+            />
           </Col>
         ))}
       </Row>

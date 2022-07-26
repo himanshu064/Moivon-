@@ -215,13 +215,6 @@ button:focus {
 .all-event-slider:hover ~ .show-gallery-btn {
   display: block !important;
 }
-
-@media screen and (max-width: 768px) {
-  .section {
-    padding: 20px 0;
-  }
-}
-
 .backgroundVideo {
   position: absolute;
   width: 100%;
@@ -232,3 +225,20 @@ button:focus {
 .backgroundImage {
   background-image: url(/public/img/bg.svg);
 }
+.customGridClass .title{
+  font-size: 12px !important;
+  }
+  .customGridClass .date, .customGridClass .location, .customGridClass .entry{
+  font-size: 12px !important;
+  }
+  .form-label{
+    margin-bottom: 0 !important;
+  }
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 20px 0;
+  }
+}
+
+
