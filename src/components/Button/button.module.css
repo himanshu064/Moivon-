@@ -1,6 +1,6 @@
 .button {
     border-radius: 0 !important;
-    padding: 0.89rem 2rem !important;
+    padding: 0.89rem 3rem !important;
     font-weight: 500 !important;
     font-size: 14px !important;
     line-height: 17.5px !important;
@@ -26,7 +26,6 @@
     background: var(--theme-black-light) !important;
 border: 2px solid var(--theme-white-light) !important;
 color: var(--theme-white) !important;
-padding: 8px 16px !important;
   }
  .rounded{
   border-radius: 30px;

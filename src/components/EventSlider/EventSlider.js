@@ -154,6 +154,8 @@ function EventSlider() {
         spaceBetween={20}
         slidesPerView={3.5}
         navigation={true}
+        centeredSlides={true}
+        centeredSlidesBounds={true}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{

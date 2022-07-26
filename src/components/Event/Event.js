@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 
 function Event({
   event,
@@ -54,7 +55,10 @@ function Event({
         </div>
         <div className={styles.content}>
           <div className="d-flex justify-content-between px-3">
-            <h3>{event.title}</h3>
+            <Link to="/event-detail">
+              <h3>{event.title}</h3>
+            </Link>
+
             <div className="d-flex gap-2">
               <span className="d-flex">
                 <AiOutlineStar />
