@@ -1,14 +1,5 @@
 import React from "react";
 import styles from "./event.module.css";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
@@ -31,22 +22,7 @@ function Event({
             showArrowOnHover ? "all-event-slider" : ""
           }`}
         >
-          {/* <Swiper
-            modules={[Pagination, Navigation]}
-            spaceBetween={0}
-            slidesPerView={1}
-            pagination={pagination}
-            navigation={true}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            {event?.gallery?.map((data) => (
-              <SwiperSlide>
-                <img src={data?.image} alt="" />
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
-          <Carousel controls={false}>
+          <Carousel>
             {event?.gallery?.map((data) => (
               <Carousel.Item>
                 <img src={data?.image} alt="" />

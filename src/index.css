@@ -199,12 +199,12 @@ button:focus {
 .dropdown-item {
   color: var(--theme-black) !important;
 }
-.event-single-slider .swiper-button-prev,
-.event-single-slider .swiper-button-next {
+.event-single-slider .carousel-control-prev,
+.event-single-slider .carousel-control-next {
   display: none;
 }
-.all-event-slider:hover .swiper-button-prev,
-.all-event-slider:hover .swiper-button-next {
+.all-event-slider:hover .carousel-control-prev,
+.all-event-slider:hover .carousel-control-next {
   display: flex !important;
 }
 
@@ -274,6 +274,23 @@ button:focus {
   text-align: center;
   background-position: center;
   z-index: 1;
+}
+.carousel-control-prev-icon{
+  background-image: url(/public/img/back.svg) !important;
+}
+.carousel-control-next-icon{
+  background-image: url(/public/img/next.svg) !important;
+}
+.carousel-control-prev, .carousel-control-next{
+opacity: 1 !important;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  width: 40px !important;
+  height: 40px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: auto !important;
+  background-color: var(--theme-white) !important;
 }
 .carousel-indicators [data-bs-target]{
   width: 8px !important;

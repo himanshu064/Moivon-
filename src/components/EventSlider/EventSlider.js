@@ -1,14 +1,7 @@
 import React from "react";
-import styles from "./eventslider.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import Event from "../Event/Event";
 
 const eventData = [
@@ -154,6 +147,7 @@ function EventSlider() {
         modules={[Navigation]}
         spaceBetween={20}
         slidesPerView={3.5}
+        loop
         navigation={true}
         centeredSlides={true}
         centeredSlidesBounds={true}
