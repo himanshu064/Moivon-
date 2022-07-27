@@ -1,6 +1,6 @@
 import React from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useSwiper, Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Event from "../Event/Event";
 
@@ -140,6 +140,7 @@ function EventSlider() {
   const pagination = {
     clickable: true,
   };
+
   return (
     <>
       <Swiper
@@ -148,6 +149,7 @@ function EventSlider() {
         spaceBetween={20}
         slidesPerView={3.5}
         loop
+        navigation={false}
         centeredSlides={true}
         centeredSlidesBounds={true}
         onSlideChange={() => console.log("slide change")}

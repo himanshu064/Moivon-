@@ -241,7 +241,11 @@ function EventDetail() {
             <Row>
               {eventData?.map((data) => (
                 <Col md={4}>
-                  <Event event={data} />
+                  <Event
+                    event={data}
+                    showArrowOnHover
+                    customGridClass="customGridClass"
+                  />
                 </Col>
               ))}
             </Row>

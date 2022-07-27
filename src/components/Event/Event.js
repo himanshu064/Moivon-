@@ -4,8 +4,10 @@ import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
+import { useSwiper } from "swiper/react";
 
 function Event({
+  isSlider,
   event,
   showArrowOnHover,
   showGalleryOnHover,
@@ -14,6 +16,8 @@ function Event({
   const pagination = {
     clickable: true,
   };
+  const swiper = useSwiper();
+
   return (
     <>
       <div className={styles.eventWrapper}>
@@ -22,13 +26,15 @@ function Event({
             showArrowOnHover ? "all-event-slider" : ""
           }`}
         >
-          <Carousel>
+          <span className="prev-btn" onClick={() => swiper.slidePrev()}></span>
+          <Carousel interval={null}>
             {event?.gallery?.map((data) => (
               <Carousel.Item>
                 <img src={data?.image} alt="" />
               </Carousel.Item>
             ))}
           </Carousel>
+          <span className="next-btn" onClick={() => swiper.slideNext()}></span>
         </div>
         <div
           className={`${styles.galleryBtn} hide-gallery-btn ${
