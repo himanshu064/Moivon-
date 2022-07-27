@@ -37,8 +37,30 @@ function Header() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">Four</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#">About Us</Nav.Link>
-                <Nav.Link href="#">Contact Us</Nav.Link>
+                <Nav.Link
+                  href="#"
+                  onClick={() => {
+                    setTimeout(() => {
+                      document
+                        .getElementById("about-page")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
+                >
+                  About Us
+                </Nav.Link>
+                <Nav.Link
+                  href="#"
+                  onClick={() => {
+                    setTimeout(() => {
+                      document
+                        .getElementById("contact-page")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
+                >
+                  Contact Us
+                </Nav.Link>
                 <Nav.Link
                   href="#"
                   eventKey="disabled"

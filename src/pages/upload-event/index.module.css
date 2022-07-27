@@ -8,6 +8,9 @@
 
 /* form css */
 
+.formGroup{
+    width: 100%;
+}
 .formGroup label{
     font-size: 14px;
     color: var(--theme-white);
@@ -18,14 +21,30 @@
     background: var(--theme-black-light);
     border: 0;
     border-radius: 0;
-    height: 25px;
+    height: 30px;
     color: var(--theme-white);
+    font-size: 12px;
 }
-.formGroup select{
+ .formGroup select{
+    border: 0;
+    border-radius: 0;
+    height: 30px;
     color: var(--theme-white);
+    font-size: 12px;
+    appearance: auto;
+    background: var(--theme-black-light);
+}
+ .formGroup select option{
+    background-color: var(--theme-white);
+}
+.formGroup select:focus{
+    box-shadow: none;
 }
 .formGroup select option{
     color: var(--theme-black);
+}
+label{
+    margin-bottom: 0;
 }
 svg{
     color: var(--theme-white);

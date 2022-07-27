@@ -145,7 +145,10 @@ function Home() {
           </div>
         </Container>
       </section>
-      <section className={`section ${styles.connectionSection}`}>
+      <section
+        className={`section ${styles.connectionSection}`}
+        id="about-page"
+      >
         <div className={styles.paddingAll}>
           <div className={styles.bgImg}>
             <Container>
@@ -186,7 +189,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className={`section ${styles.contactSection}`}>
+      <section className={`section ${styles.contactSection}`} id="contact-page">
         <Container>
           <Row>
             <Col md={6} className="mb-4">

@@ -12,6 +12,7 @@ import "swiper/css/effect-fade";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
+import Carousel from "react-bootstrap/Carousel";
 
 function Event({
   event,
@@ -30,7 +31,7 @@ function Event({
             showArrowOnHover ? "all-event-slider" : ""
           }`}
         >
-          <Swiper
+          {/* <Swiper
             modules={[Pagination, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
@@ -44,7 +45,14 @@ function Event({
                 <img src={data?.image} alt="" />
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper> */}
+          <Carousel controls={false}>
+            {event?.gallery?.map((data) => (
+              <Carousel.Item>
+                <img src={data?.image} alt="" />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
         <div
           className={`${styles.galleryBtn} hide-gallery-btn ${
@@ -54,46 +62,54 @@ function Event({
           <Button>Gallery</Button>
         </div>
         <div className={styles.content}>
-          <div className="d-flex justify-content-between px-3">
-            <Link to="/event-detail">
+          <Link to="/event-detail">
+            <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
-            </Link>
 
-            <div className="d-flex gap-2">
-              <span className="d-flex">
-                <AiOutlineStar />
-                4.2
-              </span>
-              <span className="d-flex">
-                <AiOutlineHeart />
-                120
-              </span>
-            </div>
-          </div>
-          <div className={"gallery-border"} style={{ borderBottom: "0" }}>
-            <div className={`${styles.gridDiv} `}>
-              <div
-                className={`${styles.dateDiv}  ${styles.borderRight} ${customGridClass}`}
-              >
-                <span className={`${styles.title} title`}>Date</span>
-                <span className={`${styles.date} date`}>30 june</span>
-              </div>
-              <div
-                className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
-              >
-                <span className={`${styles.title} title`}>Location</span>
-                <span className={`${styles.location} location`}>
-                  Bourbon st, 40
+              <div className="d-flex gap-2">
+                <span className="d-flex">
+                  <AiOutlineStar />
+                  4.2
+                </span>
+                <span className="d-flex">
+                  <AiOutlineHeart />
+                  120
                 </span>
               </div>
-              <div
-                className={`${styles.entryDiv}  ${styles.borderRight} ${customGridClass}`}
-              >
-                <span className={`${styles.title} title`}>Entry fee</span>
-                <span className={`${styles.entry} entry`}>$150,00</span>
+            </div>
+            <div className={"gallery-border"} style={{ borderBottom: "0" }}>
+              <div className={`${styles.gridDiv} `}>
+                <div
+                  className={`${styles.dateDiv}  ${styles.borderRight} ${customGridClass}`}
+                >
+                  <span className={`${styles.title} title`}>Date</span>
+                  <span className={`${styles.date} date`}>30 june</span>
+                </div>
+                <div
+                  className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
+                >
+                  <span className={`${styles.title} title`}>Location</span>
+                  <span className={`${styles.location} location`}>
+                    <a
+                      href="https://goo.gl/maps/t6xf32hbDghFuCsn8"
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()}
+                      rel="noreferrer"
+                    >
+                      {" "}
+                      Bourbon st, 40{" "}
+                    </a>
+                  </span>
+                </div>
+                <div
+                  className={`${styles.entryDiv}  ${styles.borderRight} ${customGridClass}`}
+                >
+                  <span className={`${styles.title} title`}>Entry fee</span>
+                  <span className={`${styles.entry} entry`}>$150,00</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </>

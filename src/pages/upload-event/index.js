@@ -100,7 +100,13 @@ function UploadEvent() {
                     controlId="formGroupGenre"
                   >
                     <Form.Label>Genre:</Form.Label>
-                    <Form.Control type="tel" />
+                    <Form.Select aria-label="ALL EVENTS">
+                      <option>CLASSIC MUSEUM</option>
+                      <option value="1">GALLERY</option>
+                      <option value="2">FEATURE VENUE</option>
+                      <option value="3">DESIGN CONVENTION</option>
+                      <option value="4">INDIVIDUAL</option>
+                    </Form.Select>
                   </Form.Group>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}

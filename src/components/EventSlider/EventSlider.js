@@ -150,6 +150,7 @@ function EventSlider() {
   return (
     <>
       <Swiper
+        className="swiperSliderHome"
         modules={[Navigation]}
         spaceBetween={20}
         slidesPerView={3.5}
