@@ -1,10 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
-function Title() {
+function RouteTitle({ title }) {
   return (
     <Helmet>
-      <title>Page</title>
+      <title>{title}</title>
     </Helmet>
   );
 }
-export default Title;
+export default RouteTitle;

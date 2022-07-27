@@ -14,6 +14,7 @@ import "swiper/css";
 
 import Text from "../../components/Text";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
+import RouteTitle from "../../components/RouteTitle/RouteTitle";
 
 const eventImg = [
   {
@@ -35,6 +36,7 @@ function UploadEvent() {
   const [value, onChange] = useState(new Date());
   return (
     <>
+      <RouteTitle title="Upload Event" />
       <section className={`section ${styles.uploadSection}`}>
         <Container>
           <Row className="mb-4 border-b">

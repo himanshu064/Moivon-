@@ -9,6 +9,7 @@ import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import RouteTitle from "../../components/RouteTitle/RouteTitle";
 
 const eventData = [
   {
@@ -153,6 +154,7 @@ function AllEvent() {
 
   return (
     <>
+      <RouteTitle title="All Events" />
       <section className="section">
         <Container>
           <Row>

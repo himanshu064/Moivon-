@@ -14,12 +14,14 @@ import HomeForm from "../../components/Form";
 import { Link } from "react-router-dom";
 import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
+import RouteTitle from "../../components/RouteTitle/RouteTitle";
 
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
   return (
     <>
+      <RouteTitle title="Home" />
       <section className={`${styles.heroSection} section`}>
         <Container>
           <Row>

@@ -19,6 +19,7 @@ import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 import Event from "../../components/Event";
+import RouteTitle from "../../components/RouteTitle/RouteTitle";
 
 const eventImg = [
   {
@@ -103,6 +104,7 @@ function EventDetail() {
   };
   return (
     <>
+      <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
           <Row>
