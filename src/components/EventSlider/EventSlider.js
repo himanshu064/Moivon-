@@ -148,7 +148,6 @@ function EventSlider() {
         spaceBetween={20}
         slidesPerView={3.5}
         loop
-        navigation={true}
         centeredSlides={true}
         centeredSlidesBounds={true}
         onSlideChange={() => console.log("slide change")}

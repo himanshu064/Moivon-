@@ -38,25 +38,27 @@ function Header() {
                   <NavDropdown.Item href="#action/3.4">Four</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link
-                  href="#"
+                  to="/"
+                  as={Link}
                   onClick={() => {
                     setTimeout(() => {
                       document
                         .getElementById("about-page")
                         .scrollIntoView({ behavior: "smooth" });
-                    }, 100);
+                    }, 200);
                   }}
                 >
                   About Us
                 </Nav.Link>
                 <Nav.Link
-                  href="#"
+                  to="/"
+                  as={Link}
                   onClick={() => {
                     setTimeout(() => {
                       document
                         .getElementById("contact-page")
                         .scrollIntoView({ behavior: "smooth" });
-                    }, 100);
+                    }, 200);
                   }}
                 >
                   Contact Us
