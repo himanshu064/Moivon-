@@ -9,7 +9,11 @@ import { useSwiper } from "swiper/react";
 
 const ContentWrapper = ({ allowClick, children }) => {
   const Component = allowClick
-    ? () => <Link to="/event-detail">{children}</Link>
+    ? () => (
+        <Link to="/event-detail" draggable="false">
+          {children}
+        </Link>
+      )
     : () => <div>{children}</div>;
   return <Component />;
 };
@@ -27,21 +31,31 @@ function Slide({
 
   const allowLinks = slideIndex === currentIndex;
 
-  const swipeableHandlers = useSwipeable({
+  const imageCarouselHandler = useSwipeable({
     onSwipedLeft: () => bootstrapCarouselRef.current.next(),
     onSwipedRight: () => bootstrapCarouselRef.current.prev(),
-    swipeDuration: 500,
+    swipeDuration: 1000,
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
+  const contentCarouselHandler = useSwipeable({
+    onSwipedLeft: () => swiper.slideNext(),
+    onSwipedRight: () => swiper.slidePrev(),
+    swipeDuration: 2000,
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
 
   return (
     <>
-      <div className={styles.eventWrapper}>
+      <div className={`${styles.eventWrapper} no-selection`}>
         <div
           className={`${styles.image} event-single-slider ${
             showArrowOnHover ? "all-event-slider" : ""
           }`}
+          {...imageCarouselHandler}
+          // {...(allowLinks && imageCarouselHandler)}
         >
           <span className="prev-btn" onClick={() => swiper.slidePrev()}></span>
           <Carousel
@@ -50,11 +64,7 @@ function Slide({
             ref={bootstrapCarouselRef}
           >
             {event?.gallery?.map((data, index) => (
-              <Carousel.Item
-                key={`image_slide_${index}`}
-                {...swipeableHandlers}
-                // {...(allowLinks && swipeableHandlers)}
-              >
+              <Carousel.Item key={`image_slide_${index}`}>
                 <img draggable="false" src={data?.image} alt="" />
               </Carousel.Item>
             ))}
@@ -68,7 +78,7 @@ function Slide({
         >
           <Button>Gallery</Button>
         </div>
-        <div className={styles.content}>
+        <div className={styles.content} {...contentCarouselHandler}>
           <ContentWrapper allowClick={allowLinks}>
             <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
@@ -84,7 +94,11 @@ function Slide({
                 </span>
               </div>
             </div>
-            <div className={"gallery-border"} style={{ borderBottom: "0" }}>
+            <div
+              className={"gallery-border"}
+              style={{ borderBottom: "0" }}
+              draggable="false"
+            >
               <div className={`${styles.gridDiv} `}>
                 <div
                   className={`${styles.dateDiv}  ${styles.borderRight} ${customGridClass}`}
@@ -96,6 +110,7 @@ function Slide({
                   className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
                 >
                   <a
+                    draggable="false"
                     href={
                       allowLinks ? "https://goo.gl/maps/t6xf32hbDghFuCsn8" : ""
                     }
