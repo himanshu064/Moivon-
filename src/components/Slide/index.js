@@ -45,14 +45,15 @@ function Slide({
         >
           <span className="prev-btn" onClick={() => swiper.slidePrev()}></span>
           <Carousel
-            indicators={allowLinks}
+            // indicators={allowLinks}
             interval={null}
             ref={bootstrapCarouselRef}
           >
             {event?.gallery?.map((data, index) => (
               <Carousel.Item
                 key={`image_slide_${index}`}
-                {...(allowLinks && swipeableHandlers)}
+                {...swipeableHandlers}
+                // {...(allowLinks && swipeableHandlers)}
               >
                 <img draggable="false" src={data?.image} alt="" />
               </Carousel.Item>
