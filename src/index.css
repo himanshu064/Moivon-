@@ -328,7 +328,6 @@ button:focus {
   transform: translateY(-35%);
   text-align: center;
   background-position: center;
-  z-index: 1;
   display: none;
   cursor: pointer;
 }
@@ -349,9 +348,9 @@ button:focus {
 .swiper-slide-active .next-btn {
   display: block;
 }
-.swiper-slide .carousel-indicators {
+/* .swiper-slide .carousel-indicators {
   visibility: hidden;
 }
 .swiper-slide-active .carousel-indicators {
   visibility: visible;
-}
+} */

@@ -1,18 +1,39 @@
-import React from "react";
-import styles from "./event.module.css";
+import React, { useRef } from "react";
+import { useSwipeable } from "react-swipeable";
+import styles from "./slide.module.css";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { useSwiper } from "swiper/react";
 
-function Event({
+const ContentWrapper = ({ allowClick, children }) => {
+  const Component = allowClick
+    ? () => <Link to="/event-detail">{children}</Link>
+    : () => <div>{children}</div>;
+  return <Component />;
+};
+
+function Slide({
   event,
+  slideIndex,
+  currentIndex,
   showArrowOnHover,
   showGalleryOnHover,
   customGridClass,
 }) {
   const swiper = useSwiper();
+  const bootstrapCarouselRef = useRef();
+
+  const allowLinks = slideIndex === currentIndex;
+
+  const swipeableHandlers = useSwipeable({
+    onSwipedLeft: () => bootstrapCarouselRef.current.next(),
+    onSwipedRight: () => bootstrapCarouselRef.current.prev(),
+    swipeDuration: 500,
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
 
   return (
     <>
@@ -23,10 +44,17 @@ function Event({
           }`}
         >
           <span className="prev-btn" onClick={() => swiper.slidePrev()}></span>
-          <Carousel interval={null}>
-            {event?.gallery?.map((data) => (
-              <Carousel.Item>
-                <img src={data?.image} alt="" />
+          <Carousel
+            indicators={allowLinks}
+            interval={null}
+            ref={bootstrapCarouselRef}
+          >
+            {event?.gallery?.map((data, index) => (
+              <Carousel.Item
+                key={`image_slide_${index}`}
+                {...(allowLinks && swipeableHandlers)}
+              >
+                <img draggable="false" src={data?.image} alt="" />
               </Carousel.Item>
             ))}
           </Carousel>
@@ -40,7 +68,7 @@ function Event({
           <Button>Gallery</Button>
         </div>
         <div className={styles.content}>
-          <Link to="/event-detail">
+          <ContentWrapper allowClick={allowLinks}>
             <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
 
@@ -67,7 +95,9 @@ function Event({
                   className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
                 >
                   <a
-                    href="https://goo.gl/maps/t6xf32hbDghFuCsn8"
+                    href={
+                      allowLinks ? "https://goo.gl/maps/t6xf32hbDghFuCsn8" : ""
+                    }
                     target="_blank"
                     onClick={(e) => e.stopPropagation()}
                     rel="noreferrer"
@@ -87,10 +117,10 @@ function Event({
                 </div>
               </div>
             </div>
-          </Link>
+          </ContentWrapper>
         </div>
       </div>
     </>
   );
 }
-export default Event;
+export default Slide;

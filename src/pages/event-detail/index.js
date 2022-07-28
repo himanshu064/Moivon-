@@ -134,8 +134,8 @@ function EventDetail() {
                   onSlideChange={() => console.log("slide change")}
                   onSwiper={(swiper) => console.log(swiper)}
                 >
-                  {eventImg?.map((data) => (
-                    <SwiperSlide>
+                  {eventImg?.map((data, index) => (
+                    <SwiperSlide key={`event_image_${index}`}>
                       <img src={data?.image} alt="" />
                     </SwiperSlide>
                   ))}

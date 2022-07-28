@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 // Import Swiper React components
-import { useSwiper, Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-import Event from "../Event/Event";
+import Slide from "../Slide";
 
 const eventData = [
   {
@@ -140,20 +140,30 @@ function EventSlider() {
   const pagination = {
     clickable: true,
   };
+  const swiperRef = useRef();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
       <Swiper
+        ref={swiperRef}
         className="swiperSliderHome"
         modules={[Navigation]}
+        initialSlide={0}
         spaceBetween={20}
         slidesPerView={3.5}
         loop
         navigation={false}
         centeredSlides={true}
         centeredSlidesBounds={true}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        // cannot grab
+        allowTouchMove={false}
+        onSlideChange={(s) => console.log("slide change", s)}
+        onSwiper={(swiper) => console.log(swiper, "swiper")}
+        onActiveIndexChange={(swiper) => setCurrentIndex(swiper.realIndex)}
+        onClick={(swiper) =>
+          swiperRef.current.swiper.slideTo(swiper.clickedIndex)
+        }
         breakpoints={{
           // when window width is >= 640px
           0: {
@@ -173,9 +183,13 @@ function EventSlider() {
           },
         }}
       >
-        {eventData?.map((data) => (
-          <SwiperSlide>
-            <Event event={data} />
+        {eventData?.map((data, index) => (
+          <SwiperSlide key={`slide_${index}`}>
+            <Slide
+              event={data}
+              slideIndex={index}
+              currentIndex={currentIndex}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
