@@ -19,6 +19,9 @@ color: var(--theme-white);
   text-transform: capitalize;
   margin-bottom: 5px;
 }
+.footerSection ul li a{
+  color: var(--theme-white-light) !important;
+}
 .copyRight p{
   margin-bottom: 0;
 }

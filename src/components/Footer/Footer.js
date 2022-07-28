@@ -24,7 +24,9 @@ const Footer = () => {
                 <Col xs={6} sm={6} md={3}>
                   <h3>EVENTS</h3>
                   <ul>
-                    <li>All Events</li>
+                    <li>
+                      <Link to="/all-events">All Events</Link>
+                    </li>
                     <li>Classic Museum</li>
                     <li>Gallery</li>
                     <li>Feature Venue</li>
@@ -38,8 +40,35 @@ const Footer = () => {
                     <li>Upcoming events</li>
                     <li>Most popular events</li>
                     <li>Most popular events</li>
-                    <li>About us</li>
-                    <li>Contact us</li>
+                    <li>
+                      <Link
+                        to="/"
+                        onClick={() => {
+                          setTimeout(() => {
+                            document
+                              .getElementById("about-page")
+                              .scrollIntoView({ behavior: "smooth" });
+                          }, 200);
+                        }}
+                      >
+                        About us
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        to="/"
+                        onClick={() => {
+                          setTimeout(() => {
+                            document
+                              .getElementById("contact-page")
+                              .scrollIntoView({ behavior: "smooth" });
+                          }, 200);
+                        }}
+                      >
+                        Contact us
+                      </Link>
+                    </li>
                   </ul>
                 </Col>
                 <Col xs={6} sm={6} md={3}>
