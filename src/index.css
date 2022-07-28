@@ -354,3 +354,7 @@ button:focus {
 .swiper-slide-active .carousel-indicators {
   visibility: visible;
 } */
+
+.no-selection {
+  user-select: none;
+}
