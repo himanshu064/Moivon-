@@ -159,18 +159,18 @@ function AllEvent() {
         <Container>
           <Row>
             <Col md={12}>
-              <div className={styles.navHead + " mb-4"}>
+              <div className={" mb-4 " + styles.navHead}>
+                <Heading mb="0" variant="subHeading">
+                  Events
+                </Heading>
                 <div
-                  className={`d-flex align-items-center gap-5 ${styles.topHead}`}
+                  className={`align-items-center justify-content-between gap-5 w-100 ${styles.topHead}`}
                 >
-                  <Heading mb="0" variant="subHeading">
-                    Events
-                  </Heading>
                   <Tabs
                     id="controlled-tab-example"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
-                    className={`mb-3 customTab`}
+                    className={`mb-3 customTab ${styles.customTabs}`}
                   >
                     <Tab eventKey="AllEvent" title="All events"></Tab>
                     <Tab eventKey="Classic" title="CLASSIC MUSEUM"></Tab>
@@ -179,9 +179,10 @@ function AllEvent() {
                     <Tab eventKey="Design" title="DESIGN CONVETION"></Tab>
                     <Tab eventKey="Individual" title="INDIVIDUAL"></Tab>
                   </Tabs>
-                </div>
-                <div className={styles.sortBtn}>
-                  <Button type="outline">Sort</Button>
+
+                  <div className={styles.sortBtn}>
+                    <Button type="outline">Sort</Button>
+                  </div>
                 </div>
               </div>
             </Col>

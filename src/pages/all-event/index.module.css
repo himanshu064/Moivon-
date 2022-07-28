@@ -1,11 +1,35 @@
 .navHead{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 3rem;
 }
 
 .sortBtn button{
     text-transform: uppercase;
     padding: 8px 16px !important;
     width: 120px;
+}
+.topHead{
+    display: flex;
+}
+
+
+@media screen and (max-width:768px) {
+    .navHead{
+        flex-wrap: wrap;
+        gap: 1rem !important;
+    }
+    .topHead{
+        display: block !important;
+    }
+    .customTabs {
+        flex-wrap: nowrap !important;
+        overflow: auto;
+        white-space: nowrap;
+    }
+    .sortBtn{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

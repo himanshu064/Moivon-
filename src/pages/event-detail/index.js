@@ -111,7 +111,7 @@ function EventDetail() {
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div
-                  className={`${styles.eventHead} d-flex align-items-center gap-3`}
+                  className={`${styles.eventHead} d-flex align-items-center gap-3 flex-wrap`}
                 >
                   <Heading mb="0" variant="subHeading">
                     365 Frames-Days
