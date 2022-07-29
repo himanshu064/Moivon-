@@ -5,6 +5,8 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
+const getEventDetailPath = () => "/event-detail";
+
 function Event({
   event,
   showArrowOnHover,
@@ -13,8 +15,8 @@ function Event({
 }) {
   return (
     <>
-      <Link to="/event-detail">
-        <div className={styles.eventWrapper}>
+      <div className={styles.eventWrapper}>
+        <div className="eventWrapper">
           <div
             className={`${styles.image} event-single-slider ${
               showArrowOnHover ? "all-event-slider" : ""
@@ -23,7 +25,9 @@ function Event({
             <Carousel interval={null}>
               {event?.gallery?.map((data) => (
                 <Carousel.Item>
-                  <img draggable="false" src={data?.image} alt="" />
+                  <Link to={getEventDetailPath()}>
+                    <img draggable="false" src={data?.image} alt="" />
+                  </Link>
                 </Carousel.Item>
               ))}
             </Carousel>
@@ -33,10 +37,13 @@ function Event({
               showGalleryOnHover ? "show-gallery-btn" : ""
             }`}
           >
-            <Button>Gallery</Button>
+            <Link to={getEventDetailPath()}>
+              <Button>Gallery</Button>
+            </Link>
           </div>
-          <div className={styles.content}>
-            {/* <Link to="/event-detail"> */}
+        </div>
+        <div className={styles.content}>
+          <Link to={getEventDetailPath()}>
             <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
 
@@ -83,9 +90,9 @@ function Event({
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
-      </Link>
+      </div>
     </>
   );
 }

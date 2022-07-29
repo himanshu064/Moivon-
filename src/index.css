@@ -203,8 +203,8 @@ button:focus {
 .event-single-slider .carousel-control-next {
   display: none;
 }
-.all-event-slider:hover .carousel-control-prev,
-.all-event-slider:hover .carousel-control-next {
+.eventWrapper:hover .carousel-control-prev,
+.eventWrapper:hover .carousel-control-next {
   display: flex !important;
 }
 
@@ -212,7 +212,7 @@ button:focus {
   display: none;
 }
 
-.all-event-slider:hover ~ .show-gallery-btn {
+.eventWrapper:hover .show-gallery-btn {
   display: block !important;
 }
 .backgroundVideo {
@@ -234,16 +234,16 @@ button:focus {
   font-size: 12px !important;
 }
 
-
-.swiperSliderHome .swiper-slide{
+.swiperSliderHome .swiper-slide {
   margin-top: 30px !important;
   margin-bottom: 30px !important;
 }
 .swiper-slide.swiper-slide-active {
   position: relative;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(.4,0,.2,1);
-  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.15) scaleY(1.15);
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.15)
+    scaleY(1.15);
   background: #232323;
   z-index: 1;
 }
@@ -269,7 +269,7 @@ button:focus {
   opacity: 0.5;
 }
 .carousel-control-next-icon:hover,
-.carousel-control-prev-icon:hover{
+.carousel-control-prev-icon:hover {
   opacity: 1;
 }
 .carousel-indicators [data-bs-target] {
