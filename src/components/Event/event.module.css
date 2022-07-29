@@ -49,7 +49,7 @@ font-size: 12px;
     background: rgba(52, 52, 52, 0.2) !important;
     backdrop-filter: blur(16px);
     color: #E8E8E8 !important;
-    z-index: 1;
+    z-index: 200;
     }
     .gridDiv{
         display: grid !important;

@@ -130,6 +130,7 @@ function AllEvent() {
             <Event
               event={data}
               showArrowOnHover
+              showGalleryOnHover
               customGridClass="customGridClass"
             />
           </Col>

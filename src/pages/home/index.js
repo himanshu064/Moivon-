@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -15,10 +15,41 @@ import { Link } from "react-router-dom";
 import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
+import EventAccordion from "../../components/EventAccordion";
 
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
+
+  const [show, setShow] = useState(2);
+  const EVENTS = [
+    {
+      id: 1,
+      title: "The Supreal Dream",
+      description: `a supreal dream instilation featured in MOMA this month
+      and the next.Click into this post to find out more about
+      the minds of dreamers`,
+      btnText: "feature venue",
+      image: "/img/detail-img.png",
+    },
+    {
+      id: 2,
+      title: "Art Member Monday",
+      description: `Aliquam sed risus venenatis leo tristique facilisis tempus,
+      nunerev doleri Imperdiet risviverra ipsum tellus siteriume`,
+      btnText: "gallery",
+      image: "/img/popular.png",
+    },
+    {
+      id: 3,
+      title: "Ape Feast 2023",
+      description: `a supreal dream instilation featured in MOMA this month
+      and the next.Click into this post to find out more about
+      the minds of dreamers`,
+      btnText: "gallery",
+      image: "/img/event-2.png",
+    },
+  ];
   return (
     <>
       <RouteTitle title="Home" />
@@ -39,7 +70,9 @@ function Home() {
               <div
                 className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
               >
-                <Button type="primary">Explore Now</Button>
+                <Button type="primary" to="/all-events" as={Link}>
+                  Explore Now
+                </Button>
                 <span>
                   <img src="/img/video.svg" alt="video" /> Video of our events
                 </span>
@@ -90,7 +123,7 @@ function Home() {
       </section>
 
       <section className={`section ${styles.bottomSection}`}>
-        <Container>
+        <Container className="position-relative">
           <Row>
             <Col md={6} className="mb-4">
               <div className={styles.paddingRight}>
@@ -98,26 +131,26 @@ function Home() {
                   Most popular
                   <br /> this week
                 </Heading>
-                <h3 className="border-b">The Supreal Dream</h3>
-                <div className={styles.content}>
-                  <h3>Art Member Monday</h3>
-                  <Text>
-                    Aliquam sed risus venenatis leo tristique facilisis tempus,
-                    nunerev doleri Imperdiet risviverra ipsum tellus siteriume
-                  </Text>
-                  <div className="pb-4">
-                    <EventsInfo />
-                  </div>
-
-                  <div className="gallery-border">
-                    <h3>Ape Feast 2023</h3>
-                  </div>
+                <div className={`${styles.dreamContent} `}>
+                  {EVENTS.map((event, idx) => (
+                    <EventAccordion
+                      isExpanded={event.id === show}
+                      onExpand={() => setShow(event.id)}
+                      key={`event_acc_${idx}`}
+                      event={event}
+                    />
+                  ))}
                 </div>
               </div>
             </Col>
             <Col md={6}>
               <div className={styles.img}>
-                <img src="/img/popular.png" alt="" width="100%" height="100%" />
+                <img
+                  src={EVENTS.find((e) => e.id === show)?.image}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                />
               </div>
             </Col>
           </Row>
