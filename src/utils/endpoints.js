@@ -9,9 +9,9 @@ export const ALL_QUERIES = {
 };
 
 export const ALL_ENDPOINTS = {
-  BUILD_ALL_EVENTS: () => "/events",
+  BUILD_ALL_EVENTS: () => "/events?published=true",
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
-  BUILD_RELATED_EVENTS: () => "/events?size=3",
+  BUILD_RELATED_EVENTS: () => "/events?size=3?published=true",
   BUILD_POST_QUERY: () => `/queries`,
   BUILD_POST_NEW_EVENT: () => `/events`,
   BUILD_ALL_GENRES: () => `/genres`,
