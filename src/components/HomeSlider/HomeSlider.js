@@ -3,10 +3,6 @@ import styles from "./home.module.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
 import Text from "../Text";
 
 const sliderData = [
