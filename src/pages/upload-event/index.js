@@ -109,7 +109,6 @@ function UploadEvent() {
     if (errorMessage) {
       toastId.current = toast.error(errorMessage);
     }
-    console.log(uploadableFiles, "uploadable files");
     // set the images back to state
     setImages((prevFiles) => [...prevFiles, ...uploadableFiles]);
   };
@@ -156,7 +155,8 @@ function UploadEvent() {
               <div className={`${styles.imgSlider}`}>
                 {images.length === 0 ? (
                   <div
-                    className={`${styles["upload-placeholder"]} d-flex justify-content-center align-items-center`}
+                    className={`${styles["upload-placeholder"]} d-flex justify-content-center align-items-center  cursor-pointer`}
+                    onClick={() => inputFileRef.current.click()}
                   >
                     <p className="text-white">Upload Some Images</p>
                   </div>
