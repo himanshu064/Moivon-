@@ -20,7 +20,10 @@ import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import { createPublicEvent } from "../../services/EventService";
 import { checkMaxFileSize, isEmpty } from "../../utils/helpers";
-import { MAX_IMAGE_SIZE_IN_MB } from "../../utils/constants";
+import {
+  MAX_IMAGE_SIZE_IN_MB,
+  MAX_ALLOWED_IMAGES,
+} from "../../utils/constants";
 
 const validationSchema = yup.object({
   title: yup.string().required("Required"),
@@ -28,18 +31,6 @@ const validationSchema = yup.object({
   dates: yup.date("Invalid Date").required("Required"),
   price: yup.number("Invalid price").required("Required"),
 });
-
-const eventImg = [
-  {
-    image: "/img/detail-img.png",
-  },
-  {
-    image: "/img/detail-img.png",
-  },
-  {
-    image: "/img/detail-img.png",
-  },
-];
 
 const pagination = {
   clickable: true,
@@ -50,6 +41,7 @@ function UploadEvent() {
   const resolver = useYupValidationResolver(validationSchema);
 
   const toastId = useRef(null);
+  const inputFileRef = useRef();
   const [images, setImages] = useState([]);
 
   const { mutate: createPublicEventMutation } = useMutation(
@@ -69,14 +61,33 @@ function UploadEvent() {
     }
   );
 
+  const onInputFileReset = () => (inputFileRef.current.value = "");
+
   const onImageChange = (event) => {
     const { files } = event.target;
+    const allFiles = Array.from(files);
+
+    if (allFiles.length === 0) return;
+
+    onInputFileReset();
+
+    if (toastId.current) {
+      console.log("removing.....");
+      toast.remove(toastId.current);
+    }
+
+    if (images.length === MAX_ALLOWED_IMAGES) {
+      toastId.current = toast.error(
+        `Maximum of ${MAX_ALLOWED_IMAGES} images are allowed!`
+      );
+      return;
+    }
 
     const uploadableFiles = [];
     let isSomeFilesSkipped = false;
     let errorMessage = "";
 
-    Array.from(files).forEach((file) => {
+    allFiles.forEach((file) => {
       const isAllowed = checkMaxFileSize(file.size, MAX_IMAGE_SIZE_IN_MB);
       if (isAllowed) {
         uploadableFiles.push({
@@ -96,11 +107,11 @@ function UploadEvent() {
 
     // show the error message if the error flag is set
     if (errorMessage) {
-      toast.error(errorMessage);
+      toastId.current = toast.error(errorMessage);
     }
-
+    console.log(uploadableFiles, "uploadable files");
     // set the images back to state
-    setImages(uploadableFiles);
+    setImages((prevFiles) => [...prevFiles, ...uploadableFiles]);
   };
 
   const onAddEvent = (data) => {
@@ -171,7 +182,8 @@ function UploadEvent() {
               <div className="d-flex justify-content-between flex-wrap mt-3">
                 <Text>PREVIEW</Text>
                 <Text variant="white">
-                  UPLOAD UP TO 5 IMAGES/ VIDEOS (10 MB MAX)
+                  UPLOAD UP TO {MAX_ALLOWED_IMAGES} IMAGES/ VIDEOS (
+                  {MAX_IMAGE_SIZE_IN_MB} MB MAX)
                 </Text>
                 <div className={styles.uploadDiv}>
                   <input
@@ -179,6 +191,7 @@ function UploadEvent() {
                     type="file"
                     onChange={onImageChange}
                     accept="image/*"
+                    ref={inputFileRef}
                   />
                   <Text>UPLOAD</Text>
                 </div>
