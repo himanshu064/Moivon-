@@ -9,7 +9,8 @@ export const ALL_QUERIES = {
 };
 
 export const ALL_ENDPOINTS = {
-  BUILD_ALL_EVENTS: () => "/events?published=true",
+  BUILD_ALL_EVENTS: ({ page = 1, perPage = 10 }) =>
+    `/events?published=true&page=${page}&size=${perPage}`,
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
   BUILD_RELATED_EVENTS: () => "/events?size=3?published=true",
   BUILD_POST_QUERY: () => `/queries`,

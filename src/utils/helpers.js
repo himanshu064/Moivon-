@@ -7,3 +7,25 @@ export const checkMaxFileSize = (size, max_size) => {
 };
 
 export const isEmpty = (param) => (param ? !Object.keys(param).length : true);
+
+export const calculateTotalPagesCount = (pageSize, totalCount) => {
+  return totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize);
+};
+
+export const getMapsLocation = (location) => {
+  if (!location) return null;
+  if (typeof location !== "string") return null;
+
+  if (isValidURL(location)) {
+    return location;
+  }
+
+  return `https://www.google.com/maps/place/${encodeURIComponent(location)}`;
+};
+
+function isValidURL(string) {
+  var res = string.match(
+    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+  );
+  return res !== null;
+}
