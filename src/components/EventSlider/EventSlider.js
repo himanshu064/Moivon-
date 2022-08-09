@@ -1,153 +1,31 @@
 import React, { useState, useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation } from "swiper";
 import Slide from "../Slide";
+import { fetchUpcomingEvents } from "../../services/EventService";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../Loader";
 
-const eventData = [
-  {
-    image: "/img/event-1.png",
-    title: "Art1 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art2 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-3.png",
-    title: "Art3 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-1.png",
-    title: "Art4 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-  {
-    image: "/img/event-2.png",
-    title: "Art5 Member Monday",
-    gallery: [
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-3.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-1.png",
-        title: "Art Member Monday",
-      },
-      {
-        image: "/img/event-2.png",
-        title: "Art Member Monday",
-      },
-    ],
-  },
-];
 function EventSlider() {
-  const pagination = {
-    clickable: true,
-  };
   const swiperRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { data, isLoading, isError, error } = useQuery(
+    ALL_QUERIES.QUERY_UPCOMING_EVENTS(),
+    fetchUpcomingEvents
+  );
+
+  if (isLoading) return <Loader />;
+
+  if (isError) return <p>{error}</p>;
 
   return (
     <>
       <Swiper
         ref={swiperRef}
-        className="swiperSliderHome"
+        className='swiperSliderHome'
         modules={[Navigation]}
         initialSlide={0}
         spaceBetween={20}
@@ -183,15 +61,23 @@ function EventSlider() {
           },
         }}
       >
-        {eventData?.map((data, index) => (
-          <SwiperSlide key={`slide_${index}`}>
-            <Slide
-              event={data}
-              slideIndex={index}
-              currentIndex={currentIndex}
-            />
-          </SwiperSlide>
-        ))}
+        {data?.data?.data?.length === 0 && !isLoading ? (
+          <h3 className='mt-2 text-center text-base text-white'>
+            No upcoming events!
+          </h3>
+        ) : (
+          <>
+            {data?.data?.data?.map((data, index) => (
+              <SwiperSlide key={`slide_${index}`}>
+                <Slide
+                  event={data}
+                  slideIndex={index}
+                  currentIndex={currentIndex}
+                />
+              </SwiperSlide>
+            ))}
+          </>
+        )}
       </Swiper>
     </>
   );

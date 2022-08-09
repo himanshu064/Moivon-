@@ -52,8 +52,6 @@ function EventDetail() {
 
   if (isError) return <p>{error}</p>;
 
-  console.log(data, "Data from a single query!");
-
   return (
     <>
       <RouteTitle title='Event Detail' />

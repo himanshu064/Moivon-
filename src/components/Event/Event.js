@@ -26,8 +26,8 @@ function Event({
             }`}
           >
             <Carousel interval={null}>
-              {event?.images?.map((imageData) => (
-                <Carousel.Item>
+              {event?.images?.map((imageData, index) => (
+                <Carousel.Item key={`image_slide_${index}`}>
                   <Link to={getEventDetailPath(event._id)}>
                     <img
                       draggable='false'
@@ -77,7 +77,7 @@ function Event({
                   </span>
                 </div>
                 <div
-                  className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
+                  className={`${styles.locationDiv} ${styles.borderRight} ${customGridClass}`}
                 >
                   <a
                     href={getMapsLocation(event?.location)}

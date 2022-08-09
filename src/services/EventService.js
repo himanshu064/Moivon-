@@ -2,6 +2,10 @@ import { axiosInstance } from "../utils/api";
 import { HEADERS } from "../utils/constants";
 import { ALL_ENDPOINTS } from "../utils/endpoints";
 
+export const fetchUpcomingEvents = async () => {
+  return axiosInstance.get(ALL_ENDPOINTS.BUILD_UPCOMING_EVENTS());
+};
+
 export const fetchAllEvent = async ({ page, perPage }) => {
   return axiosInstance.get(ALL_ENDPOINTS.BUILD_ALL_EVENTS({ page, perPage }));
 };
