@@ -1,12 +1,15 @@
 // BUILD_ prefix is for actual api endpoint
 // QUERY_ prefix is for react-query state management
 
+import { objectToQueryParams } from "./helpers";
+
 export const ALL_QUERIES = {
   QUERY_ALL_EVENTS: () => ["events"],
   QUERY_RELATED_EVENTS: () => ["relatedEvents"],
   QUERY_UPCOMING_EVENTS: () => ["upcomingEvents"],
   QUERY_SINGLE_EVENT: ({ eventId }) => ["event", eventId],
   QUERY_ALL_GENRES: () => ["genres"],
+  QUERY_HERO_SLIDER: () => ["heroSlider"],
 };
 
 export const ALL_ENDPOINTS = {
@@ -20,4 +23,12 @@ export const ALL_ENDPOINTS = {
   BUILD_POST_QUERY: () => `/queries`,
   BUILD_POST_NEW_EVENT: () => `/events`,
   BUILD_ALL_GENRES: () => `/genres`,
+  BUILD_HERO_SLIDER: ({ page, size }) => {
+    const data = {
+      page,
+      size,
+    };
+    const qs = `?${objectToQueryParams(data)}`;
+    return "/heroimage" + qs;
+  },
 };

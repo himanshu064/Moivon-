@@ -4,26 +4,47 @@ import styles from "./home.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Text from "../Text";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { fetchAllEvent } from "../../services/EventService";
+import { calculateTotalPagesCount } from "../../utils/helpers";
+import Loader from "../Loader";
+import { fetchHeroSlider } from "../../services/SliderService";
+import { prepareImageSrc } from "../../utils/api";
 
-const sliderData = [
-  {
-    image: "/img/slider-main.png",
-    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
-  },
-  {
-    image: "/img/slider-main.png",
-    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
-  },
-  {
-    image: "/img/slider-main.png",
-    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
-  },
-  {
-    image: "/img/slider-main.png",
-    text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
-  },
-];
+// const sliderData = [
+//   {
+//     image: "/img/slider-main.png",
+//     text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
+//   },
+//   {
+//     image: "/img/slider-main.png",
+//     text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
+//   },
+//   {
+//     image: "/img/slider-main.png",
+//     text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
+//   },
+//   {
+//     image: "/img/slider-main.png",
+//     text: "MOIVON’S EVENTS 2023/ “INSPIRATION ARTS & LIFESTYLE”",
+//   },
+// ];
+
+const PER_PAGE = 10;
+const PAGE = 1;
+
 function HomeSlider() {
+  const { isLoading, isError, error, data } = useQuery(
+    ALL_QUERIES.QUERY_HERO_SLIDER(),
+    () => fetchHeroSlider({ page: PAGE, perPage: PER_PAGE })
+  );
+
+  console.log(data, "data goe shere");
+
+  if (isLoading) return <Loader />;
+  if (isError) return <p>{error}</p>;
+
   return (
     <>
       <Swiper
@@ -48,13 +69,19 @@ function HomeSlider() {
           },
         }}
       >
-        {sliderData?.map((data) => (
+        {data?.data?.data?.map((hero) => (
           <SwiperSlide>
             <div className={styles.wrapper}>
               <div className={styles.image}>
-                <img src={data?.image} alt="slider" width="100%" />
+                {hero?.images?.map((heroImg) => (
+                  <img
+                    src={prepareImageSrc(heroImg?.image)}
+                    alt={heroImg?._id}
+                    width="100%"
+                  />
+                ))}
               </div>
-              <Text>{data?.text}</Text>
+              <Text>{hero?.description}</Text>
             </div>
           </SwiperSlide>
         ))}

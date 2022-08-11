@@ -1,4 +1,5 @@
 /* Google sans font */
+
 @font-face {
   font-family: "Google sans Regular";
   src: url(/public/fonts/google-sans/ProductSans-Regular.ttf);
@@ -289,6 +290,10 @@ button:focus {
     padding: 90px 0;
     color: #fff;
     font-size: 30px;
+}
+
+.infinite-scroll-component {
+  overflow-x: hidden !important;
 }
 @media screen and (max-width: 768px) {
   .section {
