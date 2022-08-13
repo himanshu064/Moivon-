@@ -10,6 +10,7 @@ export const ALL_QUERIES = {
   QUERY_SINGLE_EVENT: ({ eventId }) => ["event", eventId],
   QUERY_ALL_GENRES: () => ["genres"],
   QUERY_HERO_SLIDER: () => ["heroSlider"],
+  QUERY_MOST_POPULAR: () => ["mostPopular"],
 };
 
 export const ALL_ENDPOINTS = {
@@ -17,9 +18,9 @@ export const ALL_ENDPOINTS = {
     `/events?published=true&page=${page}&size=${perPage}`,
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
   BUILD_RELATED_EVENTS: () => "/events?size=3&published=true",
-  BUILD_UPCOMING_EVENTS: (
-    startDate = new Date(new Date().setHours(0, 0, 0, 0))
-  ) => `/events?size=10&published=true&startDate=${startDate}`,
+  BUILD_UPCOMING_EVENTS: () => `/events?size=10&published=true&upComing=true`,
+  BUILD_MOST_POPULAR_EVENTS: () =>
+    `/events?size=10&published=true&mostPopular=true`,
   BUILD_POST_QUERY: () => `/queries`,
   BUILD_POST_NEW_EVENT: () => `/events`,
   BUILD_ALL_GENRES: () => `/genres`,

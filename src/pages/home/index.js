@@ -16,40 +16,12 @@ import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import EventAccordion from "../../components/EventAccordion";
+import MostPopularAccordion from "../../components/MostPopularAccordion";
 
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
 
-  const [show, setShow] = useState(2);
-  const EVENTS = [
-    {
-      id: 1,
-      title: "The Supreal Dream",
-      description: `a supreal dream instilation featured in MOMA this month
-      and the next.Click into this post to find out more about
-      the minds of dreamers`,
-      btnText: "feature venue",
-      image: "/img/detail-img.png",
-    },
-    {
-      id: 2,
-      title: "Art Member Monday",
-      description: `Aliquam sed risus venenatis leo tristique facilisis tempus,
-      nunerev doleri Imperdiet risviverra ipsum tellus siteriume`,
-      btnText: "gallery",
-      image: "/img/popular.png",
-    },
-    {
-      id: 3,
-      title: "Ape Feast 2023",
-      description: `a supreal dream instilation featured in MOMA this month
-      and the next.Click into this post to find out more about
-      the minds of dreamers`,
-      btnText: "gallery",
-      image: "/img/event-2.png",
-    },
-  ];
   return (
     <>
       <RouteTitle title="Home" />
@@ -123,38 +95,7 @@ function Home() {
       </section>
 
       <section className={`section ${styles.bottomSection}`}>
-        <Container className="position-relative">
-          <Row>
-            <Col md={6} className="mb-4">
-              <div className={styles.paddingRight}>
-                <Heading variant="subHeading">
-                  Most popular
-                  <br /> this week
-                </Heading>
-                <div className={`${styles.dreamContent} `}>
-                  {EVENTS.map((event, idx) => (
-                    <EventAccordion
-                      isExpanded={event.id === show}
-                      onExpand={() => setShow(event.id)}
-                      key={`event_acc_${idx}`}
-                      event={event}
-                    />
-                  ))}
-                </div>
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className={styles.img}>
-                <img
-                  src={EVENTS.find((e) => e.id === show)?.image}
-                  alt=""
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <MostPopularAccordion />
       </section>
       <section className="section">
         <Container>

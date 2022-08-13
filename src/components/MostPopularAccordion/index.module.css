@@ -1,0 +1,8 @@
+.paddingRight {
+  padding-right: 150px;
+}
+@media screen and (max-width: 1100px) {
+  .paddingRight {
+    padding-right: 30px;
+  }
+}

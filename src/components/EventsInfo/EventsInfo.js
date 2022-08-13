@@ -3,12 +3,12 @@ import styles from "./eventinfo.module.css";
 
 import Button from "../Button";
 
-function EventsInfo(props) {
+function EventsInfo({ event }) {
   return (
     <>
       <div className={styles.gridDiv}>
         <div className={`${styles.galleryBtn} ${styles.borderRight}`}>
-          <Button>{props.btn}</Button>
+          <Button>{event.btnText}</Button>
         </div>
         <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
           <span className={styles.title}>Date</span>
@@ -23,7 +23,4 @@ function EventsInfo(props) {
   );
 }
 
-EventsInfo.defaultProps = {
-  btn: "Gallery",
-};
 export default EventsInfo;

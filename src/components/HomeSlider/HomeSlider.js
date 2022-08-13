@@ -40,8 +40,6 @@ function HomeSlider() {
     () => fetchHeroSlider({ page: PAGE, perPage: PER_PAGE })
   );
 
-  console.log(data, "data goe shere");
-
   if (isLoading) return <Loader />;
   if (isError) return <p>{error}</p>;
 
@@ -69,22 +67,23 @@ function HomeSlider() {
           },
         }}
       >
-        {data?.data?.data?.map((hero) => (
-          <SwiperSlide>
-            <div className={styles.wrapper}>
-              <div className={styles.image}>
-                {hero?.images?.map((heroImg) => (
-                  <img
-                    src={prepareImageSrc(heroImg?.image)}
-                    alt={heroImg?._id}
-                    width="100%"
-                  />
-                ))}
+        {!isLoading &&
+          data?.data?.data?.map((hero) => (
+            <SwiperSlide>
+              <div className={styles.wrapper}>
+                <div className={styles.image}>
+                  {hero?.images?.map((heroImg) => (
+                    <img
+                      src={prepareImageSrc(heroImg?.image)}
+                      alt={heroImg?._id}
+                      width="100%"
+                    />
+                  ))}
+                </div>
+                <Text>{hero?.description}</Text>
               </div>
-              <Text>{hero?.description}</Text>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );

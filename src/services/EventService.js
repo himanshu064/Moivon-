@@ -6,6 +6,10 @@ export const fetchUpcomingEvents = async () => {
   return axiosInstance.get(ALL_ENDPOINTS.BUILD_UPCOMING_EVENTS());
 };
 
+export const fetchMostFavoriteEvents = async () => {
+  return axiosInstance.get(ALL_ENDPOINTS.BUILD_MOST_POPULAR_EVENTS());
+};
+
 export const fetchAllEvent = async ({ page, perPage }) => {
   return axiosInstance.get(ALL_ENDPOINTS.BUILD_ALL_EVENTS({ page, perPage }));
 };

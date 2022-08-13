@@ -15,7 +15,7 @@ const getEventDetailPath = (id) => `/event-detail/${id}`;
 const ContentWrapper = ({ allowClick, eventId, children }) => {
   const Component = allowClick
     ? () => (
-        <Link to={`/event-detail/${eventId}`} draggable='false'>
+        <Link to={`/event-detail/${eventId}`} draggable="false">
           {children}
         </Link>
       )
@@ -30,6 +30,7 @@ function Slide({
   showArrowOnHover,
   showGalleryOnHover,
   customGridClass,
+  showPreviousAndNextButton = true,
 }) {
   const swiper = useSwiper();
   const bootstrapCarouselRef = useRef();
@@ -62,7 +63,12 @@ function Slide({
           {...imageCarouselHandler}
           // {...(allowLinks && imageCarouselHandler)}
         >
-          <span className='prev-btn' onClick={() => swiper.slidePrev()}></span>
+          {showPreviousAndNextButton && (
+            <span
+              className="prev-btn"
+              onClick={() => swiper.slidePrev()}
+            ></span>
+          )}
           <Carousel
             // indicators={allowLinks}
             interval={null}
@@ -72,7 +78,7 @@ function Slide({
               <Carousel.Item key={`image_slide_${index}`}>
                 <Link to={getEventDetailPath(event._id)}>
                   <img
-                    draggable='false'
+                    draggable="false"
                     src={prepareImageSrc(imageData?.image)}
                     alt={imageData?._id}
                   />
@@ -80,7 +86,12 @@ function Slide({
               </Carousel.Item>
             ))}
           </Carousel>
-          <span className='next-btn' onClick={() => swiper.slideNext()}></span>
+          {showPreviousAndNextButton && (
+            <span
+              className="next-btn"
+              onClick={() => swiper.slideNext()}
+            ></span>
+          )}
         </div>
         <div
           className={`${styles.galleryBtn} hide-gallery-btn ${
@@ -93,15 +104,15 @@ function Slide({
         </div>
         <div className={styles.content} {...contentCarouselHandler}>
           <ContentWrapper allowClick={allowLinks} eventId={event._id}>
-            <div className='d-flex justify-content-between px-3'>
+            <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
 
-              <div className='d-flex gap-2'>
-                <span className='d-flex'>
+              <div className="d-flex gap-2">
+                <span className="d-flex">
                   <AiOutlineStar />
                   4.2
                 </span>
-                <span className='d-flex'>
+                <span className="d-flex">
                   <AiOutlineHeart />
                   120
                 </span>
@@ -110,7 +121,7 @@ function Slide({
             <div
               className={"gallery-border"}
               style={{ borderBottom: "0" }}
-              draggable='false'
+              draggable="false"
             >
               <div className={`${styles.gridDiv} `}>
                 <div
@@ -126,11 +137,11 @@ function Slide({
                   className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
                 >
                   <a
-                    draggable='false'
+                    draggable="false"
                     href={allowLinks ? getMapsLocation(event?.location) : ""}
-                    target='_blank'
+                    target="_blank"
                     onClick={(e) => e.stopPropagation()}
-                    rel='noreferrer'
+                    rel="noreferrer"
                   >
                     <span className={`${styles.title} title`}>Location</span>
                     <span className={`${styles.location} location`}>

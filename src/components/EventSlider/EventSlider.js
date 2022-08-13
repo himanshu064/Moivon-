@@ -21,16 +21,21 @@ function EventSlider() {
 
   if (isError) return <p>{error}</p>;
 
+  const isMinimumThreeSlidesAvailable =
+    !isLoading && data?.data?.data.length === 3;
+
   return (
     <>
       <Swiper
         ref={swiperRef}
-        className='swiperSliderHome'
+        className={`swiperSliderHome ${
+          isMinimumThreeSlidesAvailable ? "" : "transform-none"
+        }`}
         modules={[Navigation]}
         initialSlide={0}
         spaceBetween={20}
         slidesPerView={3.5}
-        loop
+        loop={isMinimumThreeSlidesAvailable}
         navigation={false}
         centeredSlides={true}
         centeredSlidesBounds={true}
@@ -62,7 +67,7 @@ function EventSlider() {
         }}
       >
         {data?.data?.data?.length === 0 && !isLoading ? (
-          <h3 className='mt-2 text-center text-base text-white'>
+          <h3 className="mt-2 text-center text-base text-white">
             No upcoming events!
           </h3>
         ) : (
@@ -73,6 +78,7 @@ function EventSlider() {
                   event={data}
                   slideIndex={index}
                   currentIndex={currentIndex}
+                  showPreviousAndNextButton={isMinimumThreeSlidesAvailable}
                 />
               </SwiperSlide>
             ))}

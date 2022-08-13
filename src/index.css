@@ -248,6 +248,9 @@ button:focus {
   background: #232323;
   z-index: 1;
 }
+.transform-none .swiper-slide-active {
+  transform: none !important;
+}
 
 .carousel-control-prev-icon {
   background-image: url(/public/img/back.svg) !important;
@@ -284,12 +287,11 @@ button:focus {
   background-color: var(--theme-black) !important;
 }
 
-
-.no-data{
+.no-data {
   text-align: center;
-    padding: 90px 0;
-    color: #fff;
-    font-size: 30px;
+  padding: 90px 0;
+  color: #fff;
+  font-size: 30px;
 }
 
 .infinite-scroll-component {
