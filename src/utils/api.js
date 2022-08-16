@@ -7,6 +7,6 @@ const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
 });
 
-const prepareImageSrc = (url) => `${BASE_URL}/${url}`;
+const prepareImageSrc = (url) => `${process.env.REACT_APP_PUBLIC_URL}/${url}`;
 
 export { prepareImageSrc, axiosInstance };
