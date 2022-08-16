@@ -22,7 +22,7 @@ function EventSlider() {
   if (isError) return <p>{error}</p>;
 
   const isMinimumThreeSlidesAvailable =
-    !isLoading && data?.data?.data.length === 3;
+    !isLoading && data?.data?.eventPresent >= 3;
 
   return (
     <>
