@@ -71,6 +71,11 @@
  .date, .location, .entry{
     text-transform: uppercase;
     font-size: 12px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100px;
+    display: block;
 }
 .lastSection{
     padding-bottom: 80px !important;
