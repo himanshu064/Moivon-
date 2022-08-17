@@ -53,7 +53,7 @@ function AllEvent() {
     return (
       <Row>
         {computedDataArray.map((event) => (
-          <Col md={4} className='mb-3' key={event.id}>
+          <Col md={4} className="mb-3" key={event._id}>
             <Event event={event} />
           </Col>
         ))}
@@ -77,34 +77,34 @@ function AllEvent() {
 
   return (
     <>
-      <RouteTitle title='All Events' />
-      <section className='section'>
+      <RouteTitle title="All Events" />
+      <section className="section">
         <Container>
           <Row>
             <Col md={12}>
               <div className={" mb-4 " + styles.navHead}>
-                <Heading mb='0' variant='subHeading'>
+                <Heading mb="0" variant="subHeading">
                   Events
                 </Heading>
                 <div
                   className={`align-items-center justify-content-between gap-5 w-100 ${styles.topHead}`}
                 >
                   <Tabs
-                    id='controlled-tab-example'
+                    id="controlled-tab-example"
                     activeKey={key}
                     onSelect={(k) => setKey(k)}
                     className={`mb-3 customTab ${styles.customTabs}`}
                   >
-                    <Tab eventKey='AllEvent' title='All events'></Tab>
-                    <Tab eventKey='Classic' title='CLASSIC MUSEUM'></Tab>
-                    <Tab eventKey='Gallery' title='GALLERY'></Tab>
-                    <Tab eventKey='Feature' title='FEATURE VENUE'></Tab>
-                    <Tab eventKey='Design' title='DESIGN CONVETION'></Tab>
-                    <Tab eventKey='Individual' title='INDIVIDUAL'></Tab>
+                    <Tab eventKey="AllEvent" title="All events"></Tab>
+                    <Tab eventKey="Classic" title="CLASSIC MUSEUM"></Tab>
+                    <Tab eventKey="Gallery" title="GALLERY"></Tab>
+                    <Tab eventKey="Feature" title="FEATURE VENUE"></Tab>
+                    <Tab eventKey="Design" title="DESIGN CONVETION"></Tab>
+                    <Tab eventKey="Individual" title="INDIVIDUAL"></Tab>
                   </Tabs>
 
                   <div className={styles.sortBtn}>
-                    <Button type='outline'>Sort</Button>
+                    <Button type="outline">Sort</Button>
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@ function AllEvent() {
           <Row>
             <Col>
               {computedDataArray.length === 0 && !isLoading ? (
-                <p className='no-data'>No Event found</p>
+                <p className="no-data">No Event found</p>
               ) : (
                 <InfiniteScroll
                   dataLength={computedDataArray.length}

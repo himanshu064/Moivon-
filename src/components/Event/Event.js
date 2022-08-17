@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { format } from "date-fns";
 import { prepareImageSrc } from "../../utils/api";
-import { formatCurrency, getMapsLocation } from "../../utils/helpers";
+import {
+  formatCurrency,
+  getMapsLocation,
+  isValidURL,
+} from "../../utils/helpers";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
@@ -19,7 +23,7 @@ function Event({
   return (
     <>
       <div className={styles.eventWrapper}>
-        <div className='eventWrapper'>
+        <div className="eventWrapper">
           <div
             className={`${styles.image} event-single-slider ${
               showArrowOnHover ? "all-event-slider" : ""
@@ -30,7 +34,7 @@ function Event({
                 <Carousel.Item key={`image_slide_${index}`}>
                   <Link to={getEventDetailPath(event._id)}>
                     <img
-                      draggable='false'
+                      draggable="false"
                       src={prepareImageSrc(imageData?.image)}
                       alt={imageData?._id}
                     />
@@ -51,15 +55,15 @@ function Event({
         </div>
         <div className={styles.content}>
           <Link to={getEventDetailPath(event._id)}>
-            <div className='d-flex justify-content-between px-3'>
+            <div className="d-flex justify-content-between px-3">
               <h3>{event?.title}</h3>
 
-              <div className='d-flex gap-2'>
-                <span className='d-flex'>
+              <div className="d-flex gap-2">
+                <span className="d-flex">
                   <AiOutlineStar />
                   4.2
                 </span>
-                <span className='d-flex'>
+                <span className="d-flex">
                   <AiOutlineHeart />
                   120
                 </span>
@@ -81,14 +85,16 @@ function Event({
                 >
                   <a
                     href={getMapsLocation(event?.location)}
-                    target='_blank'
+                    target="_blank"
                     onClick={(e) => e.stopPropagation()}
-                    rel='noreferrer'
+                    rel="noreferrer"
                   >
                     <span className={`${styles.title} title`}>Location</span>
                     <span className={`${styles.location} location`}>
                       {" "}
-                      Bourbon st, 40{" "}
+                      {isValidURL(event?.location)
+                        ? "Open Map"
+                        : event?.location}{" "}
                     </span>
                   </a>
                 </div>

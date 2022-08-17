@@ -16,8 +16,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import Event from "../../components/Event";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import { useParams } from "react-router-dom";
-import { utcToZonedTime } from "date-fns-tz";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import {
@@ -25,7 +24,11 @@ import {
   fetchSingleEvent,
 } from "../../services/EventService";
 import { prepareImageSrc } from "../../utils/api";
-import { formatCurrency } from "../../utils/helpers";
+import {
+  formatCurrency,
+  getMapsLocation,
+  isValidURL,
+} from "../../utils/helpers";
 import Loader from "../../components/Loader";
 
 function EventDetail() {
@@ -54,8 +57,8 @@ function EventDetail() {
 
   return (
     <>
-      <RouteTitle title='Event Detail' />
-      <section className='section'>
+      <RouteTitle title="Event Detail" />
+      <section className="section">
         <Container>
           <Row>
             <Col>
@@ -63,12 +66,12 @@ function EventDetail() {
                 <div
                   className={`${styles.eventHead} d-flex align-items-center gap-3 flex-wrap`}
                 >
-                  <Heading mb='0' variant='subHeading'>
+                  <Heading mb="0" variant="subHeading">
                     {data?.data?.data?.title}
                   </Heading>
                   <span className={styles.type}>CLASSIC MUSEUM</span>
                 </div>
-                <Button type='outline'>Book Now</Button>
+                <Button type="outline">Book Now</Button>
               </div>
             </Col>
           </Row>
@@ -115,12 +118,7 @@ function EventDetail() {
                   <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
                     <span className={styles.title}>DOORS OPEN</span>
                     <span className={styles.entry}>
-                      {format(
-                        new Date(
-                          utcToZonedTime(data?.data?.data?.dates, "utc")
-                        ),
-                        "HH:MM a"
-                      )}
+                      {format(parseISO(data?.data?.data?.dates), "hh:mm a")}
                     </span>
                   </div>
                   <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
@@ -136,20 +134,32 @@ function EventDetail() {
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>VENUE</h3>
-                  <Text>{data?.data?.data?.venue}</Text>
-                  <Button type='outline'>OPEN MAP</Button>
+                  {isValidURL(data?.data?.data?.venue) ? null : (
+                    <Text>{data?.data?.data?.venue}</Text>
+                  )}
+                  <a
+                    href={
+                      data?.data?.data?.venue
+                        ? getMapsLocation(data?.data?.data?.venue)
+                        : "#"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button type="outline">OPEN MAP</Button>
+                  </a>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>ABOUT INSTITUTION</h3>
-                  <div className='d-flex align-items-center gap-4 py-3'>
-                    <img src='/img/bg-logo.png' alt='' />
+                  <div className="d-flex align-items-center gap-4 py-3">
+                    <img src="/img/bg-logo.png" alt="" />
                     <div className={styles.info}>
                       <h4>Moivon Company</h4>
                       <span>eVENTS ORGANIZATOR</span>
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <Button type='outline'>VISIT WEBSITE</Button>
+                  <Button type="outline">VISIT WEBSITE</Button>
                 </div>
               </div>
             </Col>
@@ -163,8 +173,8 @@ function EventDetail() {
               <h3>RELATED EVENTS</h3>
             </Col>
             <Col md={6}>
-              <div className='d-flex justify-content-end align-items-center mb-4'>
-                <Link to='/all-events'>
+              <div className="d-flex justify-content-end align-items-center mb-4">
+                <Link to="/all-events">
                   <span>
                     View All <FiArrowUpRight />
                   </span>
@@ -183,11 +193,11 @@ function EventDetail() {
             ) : (
               <Row>
                 {allEventsData?.data?.data?.map((event) => (
-                  <Col md={4}>
+                  <Col md={4} key={event._id}>
                     <Event
                       event={event}
                       showArrowOnHover
-                      customGridClass='customGridClass'
+                      customGridClass="customGridClass"
                     />
                   </Col>
                 ))}

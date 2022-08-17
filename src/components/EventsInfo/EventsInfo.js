@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./eventinfo.module.css";
 
 import Button from "../Button";
+import { format, parseISO } from "date-fns";
 
 function EventsInfo({ event }) {
   return (
@@ -12,11 +13,13 @@ function EventsInfo({ event }) {
         </div>
         <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
           <span className={styles.title}>Date</span>
-          <span className={styles.date}>30 june</span>
+          <span className={styles.date}>
+            {format(parseISO(event?.dates), "dd MMM")}
+          </span>
         </div>
         <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
           <span className={styles.title}>Location</span>
-          <span className={styles.location}></span>
+          <span className={styles.location}>{event.location}</span>
         </div>
       </div>
     </>

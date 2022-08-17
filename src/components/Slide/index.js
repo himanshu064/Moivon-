@@ -8,7 +8,11 @@ import Carousel from "react-bootstrap/Carousel";
 import { useSwiper } from "swiper/react";
 import { prepareImageSrc } from "../../utils/api";
 import { format } from "date-fns";
-import { formatCurrency, getMapsLocation } from "../../utils/helpers";
+import {
+  formatCurrency,
+  getMapsLocation,
+  isValidURL,
+} from "../../utils/helpers";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
@@ -146,7 +150,9 @@ function Slide({
                     <span className={`${styles.title} title`}>Location</span>
                     <span className={`${styles.location} location`}>
                       {" "}
-                      Bourbon st, 40{" "}
+                      {isValidURL(event?.location)
+                        ? "Open Map"
+                        : event?.location}{" "}
                     </span>
                   </a>
                 </div>
