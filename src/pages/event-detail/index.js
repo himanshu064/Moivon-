@@ -109,6 +109,7 @@ function EventDetail() {
                   </div>
                   <div
                     className={`${styles.locationDiv}  ${styles.borderRight}`}
+                    title={data?.data?.data?.location}
                   >
                     <span className={styles.title}>Location</span>
                     <span className={styles.location}>

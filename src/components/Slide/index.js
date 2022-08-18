@@ -16,14 +16,28 @@ import {
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
-const ContentWrapper = ({ allowClick, eventId, children }) => {
-  const Component = allowClick
-    ? () => (
-        <Link to={`/event-detail/${eventId}`} draggable="false">
-          {children}
-        </Link>
-      )
-    : () => <div>{children}</div>;
+const ContentWrapper = ({
+  showPreviousAndNextButton,
+  allowClick,
+  eventId,
+  children,
+}) => {
+  let Component = <div>{children}</div>;
+
+  if (!showPreviousAndNextButton) {
+    Component = () => (
+      <Link to={`/event-detail/${eventId}`} draggable="false">
+        {children}
+      </Link>
+    );
+  } else if (allowClick) {
+    Component = () => (
+      <Link to={`/event-detail/${eventId}`} draggable="false">
+        {children}
+      </Link>
+    );
+  }
+
   return <Component />;
 };
 
@@ -56,6 +70,18 @@ function Slide({
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
+
+  const renderMapsLocation = () => {
+    let location = "#";
+
+    if (!showPreviousAndNextButton) {
+      location = getMapsLocation(event?.location);
+    } else if (allowLinks) {
+      location = getMapsLocation(event?.location);
+    }
+
+    return location;
+  };
 
   return (
     <>
@@ -107,7 +133,11 @@ function Slide({
           </Link>
         </div>
         <div className={styles.content} {...contentCarouselHandler}>
-          <ContentWrapper allowClick={allowLinks} eventId={event._id}>
+          <ContentWrapper
+            showPreviousAndNextButton={showPreviousAndNextButton}
+            allowClick={allowLinks}
+            eventId={event._id}
+          >
             <div className="d-flex justify-content-between px-3">
               <h3>{event.title}</h3>
 
@@ -142,7 +172,7 @@ function Slide({
                 >
                   <a
                     draggable="false"
-                    href={allowLinks ? getMapsLocation(event?.location) : ""}
+                    href={renderMapsLocation()}
                     target="_blank"
                     onClick={(e) => e.stopPropagation()}
                     rel="noreferrer"

@@ -3,6 +3,7 @@ import styles from "./eventinfo.module.css";
 
 import Button from "../Button";
 import { format, parseISO } from "date-fns";
+import { getMapsLocation, isValidURL } from "../../utils/helpers";
 
 function EventsInfo({ event }) {
   return (
@@ -18,8 +19,16 @@ function EventsInfo({ event }) {
           </span>
         </div>
         <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
-          <span className={styles.title}>Location</span>
-          <span className={styles.location}>{event.location}</span>
+          <a
+            href={getMapsLocation(event.location)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={styles.title}>Location</span>
+            <span className={styles.location}>
+              {isValidURL(event.location) ? "Open Map" : event.location}
+            </span>
+          </a>
         </div>
       </div>
     </>
