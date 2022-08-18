@@ -67,6 +67,11 @@ font-size: 12px;
      .date, .location, .entry{
         text-transform: uppercase;
         font-size: 10px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 90px;
+        display: block;
     }
     
     
