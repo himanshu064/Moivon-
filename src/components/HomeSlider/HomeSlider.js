@@ -68,15 +68,16 @@ function HomeSlider() {
         }}
       >
         {!isLoading &&
-          data?.data?.data?.map((hero) => (
-            <SwiperSlide>
+          data?.data?.data?.map((hero, index) => (
+            <SwiperSlide key={`hero_slider_${index}`}>
               <div className={styles.wrapper}>
                 <div className={styles.image}>
-                  {hero?.images?.map((heroImg) => (
+                  {hero?.images?.map((heroImg, idx) => (
                     <img
+                      key={`heroimage_${idx}`}
                       src={prepareImageSrc(heroImg?.image)}
                       alt={heroImg?._id}
-                      width="100%"
+                      width='100%'
                     />
                   ))}
                 </div>

@@ -23,7 +23,7 @@ function Event({
   return (
     <>
       <div className={styles.eventWrapper}>
-        <div className="eventWrapper">
+        <div className='eventWrapper'>
           <div
             className={`${styles.image} event-single-slider ${
               showArrowOnHover ? "all-event-slider" : ""
@@ -34,7 +34,7 @@ function Event({
                 <Carousel.Item key={`image_slide_${index}`}>
                   <Link to={getEventDetailPath(event._id)}>
                     <img
-                      draggable="false"
+                      draggable='false'
                       src={prepareImageSrc(imageData?.image)}
                       alt={imageData?._id}
                     />
@@ -55,15 +55,15 @@ function Event({
         </div>
         <div className={styles.content}>
           <Link to={getEventDetailPath(event._id)}>
-            <div className="d-flex justify-content-between px-3">
+            <div className='d-flex justify-content-between px-3'>
               <h3>{event?.title}</h3>
 
-              <div className="d-flex gap-2">
-                <span className="d-flex">
+              <div className='d-flex gap-2'>
+                <span className='d-flex'>
                   <AiOutlineStar />
                   4.2
                 </span>
-                <span className="d-flex">
+                <span className='d-flex'>
                   <AiOutlineHeart />
                   120
                 </span>
@@ -76,8 +76,8 @@ function Event({
                 >
                   <span className={`${styles.title} title`}>Date</span>
                   <span className={`${styles.date} date`}>
-                    {event?.dates &&
-                      format(new Date(event?.dates), "dd LLL yyyy")}
+                    {event?.startDate &&
+                      format(new Date(event?.startDate), "dd LLL yyyy")}
                   </span>
                 </div>
                 <div
@@ -85,9 +85,9 @@ function Event({
                 >
                   <a
                     href={getMapsLocation(event?.location)}
-                    target="_blank"
+                    target='_blank'
                     onClick={(e) => e.stopPropagation()}
-                    rel="noreferrer"
+                    rel='noreferrer'
                   >
                     <span className={`${styles.title} title`}>Location</span>
                     <span className={`${styles.location} location`}>
@@ -103,7 +103,7 @@ function Event({
                 >
                   <span className={`${styles.title} title`}>Entry fee</span>
                   <span className={`${styles.entry} entry`}>
-                    {formatCurrency(event?.price)}
+                    {event?.price !== 0 ? formatCurrency(event?.price) : "FREE"}
                   </span>
                 </div>
               </div>

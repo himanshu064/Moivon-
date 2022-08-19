@@ -32,4 +32,7 @@ export const ALL_ENDPOINTS = {
     const qs = `?${objectToQueryParams(data)}`;
     return "/heroimage" + qs;
   },
+
+  // genres
+  BUILD_FETCH_ALL_GENRES: () => `/genres`,
 };

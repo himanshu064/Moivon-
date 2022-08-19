@@ -22,17 +22,17 @@ const ContentWrapper = ({
   eventId,
   children,
 }) => {
-  let Component = <div>{children}</div>;
+  let Component = () => <div>{children}</div>;
 
   if (!showPreviousAndNextButton) {
     Component = () => (
-      <Link to={`/event-detail/${eventId}`} draggable="false">
+      <Link to={`/event-detail/${eventId}`} draggable='false'>
         {children}
       </Link>
     );
   } else if (allowClick) {
     Component = () => (
-      <Link to={`/event-detail/${eventId}`} draggable="false">
+      <Link to={`/event-detail/${eventId}`} draggable='false'>
         {children}
       </Link>
     );
@@ -95,7 +95,7 @@ function Slide({
         >
           {showPreviousAndNextButton && (
             <span
-              className="prev-btn"
+              className='prev-btn'
               onClick={() => swiper.slidePrev()}
             ></span>
           )}
@@ -108,7 +108,7 @@ function Slide({
               <Carousel.Item key={`image_slide_${index}`}>
                 <Link to={getEventDetailPath(event._id)}>
                   <img
-                    draggable="false"
+                    draggable='false'
                     src={prepareImageSrc(imageData?.image)}
                     alt={imageData?._id}
                   />
@@ -118,7 +118,7 @@ function Slide({
           </Carousel>
           {showPreviousAndNextButton && (
             <span
-              className="next-btn"
+              className='next-btn'
               onClick={() => swiper.slideNext()}
             ></span>
           )}
@@ -138,15 +138,15 @@ function Slide({
             allowClick={allowLinks}
             eventId={event._id}
           >
-            <div className="d-flex justify-content-between px-3">
+            <div className='d-flex justify-content-between px-3'>
               <h3>{event.title}</h3>
 
-              <div className="d-flex gap-2">
-                <span className="d-flex">
+              <div className='d-flex gap-2'>
+                <span className='d-flex'>
                   <AiOutlineStar />
                   4.2
                 </span>
-                <span className="d-flex">
+                <span className='d-flex'>
                   <AiOutlineHeart />
                   120
                 </span>
@@ -155,27 +155,27 @@ function Slide({
             <div
               className={"gallery-border"}
               style={{ borderBottom: "0" }}
-              draggable="false"
+              draggable='false'
             >
               <div className={`${styles.gridDiv} `}>
                 <div
-                  className={`${styles.dateDiv}  ${styles.borderRight} ${customGridClass}`}
+                  className={`${styles.dateDiv} ${styles.borderRight} ${customGridClass}`}
                 >
                   <span className={`${styles.title} title`}>Date</span>
                   <span className={`${styles.date} date`}>
-                    {event?.dates &&
-                      format(new Date(event?.dates), "dd LLL yyyy")}
+                    {event?.startDate &&
+                      format(new Date(event?.startDate), "dd LLL yyyy")}
                   </span>
                 </div>
                 <div
                   className={`${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
                 >
                   <a
-                    draggable="false"
+                    draggable='false'
                     href={renderMapsLocation()}
-                    target="_blank"
+                    target='_blank'
                     onClick={(e) => e.stopPropagation()}
-                    rel="noreferrer"
+                    rel='noreferrer'
                   >
                     <span className={`${styles.title} title`}>Location</span>
                     <span className={`${styles.location} location`}>
@@ -191,7 +191,7 @@ function Slide({
                 >
                   <span className={`${styles.title} title`}>Entry fee</span>
                   <span className={`${styles.entry} entry`}>
-                    {formatCurrency(event?.price)}
+                    {event?.price !== 0 ? formatCurrency(event?.price) : "FREE"}
                   </span>
                 </div>
               </div>

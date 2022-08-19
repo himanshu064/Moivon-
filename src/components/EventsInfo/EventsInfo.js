@@ -14,15 +14,17 @@ function EventsInfo({ event }) {
         </div>
         <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
           <span className={styles.title}>Date</span>
-          <span className={styles.date}>
-            {format(parseISO(event?.dates), "dd MMM")}
-          </span>
+          {event?.startDate && (
+            <span className={styles.date}>
+              {format(parseISO(event?.startDate), "dd MMM")}
+            </span>
+          )}
         </div>
         <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
           <a
             href={getMapsLocation(event.location)}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
           >
             <span className={styles.title}>Location</span>
             <span className={styles.location}>

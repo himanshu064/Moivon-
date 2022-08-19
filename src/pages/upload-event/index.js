@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useYupValidationResolver } from "../../hooks/useYupValidationResolver";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -24,12 +24,15 @@ import {
   MAX_IMAGE_SIZE_IN_MB,
   MAX_ALLOWED_IMAGES,
 } from "../../utils/constants";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { fetchAllGenres } from "../../services/GenreService";
 
 const validationSchema = yup.object({
   title: yup.string().required("Required"),
   description: yup.string().required("Required"),
-  dates: yup.date("Invalid Date").required("Required"),
-  price: yup.number("Invalid price").required("Required"),
+  startDate: yup.date("Invalid Date").required("Required"),
+  endDate: yup.date("Invalid Date").required("Required"),
+  venue: yup.string().required("Required"),
 });
 
 const pagination = {
@@ -43,6 +46,12 @@ function UploadEvent() {
   const toastId = useRef(null);
   const inputFileRef = useRef();
   const [images, setImages] = useState([]);
+  const [showPrice, setShowPrice] = useState(false);
+
+  const { data: allGenres, isLoading: allGenresLoading } = useQuery(
+    ALL_QUERIES.QUERY_ALL_GENRES(),
+    fetchAllGenres
+  );
 
   const { mutate: createPublicEventMutation } = useMutation(
     (newQuery) =>
@@ -122,28 +131,44 @@ function UploadEvent() {
   };
 
   const defaultValues = {
-    dates: new Date(),
+    startDate: new Date(),
+    endDate: new Date(),
+    genre: allGenres?.data?.data?.[0]?._id,
   };
+
   const {
     control,
     handleSubmit,
     register,
     formState: { isSubmitting, isDirty, isValid },
     reset,
+    setValue,
   } = useForm({ resolver, mode: "onChange", defaultValues });
+
+  useEffect(() => {
+    if (!allGenresLoading && allGenres?.data?.data?.length) {
+      setValue("genre", allGenres?.data?.data?.[0]?._id);
+    }
+  }, [allGenresLoading]);
+
+  const onDeleteLocalImage = (idx) => {
+    const allImages = [...images];
+    allImages.splice(idx, 1);
+    setImages(allImages);
+  };
 
   return (
     <>
-      <RouteTitle title="Upload Event" />
+      <RouteTitle title='Upload Event' />
       <section className={`section ${styles.uploadSection}`}>
         <Container>
-          <Row className="mb-4 border-b">
+          <Row className='mb-4 border-b'>
             <Col md={12}>
               <div className={` ${styles.topHead}`}>
                 <Heading
-                  mb="0"
-                  customClass="cursor-pointer"
-                  variant="subHeading"
+                  mb='0'
+                  customClass='cursor-pointer'
+                  variant='subHeading'
                 >
                   UPLOAD
                 </Heading>
@@ -151,14 +176,14 @@ function UploadEvent() {
             </Col>
           </Row>
           <Row>
-            <Col md={7} className="mb-3">
+            <Col md={7} className='mb-3'>
               <div className={`${styles.imgSlider}`}>
                 {images.length === 0 ? (
                   <div
                     className={`${styles["upload-placeholder"]} d-flex justify-content-center align-items-center  cursor-pointer`}
                     onClick={() => inputFileRef.current.click()}
                   >
-                    <p className="text-white">Upload Some Images</p>
+                    <p className='text-white'>Upload Some Images</p>
                   </div>
                 ) : (
                   <Swiper
@@ -176,50 +201,55 @@ function UploadEvent() {
                         className={styles.swiperSlide}
                       >
                         <img src={image?.preview} alt={image.raw.name} />
-                        <Button type="black">Delete</Button>
+                        <Button
+                          type='black'
+                          onClick={() => onDeleteLocalImage(index)}
+                        >
+                          Delete
+                        </Button>
                       </SwiperSlide>
                     ))}
                   </Swiper>
                 )}
               </div>
 
-              <div className="d-flex justify-content-between flex-wrap mt-3">
+              <div className='d-flex justify-content-between flex-wrap mt-3'>
                 <Text>PREVIEW</Text>
-                <Text variant="white">
+                <Text variant='white'>
                   UPLOAD UP TO {MAX_ALLOWED_IMAGES} IMAGES/ VIDEOS (
                   {MAX_IMAGE_SIZE_IN_MB} MB MAX)
                 </Text>
                 <div className={styles.uploadDiv}>
                   <input
                     multiple
-                    type="file"
+                    type='file'
                     onChange={onImageChange}
-                    accept="image/*"
+                    accept='image/*'
                     ref={inputFileRef}
                   />
                   <Text>UPLOAD</Text>
                 </div>
               </div>
             </Col>
-            <Col md={5} className="mb-3">
-              <form className="ps-2" onSubmit={handleSubmit(onAddEvent)}>
+            <Col md={5} className='mb-3'>
+              <form className='ps-2' onSubmit={handleSubmit(onAddEvent)}>
                 <Form.Group
                   className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId="formGroupTitle"
+                  controlId='formGroupTitle'
                 >
                   <Form.Label>Title:</Form.Label>
-                  <Form.Control type="text" {...register("title")} />
+                  <Form.Control type='text' {...register("title")} />
                 </Form.Group>
-                <div className="d-flex gap-3">
+                <div className='d-flex gap-3'>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId="formGroupDate"
+                    controlId='formGroupDate'
                   >
-                    <div className="d-flex align-items-center gap-3">
-                      <div className="">
+                    <div className='d-flex align-items-center gap-3'>
+                      <div className=''>
                         <Form.Label>Start Date:</Form.Label>
                         <Controller
-                          name="dates"
+                          name='startDate'
                           control={control}
                           render={({ field }) => (
                             <DateTimePicker
@@ -233,12 +263,12 @@ function UploadEvent() {
                   </Form.Group>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId="formGroupDate"
+                    controlId='formGroupDate'
                   >
-                    <div className="">
+                    <div className=''>
                       <Form.Label>End Date:</Form.Label>
                       <Controller
-                        name="dates"
+                        name='endDate'
                         control={control}
                         render={({ field }) => (
                           <DateTimePicker
@@ -251,23 +281,24 @@ function UploadEvent() {
                   </Form.Group>
                 </div>
 
-                <div className="d-flex gap-3">
+                <div className='d-flex gap-3'>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId="formGroupGenre"
+                    controlId='formGroupGenre'
                   >
                     <Form.Label>Genre:</Form.Label>
-                    <Form.Select aria-label="ALL EVENTS" {...register("genre")}>
-                      <option>CLASSIC MUSEUM</option>
-                      <option value="1">GALLERY</option>
-                      <option value="2">FEATURE VENUE</option>
-                      <option value="3">DESIGN CONVENTION</option>
-                      <option value="4">INDIVIDUAL</option>
+                    <Form.Select aria-label='ALL EVENTS' {...register("genre")}>
+                      {!allGenresLoading &&
+                        allGenres?.data?.data?.map((genre) => (
+                          <option key={genre._id} value={genre._id}>
+                            {genre.genre}
+                          </option>
+                        ))}
                     </Form.Select>
                   </Form.Group>
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3 h-100`}
-                    controlId="formGroupPrice"
+                    controlId='formGroupPrice'
                   >
                     <Form.Label>price:</Form.Label>
                     <div
@@ -275,29 +306,40 @@ function UploadEvent() {
                     >
                       <div className={`form-check ${styles.formCheck}`}>
                         <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault1"
+                          className='form-check-input'
+                          type='radio'
+                          name='flexRadioDefault'
+                          id='flexRadioDefault1'
+                          checked={showPrice}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setShowPrice(true);
+                            }
+                          }}
                         />
                         <label
-                          className="form-check-label"
-                          for="flexRadioDefault1"
+                          className='form-check-label'
+                          for='flexRadioDefault1'
                         >
                           Paid
                         </label>
                       </div>
                       <div className={`form-check ${styles.formCheck}`}>
                         <input
-                          className="form-check-input"
-                          type="radio"
-                          name="flexRadioDefault"
-                          id="flexRadioDefault2"
-                          checked
+                          className='form-check-input'
+                          type='radio'
+                          name='flexRadioDefault'
+                          id='flexRadioDefault2'
+                          checked={showPrice === false}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setShowPrice(false);
+                            }
+                          }}
                         />
                         <label
-                          className="form-check-label"
-                          for="flexRadioDefault2"
+                          className='form-check-label'
+                          for='flexRadioDefault2'
                         >
                           Free
                         </label>
@@ -324,51 +366,53 @@ function UploadEvent() {
                     /> */}
                   </Form.Group>
                 </div>
-                <div className={styles.priceDiv}>
-                  <Form.Group className={`${styles.formGroup} mb-3`}>
-                    <Form.Control
-                      type="number"
-                      step="any"
-                      {...register("price")}
-                    />
-                  </Form.Group>
-                </div>
+                {showPrice && (
+                  <div className={styles.priceDiv}>
+                    <Form.Group className={`${styles.formGroup} mb-3`}>
+                      <Form.Control
+                        type='number'
+                        step='any'
+                        {...register("price")}
+                      />
+                    </Form.Group>
+                  </div>
+                )}
                 <Form.Group
                   className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId="formGroupLocation"
+                  controlId='formGroupLocation'
                 >
                   <Form.Label>location:</Form.Label>
-                  <Form.Control type="text" {...register("location")} />
+                  <Form.Control type='text' {...register("location")} />
                 </Form.Group>
 
                 <Form.Group
                   className={`${styles.formGroup} mb-3`}
-                  controlId="formGroupDescription"
+                  controlId='formGroupDescription'
                 >
                   <Form.Label>DEscription:</Form.Label>
                   <Form.Control
-                    as="textarea"
-                    rows="5"
+                    as='textarea'
+                    rows='5'
                     {...register("description")}
                   />
                 </Form.Group>
                 <Form.Group
                   className={`${styles.formGroup} mb-3 d-flex align-items-center gap-3`}
-                  controlId="formGroupVenue"
+                  controlId='formGroupVenue'
                 >
                   <Form.Label>Venue:</Form.Label>
-                  <Form.Control type="text" {...register("venue")} />
+                  <Form.Control type='text' {...register("venue")} />
                 </Form.Group>
                 <Form.Group
                   className={`${styles.formGroup} mb-2`}
-                  controlId="formGroupDescription"
+                  controlId='formGroupDescription'
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
-                  <Form.Control as="textarea" {...register("eventOrgDetail")} />
+                  <Form.Control as='textarea' {...register("eventOrgDetail")} />
                 </Form.Group>
                 <Button
-                  type="primary"
-                  htmlType="submit"
+                  type='primary'
+                  htmlType='submit'
                   disabled={!isDirty || !isValid || images.length === 0}
                 >
                   Submit
