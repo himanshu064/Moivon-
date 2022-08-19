@@ -45,6 +45,11 @@ font-size: 12px;
 .locationDiv .location{
     font-size: 12px;
     text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 275px;
+    display: block;
 }
 
 @media screen and (max-width:520px) {

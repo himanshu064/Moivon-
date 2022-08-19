@@ -171,8 +171,12 @@ function UploadEvent() {
                     onSwiper={(swiper) => console.log(swiper)}
                   >
                     {images?.map((image, index) => (
-                      <SwiperSlide key={`event_img_${index}`}>
+                      <SwiperSlide
+                        key={`event_img_${index}`}
+                        className={styles.swiperSlide}
+                      >
                         <img src={image?.preview} alt={image.raw.name} />
+                        <Button type="black">Delete</Button>
                       </SwiperSlide>
                     ))}
                   </Swiper>
@@ -206,23 +210,47 @@ function UploadEvent() {
                   <Form.Label>Title:</Form.Label>
                   <Form.Control type="text" {...register("title")} />
                 </Form.Group>
-                <Form.Group
-                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId="formGroupDate"
-                >
-                  <Form.Label>Date:</Form.Label>
-
-                  <Controller
-                    name="dates"
-                    control={control}
-                    render={({ field }) => (
-                      <DateTimePicker
-                        onChange={field.onChange}
-                        value={field.value}
+                <div className="d-flex gap-3">
+                  <Form.Group
+                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                    controlId="formGroupDate"
+                  >
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="">
+                        <Form.Label>Start Date:</Form.Label>
+                        <Controller
+                          name="dates"
+                          control={control}
+                          render={({ field }) => (
+                            <DateTimePicker
+                              onChange={field.onChange}
+                              value={field.value}
+                            />
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </Form.Group>
+                  <Form.Group
+                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                    controlId="formGroupDate"
+                  >
+                    <div className="">
+                      <Form.Label>End Date:</Form.Label>
+                      <Controller
+                        name="dates"
+                        control={control}
+                        render={({ field }) => (
+                          <DateTimePicker
+                            onChange={field.onChange}
+                            value={field.value}
+                          />
+                        )}
                       />
-                    )}
-                  />
-                </Form.Group>
+                    </div>
+                  </Form.Group>
+                </div>
+
                 <div className="d-flex gap-3">
                   <Form.Group
                     className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
@@ -238,10 +266,66 @@ function UploadEvent() {
                     </Form.Select>
                   </Form.Group>
                   <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3 h-100`}
                     controlId="formGroupPrice"
                   >
                     <Form.Label>price:</Form.Label>
+                    <div
+                      className={`d-flex gap-3 align-items-center ${styles.radioBtn}`}
+                    >
+                      <div className={`form-check ${styles.formCheck}`}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault1"
+                        />
+                        <label
+                          className="form-check-label"
+                          for="flexRadioDefault1"
+                        >
+                          Paid
+                        </label>
+                      </div>
+                      <div className={`form-check ${styles.formCheck}`}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="flexRadioDefault"
+                          id="flexRadioDefault2"
+                          checked
+                        />
+                        <label
+                          className="form-check-label"
+                          for="flexRadioDefault2"
+                        >
+                          Free
+                        </label>
+                      </div>
+                      {/* <div className="paid d-flex gap-3 align-items-center">
+                        <Form.Label>Paid:</Form.Label>
+                        <label className={styles.switch}>
+                          <input type="checkbox" />
+                          <span className={styles.slider}></span>
+                        </label>
+                      </div>
+                      <div className="free d-flex gap-3 align-items-center">
+                        <Form.Label>free:</Form.Label>
+                        <label className={styles.switch}>
+                          <input type="checkbox" />
+                          <span className={styles.slider}></span>
+                        </label>
+                      </div> */}
+                    </div>
+                    {/* <Form.Control
+                      type="number"
+                      step="any"
+                      {...register("price")}
+                    /> */}
+                  </Form.Group>
+                </div>
+                <div className={styles.priceDiv}>
+                  <Form.Group className={`${styles.formGroup} mb-3`}>
                     <Form.Control
                       type="number"
                       step="any"
@@ -249,7 +333,6 @@ function UploadEvent() {
                     />
                   </Form.Group>
                 </div>
-
                 <Form.Group
                   className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
                   controlId="formGroupLocation"

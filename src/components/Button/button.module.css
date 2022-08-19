@@ -30,4 +30,7 @@ color: var(--theme-white) !important;
  .rounded{
   border-radius: 30px;
  }
-  
+  .black{
+    background-color: var(--theme-black-light);
+    color: var(--theme-white-light);
+  }
