@@ -348,3 +348,10 @@ button:focus {
 .no-selection {
   user-select: none;
 }
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}

@@ -1,63 +1,64 @@
 /* events */
 
- span{
-color: var(--theme-white);
-font-size: 12px;
+span {
+  color: var(--theme-white);
+  font-size: 12px;
 }
-.borderRight{
-    border-right: 2px solid var(--border-color);
-    padding-right: 1rem!important;
-    padding-left: 1rem!important;
+.borderRight {
+  border-right: 2px solid var(--border-color);
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
 }
-.borderRight:first-child{
-    padding-left: 0 !important;
+.borderRight:first-child {
+  padding-left: 0 !important;
 }
-.borderRight:last-child{
+.borderRight:last-child {
+  border-right: 0;
+}
+
+.galleryBtn button {
+  background: var(--theme-black-light) !important;
+  color: var(--theme-white-light) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  text-transform: uppercase;
+  padding: 8px 16px !important;
+}
+.gridDiv {
+  display: flex !important;
+  /* display: grid !important; */
+  /* flex-wrap: wrap; */
+  /* grid-template-columns: auto auto auto; */
+}
+
+.title {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--theme-white-light) !important;
+}
+.dateDiv .date {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.locationDiv .location {
+  font-size: 12px;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  /* width: 275px; */
+  display: block;
+}
+
+@media screen and (max-width: 520px) {
+  .gridDiv {
+    /* grid-template-columns: 50% 50%; */
+    gap: 10px;
+  }
+  .borderRight {
     border-right: 0;
-}
-
-.galleryBtn button{
-    background: var(--theme-black-light) !important;
-    color: var(--theme-white-light) !important;
-    font-size: 12px !important;
-    font-weight: 400 !important;
-    text-transform: uppercase;
-    padding: 8px 16px !important;
-}
-.gridDiv{
-    display: flex !important;
-    flex-wrap: wrap;
-    /* grid-template-columns: 30% 20% 50%; */
-    
-}
-
- .title{
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--theme-white-light) !important;
-}
-.dateDiv .date{
-    text-transform: uppercase;
-    font-size: 12px;
-}
-
-.locationDiv .location{
-    font-size: 12px;
-    text-transform: uppercase;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 275px;
-    display: block;
-}
-
-@media screen and (max-width:520px) {
-    .gridDiv{
-        /* grid-template-columns: 50% 50%; */
-        gap: 20px;
-    }
-    .borderRight{
-        border-right: 0;
-    }
+    padding-right: 0 !important;
+  }
 }

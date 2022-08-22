@@ -4,7 +4,7 @@
 import { objectToQueryParams } from "./helpers";
 
 export const ALL_QUERIES = {
-  QUERY_ALL_EVENTS: () => ["events"],
+  QUERY_ALL_EVENTS: ({ genre = "all" }) => ["events", genre],
   QUERY_RELATED_EVENTS: () => ["relatedEvents"],
   QUERY_UPCOMING_EVENTS: () => ["upcomingEvents"],
   QUERY_SINGLE_EVENT: ({ eventId }) => ["event", eventId],
@@ -14,8 +14,13 @@ export const ALL_QUERIES = {
 };
 
 export const ALL_ENDPOINTS = {
-  BUILD_ALL_EVENTS: ({ page = 1, perPage = 10 }) =>
-    `/events?published=true&page=${page}&size=${perPage}`,
+  BUILD_ALL_EVENTS: ({ page = 1, perPage = 10, genreId }) => {
+    let url = `/events?published=true&page=${page}&size=${perPage}`;
+    if (genreId !== "all") {
+      url += `&genreId=${genreId}`;
+    }
+    return url;
+  },
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
   BUILD_RELATED_EVENTS: () => "/events?size=3&published=true",
   BUILD_UPCOMING_EVENTS: () => `/events?size=10&published=true&upComing=true`,

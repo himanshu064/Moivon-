@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Event from "../../components/Event";
 import styles from "./index.module.css";
@@ -11,16 +11,33 @@ import Button from "../../components/Button";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetchAllEvent } from "../../services/EventService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import Loader from "../../components/Loader";
 import { calculateTotalPagesCount } from "../../utils/helpers";
+import {
+  useNavigate,
+  useSearchParams,
+  useLocation,
+  createSearchParams,
+} from "react-router-dom";
+import { fetchAllGenres } from "../../services/GenreService";
 
 const PER_PAGE = 10;
 
 function AllEvent() {
-  const [key, setKey] = useState("AllEvent");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const queryParams = Object.fromEntries([...searchParams]) || {};
+  const { genre = "all" } = queryParams;
+
+  const { data: allGenres, isLoading: allGenresLoading } = useQuery(
+    ALL_QUERIES.QUERY_ALL_GENRES(),
+    fetchAllGenres
+  );
+
   const {
     isLoading,
     isError,
@@ -30,9 +47,9 @@ function AllEvent() {
     fetchNextPage,
     isFetching,
   } = useInfiniteQuery(
-    ALL_QUERIES.QUERY_ALL_EVENTS(),
+    ALL_QUERIES.QUERY_ALL_EVENTS({ genre }),
     ({ pageParam = 1 }) =>
-      fetchAllEvent({ page: pageParam, perPage: PER_PAGE }),
+      fetchAllEvent({ page: pageParam, perPage: PER_PAGE, genreId: genre }),
     {
       getNextPageParam: (lastPageResponse, allPages) => {
         const totalEvents = lastPageResponse?.data?.totalEvent;
@@ -45,11 +62,10 @@ function AllEvent() {
 
   if (isLoading) return <Loader />;
 
-  if (isError) return <p>{error}</p>;
+  const computedDataArray =
+    eventsData?.pages?.flatMap((page) => page.data?.data) || [];
 
-  const computedDataArray = eventsData.pages.flatMap((page) => page.data?.data);
-
-  const RenderEvent = () => {
+  const randomTabContent = () => {
     return (
       <Row>
         {computedDataArray.map((event) => (
@@ -61,18 +77,14 @@ function AllEvent() {
     );
   };
 
-  const ALL_COMPONENT = {
-    AllEvent: RenderEvent,
-    Classic: RenderEvent,
-    Gallery: RenderEvent,
-    Feature: RenderEvent,
-    Design: RenderEvent,
-    Individual: RenderEvent,
-  };
-
-  const randomTabContent = () => {
-    const DyanmicComponet = ALL_COMPONENT[key];
-    return <DyanmicComponet />;
+  const onTabChange = (key) => {
+    navigate({
+      pathname: location.pathname,
+      search: `?${createSearchParams({
+        ...queryParams,
+        genre: key,
+      })}`,
+    });
   };
 
   return (
@@ -91,16 +103,19 @@ function AllEvent() {
                 >
                   <Tabs
                     id="controlled-tab-example"
-                    activeKey={key}
-                    onSelect={(k) => setKey(k)}
+                    activeKey={genre}
+                    onSelect={onTabChange}
                     className={`mb-3 customTab ${styles.customTabs}`}
                   >
-                    <Tab eventKey="AllEvent" title="All events"></Tab>
-                    <Tab eventKey="Classic" title="CLASSIC MUSEUM"></Tab>
-                    <Tab eventKey="Gallery" title="GALLERY"></Tab>
-                    <Tab eventKey="Feature" title="FEATURE VENUE"></Tab>
-                    <Tab eventKey="Design" title="DESIGN CONVETION"></Tab>
-                    <Tab eventKey="Individual" title="INDIVIDUAL"></Tab>
+                    <Tab eventKey="all" title="All events"></Tab>
+                    {!allGenresLoading &&
+                      allGenres?.data?.data?.map((genre) => (
+                        <Tab
+                          key={genre._id}
+                          eventKey={genre._id}
+                          title={genre.genre}
+                        ></Tab>
+                      ))}
                   </Tabs>
 
                   <div className={styles.sortBtn}>
@@ -112,17 +127,25 @@ function AllEvent() {
           </Row>
           <Row>
             <Col>
-              {computedDataArray.length === 0 && !isLoading ? (
-                <p className="no-data">No Event found</p>
+              {!isLoading && isError ? (
+                <p className="no-data">
+                  {error?.response?.data?.error || error.toString()}
+                </p>
               ) : (
-                <InfiniteScroll
-                  dataLength={computedDataArray.length}
-                  next={fetchNextPage}
-                  hasMore={hasNextPage}
-                  loader={<h4>Loading...</h4>}
-                >
-                  {randomTabContent()}
-                </InfiniteScroll>
+                <>
+                  {computedDataArray.length === 0 && !isLoading ? (
+                    <p className="no-data">No Event found</p>
+                  ) : (
+                    <InfiniteScroll
+                      dataLength={computedDataArray.length}
+                      next={fetchNextPage}
+                      hasMore={hasNextPage}
+                      loader={<h4>Loading...</h4>}
+                    >
+                      {randomTabContent()}
+                    </InfiniteScroll>
+                  )}
+                </>
               )}
             </Col>
           </Row>

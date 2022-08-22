@@ -34,3 +34,12 @@ export const objectToQueryParams = (obj) =>
   Object.keys(obj)
     .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
     .join("&");
+
+export const toTitleCase = (phrase) => {
+  if (!phrase) return null;
+  return phrase
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};

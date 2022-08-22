@@ -20,15 +20,18 @@ function EventsInfo({ event }) {
             </span>
           )}
         </div>
-        <div className={`${styles.locationDiv}  ${styles.borderRight}`}>
+        <div
+          className={`text-truncate ${styles.locationDiv} ${styles.borderRight}`}
+        >
           <a
             href={getMapsLocation(event.location)}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <span className={styles.title}>Location</span>
-            <span className={styles.location}>
-              {isValidURL(event.location) ? "Open Map" : event.location}
+            <span className={`text-lowercase ${styles.location}`}>
+              {/* {isValidURL(event.location) ? "Open Map" : event.location} */}
+              {event.location}
             </span>
           </a>
         </div>
