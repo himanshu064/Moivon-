@@ -80,6 +80,7 @@ function EventDetail() {
               <div className={`${styles.imgSlider} py-4`}>
                 <Swiper
                   modules={[Pagination, Navigation]}
+                  className="swiper-slider-no-zoom"
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}

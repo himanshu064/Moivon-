@@ -9,13 +9,11 @@ import Button from "../../components/Button";
 import HomeSlider from "../../components/HomeSlider";
 import EventSlider from "../../components/EventSlider";
 import { FiArrowUpRight } from "react-icons/fi";
-import EventsInfo from "../../components/EventsInfo";
 import HomeForm from "../../components/Form";
 import { Link } from "react-router-dom";
 import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
-import EventAccordion from "../../components/EventAccordion";
 import MostPopularAccordion from "../../components/MostPopularAccordion";
 
 function Home() {
