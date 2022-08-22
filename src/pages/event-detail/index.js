@@ -74,7 +74,9 @@ function EventDetail() {
                     {data?.data?.data?.genre?.genre}
                   </span>
                 </div>
-                <Button type="outline">Book Now</Button>
+                <Button style={{ width: 180 }} type="outline">
+                  Book Now
+                </Button>
               </div>
             </Col>
           </Row>
