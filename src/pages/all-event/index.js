@@ -70,7 +70,7 @@ function AllEvent() {
       <Row>
         {computedDataArray.map((event) => (
           <Col md={4} className="mb-3" key={event._id}>
-            <Event event={event} />
+            <Event event={event} showGalleryOnHover />
           </Col>
         ))}
       </Row>

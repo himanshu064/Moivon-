@@ -43,15 +43,17 @@ function Event({
               ))}
             </Carousel>
           </div>
-          <div
-            className={`${styles.galleryBtn} hide-gallery-btn ${
-              showGalleryOnHover ? "show-gallery-btn" : ""
-            }`}
-          >
-            <Link to={getEventDetailPath(event._id)}>
-              <Button>Gallery</Button>
-            </Link>
-          </div>
+          {event?.genre && (
+            <div
+              className={`${styles.galleryBtn} hide-gallery-btn ${
+                showGalleryOnHover ? "show-gallery-btn" : ""
+              }`}
+            >
+              <Link to={getEventDetailPath(event._id)}>
+                <Button>{event?.genre?.genre}</Button>
+              </Link>
+            </div>
+          )}
         </div>
         <div className={styles.content}>
           <Link to={getEventDetailPath(event._id)}>
