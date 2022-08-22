@@ -69,7 +69,10 @@ function EventDetail() {
                   <Heading mb="0" variant="subHeading">
                     {data?.data?.data?.title}
                   </Heading>
-                  <span className={styles.type}>CLASSIC MUSEUM</span>
+                  {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
+                  <span className={styles.type}>
+                    {data?.data?.data?.genre?.genre}
+                  </span>
                 </div>
                 <Button type="outline">Book Now</Button>
               </div>

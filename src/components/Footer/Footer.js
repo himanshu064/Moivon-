@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import styles from "./footer.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -5,8 +6,16 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Text from "../Text";
 import { Link } from "react-router-dom";
+import { ALL_QUERIES } from "../../utils/endpoints";
+import { fetchAllGenres } from "../../services/GenreService";
+import { toTitleCase } from "../../utils/helpers";
 
 const Footer = () => {
+  const { data: allGenres, isLoading: allGenresLoading } = useQuery(
+    ALL_QUERIES.QUERY_ALL_GENRES(),
+    fetchAllGenres
+  );
+
   return (
     <>
       <section className={`${styles.footerSection} section`}>
@@ -27,11 +36,14 @@ const Footer = () => {
                     <li>
                       <Link to="/all-events">All Events</Link>
                     </li>
-                    <li>Classic Museum</li>
-                    <li>Gallery</li>
-                    <li>Feature Venue</li>
-                    <li>Design Convetion</li>
-                    <li>Individual</li>
+                    {!allGenresLoading &&
+                      allGenres?.data?.data?.map((genre) => (
+                        <li key={genre._id}>
+                          <Link to={`/all-events?genre=${genre._id}`}>
+                            {toTitleCase(genre.genre)}
+                          </Link>
+                        </li>
+                      ))}
                   </ul>
                 </Col>
                 <Col xs={6} sm={6} md={3}>

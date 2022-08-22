@@ -355,3 +355,7 @@ button:focus {
   text-overflow: ellipsis;
   flex: 1;
 }
+
+.swiper-slider-no-zoom .swiper-slide.swiper-slide-active {
+  transform: none !important;
+}
