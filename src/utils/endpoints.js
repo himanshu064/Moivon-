@@ -23,9 +23,10 @@ export const ALL_ENDPOINTS = {
   },
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
   BUILD_RELATED_EVENTS: () => "/events?size=3&published=true",
-  BUILD_UPCOMING_EVENTS: () => `/events?size=10&published=true&upComing=true`,
+  BUILD_UPCOMING_EVENTS: () =>
+    `/events?size=10&published=true&upComing=true&sort=upComingSeq&order=asc`,
   BUILD_MOST_POPULAR_EVENTS: () =>
-    `/events?size=10&published=true&mostPopular=true`,
+    `/events?size=10&published=true&mostPopular=true&sort=mostPopularSeq&order=asc`,
   BUILD_POST_QUERY: () => `/queries`,
   BUILD_POST_NEW_EVENT: () => `/events`,
   BUILD_ALL_GENRES: () => `/genres`,
