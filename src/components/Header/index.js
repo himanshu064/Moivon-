@@ -23,22 +23,22 @@ function Header() {
   return (
     <>
       <header>
-        <Navbar bg="transparent" expand="lg">
+        <Navbar bg='transparent' expand='lg'>
           <Container>
-            <Navbar.Brand className={styles.logo} as={Link} to="/">
-              <img src="/img/moivon.png" alt="logo" />
+            <Navbar.Brand className={styles.logo} as={Link} to='/'>
+              <img src='/img/moivon.png' alt='logo' />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <Navbar.Toggle aria-controls='basic-navbar-nav'>
               <BiMenuAltRight />
             </Navbar.Toggle>
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className={styles.navLink + " me-auto"}>
                 <NavDropdown
-                  title="All Events"
-                  id="basic-nav-dropdown"
+                  title='All Events'
+                  id='basic-nav-dropdown'
                   className={"nav_dropdown"}
                 >
-                  <NavDropdown.Item as={Link} to="/all-events">
+                  <NavDropdown.Item as={Link} to='/all-events'>
                     All Events
                   </NavDropdown.Item>
                   {!allGenresLoading &&
@@ -46,14 +46,14 @@ function Header() {
                       <NavDropdown.Item
                         as={Link}
                         to={`/all-events?genre=${genre._id}`}
-                        className="captialize"
+                        className='captialize'
                       >
                         {toTitleCase(genre.genre)}
                       </NavDropdown.Item>
                     ))}
                 </NavDropdown>
                 <Nav.Link
-                  to="/"
+                  to='/'
                   as={Link}
                   onClick={() => {
                     setTimeout(() => {
@@ -66,7 +66,7 @@ function Header() {
                   About Us
                 </Nav.Link>
                 <Nav.Link
-                  to="/"
+                  to='/'
                   as={Link}
                   onClick={() => {
                     setTimeout(() => {
@@ -79,8 +79,8 @@ function Header() {
                   Contact Us
                 </Nav.Link>
                 <Nav.Link
-                  href="#"
-                  eventKey="disabled"
+                  href='#'
+                  eventKey='disabled'
                   className={styles.disabledLink}
                   disabled
                 >
@@ -95,19 +95,19 @@ function Header() {
                 >
                   <FiSearch />
                   <Dropdown className={styles.dropdownBtn}>
-                    <Dropdown.Toggle variant="none" id="dropdown-basic">
+                    <Dropdown.Toggle variant='none' id='dropdown-basic'>
                       ENG
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
+                    {/* <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">PUN</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">HI</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-                    </Dropdown.Menu>
+                    </Dropdown.Menu> */}
                   </Dropdown>
                 </div>
-                <Link to="/upload-event" className={styles.uploadButton}>
-                  <Button type="primary">Upload Event</Button>
+                <Link to='/upload-event' className={styles.uploadButton}>
+                  <Button type='primary'>Upload Event</Button>
                 </Link>
               </div>
             </Navbar.Collapse>

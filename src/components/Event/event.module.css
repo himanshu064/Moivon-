@@ -6,7 +6,7 @@
 .eventWrapper .image img {
   width: 100%;
   /* height: 271px; */
-  height: 350px;
+  height: 310px;
   object-fit: cover;
 }
 .eventWrapper .content {
@@ -27,7 +27,7 @@
 }
 .eventWrapper .title {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   color: var(--theme-white-light) !important;
 }
@@ -69,7 +69,7 @@
 .location,
 .entry {
   text-transform: uppercase;
-  font-size: 10px !important;
+  font-size: 11px !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

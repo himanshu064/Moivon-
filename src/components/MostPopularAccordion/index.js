@@ -17,8 +17,6 @@ const MostPopularAccordion = () => {
     () => fetchMostFavoriteEvents()
   );
 
-  console.log(data?.data?.data, "data?.data?.data?.length");
-
   const [show, setShow] = useState(null);
 
   useEffect(() => {
@@ -40,11 +38,11 @@ const MostPopularAccordion = () => {
   };
 
   return (
-    <Container className="position-relative">
+    <Container className='position-relative'>
       <Row>
-        <Col md={6} className="mb-4">
+        <Col md={6} className='mb-4'>
           <div className={styles.paddingRight}>
-            <Heading variant="subHeading">
+            <Heading variant='subHeading'>
               Most popular
               <br /> this week
             </Heading>
@@ -59,7 +57,7 @@ const MostPopularAccordion = () => {
                   />
                 ))
               ) : (
-                <h3 className="mt-2 text-base text-white">
+                <h3 className='mt-2 text-base text-white'>
                   No popular events added!
                 </h3>
               )}
@@ -71,9 +69,9 @@ const MostPopularAccordion = () => {
             {!isLoading && data?.data?.data?.length > 0 && (
               <img
                 src={prepareImageSrc(getImage())}
-                alt=""
-                width="100%"
-                height="100%"
+                alt=''
+                width='100%'
+                height='100%'
               />
             )}
           </div>
