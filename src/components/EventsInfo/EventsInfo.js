@@ -29,7 +29,7 @@ function EventsInfo({ event }) {
             rel="noopener noreferrer"
           >
             <span className={styles.title}>Location</span>
-            <span className={`text-lowercase ${styles.location}`}>
+            <span className={`text-uppercase ${styles.location}`}>
               {/* {isValidURL(event.location) ? "Open Map" : event.location} */}
               {event.location}
             </span>

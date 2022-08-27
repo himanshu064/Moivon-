@@ -3,10 +3,11 @@
 }
 .imgSlider img {
   width: 100%;
-  height: 560px;
+  /* height: 560px; */
+  height: 450px;
   object-fit: cover;
 }
-.imgSlider  .swiperSlide button{
+.imgSlider .swiperSlide button {
   position: absolute;
   top: 40px;
   right: 60px;
@@ -15,7 +16,7 @@
   background-color: var(--theme-black) !important;
   color: var(--theme-white) !important;
 }
-.imgSlider  .swiperSlide:hover button{
+.imgSlider .swiperSlide:hover button {
   opacity: 1;
 }
 
@@ -29,6 +30,7 @@
   color: var(--theme-white);
   font-weight: 400;
   text-transform: uppercase;
+  margin-bottom: 0px;
 }
 .formGroup input {
   background: var(--theme-black-light);
@@ -56,6 +58,9 @@
 .formGroup select option {
   color: var(--theme-black);
 }
+.formGroup textarea {
+  font-size: 12px;
+}
 label {
   margin-bottom: 0;
 }
@@ -82,6 +87,9 @@ button:focus svg {
   box-shadow: none;
   background: rgba(109, 109, 109, 0.5);
 }
+.uploadSection {
+  padding-top: 10px !important;
+}
 .uploadSection p {
   font-family: var(--manrope-bold) !important;
 }
@@ -98,26 +106,50 @@ button:focus svg {
 }
 
 .upload-placeholder {
-  min-height: 560px;
+  /* min-height: 560px; */
+  min-height: 450px;
   background-color: var(--theme-black);
   border: 2px solid var(--border-color);
 }
 
-
-.radioBtn input{
+.radioBtn input {
   height: 1rem !important;
   font-size: 100% !important;
 }
-.radioBtn input:focus{
-background-color:  var(--theme-black-light) !important;
+.radioBtn input:focus {
+  background-color: var(--theme-black-light) !important;
 }
-.radioBtn input:checked{
+.radioBtn input:checked {
   background-color: var(--theme-black-light) !important;
   border-color: var(--theme-black-light) !important;
 }
+.headingBorder {
+  border-bottom: 1.5px solid var(--border-color);
+  padding: 6px 0;
+  margin-bottom: 6px;
+}
+.priceContainer {
+  flex: 1;
+}
+.uploadSection .footer {
+  font-family: var(--sans-regular) !important;
+}
+.uploadSection .footer ol {
+  font-family: var(--sans-regular) !important;
+  font-size: 16px;
+}
+.uploadSection .footer ol {
+  padding-left: 0;
+  list-style: inside decimal;
+}
+.uploadSection .footer ol li {
+  font-weight: 400 !important;
+}
+.uploadSection .footer .contactInfo p {
+  font-family: var(--sans-regular) !important;
+}
 
 /* label */
-
 
 /* .switch {
   position: relative;

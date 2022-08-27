@@ -5,11 +5,12 @@ const Btn = ({
   type = "primary",
   children,
   htmlType = "button",
+  className = "",
   ...overrides
 }) => {
   return (
     <Button
-      className={`${styles.button} ${styles[type]}`}
+      className={`${styles.button} ${styles[type]} ${className}`}
       {...overrides}
       type={htmlType}
     >

@@ -60,12 +60,18 @@ body {
   /* background-image: url(/public/img/bg.svg); */
   background-size: cover;
   background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* .container {
+  max-width: 1192px !important;
+} */
 
 .navbar {
   padding-top: 1rem !important;
@@ -147,8 +153,8 @@ button:focus {
   box-shadow: none !important;
 }
 .gallery-border {
-  border-top: 2px solid var(--border-color);
-  border-bottom: 2px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: 10px 0;
 }
 .border-b {
@@ -185,7 +191,8 @@ button:focus {
   border: 0 !important;
 }
 .react-datetime-picker {
-  width: 100%;
+  /* width: 100%; */
+  flex: 1;
 }
 :focus-visible {
   outline: none !important;
@@ -275,6 +282,7 @@ button:focus {
 .carousel-control-next-icon:hover,
 .carousel-control-prev-icon:hover {
   opacity: 1;
+  transition: all 0.2s ease-in-out;
 }
 .carousel-indicators [data-bs-target] {
   width: 8px !important;
@@ -358,4 +366,19 @@ button:focus {
 
 .swiper-slider-no-zoom .swiper-slide.swiper-slide-active {
   transform: none !important;
+}
+
+.text-button {
+  background: none;
+  outline: none;
+  border: 0;
+}
+.text-button:hover {
+  cursor: pointer;
+}
+
+.lighten-container:hover img {
+  filter: brightness(1.03) contrast(1.01) saturate(1.02);
+  -webkit-filter: brightness(1.03) contrast(1.01) saturate(1.02);
+  -moz-filter: brightness(1.03) contrast(1.01) saturate(1.02);
 }

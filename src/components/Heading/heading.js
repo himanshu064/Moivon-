@@ -6,15 +6,17 @@ const Heading = ({
   children = "",
   mb = 25,
   customClass,
+  style = {},
   ...overrides
 }) => {
   const conditionalStyles = {
     marginBottom: `${mb}px`,
+    ...style,
   };
 
   return (
     <h1
-      className={`${styles.heading} ${customClass} ${styles[variant]}`}
+      className={`${styles.heading} ${styles[variant]} ${customClass}`}
       style={conditionalStyles}
       {...overrides}
     >

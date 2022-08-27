@@ -1,8 +1,16 @@
 import styles from "./text.module.css";
 
-const Text = ({ variant = "normal", children, ...overrides }) => {
+const Text = ({
+  variant = "normal",
+  children,
+  className = "",
+  ...overrides
+}) => {
   return (
-    <p className={`${styles.text} ${styles[variant]}`} {...overrides}>
+    <p
+      className={`${styles.text} ${styles[variant]} ${className}`}
+      {...overrides}
+    >
       {children}
     </p>
   );

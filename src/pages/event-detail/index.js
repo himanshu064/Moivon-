@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
 
 import Container from "react-bootstrap/Container";
@@ -57,26 +57,35 @@ function EventDetail() {
 
   return (
     <>
-      <RouteTitle title='Event Detail' />
-      <section className='section'>
+      <RouteTitle title="Event Detail" />
+      <section className="section">
         <Container>
           <Row>
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div
-                  className={`${styles.eventHead} d-flex align-items-center gap-3 flex-wrap`}
+                  className={`${styles.eventHead} d-flex align-items-center gap-3 flex-wrap w-100`}
                 >
-                  <Heading mb='0' variant='subHeading'>
+                  <Heading
+                    mb="0"
+                    variant="subHeading"
+                    customClass={`text-transform ${styles.eventHeader}`}
+                    title={data?.data?.data?.title}
+                  >
                     {data?.data?.data?.title}
                   </Heading>
                   {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
                   <span className={styles.type}>
                     {data?.data?.data?.genre?.genre}
                   </span>
+                  <Button
+                    className={styles.bookNowButton}
+                    style={{ width: 180 }}
+                    type="outline"
+                  >
+                    Book Now
+                  </Button>
                 </div>
-                <Button style={{ width: 180 }} type='outline'>
-                  Book Now
-                </Button>
               </div>
             </Col>
           </Row>
@@ -85,7 +94,7 @@ function EventDetail() {
               <div className={`${styles.imgSlider} py-4`}>
                 <Swiper
                   modules={[Pagination, Navigation]}
-                  className='swiper-slider-no-zoom'
+                  className="swiper-slider-no-zoom"
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}
@@ -124,14 +133,14 @@ function EventDetail() {
                     <span className={styles.title}>Location</span>
                     <span className={styles.location}>
                       <a
-                        className='text-lowercase'
+                        className="text-uppercase"
                         href={
                           data?.data?.data?.location
                             ? getMapsLocation(data?.data?.data?.location)
                             : "#"
                         }
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {data?.data?.data?.location}
                       </a>
@@ -147,7 +156,7 @@ function EventDetail() {
                         )}
                     </span>
                   </div>
-                  <div className={`${styles.entryDiv}  ${styles.borderRight}`}>
+                  <div className={`${styles.entryDiv} ${styles.borderRight}`}>
                     <span className={styles.title}>Entry fee</span>
                     <span className={styles.entry}>
                       {data?.data?.data?.price !== 0
@@ -157,7 +166,7 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3>About event</h3>
+                  <h3 className="mt-4 mb-3">About event</h3>
                   <Text>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
@@ -171,23 +180,23 @@ function EventDetail() {
                         ? getMapsLocation(data?.data?.data?.venue)
                         : "#"
                     }
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Button type='outline'>OPEN MAP</Button>
+                    <Button type="outline">OPEN MAP</Button>
                   </a>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>ABOUT INSTITUTION</h3>
-                  <div className='d-flex align-items-center gap-4 py-3'>
-                    <img src='/img/bg-logo.png' alt='' />
+                  <div className="d-flex align-items-center gap-4 py-3">
+                    <img src="/img/bg-logo.png" alt="" />
                     <div className={styles.info}>
                       <h4>Moivon Company</h4>
                       <span>eVENTS ORGANIZATOR</span>
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <Button type='outline'>VISIT WEBSITE</Button>
+                  <Button type="outline">VISIT WEBSITE</Button>
                 </div>
               </div>
             </Col>
@@ -201,8 +210,8 @@ function EventDetail() {
               <h3>RELATED EVENTS</h3>
             </Col>
             <Col md={6}>
-              <div className='d-flex justify-content-end align-items-center mb-4'>
-                <Link to='/all-events'>
+              <div className="d-flex justify-content-end align-items-center mb-4">
+                <Link to="/all-events">
                   <span>
                     View All <FiArrowUpRight />
                   </span>
@@ -225,7 +234,7 @@ function EventDetail() {
                     <Event
                       event={event}
                       showArrowOnHover
-                      customGridClass='customGridClass'
+                      customGridClass="customGridClass"
                     />
                   </Col>
                 ))}

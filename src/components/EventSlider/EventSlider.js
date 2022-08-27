@@ -79,6 +79,7 @@ function EventSlider() {
                   slideIndex={index}
                   currentIndex={currentIndex}
                   showPreviousAndNextButton={isMinimumThreeSlidesAvailable}
+                  showGalleryOnHover
                 />
               </SwiperSlide>
             ))}

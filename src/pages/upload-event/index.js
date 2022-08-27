@@ -35,6 +35,19 @@ const validationSchema = yup.object({
   venue: yup.string().required("Required"),
 });
 
+const dateTimePickerProps = {
+  yearPlaceholder: "YYYY",
+  hourPlaceholder: "H",
+  minutePlaceholder: "M",
+  secondPlaceholder: "ss",
+  monthPlaceholder: "MM",
+  dayPlaceholder: "DD",
+  showLeadingZeros: true,
+  // disableClock: true,
+  calendarIcon: null,
+  locale: "en-US",
+};
+
 const pagination = {
   clickable: true,
 };
@@ -142,8 +155,11 @@ function UploadEvent() {
     register,
     formState: { isSubmitting, isDirty, isValid },
     reset,
+    watch,
     setValue,
   } = useForm({ resolver, mode: "onChange", defaultValues });
+
+  const minDate = watch("startDate");
 
   useEffect(() => {
     if (!allGenresLoading && allGenres?.data?.data?.length) {
@@ -159,31 +175,33 @@ function UploadEvent() {
 
   return (
     <>
-      <RouteTitle title='Upload Event' />
+      <RouteTitle title="Upload Event" />
       <section className={`section ${styles.uploadSection}`}>
         <Container>
-          <Row className='mb-4 border-b'>
+          <Row className="mb-4">
             <Col md={12}>
-              <div className={` ${styles.topHead}`}>
+              <div className={`${styles.topHead}`}>
                 <Heading
-                  mb='0'
-                  customClass='cursor-pointer'
-                  variant='subHeading'
+                  mb="0"
+                  customClass="cursor-pointer"
+                  variant="subHeading"
+                  style={{ fontSize: 40 }}
                 >
                   UPLOAD
                 </Heading>
               </div>
+              <div className={styles.headingBorder} />
             </Col>
           </Row>
           <Row>
-            <Col md={7} className='mb-3'>
+            <Col md={7} className="mb-3">
               <div className={`${styles.imgSlider}`}>
                 {images.length === 0 ? (
                   <div
                     className={`${styles["upload-placeholder"]} d-flex justify-content-center align-items-center  cursor-pointer`}
                     onClick={() => inputFileRef.current.click()}
                   >
-                    <p className='text-white'>Upload Some Images</p>
+                    <p className="text-white">Upload Some Images</p>
                   </div>
                 ) : (
                   <Swiper
@@ -202,7 +220,7 @@ function UploadEvent() {
                       >
                         <img src={image?.preview} alt={image.raw.name} />
                         <Button
-                          type='black'
+                          type="black"
                           onClick={() => onDeleteLocalImage(index)}
                         >
                           Delete
@@ -213,211 +231,279 @@ function UploadEvent() {
                 )}
               </div>
 
-              <div className='d-flex justify-content-between flex-wrap mt-3'>
-                <Text>PREVIEW</Text>
-                <Text variant='white'>
+              <div className="d-flex justify-content-between flex-wrap mt-3">
+                <Text variant="white">PREVIEW</Text>
+                <Text>
                   UPLOAD UP TO {MAX_ALLOWED_IMAGES} IMAGES/ VIDEOS (
                   {MAX_IMAGE_SIZE_IN_MB} MB MAX)
                 </Text>
                 <div className={styles.uploadDiv}>
                   <input
                     multiple
-                    type='file'
+                    type="file"
                     onChange={onImageChange}
-                    accept='image/*'
+                    accept="image/*"
                     ref={inputFileRef}
                   />
-                  <Text>UPLOAD</Text>
+                  <Text variant="white">UPLOAD</Text>
                 </div>
               </div>
             </Col>
-            <Col md={5} className='mb-3'>
-              <form className='ps-2' onSubmit={handleSubmit(onAddEvent)}>
+            <Col md={5} className="mb-3">
+              <form onSubmit={handleSubmit(onAddEvent)}>
                 <Form.Group
                   className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId='formGroupTitle'
+                  controlId="formGroupTitle"
                 >
                   <Form.Label>Title:</Form.Label>
-                  <Form.Control type='text' {...register("title")} />
+                  <Form.Control type="text" {...register("title")} />
                 </Form.Group>
-                <div className='d-flex gap-3'>
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId='formGroupDate'
-                  >
-                    <div className='d-flex align-items-center gap-3'>
-                      <div className=''>
-                        <Form.Label>Start Date:</Form.Label>
-                        <Controller
-                          name='startDate'
-                          control={control}
-                          render={({ field }) => (
-                            <DateTimePicker
-                              onChange={field.onChange}
-                              value={field.value}
-                            />
-                          )}
-                        />
-                      </div>
-                    </div>
-                  </Form.Group>
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId='formGroupDate'
-                  >
-                    <div className=''>
-                      <Form.Label>End Date:</Form.Label>
+                <Row>
+                  <Col xl={6}>
+                    <Form.Group
+                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-1`}
+                      controlId="formGroupStartDate"
+                    >
+                      <Form.Label>From:</Form.Label>
                       <Controller
-                        name='endDate'
+                        name="startDate"
                         control={control}
                         render={({ field }) => (
                           <DateTimePicker
                             onChange={field.onChange}
                             value={field.value}
+                            {...dateTimePickerProps}
                           />
                         )}
                       />
-                    </div>
-                  </Form.Group>
-                </div>
-
-                <div className='d-flex gap-3'>
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                    controlId='formGroupGenre'
-                  >
-                    <Form.Label>Genre:</Form.Label>
-                    <Form.Select aria-label='ALL EVENTS' {...register("genre")}>
-                      {!allGenresLoading &&
-                        allGenres?.data?.data?.map((genre) => (
-                          <option key={genre._id} value={genre._id}>
-                            {genre.genre}
-                          </option>
-                        ))}
-                    </Form.Select>
-                  </Form.Group>
-                  <Form.Group
-                    className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3 h-100`}
-                    controlId='formGroupPrice'
-                  >
-                    <Form.Label>price:</Form.Label>
-                    <div
-                      className={`d-flex gap-3 align-items-center ${styles.radioBtn}`}
+                    </Form.Group>
+                  </Col>
+                  <Col xl={6}>
+                    <Form.Group
+                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-1`}
+                      controlId="formGroupEndDate"
                     >
-                      <div className={`form-check ${styles.formCheck}`}>
-                        <input
-                          className='form-check-input'
-                          type='radio'
-                          name='flexRadioDefault'
-                          id='flexRadioDefault1'
-                          checked={showPrice}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setShowPrice(true);
-                            }
-                          }}
-                        />
-                        <label
-                          className='form-check-label'
-                          for='flexRadioDefault1'
-                        >
-                          Paid
-                        </label>
-                      </div>
-                      <div className={`form-check ${styles.formCheck}`}>
-                        <input
-                          className='form-check-input'
-                          type='radio'
-                          name='flexRadioDefault'
-                          id='flexRadioDefault2'
-                          checked={showPrice === false}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setShowPrice(false);
-                            }
-                          }}
-                        />
-                        <label
-                          className='form-check-label'
-                          for='flexRadioDefault2'
-                        >
-                          Free
-                        </label>
-                      </div>
-                      {/* <div className="paid d-flex gap-3 align-items-center">
-                        <Form.Label>Paid:</Form.Label>
-                        <label className={styles.switch}>
-                          <input type="checkbox" />
-                          <span className={styles.slider}></span>
-                        </label>
-                      </div>
-                      <div className="free d-flex gap-3 align-items-center">
-                        <Form.Label>free:</Form.Label>
-                        <label className={styles.switch}>
-                          <input type="checkbox" />
-                          <span className={styles.slider}></span>
-                        </label>
-                      </div> */}
-                    </div>
-                    {/* <Form.Control
-                      type="number"
-                      step="any"
-                      {...register("price")}
-                    /> */}
-                  </Form.Group>
-                </div>
-                {showPrice && (
-                  <div className={styles.priceDiv}>
-                    <Form.Group className={`${styles.formGroup} mb-3`}>
-                      <Form.Control
-                        type='number'
-                        step='any'
-                        {...register("price")}
+                      <Form.Label>To:</Form.Label>
+                      <Controller
+                        name="endDate"
+                        control={control}
+                        render={({ field }) => (
+                          <DateTimePicker
+                            onChange={field.onChange}
+                            value={field.value}
+                            minDate={minDate}
+                            {...dateTimePickerProps}
+                          />
+                        )}
                       />
                     </Form.Group>
-                  </div>
-                )}
+                  </Col>
+                </Row>
+
+                {/* Genre and price section */}
+                <Row>
+                  <Col lg={6} className="mb-2">
+                    <Form.Group
+                      className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
+                      controlId="formGroupGenre"
+                    >
+                      <Form.Label>Genre:</Form.Label>
+                      <Form.Select
+                        aria-label="ALL EVENTS"
+                        {...register("genre")}
+                      >
+                        {!allGenresLoading &&
+                          allGenres?.data?.data?.map((genre) => (
+                            <option key={genre._id} value={genre._id}>
+                              {genre.genre}
+                            </option>
+                          ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col lg={6} className="mb-2">
+                    <div className="d-flex align-items-center gap-3">
+                      <Form.Group
+                        className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
+                        controlId="formGroupPrice"
+                      >
+                        {/* <Form.Label>price:</Form.Label> */}
+                        <div
+                          className={`d-flex gap-3 align-items-center ${styles.radioBtn}`}
+                        >
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault2"
+                              checked={showPrice === false}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setShowPrice(false);
+                                }
+                              }}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault2"
+                            >
+                              Free
+                            </label>
+                          </div>
+                          <div className={`form-check ${styles.formCheck}`}>
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="flexRadioDefault"
+                              id="flexRadioDefault1"
+                              checked={showPrice}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setShowPrice(true);
+                                }
+                              }}
+                            />
+                            <label
+                              className="form-check-label"
+                              for="flexRadioDefault1"
+                            >
+                              Paid
+                            </label>
+                          </div>
+                        </div>
+                      </Form.Group>
+                      <Form.Group
+                        className={`${styles.formGroup} ${styles.priceContainer}`}
+                        style={{ display: showPrice ? "block" : "hidden" }}
+                      >
+                        <Form.Control
+                          type="number"
+                          step="any"
+                          {...register("price")}
+                        />
+                      </Form.Group>
+                    </div>
+                  </Col>
+                </Row>
+
                 <Form.Group
                   className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId='formGroupLocation'
+                  controlId="formGroupLocation"
                 >
                   <Form.Label>location:</Form.Label>
-                  <Form.Control type='text' {...register("location")} />
+                  <Form.Control type="text" {...register("location")} />
                 </Form.Group>
 
                 <Form.Group
-                  className={`${styles.formGroup} mb-3`}
-                  controlId='formGroupDescription'
+                  className={`${styles.formGroup} mb-2`}
+                  controlId="formGroupDescription"
                 >
-                  <Form.Label>DEscription:</Form.Label>
+                  <Form.Label className="mb-1">Description:</Form.Label>
                   <Form.Control
-                    as='textarea'
-                    rows='5'
+                    as="textarea"
+                    rows="3"
                     {...register("description")}
                   />
                 </Form.Group>
                 <Form.Group
-                  className={`${styles.formGroup} mb-3 d-flex align-items-center gap-3`}
-                  controlId='formGroupVenue'
+                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                  controlId="formGroupVenue"
                 >
                   <Form.Label>Venue:</Form.Label>
-                  <Form.Control type='text' {...register("venue")} />
+                  <Form.Control type="text" {...register("venue")} />
                 </Form.Group>
+
+                {/* Organization and url links */}
+                <Row>
+                  <Col lg={7} className="mb-2">
+                    <Form.Group
+                      className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                      controlId="formGroupOrganization"
+                    >
+                      <Form.Label>Organization:</Form.Label>
+                      <Form.Control type="text" {...register("organization")} />
+                    </Form.Group>
+                  </Col>
+                  <Col lg={5} className="mb-2">
+                    <div className="gap-3">
+                      <Form.Group
+                        className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                        controlId="formGroupOrganizationUrl"
+                      >
+                        <Form.Label>Url:</Form.Label>
+                        <Form.Control
+                          type="text"
+                          {...register("organizationUrl")}
+                        />
+                      </Form.Group>
+                    </div>
+                  </Col>
+                </Row>
+
                 <Form.Group
                   className={`${styles.formGroup} mb-2`}
-                  controlId='formGroupDescription'
+                  controlId="formGroupDescription"
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
-                  <Form.Control as='textarea' {...register("eventOrgDetail")} />
+                  <Form.Control as="textarea" {...register("eventOrgDetail")} />
                 </Form.Group>
-                <Button
-                  type='primary'
-                  htmlType='submit'
-                  disabled={!isDirty || !isValid || images.length === 0}
+                {/* Event url link */}
+                <Form.Group
+                  className={`${styles.formGroup} d-flex align-items-center gap-3 mb-4`}
+                  controlId="formGroupOrganization"
                 >
-                  Submit
-                </Button>
+                  <Form.Label>Event URL:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    {...register("eventUrl")}
+                    style={{ flex: 1 }}
+                  />
+                </Form.Group>
+                <div className="d-flex justify-content-end align-items-center">
+                  <button
+                    className="text-button"
+                    htmlType="submit"
+                    disabled={!isDirty || !isValid || images.length === 0}
+                  >
+                    <Text variant="white">SUBMIT</Text>
+                  </button>
+                </div>
               </form>
+            </Col>
+          </Row>
+          <Row className={`mt-5 ${styles.footer}`}>
+            <Col>
+              <Text
+                variant="white"
+                className="text-uppercase"
+                style={{
+                  fontFamily: `var(--manrope-bold) !important`,
+                }}
+              >
+                <h4>Uploading with ease</h4>
+              </Text>
+              <Text className="mt-4">
+                <ol>
+                  <li>
+                    Upload your event's best photos and videos in our 2 x 3
+                    frame ({MAX_IMAGE_SIZE_IN_MB}mb max)
+                  </li>
+                  <li>Fill out all the information fields on the right</li>
+                  <li>Submit!</li>
+                </ol>
+              </Text>
+              <div className={styles.contactInfo}>
+                <Text className="mb-0">
+                  Once of our admins will verify and approve the event. Your
+                  event will be live on Moivon within 24 hours.
+                </Text>
+                <Text>
+                  If your event is not approved or if you have questions and
+                  concerns, please email{" "}
+                  <a href="mailto://info@moivon.com">info@moivon.com</a>
+                </Text>
+              </div>
             </Col>
           </Row>
         </Container>
