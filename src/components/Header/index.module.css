@@ -38,6 +38,7 @@
 .uploadButton button{
     border-radius: 30px !important;
 }
+
 @media screen and (max-width:991px) {
     .navLink{
         gap: 10px;

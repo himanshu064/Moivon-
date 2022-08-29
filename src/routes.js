@@ -10,7 +10,7 @@ import UploadEvent from "./pages/upload-event";
 function NavigationRoutes() {
   return (
     <>
-      <Header />
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-events" element={<AllEvent />} />
@@ -21,5 +21,4 @@ function NavigationRoutes() {
     </>
   );
 }
-
 export default NavigationRoutes;

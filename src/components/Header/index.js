@@ -9,23 +9,49 @@ import { FiSearch } from "react-icons/fi";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiMenuAltRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
+import { useState } from "react";
 
 function Header() {
+const [navbar, setNavbar] = useState (false);
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
 
+//   window.onscroll = function() {myFunction()};
+//  function myFunction() {
+//   if (document.documentElement.scrollTop > 50) {
+//     document.getElementById("navbar").className = "afterScroll";
+//   } else {
+//     document.getElementById("navbar").className = "";
+//   }
+// }
+const colorChange= () =>{
+if(window.scrollY >=35){
+  setNavbar(true)
+}else{
+  setNavbar(false);
+}
+};
+window.addEventListener('scroll', colorChange);
+
+console.log(useLocation().pathname , 'O')
+
   return (
     <>
-      <header>
-        <Navbar bg='transparent' expand='lg'>
-          <Container>
-            <Navbar.Brand className={styles.logo} as={Link} to='/'>
+      <header >
+      {/* {if(useLocation().pathname === '/'){
+         
+      }else{
+        
+      }} */}
+        <Navbar className={navbar ? 'navbar active fixed-top' : 'navbar fixed-top'}    bg='transparent' expand='lg'>
+          <Container  >
+            <Navbar.Brand className={styles.logo}  as={Link} to='/'>
               <img src='/img/moivon.png' alt='logo' />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav'>
@@ -99,11 +125,11 @@ function Header() {
                       ENG
                     </Dropdown.Toggle>
 
-                    {/* <Dropdown.Menu>
+                    <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">PUN</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">HI</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-                    </Dropdown.Menu> */}
+                    </Dropdown.Menu>
                   </Dropdown>
                 </div>
                 <Link to='/upload-event' className={styles.uploadButton}>

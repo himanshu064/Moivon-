@@ -89,6 +89,7 @@ button:focus svg {
 }
 .uploadSection {
   padding-top: 10px !important;
+  margin-top: 125px;
 }
 .uploadSection p {
   font-family: var(--manrope-bold) !important;
