@@ -4,7 +4,7 @@ import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { format } from "date-fns";
+import { format, isFuture, parseISO } from "date-fns";
 import { prepareImageSrc } from "../../utils/api";
 import {
   formatCurrency,
@@ -20,6 +20,8 @@ function Event({
   showGalleryOnHover,
   customGridClass,
 }) {
+  const parsedDate = event?.startDate && parseISO(event?.startDate);
+  const isFutureDate = parsedDate ? isFuture(parsedDate) : false;
   return (
     <>
       <div className={`lighten-container ${styles.eventWrapper}`}>
@@ -33,11 +35,17 @@ function Event({
               {event?.images?.map((imageData, index) => (
                 <Carousel.Item key={`image_slide_${index}`}>
                   <Link to={getEventDetailPath(event._id)}>
-                    <img
-                      draggable="false"
-                      src={prepareImageSrc(imageData?.image)}
-                      alt={imageData?._id}
-                    />
+                    <div className={!isFutureDate ? styles.imageContainer : ""}>
+                      <div className={styles.eventImageOverlay} />
+                      <img
+                        draggable="false"
+                        src={prepareImageSrc(imageData?.image)}
+                        alt={imageData?._id}
+                      />
+                      <div className={styles.pastContent}>
+                        <h5>PAST</h5>
+                      </div>
+                    </div>
                   </Link>
                 </Carousel.Item>
               ))}
