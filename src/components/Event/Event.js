@@ -28,48 +28,42 @@ function Event({
 
   return (
     <>
-      <div className={`lighten-container ${styles.eventWrapper}`}>
+      <div className={`eventWrapper lighten-container ${styles.eventWrapper}`}>
         <div
           className={!isFutureDate ? styles.eventImageOverlay : ""}
           onClick={!isFutureDate ? onOverlayClick : null}
         />
-        <div className="eventWrapper">
-          <div
-            className={`${styles.image} event-single-slider ${
-              showArrowOnHover ? "all-event-slider" : ""
-            }`}
-          >
-            <Carousel interval={null}>
-              {event?.images?.map((imageData, index) => (
-                <Carousel.Item key={`image_slide_${index}`}>
-                  <Link to={getEventDetailPath(event._id)}>
-                    <div className={!isFutureDate ? styles.imageContainer : ""}>
-                      <img
-                        draggable="false"
-                        src={prepareImageSrc(imageData?.image)}
-                        alt={imageData?._id}
-                      />
-                      <div className={styles.pastContent}>
-                        <p>PAST</p>
-                      </div>
+        <div
+          className={`${styles.image} event-single-slider ${
+            showArrowOnHover && isFutureDate ? "all-event-slider" : ""
+          }`}
+        >
+          <Carousel interval={null}>
+            {event?.images?.map((imageData, index) => (
+              <Carousel.Item key={`image_slide_${index}`}>
+                <Link to={getEventDetailPath(event._id)}>
+                  <div className={!isFutureDate ? styles.imageContainer : ""}>
+                    <img
+                      draggable="false"
+                      src={prepareImageSrc(imageData?.image)}
+                      alt={imageData?._id}
+                    />
+                    <div className={styles.pastContent}>
+                      <p>PAST</p>
                     </div>
-                  </Link>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
-          {event?.genre && (
-            <div
-              className={`${styles.galleryBtn} hide-gallery-btn ${
-                showGalleryOnHover ? "show-gallery-btn" : ""
-              }`}
-            >
-              <Link to={getEventDetailPath(event._id)}>
-                <Button>{event?.genre?.genre}</Button>
-              </Link>
-            </div>
-          )}
+                  </div>
+                </Link>
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
+        {event?.genre && isFutureDate && showGalleryOnHover && (
+          <div className={styles.galleryBtn}>
+            <Link to={getEventDetailPath(event._id)}>
+              <Button>{event?.genre?.genre}</Button>
+            </Link>
+          </div>
+        )}
         <div className={styles.content}>
           <Link to={getEventDetailPath(event._id)}>
             <div className="d-flex justify-content-between px-3">

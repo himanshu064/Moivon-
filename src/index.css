@@ -211,8 +211,12 @@ button:focus {
 .event-single-slider .carousel-control-next {
   display: none;
 }
-.eventWrapper:hover .carousel-control-prev,
-.eventWrapper:hover .carousel-control-next {
+/* .all-event-slider .carousel-control-prev,
+.all-event-slider .carousel-control-next {
+  display: block !important;
+} */
+.eventWrapper:hover .all-event-slider .carousel-control-prev,
+.eventWrapper:hover .all-event-slider .carousel-control-next {
   display: flex !important;
 }
 
@@ -220,9 +224,9 @@ button:focus {
   display: none;
 }
 
-.eventWrapper:hover .show-gallery-btn {
+/* .eventWrapper:hover .show-gallery-btn {
   display: block !important;
-}
+} */
 .backgroundVideo {
   position: absolute;
   width: 100%;

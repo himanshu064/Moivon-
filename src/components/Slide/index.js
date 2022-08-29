@@ -123,15 +123,13 @@ function Slide({
             ></span>
           )}
         </div>
-        <div
-          className={`${styles.galleryBtn} hide-gallery-btn ${
-            showGalleryOnHover ? "show-gallery-btn" : ""
-          }`}
-        >
-          <Link to={getEventDetailPath(event._id)}>
-            <Button>Gallery</Button>
-          </Link>
-        </div>
+        {showGalleryOnHover && (
+          <div className={styles.galleryBtn}>
+            <Link to={getEventDetailPath(event._id)}>
+              <Button>{event?.genre?.genre}</Button>
+            </Link>
+          </div>
+        )}
         <div className={styles.content} {...contentCarouselHandler}>
           <ContentWrapper
             showPreviousAndNextButton={showPreviousAndNextButton}

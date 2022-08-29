@@ -58,19 +58,19 @@ function Home() {
               <Row className={styles.customRow}>
                 <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
-                    <Heading mb="5">2400+</Heading>
-                    <Text>Art Events</Text>
+                    <Heading mb="5">2500+</Heading>
+                    <Text>Annual Creative Events</Text>
                   </div>
                 </Col>
                 <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
-                    <Heading mb="5">1200+</Heading>
-                    <Text>Positive Reviews</Text>
+                    <Heading mb="5">200+</Heading>
+                    <Text>Venues</Text>
                   </div>
                 </Col>
                 <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
-                    <Heading mb="5">80</Heading>
+                    <Heading mb="5">5</Heading>
                     <Text>Top Locations</Text>
                   </div>
                 </Col>

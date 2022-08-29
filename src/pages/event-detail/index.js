@@ -178,7 +178,7 @@ function EventDetail() {
                   <a
                     href={
                       data?.data?.data?.venue
-                        ? getMapsLocation(data?.data?.data?.venue)
+                        ? getMapsLocation(data?.data?.data?.location)
                         : "#"
                     }
                     target="_blank"
