@@ -4,7 +4,12 @@
 import { objectToQueryParams } from "./helpers";
 
 export const ALL_QUERIES = {
-  QUERY_ALL_EVENTS: ({ genre = "all" }) => ["events", genre],
+  QUERY_ALL_EVENTS: ({ genre = "all", sort, order }) => [
+    "events",
+    genre,
+    sort,
+    order,
+  ],
   QUERY_RELATED_EVENTS: () => ["relatedEvents"],
   QUERY_UPCOMING_EVENTS: () => ["upcomingEvents"],
   QUERY_SINGLE_EVENT: ({ eventId }) => ["event", eventId],
@@ -14,12 +19,25 @@ export const ALL_QUERIES = {
 };
 
 export const ALL_ENDPOINTS = {
-  BUILD_ALL_EVENTS: ({ page = 1, perPage = 10, genreId }) => {
-    let url = `/events?published=true&page=${page}&size=${perPage}`;
-    if (genreId !== "all") {
-      url += `&genreId=${genreId}`;
+  BUILD_ALL_EVENTS: ({ page = 1, perPage = 10, genreId, sort, order }) => {
+    const data = {
+      published: true,
+      page,
+      size: perPage,
+    };
+
+    if (sort) {
+      data["sort"] = sort;
     }
-    return url;
+    if (order) {
+      data["order"] = order;
+    }
+    if (genreId !== "all") {
+      data["genreId"] = genreId;
+    }
+
+    const qs = `?${objectToQueryParams(data)}`;
+    return "/events" + qs;
   },
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
   BUILD_RELATED_EVENTS: () => "/events?size=3&published=true",

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./event.module.css";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { format, isFuture, parseISO } from "date-fns";
 import { prepareImageSrc } from "../../utils/api";
@@ -20,11 +20,19 @@ function Event({
   showGalleryOnHover,
   customGridClass,
 }) {
+  const navigate = useNavigate();
   const parsedDate = event?.startDate && parseISO(event?.startDate);
   const isFutureDate = parsedDate ? isFuture(parsedDate) : false;
+
+  const onOverlayClick = () => navigate(getEventDetailPath(event._id));
+
   return (
     <>
       <div className={`lighten-container ${styles.eventWrapper}`}>
+        <div
+          className={!isFutureDate ? styles.eventImageOverlay : ""}
+          onClick={!isFutureDate ? onOverlayClick : null}
+        />
         <div className="eventWrapper">
           <div
             className={`${styles.image} event-single-slider ${
@@ -36,14 +44,13 @@ function Event({
                 <Carousel.Item key={`image_slide_${index}`}>
                   <Link to={getEventDetailPath(event._id)}>
                     <div className={!isFutureDate ? styles.imageContainer : ""}>
-                      <div className={styles.eventImageOverlay} />
                       <img
                         draggable="false"
                         src={prepareImageSrc(imageData?.image)}
                         alt={imageData?._id}
                       />
                       <div className={styles.pastContent}>
-                        <h5>PAST</h5>
+                        <p>PAST</p>
                       </div>
                     </div>
                   </Link>

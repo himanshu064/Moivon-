@@ -6,6 +6,8 @@ import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Dropdown from "react-bootstrap/Dropdown";
+import { AiFillCaretUp } from "react-icons/ai";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import Tab from "react-bootstrap/Tab";
@@ -15,23 +17,47 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetchAllEvent } from "../../services/EventService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import Loader from "../../components/Loader";
-import { calculateTotalPagesCount } from "../../utils/helpers";
+import { calculateTotalPagesCount, toTitleCase } from "../../utils/helpers";
 import {
   useNavigate,
   useSearchParams,
   useLocation,
   createSearchParams,
+  Link,
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
 
 const PER_PAGE = 10;
+
+export const ALL_EVENTS_FILTERS = {
+  latest: {
+    key: "latest",
+  },
+  earliest: { key: "earliest" },
+  alphabetical: { key: "title", icon: (props) => <AiFillCaretUp {...props} /> },
+  price: { key: "price", icon: (props) => <AiFillCaretUp {...props} /> },
+};
+
+const toggleOrderBy = (order_by = "desc") => {
+  let newOrderBy = "";
+  if (order_by === "asc") {
+    newOrderBy = "desc";
+  } else if (order_by === "desc") {
+    newOrderBy = "asc";
+  }
+  return newOrderBy;
+};
 
 function AllEvent() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const queryParams = Object.fromEntries([...searchParams]) || {};
-  const { genre = "all" } = queryParams;
+  const {
+    genre = "all",
+    sortBy = ALL_EVENTS_FILTERS.latest.text,
+    orderBy,
+  } = queryParams;
 
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
@@ -47,9 +73,15 @@ function AllEvent() {
     fetchNextPage,
     isFetching,
   } = useInfiniteQuery(
-    ALL_QUERIES.QUERY_ALL_EVENTS({ genre }),
+    ALL_QUERIES.QUERY_ALL_EVENTS({ genre, sort: sortBy, order: orderBy }),
     ({ pageParam = 1 }) =>
-      fetchAllEvent({ page: pageParam, perPage: PER_PAGE, genreId: genre }),
+      fetchAllEvent({
+        page: pageParam,
+        perPage: PER_PAGE,
+        genreId: genre,
+        sort: sortBy,
+        order: orderBy,
+      }),
     {
       getNextPageParam: (lastPageResponse, allPages) => {
         const totalEvents = lastPageResponse?.data?.totalEvent;
@@ -87,6 +119,24 @@ function AllEvent() {
     });
   };
 
+  const onFilterChange = (sort_by, order_by) => {
+    const dbField = ALL_EVENTS_FILTERS[sort_by]?.key;
+    navigate({
+      pathname: location.pathname,
+      search: `?${createSearchParams({
+        ...queryParams,
+        genre,
+        sortBy: dbField,
+        orderBy: order_by,
+      })}`,
+    });
+  };
+
+  const onChangeSort = (sortingKey) => {
+    const newOrderBy = toggleOrderBy(orderBy);
+    onFilterChange(sortingKey, newOrderBy);
+  };
+
   return (
     <>
       <RouteTitle title="All Events" />
@@ -117,10 +167,45 @@ function AllEvent() {
                         ></Tab>
                       ))}
                   </Tabs>
+                  <Dropdown className={styles.dropdownBtn} align="end">
+                    <Dropdown.Toggle variant="none" className={styles.sortBtn}>
+                      <Button type="outline">Sort</Button>
+                    </Dropdown.Toggle>
 
-                  <div className={styles.sortBtn}>
-                    <Button type="outline">Sort</Button>
-                  </div>
+                    <Dropdown.Menu>
+                      {Object.entries(ALL_EVENTS_FILTERS).map(
+                        ([field, values], idx) => {
+                          const { key, icon: Icon } = values;
+                          return (
+                            <Dropdown.Item
+                              as="button"
+                              className={styles.filterItem}
+                              key={`filters_${idx}`}
+                              onClick={() => {
+                                const newOrderBy = toggleOrderBy(orderBy);
+                                onFilterChange(field, newOrderBy);
+                              }}
+                              active={sortBy === key}
+                            >
+                              {toTitleCase(field)}
+                              {Icon && (
+                                <Icon
+                                  style={{
+                                    transform:
+                                      sortBy === key
+                                        ? orderBy === "asc"
+                                          ? "rotate(180deg)"
+                                          : 0
+                                        : 0,
+                                  }}
+                                />
+                              )}
+                            </Dropdown.Item>
+                          );
+                        }
+                      )}
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </div>
               </div>
             </Col>

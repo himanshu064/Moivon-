@@ -10,9 +10,15 @@ export const fetchMostFavoriteEvents = async () => {
   return axiosInstance.get(ALL_ENDPOINTS.BUILD_MOST_POPULAR_EVENTS());
 };
 
-export const fetchAllEvent = async ({ page, perPage, genreId }) => {
+export const fetchAllEvent = async ({
+  page,
+  perPage,
+  genreId,
+  sort,
+  order,
+}) => {
   return axiosInstance.get(
-    ALL_ENDPOINTS.BUILD_ALL_EVENTS({ page, perPage, genreId })
+    ALL_ENDPOINTS.BUILD_ALL_EVENTS({ page, perPage, genreId, sort, order })
   );
 };
 

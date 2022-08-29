@@ -1,48 +1,47 @@
+.navLink {
+  gap: 20px;
+  /* justify-content: center !important; */
+  width: 100%;
+  padding-left: 20px !important;
+}
+.navLink a {
+  color: var(--theme-white) !important;
+}
 
-.navLink{
-    gap: 20px;
-    /* justify-content: center !important; */
-    width: 100%;
-    padding-left: 20px !important;
+.navLink a {
+  font-size: 14px;
 }
-.navLink a{
-    color: var(--theme-white) !important;
+.last {
+  justify-content: flex-end;
+  white-space: nowrap;
 }
-
-.navLink a{
-    font-size: 14px;
+.customIcon svg {
+  color: var(--theme-white);
+  font-size: 20px;
 }
-.last{
-    justify-content: flex-end;
-    white-space: nowrap;
+.dropdownBtn button {
+  color: var(--theme-white) !important;
+  font-size: 14px;
 }
-.customIcon svg{
-    color: var(--theme-white);
-    font-size: 20px;
+.soon {
+  background: var(--theme-black-light);
+  padding: 0px 5px;
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 5px;
+  color: var(--theme-white-light);
 }
-.dropdownBtn button{
-    color: var(--theme-white) !important;
-    font-size: 14px;
+.navLink .disabledLink {
+  color: var(--theme-white-light) !important;
 }
-.soon{
-    background: var(--theme-black-light);
-    padding: 0px 5px;
-    font-size: 12px;
-    display: inline-block;
-    margin-left: 5px;
-    color: var(--theme-white-light);
+.uploadButton button {
+  border-radius: 30px !important;
 }
-.navLink .disabledLink{
-    color: var(--theme-white-light) !important;
-}
-.uploadButton button{
-    border-radius: 30px !important;
-}
-@media screen and (max-width:991px) {
-    .navLink{
-        gap: 10px;
-    }
-    .last{
-        justify-content: flex-start;
-    }
+@media screen and (max-width: 991px) {
+  .navLink {
+    gap: 10px;
+  }
+  .last {
+    justify-content: flex-start;
+  }
 }
