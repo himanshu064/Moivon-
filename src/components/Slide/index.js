@@ -85,7 +85,10 @@ function Slide({
 
   return (
     <>
-      <div className={`${styles.eventWrapper} lighten-container no-selection`}>
+      <div
+        className={`${styles.eventWrapper} lighten-container no-selection`}
+        draggable="false"
+      >
         <div
           className={`${styles.image} event-single-slider ${
             showArrowOnHover ? "all-event-slider" : ""
@@ -106,7 +109,7 @@ function Slide({
           >
             {event?.images?.map((imageData, index) => (
               <Carousel.Item key={`image_slide_${index}`}>
-                <Link to={getEventDetailPath(event._id)}>
+                <Link to={getEventDetailPath(event._id)} draggable="false">
                   <img
                     draggable="false"
                     src={prepareImageSrc(imageData?.image)}
@@ -125,7 +128,7 @@ function Slide({
         </div>
         {showGalleryOnHover && (
           <div className={styles.galleryBtn}>
-            <Link to={getEventDetailPath(event._id)}>
+            <Link to={getEventDetailPath(event._id)} draggable="false">
               <Button>{event?.genre?.genre}</Button>
             </Link>
           </div>
