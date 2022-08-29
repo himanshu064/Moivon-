@@ -90,7 +90,7 @@ function AllEvent() {
   return (
     <>
       <RouteTitle title="All Events" />
-      <section className="section">
+      <section id="Events-images-all" className="section">
         <Container>
           <Row>
             <Col md={12}>

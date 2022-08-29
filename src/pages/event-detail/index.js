@@ -23,7 +23,7 @@ import {
   fetchRelatedEvents,
   fetchSingleEvent,
 } from "../../services/EventService";
-import { prepareImageSrc } from "../../utils/api";
+import { prepareImageSrc, preparePublicFolder } from "../../utils/api";
 import {
   formatCurrency,
   getMapsLocation,
@@ -58,9 +58,9 @@ function EventDetail() {
   return (
     <>
       <RouteTitle title="Event Detail" />
-      <section className="section">
+      <section id="section-space-container" className="section">
         <Container>
-          <Row>
+          <Row id="header-top-stick">
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div
@@ -75,9 +75,24 @@ function EventDetail() {
                     {data?.data?.data?.title}
                   </Heading>
                   {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
+
+                  <span >
+                    <a id="star-button">
+                      <img
+                        id="images-for-icon-star"
+                        src="/img/Star.png"
+                        // src={preparePublicFolder("/img/Star.png")}
+                        alt="ll"
+                      />
+                      4.2
+                    </a>
+                  </span>
+
                   <span className={styles.type}>
                     {data?.data?.data?.genre?.genre}
                   </span>
+
+
                   <Button
                     className={styles.bookNowButton}
                     style={{ width: 180 }}
@@ -91,10 +106,10 @@ function EventDetail() {
           </Row>
           <Row>
             <Col md={7}>
-              <div className={`${styles.imgSlider} py-4`}>
+              <div className={`${styles.imgSlider} py-4`} id="imageForFixedPorsition">
                 <Swiper
                   modules={[Pagination, Navigation]}
-                  className="swiper-slider-no-zoom"
+                  className="swiper-slider-no-zoom "
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}
@@ -103,11 +118,19 @@ function EventDetail() {
                   onSwiper={(swiper) => console.log(swiper)}
                 >
                   {data?.data?.data?.images?.map((imageData) => (
-                    <SwiperSlide key={imageData._id}>
+                    <SwiperSlide className="" id="prepare-image-src" key={imageData._id}>
                       <img
                         src={prepareImageSrc(imageData?.image)}
                         alt={imageData?._id}
                       />
+                      <a id="like-button">
+                        <img
+                          id="images-for-icon"
+                          src="/img/Like.png"
+                          alt="jj"
+                        />
+                        69
+                      </a>
                     </SwiperSlide>
                   ))}
                 </Swiper>

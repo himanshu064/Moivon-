@@ -22,7 +22,7 @@ function Header() {
 
   return (
     <>
-      <header>
+      <header id="section-space-container">
         <Navbar bg='transparent' expand='lg'>
           <Container>
             <Navbar.Brand className={styles.logo} as={Link} to='/'>

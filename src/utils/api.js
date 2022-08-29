@@ -9,4 +9,8 @@ const axiosInstance = axios.create({
 
 const prepareImageSrc = (url) => `${process.env.REACT_APP_PUBLIC_URL}/${url}`;
 
+
+export const preparePublicFolder = (url) =>
+  `${process.env.REACT_APP_PUBLIC_URL}${url}`;
+
 export { prepareImageSrc, axiosInstance };
