@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -13,23 +13,27 @@ import { Link, useLocation } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
-import { useState } from "react";
 
 function Header() {
 const [navbar, setNavbar] = useState (false);
+const [fixed, setFixed] = useState ('fixed-top');
+
+let location = useLocation();
+useEffect(() => {
+  if(location.pathname ==='/upload-event'){
+    setFixed ('');
+  }else{
+    setFixed (fixed);
+    // eslint-disable-next-line
+  }
+  },[location]);
+
+
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
 
-//   window.onscroll = function() {myFunction()};
-//  function myFunction() {
-//   if (document.documentElement.scrollTop > 50) {
-//     document.getElementById("navbar").className = "afterScroll";
-//   } else {
-//     document.getElementById("navbar").className = "";
-//   }
-// }
 const colorChange= () =>{
 if(window.scrollY >=35){
   setNavbar(true)
@@ -39,17 +43,9 @@ if(window.scrollY >=35){
 };
 window.addEventListener('scroll', colorChange);
 
-console.log(useLocation().pathname , 'O')
-
-  return (
-    <>
+return (
       <header >
-      {/* {if(useLocation().pathname === '/'){
-         
-      }else{
-        
-      }} */}
-        <Navbar className={navbar ? 'navbar active fixed-top' : 'navbar fixed-top'}    bg='transparent' expand='lg'>
+        <Navbar className={navbar ? `navbar active ${fixed}` : `navbar ${fixed}`} bg='transparent' expand='lg'>
           <Container  >
             <Navbar.Brand className={styles.logo}  as={Link} to='/'>
               <img src='/img/moivon.png' alt='logo' />
@@ -140,7 +136,6 @@ console.log(useLocation().pathname , 'O')
           </Container>
         </Navbar>
       </header>
-    </>
   );
 }
 
