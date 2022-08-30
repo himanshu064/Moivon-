@@ -26,7 +26,6 @@ function Header() {
 
   useLayoutEffect(() => {
     const onScroll = () => {
-      spacerRef.current.style.zIndex = "999 !important";
       if (window.scrollY > 100) {
         headerRef.current.classList.add("active");
       } else {
