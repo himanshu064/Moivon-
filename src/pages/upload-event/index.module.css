@@ -87,9 +87,6 @@ button:focus svg {
   box-shadow: none;
   background: rgba(109, 109, 109, 0.5);
 }
-.uploadSection {
-  padding-top: 10px !important;
-}
 .uploadSection p {
   font-family: var(--manrope-bold) !important;
 }
