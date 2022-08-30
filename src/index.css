@@ -76,20 +76,13 @@ code {
 .navbar {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important; 
-  /* background-color: green !important; */
 }
 .navbar.active{
   background-color: black !important;
+  transition-property: background-color;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
 }
-/* #navbar{
-  background-color: green !important;
-  z-index: 99999;
-
-}
-.afterScroll{
-  background-color: black !important;
- 
-} */
 .section {
   padding: 40px 0;
   position: relative;

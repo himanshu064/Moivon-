@@ -16,7 +16,7 @@ import { toTitleCase } from "../../utils/helpers";
 
 function Header() {
 const [navbar, setNavbar] = useState (false);
-const [fixed, setFixed] = useState ('fixed-top');
+const [fixed, setFixed] = useState ('fixed-top active');
 
 let location = useLocation();
 useEffect(() => {
@@ -45,7 +45,7 @@ window.addEventListener('scroll', colorChange);
 
 return (
       <header >
-        <Navbar className={navbar ? `navbar active ${fixed}` : `navbar ${fixed}`} bg='transparent' expand='lg'>
+        <Navbar className={navbar ? `navbar ${fixed}` : `navbar `} bg='transparent' expand='lg'>
           <Container  >
             <Navbar.Brand className={styles.logo}  as={Link} to='/'>
               <img src='/img/moivon.png' alt='logo' />
