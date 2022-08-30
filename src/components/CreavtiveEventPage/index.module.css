@@ -1,0 +1,17 @@
+.creavtiveEventBg > div {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.offCanvasHeader {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+.offCanvasHeader button {
+    cursor: pointer;
+    background: #c79707;
+    margin-left: -25px;
+}
+
+

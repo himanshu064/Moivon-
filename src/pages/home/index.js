@@ -15,15 +15,23 @@ import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import MostPopularAccordion from "../../components/MostPopularAccordion";
+import CreavtiveEventPage from "../../components/CreavtiveEventPage";
 
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
 
+  // if(show) {
+  //   return <HerSecrion />>
+  // }
+
   return (
     <>
+      <CreavtiveEventPage />
       <RouteTitle title="Home" />
+      
       <section className={`${styles.heroSection} section`}>
+    
         <Container>
           <Row>
             <Col lg={8}>
@@ -193,6 +201,7 @@ function Home() {
           </Row>
         </Container>
       </section>
+    
     </>
   );
 }

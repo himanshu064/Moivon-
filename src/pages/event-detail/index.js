@@ -61,7 +61,7 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
-          <Row>
+          <Row className={styles.armoryStickyDiv}>
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div
@@ -90,7 +90,7 @@ function EventDetail() {
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row className={styles.armoryStickyRow}>
             <Col md={7}>
               <div className={`${styles.imgSlider} py-4`}>
                 <Swiper
@@ -114,8 +114,8 @@ function EventDetail() {
                 </Swiper>
               </div>
             </Col>
-            <Col md={5}>
-              <div className={`${styles.content} py-4 ps-2`}>
+            <Col md={5} className={styles.armoryStickyCol}>
+              <div className={`${styles.content}`}>
                 <div className={styles.gridDiv}>
                   <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
                     <span className={styles.title}>Date</span>
