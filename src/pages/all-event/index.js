@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
-import { AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai";
 import Heading from "../../components/Heading";
 import Button from "../../components/Button";
 import Tab from "react-bootstrap/Tab";
@@ -16,14 +16,12 @@ import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetchAllEvent } from "../../services/EventService";
 import { ALL_QUERIES } from "../../utils/endpoints";
-import Loader from "../../components/Loader";
 import { calculateTotalPagesCount, toTitleCase } from "../../utils/helpers";
 import {
   useNavigate,
   useSearchParams,
   useLocation,
   createSearchParams,
-  Link,
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
 import EventLoadingTile from "../../components/EventLoadingTile";
@@ -35,8 +33,24 @@ export const ALL_EVENTS_FILTERS = {
     key: "latest",
   },
   earliest: { key: "earliest" },
-  alphabetical: { key: "title", icon: (props) => <AiFillCaretUp {...props} /> },
-  price: { key: "price", icon: (props) => <AiFillCaretUp {...props} /> },
+  alphabetical: {
+    key: "title",
+    icon: (props) =>
+      props.orderBy === "asc" ? (
+        <AiFillCaretDown {...props} />
+      ) : (
+        <AiFillCaretDown {...props} />
+      ),
+  },
+  price: {
+    key: "price",
+    icon: (props) =>
+      props.orderBy === "asc" ? (
+        <AiFillCaretDown {...props} />
+      ) : (
+        <AiFillCaretDown {...props} />
+      ),
+  },
 };
 
 const toggleOrderBy = (order_by = "desc") => {
@@ -56,7 +70,7 @@ function AllEvent() {
   const queryParams = Object.fromEntries([...searchParams]) || {};
   const {
     genre = "all",
-    sortBy = ALL_EVENTS_FILTERS.latest.text,
+    sortBy = ALL_EVENTS_FILTERS.latest.key,
     orderBy,
   } = queryParams;
 
@@ -131,11 +145,6 @@ function AllEvent() {
     });
   };
 
-  const onChangeSort = (sortingKey) => {
-    const newOrderBy = toggleOrderBy(orderBy);
-    onFilterChange(sortingKey, newOrderBy);
-  };
-
   return (
     <>
       <RouteTitle title="All Events" />
@@ -187,16 +196,15 @@ function AllEvent() {
                               active={sortBy === key}
                             >
                               {toTitleCase(field)}
-                              {Icon && (
+                              {Icon && key === sortBy && (
                                 <Icon
-                                  style={{
-                                    transform:
-                                      sortBy === key
-                                        ? orderBy === "asc"
-                                          ? "rotate(180deg)"
-                                          : 0
-                                        : 0,
-                                  }}
+                                  // style={{
+                                  //   transform:
+                                  //     sortBy === key && orderBy === "asc"
+                                  //       ? "rotate(180deg) !important"
+                                  //       : 0,
+                                  // }}
+                                  orderBy={orderBy}
                                 />
                               )}
                             </Dropdown.Item>

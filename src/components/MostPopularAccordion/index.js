@@ -10,6 +10,7 @@ import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchMostFavoriteEvents } from "../../services/EventService";
 import Loader from "../Loader";
 import { prepareImageSrc } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 const MostPopularAccordion = () => {
   const { isLoading, isError, error, data } = useQuery(
@@ -37,12 +38,17 @@ const MostPopularAccordion = () => {
     return foundObject?.images?.[0]?.image;
   };
 
+  const getEventLink = () => {
+    const foundObject = data?.data?.data?.find((e) => e._id === show);
+    return foundObject?._id;
+  };
+
   return (
-    <Container className='position-relative'>
+    <Container className="position-relative">
       <Row>
-        <Col md={6} className='mb-4'>
+        <Col md={6} className="mb-4">
           <div className={styles.paddingRight}>
-            <Heading variant='subHeading'>
+            <Heading variant="subHeading">
               Most popular
               <br /> this week
             </Heading>
@@ -57,7 +63,7 @@ const MostPopularAccordion = () => {
                   />
                 ))
               ) : (
-                <h3 className='mt-2 text-base text-white'>
+                <h3 className="mt-2 text-base text-white">
                   No popular events added!
                 </h3>
               )}
@@ -67,12 +73,14 @@ const MostPopularAccordion = () => {
         <Col md={6}>
           <div className={styles.img}>
             {!isLoading && data?.data?.data?.length > 0 && (
-              <img
-                src={prepareImageSrc(getImage())}
-                alt=''
-                width='100%'
-                height='100%'
-              />
+              <Link to={`/event-detail/${getEventLink()}`}>
+                <img
+                  src={prepareImageSrc(getImage())}
+                  alt=""
+                  width="100%"
+                  height="100%"
+                />
+              </Link>
             )}
           </div>
         </Col>
