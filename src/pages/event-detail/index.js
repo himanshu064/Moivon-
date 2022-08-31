@@ -56,7 +56,7 @@ function EventDetail() {
   const armoryRef = useRef();
   useLayoutEffect(() => {
     const onScroll = () => {
-      if (window.pageYOffset>100) {
+      if (window.pageYOffset > 100) {
         armoryRef.current.style.zIndex = 1031;
       } else {
         armoryRef.current.style.zIndex = 1;
@@ -274,6 +274,7 @@ function EventDetail() {
                     <Event
                       event={event}
                       showArrowOnHover
+                      showGalleryOnHover
                       customGridClass="customGridClass"
                     />
                   </Col>

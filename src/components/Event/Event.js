@@ -57,7 +57,7 @@ function Event({
             ))}
           </Carousel>
         </div>
-        {event?.genre && isFutureDate && showGalleryOnHover && (
+        {event?.genre && showGalleryOnHover && (
           <div className={styles.galleryBtn}>
             <Link to={getEventDetailPath(event._id)}>
               <Button>{event?.genre?.genre}</Button>
