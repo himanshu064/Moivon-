@@ -5,8 +5,8 @@ const TileContentLoader = (props) => {
   return (
     <ContentLoader
       speed={2}
-      width={384}
-      height={391}
+      width={370}
+      height={450}
       viewBox="0 0 384 391"
       backgroundColor="#343434"
       foregroundColor="#575757"
