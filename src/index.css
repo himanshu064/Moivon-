@@ -63,6 +63,7 @@ body {
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* overflow: auto !important; */
 }
 
 code {
@@ -313,9 +314,6 @@ button:focus {
   font-size: 30px;
 }
 
-.infinite-scroll-component {
-  overflow-x: hidden !important;
-}
 @media screen and (max-width: 768px) {
   .section {
     padding: 20px 0;

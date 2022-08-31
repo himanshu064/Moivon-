@@ -14,11 +14,14 @@ import Heading from "../../components/Heading";
 export default function CreavtiveEventPage() {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => {
+  const handleClose = (callback) => {
     document.querySelector(".offcanvas.offcanvas-top").style.transform =
       "translateY(-100%)";
     setTimeout(() => {
       setShow(false);
+      if (callback) {
+        callback();
+      }
     }, 50);
   };
 
@@ -45,7 +48,7 @@ export default function CreavtiveEventPage() {
           <Container>
             <Row>
               <Col lg={12}>
-                <HeaderTransparent />
+                <HeaderTransparent onClose={handleClose} />
               </Col>
             </Row>
             <Row>

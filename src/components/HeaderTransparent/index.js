@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -14,7 +14,7 @@ import { toTitleCase } from "../../utils/helpers";
 import { fetchAllGenres } from "../../services/GenreService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 
-function HeaderTransparent() {
+function HeaderTransparent({ onClose = () => {} }) {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -23,12 +23,7 @@ function HeaderTransparent() {
   return (
     <>
       <header>
-        <Navbar
-          className="navbar fixed-top"
-          bg="transparent"
-          expand="lg"
-        // ref={headerRef}
-        >
+        <Navbar className="navbar fixed-top" bg="transparent" expand="lg">
           <Container>
             <Navbar.Brand className={styles.logo} as={Link} to="/">
               <img src="/img/moivon.png" alt="logo" />
@@ -61,11 +56,13 @@ function HeaderTransparent() {
                   to="/"
                   as={Link}
                   onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("about-page")
-                        .scrollIntoView({ behavior: "smooth" });
-                    }, 200);
+                    onClose(() => {
+                      setTimeout(() => {
+                        document
+                          .getElementById("about-page")
+                          .scrollIntoView({ behavior: "smooth" });
+                      }, 200);
+                    });
                   }}
                 >
                   About Us
@@ -74,11 +71,13 @@ function HeaderTransparent() {
                   to="/"
                   as={Link}
                   onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("contact-page")
-                        .scrollIntoView({ behavior: "smooth" });
-                    }, 200);
+                    onClose(() => {
+                      setTimeout(() => {
+                        document
+                          .getElementById("contact-page")
+                          .scrollIntoView({ behavior: "smooth" });
+                      }, 200);
+                    });
                   }}
                 >
                   Contact Us
@@ -103,7 +102,6 @@ function HeaderTransparent() {
                     <Dropdown.Toggle variant="none" id="dropdown-basic">
                       ENG
                     </Dropdown.Toggle>
-                    =
                   </Dropdown>
                 </div>
                 <Link to="/upload-event" className={styles.uploadButton}>
@@ -114,9 +112,7 @@ function HeaderTransparent() {
           </Container>
         </Navbar>
       </header>
-      <div
-        // ref={spacerRef}
-        className={styles.spacer} />
+      <div className={styles.spacer} />
     </>
   );
 }

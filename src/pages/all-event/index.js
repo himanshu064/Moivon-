@@ -227,6 +227,7 @@ function AllEvent() {
                         <p className="no-data">No Event found</p>
                       ) : (
                         <InfiniteScroll
+                          className={styles.infiniteScrollContainer}
                           dataLength={computedDataArray.length}
                           next={fetchNextPage}
                           hasMore={hasNextPage}
