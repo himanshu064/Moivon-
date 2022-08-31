@@ -3,46 +3,61 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from './index.module.css'
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from 'react';
+// import Button from 'react-bootstrap/Button';
+import Button  from "../Button";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { preparePublicFolder } from "../../utils/api";
 import Header from '../Header'
-import { MdArrowDownward } from'react-icons/md';
-
+import { MdArrowDownward } from 'react-icons/md';
+import { Link } from "react-router-dom";
+import Heading from "../../components/Heading";
 
 export default function CreavtiveEventPage() {
     const [show, setShow] = useState(true);
-    const handleClose = () => setShow(false);
-    
+    const handleClose = () => setShow(false);  
+   
     return (
         <>
-            <Offcanvas show={show} placement='top' onHide={handleClose} className="OffcanvasBody" style={{ height: '100vh ', backgroundRepeat: 'no-repeat', backgroundImage: `url(${preparePublicFolder("/img/Creativebackground.png")})`, backgroundSize: 'cover' }} >
+            <Offcanvas  backdrop={false}  show={show} placement='top' onHide={handleClose} style={{ height: '100vh ', backgroundRepeat: 'no-repeat', backgroundImage: `url(${preparePublicFolder("/img/Creativebackground.png")})`, backgroundSize: 'cover' }} >
                 <Offcanvas.Header closeButton className={styles.offCanvasHeader}>
                     <MdArrowDownward />
                 </Offcanvas.Header>
-                <Offcanvas.Body>
+                <Offcanvas.Body className="p-0">
                     <Container  >
+                        <Row>
+                            <Col lg={12}>
+                                <Header />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg={12}>
+                                <div className={styles.heroHeading + " mb-5"}>
+                                    <Heading>FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY </Heading>
+                                    <span className={styles.spanHead}>
 
-                        <Header />
-                        <div>
-                            <div>
-                                <h1>FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY</h1>
-                            </div>
-                            <div>
-                                <h6>Welcome to Moivon, your one source for uncovering
-                                    art, creative, and design events. Explore our curated
-                                    list, made for you, and fall in love in each!
-                                    Explore Now Video of Our Events</h6>
-                            </div>
-                        </div>
-                        <div>
-                            <Button/>
-                        </div>
+                                        Welcome to Moivon! A connection to creative events, curated
+                                        for you.
+                                        <br /> Discover all events and fall in love in each!
+                                        <br />
+                                        Lorem ipsum dolorem en rem puto qerqerium si laverawut
+                                    </span>
+                                </div>
+                                <div
+                                    className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
+                                >
+                                    <Button type="primary" to="/all-events" as={Link}>
+                                        Explore Now
+                                    </Button>
+                                    <span>
+                                        <img src="/img/video.svg" alt="video" /> Video of our events
+                                    </span>
+                                </div>
+                            </Col>
+                        </Row>
                     </Container>
                 </Offcanvas.Body>
             </Offcanvas>
-
         </>
     );
 

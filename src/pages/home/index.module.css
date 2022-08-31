@@ -5,13 +5,12 @@
   position: relative;
 }
 .heroHeading h1 {
-  font-size: 80px;
+  font-size: 75px;
   line-height: 90px;
 }
 .heroHeading .spanHead {
-  color: var(--theme-white-light);
   position: absolute;
-  right: 2%;
+  right: 9%;
   top: 105px;
   font-size: 14px;
   opacity: 0.8;

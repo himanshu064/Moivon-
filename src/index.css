@@ -387,3 +387,9 @@ button:focus {
   -webkit-filter: brightness(1.1);
   -moz-filter: brightness(1.1);
 }
+.offcanvas-backdrop{
+  opacity: 0 !important;
+}
+.dropdown-item:active{
+      background-color: var(--bs-dropdown-link-hover-bg) !important;
+}
