@@ -41,6 +41,9 @@
 .dropdownBtn .filterItem svg {
   color: var(--theme-white-light);
 }
+.infiniteScrollContainer {
+  overflow-x: hidden !important;
+}
 @media screen and (max-width: 768px) {
   .navHead {
     flex-wrap: wrap;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -20,10 +20,6 @@ import CreavtiveEventPage from "../../components/CreavtiveEventPage";
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
-
-  // if(show) {
-  //   return <HerSecrion />>
-  // }
 
   return (
     <>
