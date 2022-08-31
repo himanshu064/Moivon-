@@ -13,7 +13,14 @@ import Heading from "../../components/Heading";
 
 export default function CreavtiveEventPage() {
   const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
+
+  const handleClose = () => {
+    document.querySelector(".offcanvas.offcanvas-top").style.transform =
+      "translateY(-100%)";
+    setTimeout(() => {
+      setShow(false);
+    }, 50);
+  };
 
   return (
     <>
@@ -23,10 +30,11 @@ export default function CreavtiveEventPage() {
         placement="top"
         onHide={handleClose}
         style={{
-          height: "100vh ",
+          height: "100vh",
           backgroundRepeat: "no-repeat",
-          backgroundImage: `url(/img/Creativebackground.png)`,
+          backgroundImage: "url(/img/Creativebackground.png)",
           backgroundSize: "cover",
+          transform: "none",
         }}
       >
         <Offcanvas.Header closeButton className={styles.offCanvasHeader}>
