@@ -28,6 +28,7 @@ import {
   formatCurrency,
   getMapsLocation,
   isValidURL,
+  prepareURL,
 } from "../../utils/helpers";
 import Loader from "../../components/Loader";
 import EventLoadingTile from "../../components/EventLoadingTile";
@@ -206,14 +207,34 @@ function EventDetail() {
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>ABOUT INSTITUTION</h3>
                   <div className="d-flex align-items-center gap-4 py-3">
-                    <img src="/img/bg-logo.png" alt="" />
+                    <a
+                      target="_blank"
+                      href={prepareURL(data?.data?.data?.organizationUrl)}
+                      rel="noopener noreferrer"
+                    >
+                      <img src="/img/bg-logo.png" alt="" />
+                    </a>
                     <div className={styles.info}>
-                      <h4>Moivon Company</h4>
-                      <span>eVENTS ORGANIZATOR</span>
+                      <a
+                        target="_blank"
+                        href={prepareURL(data?.data?.data?.organizationUrl)}
+                        rel="noopener noreferrer"
+                      >
+                        <h4 className="text-uppercase">
+                          {data?.data?.data?.organization}
+                        </h4>
+                      </a>
+                      <span>EVENTS ORGANIZATOR</span>
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <Button type="outline">VISIT WEBSITE</Button>
+                  <a
+                    target="_blank"
+                    href={prepareURL(data?.data?.data?.eventUrl)}
+                    rel="noopener noreferrer"
+                  >
+                    <Button type="outline">VISIT WEBSITE</Button>
+                  </a>
                 </div>
               </div>
             </Col>
