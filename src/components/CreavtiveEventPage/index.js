@@ -6,7 +6,7 @@ import React, { useState } from "react";
 // import Button from 'react-bootstrap/Button';
 import Button from "../Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Header from "../Header";
+import HeaderTransparent from "../HeaderTransparent";
 import { MdArrowDownward } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
@@ -45,7 +45,7 @@ export default function CreavtiveEventPage() {
           <Container>
             <Row>
               <Col lg={12}>
-                <Header transparent />
+                <HeaderTransparent />
               </Col>
             </Row>
             <Row>
