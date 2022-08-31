@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-function ScrollTop({ children }) {
+function ScrollTop() {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {

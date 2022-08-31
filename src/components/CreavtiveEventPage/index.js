@@ -26,6 +26,7 @@ export default function CreavtiveEventPage() {
     <>
       <Offcanvas
         backdrop={false}
+        scroll={false}
         show={show}
         placement="top"
         onHide={handleClose}

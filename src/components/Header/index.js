@@ -115,7 +115,9 @@ function Header({ transparent = false }) {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={`${transparent ? styles.transparent : styles.disabledLink}`}
+                  className={`${
+                    transparent ? styles.transparent : styles.disabledLink
+                  }`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>
