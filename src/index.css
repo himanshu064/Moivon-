@@ -70,10 +70,6 @@ code {
     monospace;
 }
 
-/* .container {
-  max-width: 1192px !important;
-} */
-
 .navbar {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
@@ -325,6 +321,11 @@ button:focus {
     padding: 20px 0;
   }
 }
+/* @media screen and (min-width: 992px) {
+  .container {
+    max-width: 1192px !important;
+  }
+} */
 
 .next-btn,
 .prev-btn {
@@ -397,9 +398,10 @@ button:focus {
   -webkit-filter: brightness(1.1);
   -moz-filter: brightness(1.1);
 }
-.offcanvas-backdrop{
+.offcanvas-backdrop {
   opacity: 0 !important;
 }
-.dropdown-item:active{
-      background-color: var(--bs-dropdown-link-hover-bg) !important;
+.dropdown-item:active,
+.dropdown-item.active {
+  background-color: var(--bs-dropdown-link-hover-bg) !important;
 }
