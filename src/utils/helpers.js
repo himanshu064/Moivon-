@@ -43,3 +43,12 @@ export const toTitleCase = (phrase) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export const prepareURL = (url = "") => {
+  if (!url) return;
+
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return `https://${url}`;
+};
