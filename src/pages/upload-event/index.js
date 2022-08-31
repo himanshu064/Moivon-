@@ -13,7 +13,8 @@ import Button from "../../components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Form from "react-bootstrap/Form";
-import DateTimePicker from "react-datetime-picker";
+import moment from "moment";
+import DateTime from "react-datetime";
 
 import Text from "../../components/Text";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
@@ -36,20 +37,16 @@ const validationSchema = yup.object({
 });
 
 const dateTimePickerProps = {
-  yearPlaceholder: "YYYY",
-  hourPlaceholder: "H",
-  minutePlaceholder: "M",
-  secondPlaceholder: "ss",
-  monthPlaceholder: "MM",
-  dayPlaceholder: "DD",
-  showLeadingZeros: true,
-  // disableClock: true,
-  calendarIcon: null,
-  locale: "en-US",
+  closeOnSelect: true,
 };
 
 const pagination = {
   clickable: true,
+};
+
+const EVENT_PRICE = {
+  FREE: "FREE",
+  PAID: "PAID",
 };
 
 function UploadEvent() {
@@ -59,7 +56,7 @@ function UploadEvent() {
   const toastId = useRef(null);
   const inputFileRef = useRef();
   const [images, setImages] = useState([]);
-  const [showPrice, setShowPrice] = useState(false);
+  const [priceType, setPriceType] = useState(EVENT_PRICE.FREE);
 
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
@@ -269,7 +266,8 @@ function UploadEvent() {
                         name="startDate"
                         control={control}
                         render={({ field }) => (
-                          <DateTimePicker
+                          <DateTime
+                            className={styles.dateTimePicker}
                             onChange={field.onChange}
                             value={field.value}
                             {...dateTimePickerProps}
@@ -280,7 +278,7 @@ function UploadEvent() {
                   </Col>
                   <Col xl={6}>
                     <Form.Group
-                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-1`}
+                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
                       controlId="formGroupEndDate"
                     >
                       <Form.Label>To:</Form.Label>
@@ -288,10 +286,14 @@ function UploadEvent() {
                         name="endDate"
                         control={control}
                         render={({ field }) => (
-                          <DateTimePicker
+                          <DateTime
+                            className={styles.dateTimePicker}
                             onChange={field.onChange}
                             value={field.value}
-                            minDate={minDate}
+                            isValidDate={(current) => {
+                              const date = moment(minDate).subtract(1, "day");
+                              return current.isAfter(date);
+                            }}
                             {...dateTimePickerProps}
                           />
                         )}
@@ -337,12 +339,8 @@ function UploadEvent() {
                               type="radio"
                               name="flexRadioDefault"
                               id="flexRadioDefault2"
-                              checked={showPrice === false}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setShowPrice(false);
-                                }
-                              }}
+                              checked={priceType === EVENT_PRICE.FREE}
+                              onClick={() => setPriceType(EVENT_PRICE.FREE)}
                             />
                             <label
                               className="form-check-label"
@@ -357,12 +355,8 @@ function UploadEvent() {
                               type="radio"
                               name="flexRadioDefault"
                               id="flexRadioDefault1"
-                              checked={showPrice}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setShowPrice(true);
-                                }
-                              }}
+                              checked={priceType === EVENT_PRICE.PAID}
+                              onClick={() => setPriceType(EVENT_PRICE.PAID)}
                             />
                             <label
                               className="form-check-label"
@@ -374,8 +368,11 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${styles.priceContainer}`}
-                        style={{ display: showPrice ? "block" : "hidden" }}
+                        className={`${styles.formGroup} ${
+                          styles.priceContainer
+                        } ${
+                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                        }`}
                       >
                         <Form.Control
                           type="number"

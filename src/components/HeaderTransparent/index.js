@@ -13,8 +13,11 @@ import { Link } from "react-router-dom";
 import { toTitleCase } from "../../utils/helpers";
 import { fetchAllGenres } from "../../services/GenreService";
 import { ALL_QUERIES } from "../../utils/endpoints";
+import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
+import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 
-function HeaderTransparent({ onClose = () => {} }) {
+function HeaderTransparent() {
+  const { onClose } = useTransparentHeader();
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -25,7 +28,7 @@ function HeaderTransparent({ onClose = () => {} }) {
       <header>
         <Navbar className="navbar fixed-top" bg="transparent" expand="lg">
           <Container>
-            <Navbar.Brand className={styles.logo} as={Link} to="/">
+            <Navbar.Brand className={styles.logo}>
               <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -60,7 +63,7 @@ function HeaderTransparent({ onClose = () => {} }) {
                       setTimeout(() => {
                         document
                           .getElementById("about-page")
-                          .scrollIntoView({ behavior: "smooth" });
+                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                       }, 200);
                     });
                   }}
@@ -75,7 +78,7 @@ function HeaderTransparent({ onClose = () => {} }) {
                       setTimeout(() => {
                         document
                           .getElementById("contact-page")
-                          .scrollIntoView({ behavior: "smooth" });
+                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                       }, 200);
                     });
                   }}

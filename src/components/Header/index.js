@@ -9,20 +9,27 @@ import { FiSearch } from "react-icons/fi";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiMenuAltRight } from "react-icons/bi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
-import { SCROLLING_HEADER_PATHS } from "../../utils/constants";
+import {
+  SCROLLING_HEADER_PATHS,
+  SCROLL_INTO_VIEW_OPTIONS,
+} from "../../utils/constants";
+import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 
 function Header({ transparent = false }) {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
+  const navigate = useNavigate();
   const headerRef = useRef();
   const spacerRef = useRef();
   const { pathname } = useLocation();
+
+  const { onOpen } = useTransparentHeader();
 
   useLayoutEffect(() => {
     const onScroll = () => {
@@ -49,6 +56,13 @@ function Header({ transparent = false }) {
     }
   }, [pathname]);
 
+  const onRedirectHomePage = () => {
+    onOpen();
+    if (pathname !== "/") {
+      navigate("/");
+    }
+  };
+
   return (
     <>
       <header>
@@ -59,7 +73,10 @@ function Header({ transparent = false }) {
           ref={headerRef}
         >
           <Container>
-            <Navbar.Brand className={styles.logo} as={Link} to="/">
+            <Navbar.Brand
+              className={styles.logo}
+              onClick={() => onRedirectHomePage()}
+            >
               <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -93,7 +110,7 @@ function Header({ transparent = false }) {
                     setTimeout(() => {
                       document
                         .getElementById("about-page")
-                        .scrollIntoView({ behavior: "smooth" });
+                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                     }, 200);
                   }}
                 >
@@ -106,7 +123,7 @@ function Header({ transparent = false }) {
                     setTimeout(() => {
                       document
                         .getElementById("contact-page")
-                        .scrollIntoView({ behavior: "smooth" });
+                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                     }, 200);
                   }}
                 >
@@ -115,8 +132,9 @@ function Header({ transparent = false }) {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={`${transparent ? styles.transparent : styles.disabledLink
-                    }`}
+                  className={`${
+                    transparent ? styles.transparent : styles.disabledLink
+                  }`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>

@@ -7,3 +7,9 @@ export const HEADERS = {
 };
 
 export const SCROLLING_HEADER_PATHS = ["/upload-event"];
+
+export const SCROLL_INTO_VIEW_OPTIONS = {
+  behavior: "smooth",
+  block: "center",
+  inline: "center",
+};

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
+import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 
 const Footer = () => {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
@@ -59,7 +60,7 @@ const Footer = () => {
                           setTimeout(() => {
                             document
                               .getElementById("about-page")
-                              .scrollIntoView({ behavior: "smooth" });
+                              .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                           }, 200);
                         }}
                       >
@@ -74,7 +75,7 @@ const Footer = () => {
                           setTimeout(() => {
                             document
                               .getElementById("contact-page")
-                              .scrollIntoView({ behavior: "smooth" });
+                              .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
                           }, 200);
                         }}
                       >

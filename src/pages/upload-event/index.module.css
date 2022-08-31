@@ -61,6 +61,13 @@
 .formGroup textarea {
   font-size: 12px;
 }
+.formGroup .dateTimePicker {
+  flex: 1;
+  margin-left: 4px;
+}
+.formGroup .dateTimePicker span {
+  color: var(--color-black) !important;
+}
 label {
   margin-bottom: 0;
 }
@@ -125,7 +132,7 @@ button:focus svg {
   padding: 6px 0;
   margin-bottom: 6px;
 }
-.priceContainer {
+.formGroup .priceContainer {
   flex: 1;
 }
 .uploadSection .footer {

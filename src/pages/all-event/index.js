@@ -39,7 +39,7 @@ export const ALL_EVENTS_FILTERS = {
       props.orderBy === "asc" ? (
         <AiFillCaretDown {...props} />
       ) : (
-        <AiFillCaretDown {...props} />
+        <AiFillCaretUp {...props} />
       ),
   },
   price: {
@@ -48,7 +48,7 @@ export const ALL_EVENTS_FILTERS = {
       props.orderBy === "asc" ? (
         <AiFillCaretDown {...props} />
       ) : (
-        <AiFillCaretDown {...props} />
+        <AiFillCaretUp {...props} />
       ),
   },
 };
@@ -198,13 +198,7 @@ function AllEvent() {
                               {toTitleCase(field)}
                               {Icon && key === sortBy && (
                                 <Icon
-                                  // style={{
-                                  //   transform:
-                                  //     sortBy === key && orderBy === "asc"
-                                  //       ? "rotate(180deg) !important"
-                                  //       : 0,
-                                  // }}
-                                  orderBy={orderBy}
+                                  orderBy={sortBy === key ? orderBy : "asc"}
                                 />
                               )}
                             </Dropdown.Item>

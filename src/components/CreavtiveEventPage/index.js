@@ -10,20 +10,21 @@ import HeaderTransparent from "../HeaderTransparent";
 import { MdArrowDownward } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
+import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 
 export default function CreavtiveEventPage() {
-  const [show, setShow] = useState(true);
+  const { show, onClose } = useTransparentHeader(true);
 
-  const handleClose = (callback) => {
-    document.querySelector(".offcanvas.offcanvas-top").style.transform =
-      "translateY(-100%)";
-    setTimeout(() => {
-      setShow(false);
-      if (callback) {
-        callback();
-      }
-    }, 50);
-  };
+  // const handleClose = (callback) => {
+  //   document.querySelector(".offcanvas.offcanvas-top").style.transform =
+  //     "translateY(-100%)";
+  //   setTimeout(() => {
+  //     onClose(false);
+  //     if (callback) {
+  //       callback();
+  //     }
+  //   }, 50);
+  // };
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function CreavtiveEventPage() {
         scroll={false}
         show={show}
         placement="top"
-        onHide={handleClose}
+        onHide={onClose}
         style={{
           height: "100vh",
           backgroundRepeat: "no-repeat",
@@ -48,7 +49,7 @@ export default function CreavtiveEventPage() {
           <Container>
             <Row>
               <Col lg={12}>
-                <HeaderTransparent onClose={handleClose} />
+                <HeaderTransparent />
               </Col>
             </Row>
             <Row>

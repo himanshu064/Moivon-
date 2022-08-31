@@ -14,14 +14,20 @@ import "swiper/css/effect-fade";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
+// react-datetime styles
+import "react-datetime/css/react-datetime.css";
+
 import "./index.css";
+import TransparentHeaderContextProvider from "./hooks/useTransparentHeader";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ScrollTop />
-      <App />
-    </BrowserRouter>
+    <TransparentHeaderContextProvider>
+      <BrowserRouter>
+        <ScrollTop />
+        <App />
+      </BrowserRouter>
+    </TransparentHeaderContextProvider>
   </React.StrictMode>
 );

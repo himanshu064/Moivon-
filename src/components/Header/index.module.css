@@ -7,7 +7,9 @@
 .navLink a {
   color: var(--theme-white) !important;
 }
-
+.logo {
+  cursor: pointer;
+}
 .navLink a {
   font-size: 14px;
 }
@@ -41,9 +43,9 @@
   height: 70px;
 }
 
-.transparent  span{
-    background-color: #978036 !important;
-    color:#C8AF66 !important;
+.transparent span {
+  background-color: #978036 !important;
+  color: #c8af66 !important;
 }
 @media screen and (max-width: 991px) {
   .navLink {

@@ -6,7 +6,7 @@ function ScrollTop() {
 
   useLayoutEffect(() => {
     // scroll to top except when you click the back button
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 

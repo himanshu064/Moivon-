@@ -78,7 +78,7 @@ code {
   z-index: 1000 !important;
 
   transition-property: background-color;
-  transition-duration: 500ms;
+  transition-duration: 100ms;
   transition-timing-function: ease-in;
 }
 .navbar.active {
