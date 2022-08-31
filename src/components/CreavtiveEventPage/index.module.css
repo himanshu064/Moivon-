@@ -53,7 +53,7 @@
 .spanHead::before {
   content: "";
   position: absolute;
-  border-left: 2px solid var(--border-color);
+  border-left: 2px solid white;
   height: 100%;
   left: -20px;
   opacity: 0.8;
