@@ -27,7 +27,7 @@ function Home() {
 
   return (
     <>
-      {/* <CreavtiveEventPage /> */}
+      <CreavtiveEventPage />
       <RouteTitle title="Home" />
 
       <section className={`${styles.heroSection} section`}>

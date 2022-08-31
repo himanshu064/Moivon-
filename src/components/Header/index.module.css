@@ -40,6 +40,11 @@
 .spacer {
   height: 70px;
 }
+
+.transparent  span{
+    background-color: #978036 !important;
+    color:#C8AF66 !important;
+}
 @media screen and (max-width: 991px) {
   .navLink {
     gap: 10px;

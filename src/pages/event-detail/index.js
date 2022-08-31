@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import styles from "./index.module.css";
 
 import Container from "react-bootstrap/Container";
@@ -52,6 +52,22 @@ function EventDetail() {
     error: allEventError,
   } = useQuery(ALL_QUERIES.QUERY_RELATED_EVENTS(), fetchRelatedEvents);
 
+  const armoryRef = useRef();
+  useLayoutEffect(() => {
+    const onScroll = () => {
+      if (window.pageYOffset>100) {
+        armoryRef.current.style.zIndex = 1031;
+      } else {
+        armoryRef.current.style.zIndex = 1;
+      }
+    };
+    document.addEventListener("scroll", onScroll);
+
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   if (isLoading) return <Loader />;
 
   if (isError) return <p>{error}</p>;
@@ -61,7 +77,7 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
-          <Row className={styles.armoryStickyDiv}>
+          <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div

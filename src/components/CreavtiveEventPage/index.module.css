@@ -66,6 +66,7 @@
 }
 .heroIcons img {
   margin-right: 10px;
+  opacity: .5;
 }
 .heroIcons span {
   color: var(--theme-white);

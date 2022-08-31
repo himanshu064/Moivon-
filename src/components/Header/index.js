@@ -15,7 +15,7 @@ import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
 import { SCROLLING_HEADER_PATHS } from "../../utils/constants";
 
-function Header() {
+function Header({ transparent = false }) {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -115,7 +115,7 @@ function Header() {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={styles.disabledLink}
+                  className={`${transparent ? styles.transparent : styles.disabledLink}`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>

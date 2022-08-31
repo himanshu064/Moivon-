@@ -27,7 +27,7 @@ export default function CreavtiveEventPage() {
                     <Container  >
                         <Row>
                             <Col lg={12}>
-                                <Header />
+                                <Header transparent />
                             </Col>
                         </Row>
                         <Row>

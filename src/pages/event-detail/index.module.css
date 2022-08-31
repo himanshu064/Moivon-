@@ -96,7 +96,7 @@
 .armoryStickyDiv {
   position: sticky !important;
   top: 0 !important;
-  z-index: 1031;
+  /* z-index: 1031; */
   background: #252525;
 }
 .armoryStickyRow {
