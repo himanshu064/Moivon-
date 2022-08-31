@@ -103,7 +103,6 @@ function HeaderTransparent() {
                     <Dropdown.Toggle variant="none" id="dropdown-basic">
                       ENG
                     </Dropdown.Toggle>
-                    =
                   </Dropdown>
                 </div>
                 <Link to="/upload-event" className={styles.uploadButton}>

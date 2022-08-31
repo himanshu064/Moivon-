@@ -1,20 +1,24 @@
 .heroSection {
   padding: 40px 0;
 }
+
 .heroHeading {
   position: relative;
 }
+
 .heroHeading h1 {
-  font-size: 75px;
+  font-size: 68px;
   line-height: 90px;
 }
+
 .heroHeading .spanHead {
   position: absolute;
-  right: 9%;
+  right: 0;
   top: 105px;
   font-size: 14px;
   opacity: 0.8;
 }
+
 .spanHead::before {
   content: "";
   position: absolute;
@@ -23,17 +27,21 @@
   left: -20px;
   opacity: 0.8;
 }
+
 .heroIcons img {
   margin-right: 10px;
 }
+
 .heroIcons span {
   color: var(--theme-white);
   font-size: 14px;
   font-family: var(--sans-medium);
 }
+
 .countWrapper {
   border-right: 2px solid var(--border-color);
 }
+
 .customRow .customCol:last-child .countWrapper {
   border-right: 0;
 }
@@ -41,17 +49,21 @@
 .countWrapper p {
   font-size: 14px;
 }
+
 .sliderTeam {
   position: relative;
 }
+
 .slider {
   padding-left: 140px;
   position: relative;
 }
+
 .bottomSection {
   padding: 80px 0;
   position: relative;
 }
+
 .bottomSection::before {
   content: "";
   background-image: url(/public/img/noize-bg.svg);
@@ -70,13 +82,16 @@
   color: var(--theme-white);
   cursor: pointer;
 }
+
 .paddingAll {
   padding-left: 40px;
   padding-right: 40px;
 }
+
 .paddingR {
   padding-right: 100px;
 }
+
 .bgImg {
   background-image: url(/public//img/bgImg.png);
   padding: 100px 0;
@@ -86,13 +101,16 @@
   width: 100%;
   position: relative;
 }
+
 .largeLogoDiv {
   border-left: 2px solid var(--border-color);
 }
+
 .connectionSection {
   background-color: var(--theme-black);
   padding: 40px 0 80px;
 }
+
 .contactSection {
   padding: 100px 0;
 }
@@ -101,55 +119,69 @@
   .heroHeading .spanHead {
     position: unset;
   }
+
   .spanHead::before {
     display: none;
   }
+
   .heroIcons {
     margin-top: 20px;
   }
 }
+
 @media screen and (max-width: 1100px) {
   .slider {
     padding-left: 60px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .heroHeading h1 {
     font-size: 40px !important;
     line-height: 55px !important;
   }
+
   .bottomSection {
     padding: 40px 0;
   }
+
   .largeLogoDiv {
     border-left: 0;
   }
+
   .paddingR {
     padding-right: 20px;
   }
+
   .paddingAll {
     padding-left: 20px;
     padding-right: 20px;
   }
+
   .connectionSection {
     padding: 40px 0 40px;
   }
+
   .contactSection {
     padding: 50px 0;
   }
 }
+
 @media screen and (max-width: 600px) {
   .slider {
     padding-left: 10px;
   }
 }
+
 @media screen and (max-width: 576px) {
   .countWrapper {
     border-right: 0;
   }
+
   .bgImg {
     padding: 50px 0;
   }
+
   .heroHeading h1 {
     font-size: 30px !important;
     line-height: 45px !important;

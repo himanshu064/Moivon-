@@ -29,24 +29,23 @@
   border-right: 1px solid black;
 }
 
- .findingCreativeEventH6 {   width: 45%;
-    padding: 0 0 0 25px;
+.findingCreativeEventH6 {
+  width: 45%;
+  padding: 0 0 0 25px;
 }
-
-
 
 .heroHeading {
   position: relative;
-  margin-top: 15vh;
+  margin-top: 23vh;
 }
 .heroHeading h1 {
-  font-size: 68px;
+  font-size: 60px;
   line-height: 90px;
+  letter-spacing: 2px;
 }
 .heroHeading .spanHead {
- 
   position: absolute;
-  right: 9%;
+  right: 8%;
   top: 105px;
   font-size: 14px;
   opacity: 0.8;
@@ -59,14 +58,14 @@
   left: -20px;
   opacity: 0.8;
 }
-.heroIcons a{
-   background-color: var(--theme-white);
-   color:black !important; 
-   border: none;
+.heroIcons a {
+  background-color: var(--theme-white);
+  color: black !important;
+  border: none;
 }
 .heroIcons img {
   margin-right: 10px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .heroIcons span {
   color: var(--theme-white);
@@ -91,16 +90,13 @@
     font-size: 40px !important;
     line-height: 55px !important;
   }
-
 }
 @media screen and (max-width: 576px) {
-
-  
   .heroHeading h1 {
     font-size: 30px !important;
     line-height: 45px !important;
   }
 }
-.heroSliderBackdrop{
+.heroSliderBackdrop {
   opacity: 0 !important;
 }

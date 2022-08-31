@@ -115,9 +115,8 @@ function Header({ transparent = false }) {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={`${
-                    transparent ? styles.transparent : styles.disabledLink
-                  }`}
+                  className={`${transparent ? styles.transparent : styles.disabledLink
+                    }`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>
@@ -136,10 +135,10 @@ function Header({ transparent = false }) {
                     </Dropdown.Toggle>
 
                     {/* <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">PUN</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">HI</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-                    </Dropdown.Menu> */}
+<Dropdown.Item href="#/action-1">PUN</Dropdown.Item>
+<Dropdown.Item href="#/action-2">HI</Dropdown.Item>
+<Dropdown.Item href="#/action-3">UK</Dropdown.Item>
+</Dropdown.Menu> */}
                   </Dropdown>
                 </div>
                 <Link to="/upload-event" className={styles.uploadButton}>
