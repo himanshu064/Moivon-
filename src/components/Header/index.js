@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -9,36 +9,70 @@ import { FiSearch } from "react-icons/fi";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiMenuAltRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
+import { SCROLLING_HEADER_PATHS } from "../../utils/constants";
 
 function Header() {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
+  const headerRef = useRef();
+  const spacerRef = useRef();
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 100) {
+        headerRef.current.classList.add("active");
+      } else {
+        headerRef.current.classList.remove("active");
+      }
+    };
+    document.addEventListener("scroll", onScroll);
+
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (SCROLLING_HEADER_PATHS.includes(pathname)) {
+      headerRef.current.classList.remove("fixed-top");
+      spacerRef.current.style.display = "none";
+    } else {
+      headerRef.current.classList.add("fixed-top");
+      spacerRef.current.style.display = "block";
+    }
+  }, [pathname]);
 
   return (
     <>
       <header>
-        <Navbar bg='transparent' expand='lg'>
+        <Navbar
+          className="navbar fixed-top"
+          bg="transparent"
+          expand="lg"
+          ref={headerRef}
+        >
           <Container>
-            <Navbar.Brand className={styles.logo} as={Link} to='/'>
-              <img src='/img/moivon.png' alt='logo' />
+            <Navbar.Brand className={styles.logo} as={Link} to="/">
+              <img src="/img/moivon.png" alt="logo" />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav'>
+            <Navbar.Toggle aria-controls="basic-navbar-nav">
               <BiMenuAltRight />
             </Navbar.Toggle>
-            <Navbar.Collapse id='basic-navbar-nav'>
+            <Navbar.Collapse id="basic-navbar-nav">
               <Nav className={styles.navLink + " me-auto"}>
                 <NavDropdown
-                  title='All Events'
-                  id='basic-nav-dropdown'
+                  title="All Events"
+                  id="basic-nav-dropdown"
                   className={"nav_dropdown"}
                 >
-                  <NavDropdown.Item as={Link} to='/all-events'>
+                  <NavDropdown.Item as={Link} to="/all-events">
                     All Events
                   </NavDropdown.Item>
                   {!allGenresLoading &&
@@ -46,14 +80,14 @@ function Header() {
                       <NavDropdown.Item
                         as={Link}
                         to={`/all-events?genre=${genre._id}`}
-                        className='captialize'
+                        className="captialize"
                       >
                         {toTitleCase(genre.genre)}
                       </NavDropdown.Item>
                     ))}
                 </NavDropdown>
                 <Nav.Link
-                  to='/'
+                  to="/"
                   as={Link}
                   onClick={() => {
                     setTimeout(() => {
@@ -66,7 +100,7 @@ function Header() {
                   About Us
                 </Nav.Link>
                 <Nav.Link
-                  to='/'
+                  to="/"
                   as={Link}
                   onClick={() => {
                     setTimeout(() => {
@@ -79,8 +113,8 @@ function Header() {
                   Contact Us
                 </Nav.Link>
                 <Nav.Link
-                  href='#'
-                  eventKey='disabled'
+                  href="#"
+                  eventKey="disabled"
                   className={styles.disabledLink}
                   disabled
                 >
@@ -95,7 +129,7 @@ function Header() {
                 >
                   <FiSearch />
                   <Dropdown className={styles.dropdownBtn}>
-                    <Dropdown.Toggle variant='none' id='dropdown-basic'>
+                    <Dropdown.Toggle variant="none" id="dropdown-basic">
                       ENG
                     </Dropdown.Toggle>
 
@@ -106,14 +140,15 @@ function Header() {
                     </Dropdown.Menu> */}
                   </Dropdown>
                 </div>
-                <Link to='/upload-event' className={styles.uploadButton}>
-                  <Button type='primary'>Upload Event</Button>
+                <Link to="/upload-event" className={styles.uploadButton}>
+                  <Button type="primary">Upload Event</Button>
                 </Link>
               </div>
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </header>
+      <div ref={spacerRef} className={styles.spacer} />
     </>
   );
 }

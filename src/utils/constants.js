@@ -5,3 +5,5 @@ export const HEADERS = {
     "Content-Type": "multipart/form-data",
   },
 };
+
+export const SCROLLING_HEADER_PATHS = ["/upload-event"];

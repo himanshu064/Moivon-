@@ -38,6 +38,7 @@
   --theme-black-light: #343434;
   --border-color: #575757;
   --color-black: #000000;
+  --navbar-dark: #1b1b1b;
   --color-white: #ffffff;
   --sans-regular: "Google sans Regular";
   --sans-medium: "Google sans Medium";
@@ -76,6 +77,15 @@ code {
 .navbar {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
+  height: 70px;
+  z-index: 1000 !important;
+
+  transition-property: background-color;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in;
+}
+.navbar.active {
+  background-color: var(--navbar-dark) !important;
 }
 .section {
   padding: 40px 0;
