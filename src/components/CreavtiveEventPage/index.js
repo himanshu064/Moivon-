@@ -3,11 +3,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./index.module.css";
 import React, { useState } from "react";
-// import Button from 'react-bootstrap/Button';
+
 import Button from "../Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import HeaderTransparent from "../HeaderTransparent";
-import { MdArrowDownward } from "react-icons/md";
+
 import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useTransparentHeader } from "../../hooks/useTransparentHeader";
@@ -18,7 +18,7 @@ export default function CreavtiveEventPage() {
   return (
     <>
       <Offcanvas
-        backdrop={true}
+        backdrop={false}
         scroll={false}
         show={show}
         placement="top"
@@ -32,7 +32,7 @@ export default function CreavtiveEventPage() {
         }}
       >
         <Offcanvas.Header closeButton className={styles.offCanvasHeader}>
-          <MdArrowDownward />
+          <img src="/img/Arrow.svg" alt="Arrow" />
         </Offcanvas.Header>
         <Offcanvas.Body className="p-0">
           <Container>
@@ -43,16 +43,15 @@ export default function CreavtiveEventPage() {
             </Row>
             <Row>
               <Col lg={12}>
-                <div className={styles.heroHeading + " mb-5"}>
+                <div className={styles.heroHeading}>
                   <Heading>
                     FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY{" "}
                   </Heading>
                   <span className={styles.spanHead}>
-                    Welcome to Moivon! A connection to creative events, curated
-                    for you.
-                    <br /> Discover all events and fall in love in each!
-                    <br />
-                    Lorem ipsum dolorem en rem puto qerqerium si laverawut
+
+                    Welcome to Moivon, your one source for uncovering
+                    <br /> art, creative, and design events. Explore our curated
+                    <br />list made for you and fall in love in each!
                   </span>
                 </div>
                 <div

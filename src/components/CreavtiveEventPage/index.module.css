@@ -1,18 +1,21 @@
-.creavtiveEventBg > div {
+.creavtiveEventBg>div {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .offCanvasHeader {
   position: absolute;
   bottom: 0;
   left: 50%;
 }
+
 .offCanvasHeader button {
   cursor: pointer;
   background: transparent;
   margin-left: -25px;
 }
+
 .findingCreativeEvent {
   font-size: 50px;
   font-weight: 700;
@@ -36,20 +39,27 @@
 
 .heroHeading {
   position: relative;
-  margin-top: 23vh;
+  margin-top: 30vh;
+  margin-bottom: 3.6rem;
 }
+
 .heroHeading h1 {
-  font-size: 60px;
+  font-size: 65px;
   line-height: 90px;
-  letter-spacing: 2px;
+  font-family: var(--manrope-regular) !important;
+  letter-spacing: 1px;
 }
+
 .heroHeading .spanHead {
   position: absolute;
-  right: 8%;
+  right: 16%;
   top: 105px;
   font-size: 14px;
-  opacity: 0.8;
+  font-family: var(--sans-regular);
+  font-weight: 400;
+  line-height: 21px;
 }
+
 .spanHead::before {
   content: "";
   position: absolute;
@@ -58,15 +68,18 @@
   left: -20px;
   opacity: 0.8;
 }
+
 .heroIcons a {
   background-color: var(--theme-white);
   color: black !important;
   border: none;
 }
+
 .heroIcons img {
   margin-right: 10px;
   opacity: 0.5;
 }
+
 .heroIcons span {
   color: var(--theme-white);
   font-size: 14px;
@@ -77,9 +90,11 @@
   .heroHeading .spanHead {
     position: unset;
   }
+
   .spanHead::before {
     display: none;
   }
+
   .heroIcons {
     margin-top: 20px;
   }
@@ -91,12 +106,14 @@
     line-height: 55px !important;
   }
 }
+
 @media screen and (max-width: 576px) {
   .heroHeading h1 {
     font-size: 30px !important;
     line-height: 45px !important;
   }
 }
+
 .heroSliderBackdrop {
   opacity: 0 !important;
 }
