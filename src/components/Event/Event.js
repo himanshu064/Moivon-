@@ -66,7 +66,9 @@ function Event({
         )}
         <div className={styles.content}>
           <Link to={getEventDetailPath(event._id)}>
-            <div className="d-flex justify-content-between px-3">
+            <div
+              className={`${styles.titleContainer} d-flex justify-content-between align-items-center px-3`}
+            >
               <h3 className="text-truncate" title={event.title}>
                 {event?.title}
               </h3>
@@ -82,7 +84,10 @@ function Event({
                 </span>
               </div>
             </div>
-            <div className={"gallery-border"} style={{ borderBottom: "0" }}>
+            <div
+              className={`d-flex align-items-center gallery-border ${styles.descriptionContainer}`}
+              style={{ borderBottom: "0" }}
+            >
               <div className={`${styles.gridDiv} `}>
                 <div
                   className={`${styles.dateDiv} ${styles.borderRight} ${customGridClass}`}

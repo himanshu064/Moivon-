@@ -1,6 +1,9 @@
 .paddingRight {
   padding-right: 100px;
 }
+.image {
+  object-fit: cover;
+}
 @media screen and (max-width: 1100px) {
   .paddingRight {
     padding-right: 30px;

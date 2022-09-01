@@ -89,7 +89,7 @@
 }
 
 .paddingR {
-  padding-right: 100px;
+  padding-right: 140px;
 }
 
 .bgImg {
@@ -104,6 +104,10 @@
 
 .largeLogoDiv {
   border-left: 2px solid var(--border-color);
+}
+.divider {
+  border-left: 2px solid var(--border-color);
+  height: 85%;
 }
 
 .connectionSection {

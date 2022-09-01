@@ -56,10 +56,8 @@ function HeaderTransparent() {
                     ))}
                 </NavDropdown>
                 <Nav.Link
-                  to="/"
-                  as={Link}
                   onClick={() => {
-                    onClose(() => {
+                    onClose("/", () => {
                       setTimeout(() => {
                         document
                           .getElementById("about-page")
@@ -71,10 +69,8 @@ function HeaderTransparent() {
                   About Us
                 </Nav.Link>
                 <Nav.Link
-                  to="/"
-                  as={Link}
                   onClick={() => {
-                    onClose(() => {
+                    onClose("/", () => {
                       setTimeout(() => {
                         document
                           .getElementById("contact-page")

@@ -23,11 +23,11 @@ import TransparentHeaderContextProvider from "./hooks/useTransparentHeader";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <TransparentHeaderContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <TransparentHeaderContextProvider>
         <ScrollTop />
         <App />
-      </BrowserRouter>
-    </TransparentHeaderContextProvider>
+      </TransparentHeaderContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

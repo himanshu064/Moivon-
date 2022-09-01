@@ -1,34 +1,35 @@
-
 /* form */
 
-.formGroup{
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    background: var(--theme-black);
+.formGroup {
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--theme-black);
 }
-.formGroup label{
-    color: var(--theme-white);
-    padding-left: 0.75rem;
-    padding-top: 0.375rem;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-family: var(--sans-medium);
+.formGroup label {
+  color: var(--theme-white);
+  padding-left: 0.75rem;
+  padding-top: 0.375rem;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--sans-medium);
 }
-.formGroup input, .formGroup textarea{
-    background: none;
-    border: 0;
+.formGroup input,
+.formGroup textarea {
+  background: none;
+  border: 0;
 }
-.formGroup input:focus, .formGroup textarea:focus{
-    box-shadow: none;
-    background: none;
+.formGroup input:focus,
+.formGroup textarea:focus {
+  box-shadow: none;
+  background: none;
 }
-.formGroup  input:-internal-autofill-selected{
-    background-color: unset !important;
+.formGroup input:-internal-autofill-selected {
+  background-color: unset !important;
 }
-.btnDiv button{
-    width: 212px;
+.btnDiv button {
+  flex: 1;
 }
-.btnDiv p{
-    margin-bottom: 0;
+.btnDiv p {
+  margin-bottom: 0;
 }

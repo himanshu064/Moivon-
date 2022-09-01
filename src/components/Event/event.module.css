@@ -1,5 +1,6 @@
 /* events */
 .eventWrapper {
+  height: 388px;
   position: relative;
   margin-bottom: 20px;
   transition: all 0.2s ease-in;
@@ -12,16 +13,26 @@
 .eventWrapper .image img {
   width: 100%;
   /* height: 271px; */
-  height: 310px;
+  /* height: 310px; */
+  height: 292px;
   object-fit: cover;
 }
 .eventWrapper .content {
-  padding: 10px 0 0;
+  height: 96px;
+  /* padding: 10px 0 0; */
   border: 1px solid var(--border-color);
+}
+.eventWrapper .content .titleContainer {
+  height: 48px;
 }
 .eventWrapper .content h3 {
   color: var(--theme-white);
   font-size: 20px;
+  margin-bottom: 0;
+}
+
+.eventWrapper .content .descriptionContainer {
+  height: 48px;
 }
 
 .eventWrapper span {

@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-
+import { useNavigate } from "react-router-dom";
 const TransparentHeaderContext = createContext({
   show: true,
   onOpen: () => {},
@@ -11,10 +11,15 @@ export const useTransparentHeader = () => useContext(TransparentHeaderContext);
 const TransparentHeaderContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
 
-  const onClose = (callback) => {
+  const navigate = useNavigate();
+
+  const onClose = (path, callback) => {
     document.querySelector(".offcanvas.offcanvas-top").style.transform =
       "translateY(-100%)";
     setShow(false);
+    if (path) {
+      navigate(path);
+    }
     setTimeout(() => {
       if (callback) {
         callback();

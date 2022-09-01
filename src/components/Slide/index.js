@@ -139,7 +139,9 @@ function Slide({
             allowClick={allowLinks}
             eventId={event._id}
           >
-            <div className="d-flex justify-content-between px-3">
+            <div
+              className={`${styles.titleContainer} d-flex justify-content-between align-items-center px-3`}
+            >
               <h3 className="text-truncate" title={event.title}>
                 {event.title}
               </h3>
@@ -156,7 +158,7 @@ function Slide({
               </div>
             </div>
             <div
-              className={"gallery-border"}
+              className={`d-flex align-items-center gallery-border ${styles.descriptionContainer}`}
               style={{ borderBottom: "0" }}
               draggable="false"
             >
@@ -171,6 +173,7 @@ function Slide({
                   </span>
                 </div>
                 <div
+                  title={event?.location}
                   className={`text-truncate ${styles.locationDiv}  ${styles.borderRight} ${customGridClass}`}
                 >
                   <a

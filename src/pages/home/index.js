@@ -130,11 +130,10 @@ function Home() {
           <div className={styles.bgImg}>
             <Container>
               <Row>
-                <Col md={6}>
+                <Col md={7}>
                   <div className={styles.paddingR}>
                     <Heading variant="subHeading">
-                      IT BEGINS WITH THE
-                      <br /> CONNECTION...
+                      IT BEGINS WITH THE CONNECTION...
                     </Heading>
                     <Text>
                       Moivon is inspired by a need to connect seekers of art,
@@ -154,11 +153,12 @@ function Home() {
                     </Text>
                   </div>
                 </Col>
-                <Col md={6}>
-                  <div
-                    className={`${styles.largeLogoDiv} d-flex justify-content-center align-items-center h-100`}
-                  >
-                    <img src="/img/large-logo.svg" alt="logo" />
+                <Col md={5}>
+                  <div className="d-flex h-100">
+                    <span className={styles.divider}></span>
+                    <div className="d-flex justify-content-center align-items-center w-100 h-100">
+                      <img src="/img/large-logo.svg" alt="logo" />
+                    </div>
                   </div>
                 </Col>
               </Row>
@@ -169,11 +169,10 @@ function Home() {
       <section className={`section ${styles.contactSection}`} id="contact-page">
         <Container>
           <Row>
-            <Col md={6} className="mb-4">
+            <Col md={7} className="mb-4">
               <div className={`${styles.contactWrapper} ${styles.paddingR}`}>
                 <Heading variant="subHeading">
-                  CONTACT US FOR ANY
-                  <br /> QUESTIONS
+                  CONTACT US FOR ANY QUESTIONS
                 </Heading>
                 <Text>
                   If you have any questions or propositions regarding to
@@ -188,7 +187,7 @@ function Home() {
                 />
               </div>
             </Col>
-            <Col md={6}>
+            <Col md={5}>
               <div className={styles.form}>
                 <HomeForm />
               </div>
