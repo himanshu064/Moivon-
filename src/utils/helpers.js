@@ -13,7 +13,7 @@ export const calculateTotalPagesCount = (pageSize, totalCount) => {
 };
 
 export const getMapsLocation = (location) => {
-  if (!location) return null;
+  if (!location) return "";
   if (typeof location !== "string") return null;
 
   if (isValidURL(location)) {

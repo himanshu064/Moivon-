@@ -101,7 +101,13 @@ function EventDetail() {
                     style={{ width: 180 }}
                     type="outline"
                   >
-                    Book Now
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={data?.data?.data?.eventUrl}
+                    >
+                      Book Now
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -195,7 +201,11 @@ function EventDetail() {
                   <a
                     href={
                       data?.data?.data?.venue
-                        ? getMapsLocation(data?.data?.data?.location)
+                        ? getMapsLocation(
+                            `${data?.data?.data?.venue || ""} ${
+                              data?.data?.data?.location || ""
+                            }`
+                          )
                         : "#"
                     }
                     target="_blank"
@@ -214,7 +224,13 @@ function EventDetail() {
                       href={prepareURL(data?.data?.data?.organizationUrl)}
                       rel="noopener noreferrer"
                     >
-                      <img src="/img/bg-logo.png" alt="" />
+                      {/* <img src="/img/bg-logo.png" alt="" /> */}
+                      <img
+                        src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${prepareURL(
+                          data?.data?.data?.organizationUrl
+                        )}&size=32`}
+                        alt=""
+                      />
                     </a>
                     <div className={styles.info}>
                       <a
@@ -230,15 +246,15 @@ function EventDetail() {
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <a
-                    target="_blank"
-                    href={prepareURL(data?.data?.data?.eventUrl)}
-                    rel="noopener noreferrer"
-                  >
-                    <Button className={styles.secondaryButton} type="outline">
+                  <Button className={styles.secondaryButton} type="outline">
+                    <a
+                      target="_blank"
+                      href={prepareURL(data?.data?.data?.organizationUrl)}
+                      rel="noopener noreferrer"
+                    >
                       VISIT WEBSITE
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
                 </div>
               </div>
             </Col>

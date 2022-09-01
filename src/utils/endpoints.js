@@ -40,7 +40,7 @@ export const ALL_ENDPOINTS = {
     return "/events" + qs;
   },
   BUILD_SINGLE_EVENT: ({ eventId }) => `/events/${eventId}`,
-  BUILD_RELATED_EVENTS: () => "/events?size=3&published=true",
+  BUILD_RELATED_EVENTS: () => "/events?size=3&published=true&sort=earliest",
   BUILD_UPCOMING_EVENTS: () =>
     `/events?size=10&published=true&upComing=true&sort=upComingSeq&order=asc`,
   BUILD_MOST_POPULAR_EVENTS: () =>
