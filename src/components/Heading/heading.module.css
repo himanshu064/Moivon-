@@ -1,26 +1,28 @@
 .heading {
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 75px;
-    letter-spacing: -0.02em;
-    color: var(--theme-white);
-    text-transform: uppercase;
-    font-family: var(--manrope-bold) !important;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 75px;
+  letter-spacing: -0.02em;
+  color: var(--theme-white);
+  text-transform: uppercase;
+  font-family: var(--manrope-bold) !important;
+}
+
+.subHeading {
+  font-size: 40px;
+  line-height: 120%;
+}
+
+@media screen and (max-width:768px) {
+  .heading {
+    font-size: 40px !important;
+    line-height: 55px !important;
   }
-  .subHeading{
-    font-size: 48px;
-    line-height: 120%;
+}
+
+@media screen and (max-width:576px) {
+  .heading {
+    font-size: 30px !important;
+    line-height: 45px !important;
   }
-  
-  @media screen and (max-width:768px) {
-    .heading{
-      font-size: 40px !important;
-      line-height: 55px !important;
-    }
-  }
-  @media screen and (max-width:576px) {
-    .heading{
-      font-size: 30px !important;
-      line-height: 45px !important;
-    }
-  }
+}

@@ -261,7 +261,7 @@ function UploadEvent() {
                       className={`${styles.formGroup} mb-2 d-flex align-items-center gap-1`}
                       controlId="formGroupStartDate"
                     >
-                      <Form.Label>From:</Form.Label>
+                      <Form.Label>Start Date:</Form.Label>
                       <Controller
                         name="startDate"
                         control={control}
@@ -281,7 +281,7 @@ function UploadEvent() {
                       className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
                       controlId="formGroupEndDate"
                     >
-                      <Form.Label>To:</Form.Label>
+                      <Form.Label>End Date:</Form.Label>
                       <Controller
                         name="endDate"
                         control={control}
@@ -368,11 +368,9 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${
-                          styles.priceContainer
-                        } ${
-                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                        }`}
+                        className={`${styles.formGroup} ${styles.priceContainer
+                          } ${priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                          }`}
                       >
                         <Form.Control
                           type="number"

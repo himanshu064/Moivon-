@@ -154,7 +154,7 @@ function AllEvent() {
             <Col md={12}>
               <div className={" mb-4 " + styles.navHead}>
                 <Heading mb="0" variant="subHeading">
-                  Events
+                  search
                 </Heading>
                 <div
                   className={`align-items-center justify-content-between gap-5 w-100 ${styles.topHead}`}
@@ -162,8 +162,9 @@ function AllEvent() {
                   <Tabs
                     id="controlled-tab-example"
                     activeKey={genre}
+
                     onSelect={onTabChange}
-                    className={`mb-3 customTab ${styles.customTabs}`}
+                    className={`m-auto customTab ${styles.customTabs}`}
                   >
                     <Tab eventKey="all" title="All events"></Tab>
                     {!allGenresLoading &&

@@ -87,7 +87,7 @@ function EventDetail() {
                   <Heading
                     mb="0"
                     variant="subHeading"
-                    customClass={`text-transform ${styles.eventHeader}`}
+                    customClass={styles.eventHeader}
                     title={data?.data?.data?.title}
                   >
                     {data?.data?.data?.title}
