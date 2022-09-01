@@ -1,5 +1,6 @@
 /* events */
 .eventWrapper {
+  height: 388px;
   position: relative;
   margin-bottom: 20px;
   cursor: pointer;
@@ -11,16 +12,27 @@
 }
 .eventWrapper .image img {
   width: 100%;
-  height: 271px;
+  /* height: 271px; */
+  height: 292px;
   object-fit: cover;
 }
 .eventWrapper .content {
-  padding: 10px 0 0;
+  height: 96px;
+  /* padding: 10px 0 0; */
   border: 1px solid var(--border-color);
+}
+.eventWrapper .content .titleContainer {
+  height: 48px;
 }
 .eventWrapper .content h3 {
   color: var(--theme-white);
   font-size: 20px;
+  margin-bottom: 0;
+}
+
+.eventWrapper .content .descriptionContainer {
+  height: 48px;
+  /* padding: 0 1rem; */
 }
 
 .eventWrapper span {
@@ -40,8 +52,9 @@
 
 .borderRight {
   border-right: 2px solid var(--border-color);
-  padding-right: 1rem !important;
-  padding-left: 1rem !important;
+  padding: 0 1rem;
+  /* padding-right: 1rem !important;
+  padding-left: 1rem !important; */
 }
 .borderRight:last-child {
   border-right: 0;
@@ -84,6 +97,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 90px;
+  /* width: 90px; */
   display: block;
 }

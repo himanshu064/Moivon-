@@ -71,10 +71,11 @@ const MostPopularAccordion = () => {
           </div>
         </Col>
         <Col md={6}>
-          <div className={styles.img}>
+          <div className="w-100 h-100">
             {!isLoading && data?.data?.data?.length > 0 && (
               <Link to={`/event-detail/${getEventLink()}`}>
                 <img
+                  className={styles.image}
                   src={prepareImageSrc(getImage())}
                   alt=""
                   width="100%"

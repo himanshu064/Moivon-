@@ -47,46 +47,46 @@ const HomeForm = () => {
     <Form onSubmit={handleSubmit(onFormSubmit)}>
       <Form.Group
         className={`${styles.formGroup} mb-3`}
-        controlId='formGroupName'
+        controlId="formGroupName"
       >
         <Form.Label>Full Name</Form.Label>
         <Form.Control
-          type='text'
-          placeholder='Enter your full name'
-          autoComplete='off'
+          type="text"
+          placeholder="Enter your full name"
+          autoComplete="off"
           {...register("name")}
         />
       </Form.Group>
       <Form.Group
         className={`${styles.formGroup} mb-3`}
-        controlId='formGroupEmail'
+        controlId="formGroupEmail"
       >
         <Form.Label>Email</Form.Label>
         <Form.Control
-          type='email'
-          placeholder='Enter your  email'
+          type="email"
+          placeholder="Enter your  email"
           {...register("email")}
         />
       </Form.Group>
       <Form.Group
         className={`${styles.formGroup} mb-3`}
-        controlId='formGroupPhone'
+        controlId="formGroupPhone"
       >
         <Form.Label>phone number (optional)</Form.Label>
         <Form.Control
-          type='tel'
-          placeholder='Enter your  phone number'
+          type="tel"
+          placeholder="Enter your  phone number"
           {...register("phone")}
         />
       </Form.Group>
       <Form.Group
         className={`${styles.formGroup} mb-5`}
-        controlId='formGroupMessage'
+        controlId="formGroupMessage"
       >
         <Form.Label>WRITE A MESSAGE</Form.Label>
         <Form.Control
-          as='textarea'
-          placeholder='Enter your message'
+          as="textarea"
+          placeholder="Enter your message"
           {...register("message")}
         />
       </Form.Group>
@@ -94,8 +94,8 @@ const HomeForm = () => {
         className={`d-flex gap-4 align-items-center flex-wrap ${styles.btnDiv}`}
       >
         <Button
-          type='primary'
-          htmlType='submit'
+          type="primary"
+          htmlType="submit"
           disabled={!isDirty || !isValid}
         >
           {isSubmitting ? "..." : "Submit"}
