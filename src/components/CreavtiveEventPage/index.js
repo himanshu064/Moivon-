@@ -15,21 +15,10 @@ import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 export default function CreavtiveEventPage() {
   const { show, onClose } = useTransparentHeader(true);
 
-  // const handleClose = (callback) => {
-  //   document.querySelector(".offcanvas.offcanvas-top").style.transform =
-  //     "translateY(-100%)";
-  //   setTimeout(() => {
-  //     onClose(false);
-  //     if (callback) {
-  //       callback();
-  //     }
-  //   }, 50);
-  // };
-
   return (
     <>
       <Offcanvas
-        backdrop={false}
+        backdrop={true}
         scroll={false}
         show={show}
         placement="top"
