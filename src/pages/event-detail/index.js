@@ -201,7 +201,9 @@ function EventDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button type="outline">OPEN MAP</Button>
+                    <Button className={styles.secondaryButton} type="outline">
+                      OPEN MAP
+                    </Button>
                   </a>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
@@ -233,7 +235,9 @@ function EventDetail() {
                     href={prepareURL(data?.data?.data?.eventUrl)}
                     rel="noopener noreferrer"
                   >
-                    <Button type="outline">VISIT WEBSITE</Button>
+                    <Button className={styles.secondaryButton} type="outline">
+                      VISIT WEBSITE
+                    </Button>
                   </a>
                 </div>
               </div>

@@ -22,7 +22,7 @@ const Footer = () => {
       <section className={`${styles.footerSection} section`}>
         <Container>
           <Row className="mb-4">
-            <Col sm={8}>
+            <Col sm={7}>
               <Row>
                 <Col xs={6} sm={6} md={3}>
                   <div className={styles.logo}>
@@ -95,7 +95,7 @@ const Footer = () => {
                 </Col>
               </Row>
             </Col>
-            <Col sm={4}>
+            <Col sm={5}>
               <div className={styles.subscribeSection}>
                 <h3 className="mb-3">Subscribe for updates</h3>
                 <Form>
@@ -103,10 +103,11 @@ const Footer = () => {
                     className={`${styles.formGroup} mb-3`}
                     controlId="formGroupEmail"
                   >
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="mb-0">Email</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Enter your email to get updates"
+                      className={styles.emailInput}
                     />
                   </Form.Group>
                 </Form>
