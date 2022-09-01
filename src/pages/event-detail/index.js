@@ -31,7 +31,7 @@ import {
   prepareURL,
 } from "../../utils/helpers";
 import Loader from "../../components/Loader";
-import EventLoadingTile from "../../components/EventLoadingTile";
+import { EventLoadingTiles } from "../../components/EventLoadingTile";
 
 function EventDetail() {
   const pagination = {
@@ -283,7 +283,7 @@ function EventDetail() {
           <div className={`mx-0 `}>
             {allEventsIsLoading ? (
               <div className="d-flex justify-content-center align-items-center flex-wrap gap-3">
-                <EventLoadingTile tileCount={3} />
+                <EventLoadingTiles tileCount={3} />
               </div>
             ) : allEventsIsError ? (
               <p>{allEventError}</p>

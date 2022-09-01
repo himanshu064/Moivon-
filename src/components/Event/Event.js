@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 import styles from "./event.module.css";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
@@ -11,10 +12,12 @@ import {
   getMapsLocation,
   isValidURL,
 } from "../../utils/helpers";
+import { EventLoadingTile } from "../EventLoadingTile";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
 function Event({
+  isLoading,
   event,
   showArrowOnHover,
   showGalleryOnHover,
@@ -26,23 +29,32 @@ function Event({
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
 
+  if (isLoading) {
+    return (
+      <div className={styles.eventWrapper}>
+        <EventLoadingTile />
+      </div>
+    );
+  }
+
   return (
     <>
       <div
-        className={`eventWrapper ${styles.eventWrapper} ${
-          !isFutureDate
-            ? [styles.hideLightening, "lighten-container"].join(" ")
-            : ""
-        }`}
+        className={classnames(`eventWrapper ${styles.eventWrapper}`, {
+          [styles.hideLightening]: !isFutureDate,
+          "lighten-container": !isFutureDate,
+        })}
       >
         <div
-          className={!isFutureDate ? styles.eventImageOverlay : ""}
+          className={classnames({
+            [styles.eventImageOverlay]: !isFutureDate,
+          })}
           onClick={!isFutureDate ? onOverlayClick : null}
         />
         <div
-          className={`${styles.image} event-single-slider ${
-            showArrowOnHover && isFutureDate ? "all-event-slider" : ""
-          }`}
+          className={classnames(`${styles.image} event-single-slider`, {
+            "all-event-slider": showArrowOnHover && isFutureDate,
+          })}
         >
           <Carousel interval={null}>
             {event?.images?.map((imageData, index) => (
