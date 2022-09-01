@@ -38,6 +38,11 @@
 .content .aboutContent {
   padding: 20px 0;
 }
+.content .aboutContent .secondaryButton {
+  width: 150px;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
 
 .info h4 {
   color: var(--theme-white);

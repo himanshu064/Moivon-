@@ -157,12 +157,11 @@ function AllEvent() {
                   search
                 </Heading>
                 <div
-                  className={`align-items-center justify-content-between gap-5 w-100 ${styles.topHead}`}
+                  className={`align-items-center justify-content-between gap-4 w-100 ${styles.topHead}`}
                 >
                   <Tabs
                     id="controlled-tab-example"
                     activeKey={genre}
-
                     onSelect={onTabChange}
                     className={`m-auto customTab ${styles.customTabs}`}
                   >
