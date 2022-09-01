@@ -28,7 +28,13 @@ function Event({
 
   return (
     <>
-      <div className={`eventWrapper lighten-container ${styles.eventWrapper}`}>
+      <div
+        className={`eventWrapper ${styles.eventWrapper} ${
+          !isFutureDate
+            ? [styles.hideLightening, "lighten-container"].join(" ")
+            : ""
+        }`}
+      >
         <div
           className={!isFutureDate ? styles.eventImageOverlay : ""}
           onClick={!isFutureDate ? onOverlayClick : null}
