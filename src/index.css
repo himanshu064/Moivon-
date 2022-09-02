@@ -44,9 +44,11 @@
   --border-color: #575757;
   --color-black: #000000;
   --navbar-dark: #1b1b1b;
+  --navbar-dark-1: rgba(26, 26, 26, 0.95);
   --color-white: #ffffff;
   --color-disabled: #d5cdcdd6;
   --bgcolor-disabled: #7a7a7782;
+  --transparent: transparent;
   --sans-regular: "Google sans Regular";
   --sans-medium: "Google sans Medium";
   --sans-bold: "Google sans Bold";
@@ -83,12 +85,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #D1D1CF;
+  background: #d1d1cf;
   border-radius: 15px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: #D1D1CF;
+  background: #d1d1cf;
 }
 
 code {
@@ -121,9 +123,33 @@ code {
 .navbar-light .navbar-toggler {
   color: var(--theme-white) !important;
 }
-
-.nav_dropdown .dropdown-menu a {
-  color: #000 !important;
+.app-header .nav_dropdown.transparent .dropdown-menu.show {
+  background-color: var(--transparent) !important;
+}
+.app-header .nav_dropdown .dropdown-menu {
+  border-radius: 15px;
+}
+.app-header .nav_dropdown .dropdown-menu.show {
+  background-color: var(--navbar-dark-1) !important;
+  left: -10px;
+}
+.all-events .dropdown .dropdown-item.active {
+  background-color: var(--navbar-dark-1) !important;
+  text-underline-offset: 8px;
+  text-decoration: underline !important;
+}
+.app-header .nav_dropdown .dropdown-menu a {
+  text-transform: uppercase;
+  font-size: 12px !important;
+  color: var(--color-white) !important;
+  padding: 8px 16px;
+}
+.app-header .nav_dropdown .dropdown-menu a:hover,
+.app-header .nav_dropdown .dropdown-menu a:active,
+.app-header .nav_dropdown .dropdown-menu a:focus {
+  text-decoration: underline !important;
+  background-color: var(--transparent) !important;
+  text-underline-offset: 8px;
 }
 
 .swiper-button-next,
@@ -323,7 +349,8 @@ button:focus {
   position: relative;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.15) scaleY(1.15);
+  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.15)
+    scaleY(1.15);
   background: #232323;
   z-index: 1;
 }

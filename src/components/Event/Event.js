@@ -12,12 +12,10 @@ import {
   getMapsLocation,
   isValidURL,
 } from "../../utils/helpers";
-import { EventLoadingTile } from "../EventLoadingTile";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
 function Event({
-  isLoading,
   event,
   showArrowOnHover,
   showGalleryOnHover,
@@ -28,14 +26,6 @@ function Event({
   const isFutureDate = parsedDate ? isFuture(parsedDate) : false;
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
-
-  if (isLoading) {
-    return (
-      <div className={styles.eventWrapper}>
-        <EventLoadingTile />
-      </div>
-    );
-  }
 
   return (
     <>
