@@ -29,6 +29,7 @@ export default function CreavtiveEventPage() {
           backgroundImage: "url(/img/Creativebackground.png)",
           backgroundSize: "cover",
           transform: "none",
+          backgroundPosition: "center",
         }}
       >
         <Offcanvas.Header closeButton className={styles.offCanvasHeader}>
