@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -12,7 +12,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
-import { toTitleCase } from "../../utils/helpers";
+import { toTitleCase, vhToPixels } from "../../utils/helpers";
 import {
   SCROLLING_HEADER_PATHS,
   SCROLL_INTO_VIEW_OPTIONS,
@@ -20,7 +20,7 @@ import {
 import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 import NavigationDropdown from "../NavigationDropdown";
 
-function Header({ transparent = false }) {
+function Header() {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -30,16 +30,37 @@ function Header({ transparent = false }) {
   const spacerRef = useRef();
   const { pathname } = useLocation();
 
+  const [transparent, setIsTransparent] = useState(() => {
+    return pathname === "/" ? true : false;
+  });
+
   const { onOpen } = useTransparentHeader();
+
+  const setDropdownTransparency = () => {
+    if (pathname === "/") {
+      if (window.scrollY >= vhToPixels(100)) {
+        setIsTransparent(false);
+      } else {
+        setIsTransparent(true);
+      }
+    } else {
+      setIsTransparent(false);
+    }
+  };
 
   useLayoutEffect(() => {
     const onScroll = () => {
+      // handle navbar dropdown case
+      setDropdownTransparency();
+      // end handle
+
       if (window.scrollY > 100) {
         headerRef.current.classList.add("active");
       } else {
         headerRef.current.classList.remove("active");
       }
     };
+
     document.addEventListener("scroll", onScroll);
 
     return () => {
@@ -48,6 +69,10 @@ function Header({ transparent = false }) {
   }, []);
 
   useEffect(() => {
+    // transparent dropdown options
+    setDropdownTransparency();
+    // end transparent dropdown options
+
     if (SCROLLING_HEADER_PATHS.includes(pathname)) {
       headerRef.current.classList.remove("fixed-top");
       spacerRef.current.style.display = "none";
@@ -98,6 +123,7 @@ function Header({ transparent = false }) {
                       value: option?.genre,
                     })),
                   ]}
+                  isTransparent={transparent}
                 />
                 <Nav.Link
                   to="/"
@@ -128,8 +154,9 @@ function Header({ transparent = false }) {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={`${transparent ? styles.transparent : styles.disabledLink
-                    }`}
+                  className={`${
+                    transparent ? styles.transparent : styles.disabledLink
+                  }`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>

@@ -48,6 +48,7 @@
   --color-white: #ffffff;
   --color-disabled: #d5cdcdd6;
   --bgcolor-disabled: #7a7a7782;
+  --color-yellow: rgba(196, 149, 8, 0.9);
   --transparent: transparent;
   --sans-regular: "Google sans Regular";
   --sans-medium: "Google sans Medium";
@@ -122,7 +123,7 @@ code {
   color: var(--theme-white) !important;
 }
 .app-header .nav_dropdown.transparent .dropdown-menu.show {
-  background-color: var(--transparent) !important;
+  background-color: var(--color-yellow) !important;
 }
 .app-header .nav_dropdown .dropdown-menu {
   border-radius: 15px;
