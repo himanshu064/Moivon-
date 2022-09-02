@@ -43,6 +43,7 @@
 }
 .infiniteScrollContainer {
   overflow-x: hidden !important;
+  padding: 6px 6px 0 6px;
 }
 @media screen and (max-width: 768px) {
   .navHead {

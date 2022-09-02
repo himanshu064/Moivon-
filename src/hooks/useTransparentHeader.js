@@ -20,11 +20,9 @@ const TransparentHeaderContextProvider = ({ children }) => {
     if (path) {
       navigate(path);
     }
-    setTimeout(() => {
-      if (callback) {
-        callback();
-      }
-    }, 50);
+    if (callback) {
+      callback();
+    }
   };
 
   const onOpen = () => {

@@ -24,7 +24,7 @@ import {
   createSearchParams,
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
-import EventLoadingTile from "../../components/EventLoadingTile";
+import { EventLoadingTiles } from "../../components/EventLoadingTile";
 
 const PER_PAGE = 10;
 
@@ -115,7 +115,12 @@ function AllEvent() {
       <Row>
         {computedDataArray.map((event) => (
           <Col md={4} className="mb-3" key={event._id}>
-            <Event event={event} showGalleryOnHover showArrowOnHover />
+            <Event
+              event={event}
+              showGalleryOnHover
+              showArrowOnHover
+              isLoading={isFetching}
+            />
           </Col>
         ))}
       </Row>
@@ -214,8 +219,13 @@ function AllEvent() {
           <Row>
             <Col>
               {isLoading ? (
-                <div className="d-flex justify-content-center align-items-center flex-wrap gap-3">
-                  <EventLoadingTile tileCount={9} />
+                <div className="d-flex align-items-center flex-wrap gap-3">
+                  <EventLoadingTiles
+                    tileCount={PER_PAGE}
+                    style={{
+                      width: `calc(100% / ${3} - 12px)`,
+                    }}
+                  />
                 </div>
               ) : (
                 <>
