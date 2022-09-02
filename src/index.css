@@ -116,6 +116,8 @@ code {
   position: relative;
 }
 
+
+
 .navbar-light .navbar-toggler {
   color: var(--theme-white) !important;
 }
@@ -208,8 +210,8 @@ button:focus {
 }
 
 .border-b {
-  border-bottom: 2px solid var(--border-color);
-  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0 10px 0;
 }
 
 .customTab {

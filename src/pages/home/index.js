@@ -55,48 +55,44 @@ function Home() {
         </Container>
       </section> */}
 
+      <div className="backgroundImage">
+        <section className={`section ${styles.teamSection} `}>
+          <Container>
+            <Row>
+              <Col>
+                <div className={`mx-0 ${styles.sliderTeam}`}>
+                  <HomeSlider />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={8} className={styles.customWidth60}>
 
-      <section className={`${styles.teamSection} section`}>
-        <Container>
-          <Row>
-            <Col>
-              <div className={`mx-0 ${styles.sliderTeam}`}>
-                <HomeSlider />
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={8} className={styles.customWidth60}>
-              <Row className={styles.customRow}>
-                <Col xs={6} sm={4} className={styles.customCol}>
-                  <div className={styles.countWrapper}>
-                    <Heading mb="5">2500+</Heading>
-                    <Text>Annual Creative Events</Text>
-                  </div>
-                </Col>
-                <Col xs={6} sm={4} className={styles.customCol}>
-                  <div className={styles.countWrapper}>
-                    <Heading mb="5">200+</Heading>
-                    <Text>Venues</Text>
-                  </div>
-                </Col>
-                <Col xs={6} sm={4} className={styles.customCol}>
-                  <div className={styles.countWrapper}>
-                    <Heading mb="5">5</Heading>
-                    <Text>Top Locations</Text>
-                  </div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+                <div className={styles.countWrapper1}>
+                  <Heading mb="5">2500+</Heading>
+                  <Text>Annual Creative Events</Text>
+                </div>
+
+                <div className={styles.countWrapper2}>
+                  <Heading mb="5">200+</Heading>
+                  <Text>Venues</Text>
+                </div>
+
+                <div className={styles.countWrapper2} style={{ borderRight: 'none' }}>
+                  <Heading mb="5">5</Heading>
+                  <Text>Top Locations</Text>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+
+        <section className={`section ${styles.bottomSection}`}>
+          <MostPopularAccordion />
+        </section>
+      </div>
 
 
-
-      <section className={`section ${styles.bottomSection}`}>
-        <MostPopularAccordion />
-      </section>
       <section className="section">
         <Container>
           <Row>

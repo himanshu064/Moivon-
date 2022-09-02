@@ -15,7 +15,7 @@ const EventAccordion = ({ event, isExpanded, onExpand }) => {
           {event.title}
         </h3>
         {isExpanded && (
-          <div className={`pb-4 ${styles.evnts}`}>
+          <div className={`pb-3 ${styles.evnts}`}>
             <Text>{event.description}</Text>
             <EventsInfo event={event} />
           </div>

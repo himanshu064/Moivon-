@@ -9,8 +9,9 @@
 }
 
 .subHeading {
-  font-size: 40px;
+  font-size: 48px;
   line-height: 120%;
+
 }
 
 @media screen and (max-width:768px) {
