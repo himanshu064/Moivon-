@@ -60,7 +60,7 @@ const HomeForm = () => {
         className={`${styles.formGroup} mb-3`}
         controlId="formGroupName"
       >
-        <Form.Label>Full Name</Form.Label>
+        <Form.Label className="mb-0">Full Name</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter your full name"
@@ -72,7 +72,7 @@ const HomeForm = () => {
         className={`${styles.formGroup} mb-3`}
         controlId="formGroupEmail"
       >
-        <Form.Label>Email</Form.Label>
+        <Form.Label className="mb-0">Email</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter your  email"
@@ -83,7 +83,7 @@ const HomeForm = () => {
         className={`${styles.formGroup} mb-3`}
         controlId="formGroupPhone"
       >
-        <Form.Label>phone number (optional)</Form.Label>
+        <Form.Label className="mb-0">phone number (optional)</Form.Label>
         <Form.Control
           type="tel"
           placeholder="Enter your  phone number"
@@ -94,7 +94,7 @@ const HomeForm = () => {
         className={`${styles.formGroup} mb-5`}
         controlId="formGroupMessage"
       >
-        <Form.Label>WRITE A MESSAGE</Form.Label>
+        <Form.Label className="mb-0">WRITE A MESSAGE</Form.Label>
         <Form.Control
           as="textarea"
           placeholder="Enter your message"
