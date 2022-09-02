@@ -77,7 +77,7 @@ function Header({ transparent = false }) {
               className={styles.logo}
               onClick={() => onRedirectHomePage()}
             >
-              <img src="/img/moivon.png" alt="logo" />
+              <img src="/img/moivon.png" alt="logo" width={45} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
               <BiMenuAltRight />
@@ -132,9 +132,8 @@ function Header({ transparent = false }) {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={`${
-                    transparent ? styles.transparent : styles.disabledLink
-                  }`}
+                  className={`${transparent ? styles.transparent : styles.disabledLink
+                    }`}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>
@@ -146,7 +145,7 @@ function Header({ transparent = false }) {
                     styles.customIcon + " d-flex align-items-center gap-3"
                   }
                 >
-                  <FiSearch />
+                  <img src="/img/Search.svg" alt="Search" width={18} />
                   <Dropdown className={styles.dropdownBtn}>
                     <Dropdown.Toggle variant="none" id="dropdown-basic">
                       ENG

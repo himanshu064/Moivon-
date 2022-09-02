@@ -46,7 +46,7 @@ const MostPopularAccordion = () => {
   return (
     <Container className="position-relative">
       <Row>
-        <Col md={6} className="mb-4">
+        <Col md={5} className="mb-4">
           <div className={styles.paddingRight}>
             <Heading variant="subHeading">
               Most popular
@@ -70,7 +70,7 @@ const MostPopularAccordion = () => {
             </div>
           </div>
         </Col>
-        <Col md={6}>
+        <Col md={7}>
           <div className="w-100 h-100">
             {!isLoading && data?.data?.data?.length > 0 && (
               <Link to={`/event-detail/${getEventLink()}`}>

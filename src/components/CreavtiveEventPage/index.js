@@ -17,44 +17,22 @@ export default function CreavtiveEventPage() {
 
   return (
     <>
-      <Offcanvas
-        backdrop={false}
-        scroll={false}
-        show={show}
-        placement="top"
-        onHide={onClose}
-        style={{
-          height: "100vh",
-          backgroundRepeat: "no-repeat",
-          backgroundImage: "url(/img/Creativebackground.png)",
-          backgroundSize: "cover",
-          transform: "none",
-          backgroundPosition: "center",
-        }}
-      >
-        <Offcanvas.Header closeButton className={styles.offCanvasHeader}>
-          <img src="/img/Arrow.svg" alt="Arrow" />
-        </Offcanvas.Header>
-        <Offcanvas.Body className="p-0">
-          <Container>
-            <Row>
-              <Col lg={12}>
-                <HeaderTransparent />
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={12}>
-                <div className={styles.heroHeading}>
-                  <Heading>
-                    FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY{" "}
-                  </Heading>
-                  <span className={styles.spanHead}>
+      <div className={styles.CustomContainer}>
+        <Container >
 
-                    Welcome to Moivon, your one source for uncovering
-                    <br /> art, creative, and design events. Explore our curated
-                    <br />list made for you and fall in love in each!
-                  </span>
-                </div>
+          <Row>
+            <Col lg={12}>
+              <div className={styles.heroHeading}>
+                <Heading>
+                  FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY{" "}
+                </Heading>
+                <span className={styles.spanHead}>
+
+                  Welcome to Moivon, your one source for uncovering
+                  <br /> art, creative, and design events. Explore our curated
+                  <br />list made for you and fall in love in each!
+                </span>
+
                 <div
                   className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
                 >
@@ -65,11 +43,17 @@ export default function CreavtiveEventPage() {
                     <img src="/img/video.svg" alt="video" /> Video of our events
                   </span>
                 </div>
-              </Col>
-            </Row>
-          </Container>
-        </Offcanvas.Body>
-      </Offcanvas>
+              </div>
+            </Col>
+
+          </Row>
+          <Row>
+            <Col lg={12}>
+              <img className={styles.herosectionImg} src="/img/Arrow.svg" alt="Arrow" />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
   );
 }

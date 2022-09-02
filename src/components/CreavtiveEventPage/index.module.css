@@ -1,58 +1,31 @@
-.creavtiveEventBg>div {
+.CustomContainer {
   height: 100vh;
   background-repeat: no-repeat;
+  background-image: url(/public/img/Creativebackground.png);
   background-size: cover;
-}
-
-.offCanvasHeader {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-}
-
-.offCanvasHeader button {
-  cursor: pointer;
-  background: transparent;
-  margin-left: -25px;
-}
-
-.findingCreativeEvent {
-  font-size: 50px;
-  font-weight: 700;
-  letter-spacing: 11px;
-  word-spacing: 20px;
-}
-
-.findingCreativeEventH1 {
-  width: 55%;
-  font-size: 50px;
-  font-weight: 700;
-  letter-spacing: 10px;
-  word-spacing: 17px;
-  border-right: 1px solid black;
-}
-
-.findingCreativeEventH6 {
-  width: 45%;
-  padding: 0 0 0 25px;
+  background-position: center center;
+  position: relative;
+  top: -70px;
 }
 
 .heroHeading {
   position: relative;
-  margin-top: 18vh;
-  margin-bottom: 2rem;
+  margin-top: 29vh;
+  padding: 0 15px;
 }
 
 .heroHeading h1 {
-  font-size: 65px;
+  font-size: 64px;
   line-height: 90px;
   font-family: var(--manrope-regular) !important;
   letter-spacing: 1px;
+  margin-bottom: 3.8rem !important;
 }
 
 .heroHeading .spanHead {
   position: absolute;
-  right: 16%;
+  padding-left: 10px;
+  right: 14%;
   top: 105px;
   font-size: 14px;
   font-family: var(--sans-regular);
@@ -70,9 +43,11 @@
 }
 
 .heroIcons a {
-  background-color: var(--theme-white);
+  background-color: var(--theme-white) !important;
   color: black !important;
   border: none;
+  width: 212px;
+  height: 48px;
 }
 
 .heroIcons img {
@@ -84,6 +59,13 @@
   color: var(--theme-white);
   font-size: 14px;
   font-family: var(--sans-medium);
+  line-height: 18px;
+}
+
+.herosectionImg {
+  position: absolute;
+  bottom: 30px;
+  left: 49.9%
 }
 
 @media screen and (max-width: 1349px) {
@@ -112,8 +94,4 @@
     font-size: 30px !important;
     line-height: 45px !important;
   }
-}
-
-.heroSliderBackdrop {
-  opacity: 0 !important;
 }

@@ -26,7 +26,7 @@ function Home() {
       <CreavtiveEventPage />
       <RouteTitle title="Home" />
 
-      <section className={`${styles.heroSection} section`}>
+      {/* <section className={`${styles.heroSection} section`}>
         <Container>
           <Row>
             <Col lg={8}>
@@ -53,11 +53,20 @@ function Home() {
             </Col>
           </Row>
         </Container>
-      </section>
-      <section className="section">
+      </section> */}
+
+
+      <section className={`${styles.teamSection} section`}>
         <Container>
           <Row>
-            <Col lg={7}>
+            <Col>
+              <div className={`mx-0 ${styles.sliderTeam}`}>
+                <HomeSlider />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={8} className={styles.customWidth60}>
               <Row className={styles.customRow}>
                 <Col xs={6} sm={4} className={styles.customCol}>
                   <div className={styles.countWrapper}>
@@ -83,17 +92,7 @@ function Home() {
         </Container>
       </section>
 
-      <section className={`${styles.teamSection} section`}>
-        <Container>
-          <Row>
-            <Col>
-              <div className={`mx-0 ${styles.sliderTeam}`}>
-                <HomeSlider />
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+
 
       <section className={`section ${styles.bottomSection}`}>
         <MostPopularAccordion />

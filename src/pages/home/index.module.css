@@ -42,6 +42,14 @@
   border-right: 2px solid var(--border-color);
 }
 
+.customWidth60 {
+  width: 60% !important;
+}
+
+.customRow {
+  margin-top: 50px !important;
+}
+
 .customRow .customCol:last-child .countWrapper {
   border-right: 0;
 }
@@ -105,6 +113,7 @@
 .largeLogoDiv {
   border-left: 2px solid var(--border-color);
 }
+
 .divider {
   border-left: 2px solid var(--border-color);
   height: 85%;
