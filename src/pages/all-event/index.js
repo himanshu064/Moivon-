@@ -136,7 +136,7 @@ function AllEvent() {
   return (
     <>
       <RouteTitle title="All Events" />
-      <section className="section">
+      <section className="section all-events">
         <Container>
           <Row>
             <Col md={12}>
@@ -168,7 +168,7 @@ function AllEvent() {
                       <Button type="outline">Sort</Button>
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className={styles.dropdownMenu}>
                       {Object.entries(ALL_EVENTS_FILTERS).map(
                         ([field, values], idx) => {
                           const { key, icon: Icon } = values;

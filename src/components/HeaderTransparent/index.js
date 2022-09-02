@@ -15,6 +15,7 @@ import { fetchAllGenres } from "../../services/GenreService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import { useTransparentHeader } from "../../hooks/useTransparentHeader";
+import NavigationDropdown from "../NavigationDropdown";
 
 function HeaderTransparent() {
   const { onClose } = useTransparentHeader();
@@ -23,9 +24,11 @@ function HeaderTransparent() {
     fetchAllGenres
   );
 
+  const allGenresData = allGenres?.data?.data || [];
+
   return (
     <>
-      <header>
+      <header className="app-header">
         <Navbar className="navbar fixed-top" bg="transparent" expand="lg">
           <Container>
             <Navbar.Brand className={styles.logo}>
@@ -36,25 +39,18 @@ function HeaderTransparent() {
             </Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className={styles.navLink + " me-auto"}>
-                <NavDropdown
+                <NavigationDropdown
                   title="All Events"
                   id="basic-nav-dropdown"
-                  className={"nav_dropdown"}
-                >
-                  <NavDropdown.Item as={Link} to="/all-events">
-                    All Events
-                  </NavDropdown.Item>
-                  {!allGenresLoading &&
-                    allGenres?.data?.data?.map((genre) => (
-                      <NavDropdown.Item
-                        as={Link}
-                        to={`/all-events?genre=${genre._id}`}
-                        className="captialize"
-                      >
-                        {toTitleCase(genre.genre)}
-                      </NavDropdown.Item>
-                    ))}
-                </NavDropdown>
+                  options={[
+                    { _id: "all", link: "/all-events", value: "All Events" },
+                    ...allGenresData.map((option) => ({
+                      _id: option._id,
+                      link: `/all-events?genre=${option._id}`,
+                      value: option?.genre,
+                    })),
+                  ]}
+                />
                 <Nav.Link
                   onClick={() => {
                     onClose("/", () => {
