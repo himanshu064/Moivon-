@@ -24,7 +24,7 @@ import {
   createSearchParams,
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
-import { EventLoadingTiles } from "../../components/EventLoadingTile";
+import AllEventLoadingPlaceholder from "./AllEventLoadingPlaceholder";
 
 const PER_PAGE = 10;
 
@@ -110,23 +110,6 @@ function AllEvent() {
   const computedDataArray =
     eventsData?.pages?.flatMap((page) => page.data?.data) || [];
 
-  const randomTabContent = () => {
-    return (
-      <Row>
-        {computedDataArray.map((event) => (
-          <Col md={4} className="mb-3" key={event._id}>
-            <Event
-              event={event}
-              showGalleryOnHover
-              showArrowOnHover
-              isLoading={isFetching}
-            />
-          </Col>
-        ))}
-      </Row>
-    );
-  };
-
   const onTabChange = (key) => {
     navigate({
       pathname: location.pathname,
@@ -153,7 +136,7 @@ function AllEvent() {
   return (
     <>
       <RouteTitle title="All Events" />
-      <section className="section">
+      <section className="section all-events">
         <Container>
           <Row>
             <Col md={12}>
@@ -185,7 +168,7 @@ function AllEvent() {
                       <Button type="outline">Sort</Button>
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className={styles.dropdownMenu}>
                       {Object.entries(ALL_EVENTS_FILTERS).map(
                         ([field, values], idx) => {
                           const { key, icon: Icon } = values;
@@ -217,42 +200,48 @@ function AllEvent() {
             </Col>
           </Row>
           <Row>
-            <Col>
-              {isLoading ? (
-                <div className="d-flex align-items-center flex-wrap gap-3">
-                  <EventLoadingTiles
-                    tileCount={PER_PAGE}
-                    style={{
-                      width: `calc(100% / ${3} - 12px)`,
-                    }}
-                  />
-                </div>
-              ) : (
-                <>
-                  {!isLoading && isError ? (
-                    <p className="no-data">
-                      {error?.response?.data?.error || error.toString()}
-                    </p>
-                  ) : (
-                    <>
-                      {computedDataArray.length === 0 && !isLoading ? (
-                        <p className="no-data">No Event found</p>
-                      ) : (
-                        <InfiniteScroll
-                          className={styles.infiniteScrollContainer}
-                          dataLength={computedDataArray.length}
-                          next={fetchNextPage}
-                          hasMore={hasNextPage}
-                          loader={<h4>Loading...</h4>}
-                        >
-                          {randomTabContent()}
-                        </InfiniteScroll>
-                      )}
-                    </>
-                  )}
-                </>
-              )}
-            </Col>
+            {isLoading ? (
+              <AllEventLoadingPlaceholder />
+            ) : (
+              <Col>
+                {!isLoading && isError ? (
+                  <p className="no-data">
+                    {error?.response?.data?.error || error.toString()}
+                  </p>
+                ) : (
+                  <>
+                    {computedDataArray.length === 0 && !isLoading ? (
+                      <p className="no-data">No Event found</p>
+                    ) : (
+                      <InfiniteScroll
+                        className={styles.infiniteScrollContainer}
+                        dataLength={computedDataArray.length}
+                        next={fetchNextPage}
+                        hasMore={hasNextPage}
+                        loader={<h4>Loading...</h4>}
+                      >
+                        <Row>
+                          {computedDataArray.map((event) => (
+                            <Col md={4} className="mb-3" key={event._id}>
+                              <Event
+                                event={event}
+                                showGalleryOnHover
+                                showArrowOnHover
+                                isLoading={isFetching}
+                              />
+                            </Col>
+                          ))}
+
+                          {isFetching && hasNextPage && (
+                            <AllEventLoadingPlaceholder />
+                          )}
+                        </Row>
+                      </InfiniteScroll>
+                    )}
+                  </>
+                )}
+              </Col>
+            )}
           </Row>
         </Container>
       </section>

@@ -1,22 +1,18 @@
 import React from "react";
+import styles from "./index.module.css";
+
+const EventLoadingTile = ({ className = "", ...props }) => (
+  <div className={`${styles.container} ${className}`} {...props}></div>
+);
 
 const EventLoadingTiles = ({ tileCount = 1, ...props }) => (
   <>
     {[...new Array(tileCount)].map((_, skeltonIndex) => {
       return (
-        <img
-          key={`skeltonIndex_${skeltonIndex}`}
-          src="/img/event-loading.svg"
-          alt="loading..."
-          {...props}
-        />
+        <EventLoadingTile key={`skeltonIndex_${skeltonIndex}`} {...props} />
       );
     })}
   </>
-);
-
-const EventLoadingTile = (props) => (
-  <img src="/img/event-loading.svg" alt="loading..." {...props} />
 );
 
 export { EventLoadingTile, EventLoadingTiles };

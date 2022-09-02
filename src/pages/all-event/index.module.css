@@ -37,9 +37,37 @@
   align-items: center;
   justify-content: space-between;
 }
+.dropdownBtn .dropdownMenu {
+  max-width: 120px;
+  min-width: 120px;
+  right: 12px !important;
+  background-color: var(--navbar-dark-1) !important;
+  transform: translate(0px, 48px) !important;
+}
+.dropdownBtn .filterItem {
+  text-transform: uppercase;
+  font-size: 12px !important;
+  color: var(--color-white) !important;
+  padding: 8px;
+  background-color: var(--transparent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdownBtn .dropdownMenu .filterItem:active,
+.dropdownBtn .dropdownMenu .filterItem:focus,
+.dropdownBtn .dropdownMenu .filterItem:hover,
+.dropdownBtn .dropdownMenu .filterItem:visited {
+  text-decoration: underline !important;
+  background-color: var(--transparent) !important;
+  text-underline-offset: 8px;
+}
 
 .dropdownBtn .filterItem svg {
-  color: var(--theme-white-light);
+  color: var(--color-white);
+  font-size: 14px;
+  margin-left: 3px;
 }
 .infiniteScrollContainer {
   overflow-x: hidden !important;
