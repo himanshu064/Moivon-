@@ -46,7 +46,7 @@ function TransparentHeader({ genres = [] }, headerRef) {
                       value: option?.genre,
                     })),
                   ]}
-                  isTransparent
+                  isTransparent={pathname === "/"}
                 />
                 <Nav.Link
                   to="/"
