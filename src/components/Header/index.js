@@ -1,65 +1,44 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef } from "react";
+import debounce from "lodash/debounce";
 import { useQuery } from "@tanstack/react-query";
-import styles from "./index.module.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "../Button";
-import { FiSearch } from "react-icons/fi";
-import Dropdown from "react-bootstrap/Dropdown";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { BiMenuAltRight } from "react-icons/bi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
-import { toTitleCase, vhToPixels } from "../../utils/helpers";
-import {
-  SCROLLING_HEADER_PATHS,
-  SCROLL_INTO_VIEW_OPTIONS,
-} from "../../utils/constants";
-import { useTransparentHeader } from "../../hooks/useTransparentHeader";
-import NavigationDropdown from "../NavigationDropdown";
+import TransparentHeader from "../TransparentHeader";
+import ScrollingHeader from "../ScrollingHeader";
 
 function Header() {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
-  const navigate = useNavigate();
-  const headerRef = useRef();
+  const transparentHeaderRef = useRef();
+  const scrollingHeaderRef = useRef();
   const spacerRef = useRef();
-  const { pathname } = useLocation();
-
-  const [transparent, setIsTransparent] = useState(() => {
-    return pathname === "/" ? true : false;
-  });
-
-  const { onOpen } = useTransparentHeader();
-
-  const setDropdownTransparency = () => {
-    if (pathname === "/") {
-      if (window.scrollY >= vhToPixels(100)) {
-        setIsTransparent(false);
-      } else {
-        setIsTransparent(true);
-      }
-    } else {
-      setIsTransparent(false);
-    }
-  };
 
   useLayoutEffect(() => {
-    const onScroll = () => {
-      // handle navbar dropdown case
-      setDropdownTransparency();
-      // end handle
+    const onScroll = debounce(() => {
+      if (window.scrollY > 200) {
+        if (transparentHeaderRef.current) {
+          transparentHeaderRef.current.classList.remove("scroll-down");
+          transparentHeaderRef.current.classList.add("scroll-up");
+        }
 
-      if (window.scrollY > 100) {
-        headerRef.current.classList.add("active");
+        if (scrollingHeaderRef.current) {
+          scrollingHeaderRef.current.classList.remove("scroll-up");
+          scrollingHeaderRef.current.classList.add("scroll-down");
+        }
       } else {
-        headerRef.current.classList.remove("active");
+        if (transparentHeaderRef.current) {
+          transparentHeaderRef.current.classList.remove("scroll-up");
+          transparentHeaderRef.current.classList.add("scroll-down");
+        }
+
+        if (scrollingHeaderRef.current) {
+          scrollingHeaderRef.current.classList.remove("scroll-down");
+          scrollingHeaderRef.current.classList.add("scroll-up");
+        }
       }
-    };
+    }, 100);
 
     document.addEventListener("scroll", onScroll);
 
@@ -68,129 +47,18 @@ function Header() {
     };
   }, []);
 
-  useEffect(() => {
-    // transparent dropdown options
-    setDropdownTransparency();
-    // end transparent dropdown options
-
-    if (SCROLLING_HEADER_PATHS.includes(pathname)) {
-      headerRef.current.classList.remove("fixed-top");
-      spacerRef.current.style.display = "none";
-    } else {
-      headerRef.current.classList.add("fixed-top");
-      spacerRef.current.style.display = "block";
-    }
-  }, [pathname]);
-
-  const onRedirectHomePage = () => {
-    onOpen();
-    if (pathname !== "/") {
-      navigate("/");
-    }
-  };
-
-  const allGenresData = allGenres?.data?.data || [];
-
   return (
-    <>
-      <header className="app-header">
-        <Navbar
-          className="navbar fixed-top"
-          bg="transparent"
-          expand="lg"
-          ref={headerRef}
-        >
-          <Container>
-            <Navbar.Brand
-              className={styles.logo}
-              onClick={() => onRedirectHomePage()}
-            >
-              <img src="/img/moivon.png" alt="logo" width={45} />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav">
-              <BiMenuAltRight />
-            </Navbar.Toggle>
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className={styles.navLink + " me-auto"}>
-                <NavigationDropdown
-                  title="All Events"
-                  id="basic-nav-dropdown"
-                  options={[
-                    { _id: "all", link: "/all-events", value: "All Events" },
-                    ...allGenresData.map((option) => ({
-                      _id: option._id,
-                      link: `/all-events?genre=${option._id}`,
-                      value: option?.genre,
-                    })),
-                  ]}
-                  isTransparent={transparent}
-                />
-                <Nav.Link
-                  to="/"
-                  as={Link}
-                  onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("about-page")
-                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                    }, 200);
-                  }}
-                >
-                  About Us
-                </Nav.Link>
-                <Nav.Link
-                  to="/"
-                  as={Link}
-                  onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("contact-page")
-                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                    }, 200);
-                  }}
-                >
-                  Contact Us
-                </Nav.Link>
-                <Nav.Link
-                  href="#"
-                  eventKey="disabled"
-                  className={`${
-                    transparent ? styles.transparent : styles.disabledLink
-                  }`}
-                  disabled
-                >
-                  Calendar <span className={styles.soon}>SOON</span>
-                </Nav.Link>
-              </Nav>
-              <div className={`d-flex align-items-center gap-4 ${styles.last}`}>
-                <div
-                  className={
-                    styles.customIcon + " d-flex align-items-center gap-3"
-                  }
-                >
-                  <img src="/img/Search.svg" alt="Search" width={18} />
-                  <Dropdown className={styles.dropdownBtn}>
-                    <Dropdown.Toggle variant="none" id="dropdown-basic">
-                      ENG
-                    </Dropdown.Toggle>
-
-                    {/* <Dropdown.Menu>
-<Dropdown.Item href="#/action-1">PUN</Dropdown.Item>
-<Dropdown.Item href="#/action-2">HI</Dropdown.Item>
-<Dropdown.Item href="#/action-3">UK</Dropdown.Item>
-</Dropdown.Menu> */}
-                  </Dropdown>
-                </div>
-                <Link to="/upload-event" className={styles.uploadButton}>
-                  <Button type="primary">Upload Event</Button>
-                </Link>
-              </div>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
-      <div ref={spacerRef} className={styles.spacer} />
-    </>
+    <div className="app-header">
+      <TransparentHeader
+        ref={transparentHeaderRef}
+        genres={allGenres?.data?.data}
+      />
+      <ScrollingHeader
+        ref={scrollingHeaderRef}
+        genres={allGenres?.data?.data}
+      />
+      <div ref={spacerRef} className="spacer" />
+    </div>
   );
 }
 

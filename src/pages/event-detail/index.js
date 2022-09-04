@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import styles from "./index.module.css";
 
 import Container from "react-bootstrap/Container";
@@ -56,10 +56,12 @@ function EventDetail() {
   const armoryRef = useRef();
   useLayoutEffect(() => {
     const onScroll = () => {
-      if (window.pageYOffset > 100) {
-        armoryRef.current.style.zIndex = 1031;
-      } else {
-        armoryRef.current.style.zIndex = 1;
+      if (armoryRef.current) {
+        if (window.pageYOffset > 100) {
+          armoryRef.current.style.zIndex = 1031;
+        } else {
+          armoryRef.current.style.zIndex = 1;
+        }
       }
     };
     document.addEventListener("scroll", onScroll);

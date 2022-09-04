@@ -1,8 +1,8 @@
 import React from "react";
 import classnames from "classnames";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { toTitleCase, vhToPixels } from "../../utils/helpers";
+import { toTitleCase } from "../../utils/helpers";
 
 const NavigationDropdown = ({
   isTransparent,
@@ -10,6 +10,7 @@ const NavigationDropdown = ({
   title = "All Event",
   id = "basic-nav-dropdown",
 }) => {
+  // const [show, ]
   return (
     <NavDropdown
       title={title}

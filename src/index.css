@@ -73,6 +73,7 @@ body {
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
   /* overflow: auto !important; */
 }
 
@@ -100,18 +101,47 @@ code {
 }
 
 .navbar {
+  position: fixed;
+  width: 100%;
+  height: 70px;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
-  height: 70px;
   z-index: 1000 !important;
+}
 
-  transition-property: background-color;
-  transition-duration: 100ms;
+.transparent-header .navbar {
+  transition-property: all;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in;
+  transition-delay: 400ms;
+}
+
+.scrolling-header .navbar {
+  transition-property: all;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-out;
+  transition-delay: 400ms;
 }
 
 .navbar.active {
   background-color: var(--navbar-dark) !important;
+}
+.transparent-header .navbar.scroll-up {
+  top: -70px;
+}
+.transparent-header .navbar.scroll-down {
+  top: 0px;
+}
+
+.scrolling-header .navbar.scroll-down {
+  top: 0px;
+}
+.scrolling-header .navbar.scroll-up {
+  top: -70px;
+}
+
+.app-header .spacer {
+  height: 70px;
 }
 
 .section {
