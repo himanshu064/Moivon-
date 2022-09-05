@@ -182,7 +182,6 @@ function UploadEvent() {
                   mb="0"
                   customClass="cursor-pointer"
                   variant="subHeading"
-                  style={{ fontSize: 40 }}
                 >
                   UPLOAD
                 </Heading>

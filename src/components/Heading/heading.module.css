@@ -11,17 +11,16 @@
 .subHeading {
   font-size: 48px;
   line-height: 120%;
-
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .heading {
     font-size: 40px !important;
     line-height: 55px !important;
   }
 }
 
-@media screen and (max-width:576px) {
+@media screen and (max-width: 576px) {
   .heading {
     font-size: 30px !important;
     line-height: 45px !important;

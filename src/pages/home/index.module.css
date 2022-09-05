@@ -21,7 +21,6 @@
 
 .teamSection {
   padding: 25px 0 !important;
-
 }
 
 .bottomSection {
@@ -97,7 +96,7 @@
   height: 100%;
   top: 0;
   background-size: cover;
-  background-repeat: NO-REPEAT;
+  background-repeat: no-repeat;
 }
 
 .bottomSection h3 {

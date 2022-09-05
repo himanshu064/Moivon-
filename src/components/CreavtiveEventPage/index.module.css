@@ -6,6 +6,7 @@
   background-position: center center;
   position: relative;
   top: -70px;
+  background-position: fixed;
 }
 
 .heroHeading {
