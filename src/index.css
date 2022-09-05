@@ -229,7 +229,7 @@ code {
   left: -90px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1192px) {
   .eventSlider .swiper-button-prev {
     left: 0 !important;
   }

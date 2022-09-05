@@ -12,7 +12,7 @@
   fill: rgba(166, 166, 166, 0.25) !important;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1191px) {
   .prevSlideButton {
     display: block !important;
   }
