@@ -1,7 +1,12 @@
 .navHead {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 3rem;
+}
+
+.navHead h1 {
+  font-size: 40px !important;
 }
 
 .sortBtn button {
@@ -89,8 +94,6 @@
   .topHead {
     display: block !important;
   }
-
-
 
   .sortBtn {
     display: flex;
