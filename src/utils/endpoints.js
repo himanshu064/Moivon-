@@ -59,4 +59,5 @@ export const ALL_ENDPOINTS = {
 
   // genres
   BUILD_FETCH_ALL_GENRES: () => `/genres`,
+  BUILD_NEWSLETTER: () => `/misc/newsletter`,
 };

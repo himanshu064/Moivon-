@@ -45,3 +45,6 @@ export const createPublicEvent = ({ images, json_data }) => {
     HEADERS.formData
   );
 };
+export const createNewsLetterEvent = (email) => {
+  return axiosInstance.post(ALL_ENDPOINTS.BUILD_NEWSLETTER(), email);
+};

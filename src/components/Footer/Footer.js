@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import React, { useRef, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import styles from "./footer.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -10,13 +11,57 @@ import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import { toTitleCase } from "../../utils/helpers";
 import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
-
+import { createNewsLetterEvent } from "../../services/EventService";
+import toast from "react-hot-toast";
 const Footer = () => {
+  const toastId = useRef(null);
+  const [email, setEmail] = useState("");
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
+  const { mutate: createNewLetterMutation } = useMutation(
+    (newQuery) =>
+      createNewsLetterEvent({
+        email: newQuery.email,
+      }),
+    {
+      onSuccess: () => {
+        toast.remove(toastId.current);
+        const successId = toast.success("subscription added successfully");
+        setEmail("");
+        setTimeout(() => toast.remove(successId), 3000);
+      },
+      onError: (error) => {
+        toast.remove(toastId.current);
+        const err = error?.response?.data?.error;
+        if (Array.isArray(err)) {
+          const [originalError] = Object.values(err?.[0]);
+          toast.error(originalError);
+        } else if (typeof err === "string") {
+          toast.error(err);
+        } else {
+          toast.error("Something went wrong");
+          setEmail("");
+        }
+      },
+    }
+  );
 
+  const HandleNewsLetter = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      let re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(email)) {
+        toastId.current = toast.loading("registering email....");
+        createNewLetterMutation({ email });
+      } else {
+        const successId = toast.error("enter a vaild email");
+        setTimeout(() => toast.remove(successId), 3000);
+      }
+    }
+  };
   return (
     <>
       <section className={`${styles.footerSection} section`}>
@@ -108,6 +153,10 @@ const Footer = () => {
                       type="email"
                       placeholder="Enter your email to get updates"
                       className={styles.emailInput}
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onKeyUp={HandleNewsLetter}
                     />
                   </Form.Group>
                 </Form>
