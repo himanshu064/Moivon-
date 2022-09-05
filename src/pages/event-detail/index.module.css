@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding-bottom: 20px;
+  padding: 4px 0 10px 0 !important;
 }
 
 .imgSlider {
@@ -24,6 +25,7 @@
   text-transform: uppercase;
   padding: 5px 10px;
   font-family: var(--sans-medium);
+  margin-right: 1rem;
 }
 
 .content h3 {
@@ -115,7 +117,7 @@
   position: sticky !important;
   top: 0 !important;
   /* z-index: 1031; */
-  background: #252525;
+  background: var(--theme-black);
 }
 
 .armoryStickyRow {
@@ -146,4 +148,20 @@
 
 .armoryStickyCol::-webkit-scrollbar-thumb:hover {
   background: #252525;
+}
+
+.toggleTitle {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: var(--sans-medium);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.toggleTitle span {
+  color: var(--theme-white-light);
+  padding-left: 2px;
+  display: inline-block;
+  margin-right: 2px;
 }

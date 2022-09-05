@@ -1,7 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
 import Container from "react-bootstrap/Container";
+import { BiPlus, BiMinus } from "react-icons/bi";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Heading from "../../components/Heading";
@@ -34,6 +35,7 @@ import Loader from "../../components/Loader";
 import AllEventLoadingPlaceholder from "../all-event/AllEventLoadingPlaceholder";
 
 function EventDetail() {
+  const [showFullTitle, setShowFullTitle] = useState(false);
   const pagination = {
     clickable: true,
   };
@@ -80,37 +82,53 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
+          <h6
+            className={styles.toggleTitle}
+            onClick={() => setShowFullTitle((prev) => !prev)}
+          >
+            <span>Full Title</span>
+            {!showFullTitle ? (
+              <BiPlus color="white" size={12} />
+            ) : (
+              <BiMinus color="white" size={12} />
+            )}
+          </h6>
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col>
               <div className={`border-b ${styles.topHead}`}>
                 <div
-                  className={`${styles.eventHead} d-flex align-items-center gap-3 flex-wrap w-100`}
+                  className={`${styles.eventHead} d-flex align-items-end gap-3 flex-wrap w-100`}
                 >
                   <Heading
                     mb="0"
                     variant="subHeading"
                     customClass={styles.eventHeader}
                     title={data?.data?.data?.title}
+                    style={{
+                      "white-space": showFullTitle ? "normal" : "nowrap",
+                    }}
                   >
                     {data?.data?.data?.title}
                   </Heading>
                   {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
-                  <span className={styles.type}>
-                    {data?.data?.data?.genre?.genre}
-                  </span>
-                  <Button
-                    className={styles.bookNowButton}
-                    style={{ width: 180 }}
-                    type="outline"
-                  >
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={data?.data?.data?.eventUrl}
+                  <div>
+                    <span className={styles.type}>
+                      {data?.data?.data?.genre?.genre}
+                    </span>
+                    <Button
+                      className={styles.bookNowButton}
+                      style={{ width: 180 }}
+                      type="outline"
                     >
-                      Book Now
-                    </a>
-                  </Button>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={data?.data?.data?.eventUrl}
+                      >
+                        Book Now
+                      </a>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Col>
