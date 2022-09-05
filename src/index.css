@@ -189,31 +189,32 @@ code {
   background-color: var(--transparent) !important;
   text-underline-offset: 8px;
 }
-/* 
-.swiper-button-next,
-.swiper-button-prev {
+/* Custom buttons start */
+
+.custom-icons .swiper-button-next,
+.custom-icons .swiper-button-prev {
   width: 40px !important;
   height: 40px !important;
   border-radius: 2px;
 }
 
-.swiper-button-prev {
+.custom-icons .swiper-button-prev {
   background: var(--theme-white);
   backdrop-filter: blur(12px);
 }
 
-.swiper-button-next {
+.custom-icons .swiper-button-next {
   background: var(--theme-white);
   backdrop-filter: blur(12px);
 }
 
-.swiper-button-prev:after,
-.swiper-button-next:after {
+.custom-icons .swiper-button-prev:after,
+.custom-icons .swiper-button-next:after {
   display: none;
 }
 
-.swiper-button-prev::before,
-.swiper-button-next::before {
+.custom-icons .swiper-button-prev::before,
+.custom-icons .swiper-button-next::before {
   content: "";
   width: 18px;
   height: 18px;
@@ -223,13 +224,15 @@ code {
   justify-content: center;
 }
 
-.swiper-button-prev::before {
+.custom-icons .swiper-button-prev::before {
   background-image: url(/public/img/back.svg);
 }
 
-.swiper-button-next::before {
+.custom-icons .swiper-button-next::before {
   background-image: url(/public/img/next.svg);
-} */
+}
+
+/* Custom buttons end */
 .eventSlider .swiper-button-next,
 .eventSlider .swiper-button-prev {
   color: var(--color-white) !important;

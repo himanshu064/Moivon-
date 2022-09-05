@@ -203,6 +203,7 @@ function UploadEvent() {
                 ) : (
                   <Swiper
                     modules={[Pagination, Navigation]}
+                    className="custom-icons"
                     spaceBetween={0}
                     slidesPerView={1}
                     pagination={pagination}
@@ -328,7 +329,7 @@ function UploadEvent() {
                       </Form.Select>
                     </Form.Group>
                   </Col>
-                  <Col lg={6} >
+                  <Col lg={6}>
                     <div className="d-flex align-items-center gap-3">
                       <Form.Group
                         className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
@@ -373,9 +374,11 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${styles.priceContainer
-                          } ${priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                          }`}
+                        className={`${styles.formGroup} ${
+                          styles.priceContainer
+                        } ${
+                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                        }`}
                       >
                         <Form.Control
                           type="number"
@@ -416,7 +419,7 @@ function UploadEvent() {
 
                 {/* Organization and url links */}
                 <Row>
-                  <Col lg={7} >
+                  <Col lg={7}>
                     <Form.Group
                       className={`${styles.formGroup} d-flex align-items-center gap-3`}
                       controlId="formGroupOrganization"
@@ -425,7 +428,7 @@ function UploadEvent() {
                       <Form.Control type="text" {...register("organization")} />
                     </Form.Group>
                   </Col>
-                  <Col lg={5} >
+                  <Col lg={5}>
                     <div className="gap-3">
                       <Form.Group
                         className={`${styles.formGroup} d-flex align-items-center gap-3`}
@@ -507,7 +510,7 @@ function UploadEvent() {
             </Col>
           </Row>
         </Container>
-      </section >
+      </section>
     </>
   );
 }
