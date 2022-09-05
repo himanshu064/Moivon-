@@ -47,9 +47,10 @@ const Footer = () => {
       },
     }
   );
-
-  const HandleNewsLetter = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+  };
+  const HandleNewsLetter = (event) => {
     if (event.key === "Enter") {
       let re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -143,7 +144,7 @@ const Footer = () => {
             <Col sm={5}>
               <div className={styles.subscribeSection}>
                 <h3 className="mb-3">Subscribe for updates</h3>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <Form.Group
                     className={`${styles.formGroup} mb-3`}
                     controlId="formGroupEmail"
