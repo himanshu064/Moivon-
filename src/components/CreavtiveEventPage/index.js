@@ -2,24 +2,16 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./index.module.css";
-import React, { useState } from "react";
-
-import Button from "../Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import HeaderTransparent from "../HeaderTransparent";
-
+import React from "react";
 import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
-import { useTransparentHeader } from "../../hooks/useTransparentHeader";
+import Button from "../Button";
 
 export default function CreavtiveEventPage() {
-  const { show, onClose } = useTransparentHeader(true);
-
   return (
     <>
       <div className={styles.CustomContainer}>
-        <Container >
-
+        <Container>
           <Row>
             <Col lg={12}>
               <div className={styles.heroHeading}>
@@ -27,10 +19,10 @@ export default function CreavtiveEventPage() {
                   FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY{" "}
                 </Heading>
                 <span className={styles.spanHead}>
-
                   Welcome to Moivon, your one source for uncovering
                   <br /> art, creative, and design events. Explore our curated
-                  <br />list made for you and fall in love in each!
+                  <br />
+                  list made for you and fall in love in each!
                 </span>
 
                 <div
@@ -45,11 +37,17 @@ export default function CreavtiveEventPage() {
                 </div>
               </div>
             </Col>
-
           </Row>
           <Row>
             <Col lg={12}>
-              <img className={styles.herosectionImg} src="/img/Arrow.svg" alt="Arrow" />
+              <img
+                className={styles.herosectionImg}
+                src="/img/Arrow.svg"
+                alt="Arrow"
+                onClick={() => {
+                  window.scrollBy(0, window.innerHeight);
+                }}
+              />
             </Col>
           </Row>
         </Container>

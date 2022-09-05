@@ -45,7 +45,7 @@ export const ALL_ENDPOINTS = {
     `/events?size=10&published=true&upComing=true&sort=upComingSeq&order=asc`,
   BUILD_MOST_POPULAR_EVENTS: () =>
     `/events?size=10&published=true&mostPopular=true&sort=mostPopularSeq&order=asc`,
-  BUILD_POST_QUERY: () => `/queries`,
+  BUILD_POST_QUERY: () => `/misc/contactus`,
   BUILD_POST_NEW_EVENT: () => `/events`,
   BUILD_ALL_GENRES: () => `/genres`,
   BUILD_HERO_SLIDER: ({ page, size }) => {

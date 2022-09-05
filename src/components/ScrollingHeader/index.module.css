@@ -6,11 +6,11 @@
 }
 
 .navLink a {
-  color: var(--theme-white) !important;
+  font-size: 14px;
 }
 
-.navLink a {
-  font-size: 14px;
+.logo {
+  cursor: pointer;
 }
 
 .last {
@@ -26,28 +26,31 @@
 .dropdownBtn button {
   color: var(--theme-white) !important;
   font-size: 14px;
+  font-family: var(--sans-regular) !important;
 }
 
 .soon {
-  background: var(--theme-black-light);
+  background: var(--bgcolor-disabled) !important;
   padding: 0px 5px;
   font-size: 12px;
   display: inline-block;
   margin-left: 5px;
-  color: var(--theme-white-light);
+  color: var(--color-disabled) !important;
+}
+
+.navLink .disabledLink {
+  color: var(--color-disabled) !important;
 }
 
 .uploadButton button {
   border-radius: 30px !important;
-}
-
-.spacer {
-  height: 70px;
+  width: 200px;
+  height: 50px;
 }
 
 .transparent span {
   background-color: #978036 !important;
-  color: #C8AF66 !important;
+  color: #c8af66 !important;
 }
 
 @media screen and (max-width: 991px) {

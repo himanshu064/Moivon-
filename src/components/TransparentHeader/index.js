@@ -1,38 +1,34 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "../Button";
-import { FiSearch } from "react-icons/fi";
-import Dropdown from "react-bootstrap/Dropdown";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiMenuAltRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import { toTitleCase } from "../../utils/helpers";
-import { fetchAllGenres } from "../../services/GenreService";
-import { ALL_QUERIES } from "../../utils/endpoints";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
-import { useTransparentHeader } from "../../hooks/useTransparentHeader";
 import NavigationDropdown from "../NavigationDropdown";
 
-function HeaderTransparent() {
-  const { onClose } = useTransparentHeader();
-  const { data: allGenres, isLoading: allGenresLoading } = useQuery(
-    ALL_QUERIES.QUERY_ALL_GENRES(),
-    fetchAllGenres
-  );
-
-  const allGenresData = allGenres?.data?.data || [];
-
+function TransparentHeader({ genres = [] }, headerRef) {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
     <>
-      <header className="app-header">
-        <Navbar className="navbar fixed-top" bg="transparent" expand="lg">
+      <header className="transparent-header">
+        <Navbar
+          // fixed-top for sticky header, active for adding black background
+          className="navbar scroll-down"
+          bg="transparent"
+          expand="lg"
+          ref={headerRef}
+        >
           <Container>
-            <Navbar.Brand className={styles.logo}>
-              <img src="/img/moivon.png" alt="logo" />
+            <Navbar.Brand
+              className={styles.logo}
+              onClick={() => (pathname === "/" ? null : navigate("/"))}
+            >
+              <img src="/img/moivon.png" alt="logo" width={45} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
               <BiMenuAltRight />
@@ -44,35 +40,36 @@ function HeaderTransparent() {
                   id="basic-nav-dropdown"
                   options={[
                     { _id: "all", link: "/all-events", value: "All Events" },
-                    ...allGenresData.map((option) => ({
+                    ...genres.map((option) => ({
                       _id: option._id,
                       link: `/all-events?genre=${option._id}`,
                       value: option?.genre,
                     })),
                   ]}
+                  isTransparent={pathname === "/"}
                 />
                 <Nav.Link
+                  to="/"
+                  as={Link}
                   onClick={() => {
-                    onClose("/", () => {
-                      setTimeout(() => {
-                        document
-                          .getElementById("about-page")
-                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                      }, 200);
-                    });
+                    setTimeout(() => {
+                      document
+                        .getElementById("about-page")
+                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+                    }, 200);
                   }}
                 >
                   About Us
                 </Nav.Link>
                 <Nav.Link
+                  to="/"
+                  as={Link}
                   onClick={() => {
-                    onClose("/", () => {
-                      setTimeout(() => {
-                        document
-                          .getElementById("contact-page")
-                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                      }, 200);
-                    });
+                    setTimeout(() => {
+                      document
+                        .getElementById("contact-page")
+                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+                    }, 200);
                   }}
                 >
                   Contact Us
@@ -80,7 +77,7 @@ function HeaderTransparent() {
                 <Nav.Link
                   href="#"
                   eventKey="disabled"
-                  className={styles.transparent}
+                  className={styles.disabledLink}
                   disabled
                 >
                   Calendar <span className={styles.soon}>SOON</span>
@@ -92,7 +89,7 @@ function HeaderTransparent() {
                     styles.customIcon + " d-flex align-items-center gap-3"
                   }
                 >
-                  <FiSearch />
+                  <img src="/img/Search.svg" alt="Search" width={18} />
                   <Dropdown className={styles.dropdownBtn}>
                     <Dropdown.Toggle variant="none" id="dropdown-basic">
                       ENG
@@ -107,9 +104,10 @@ function HeaderTransparent() {
           </Container>
         </Navbar>
       </header>
-      <div className={styles.spacer} />
     </>
   );
 }
 
-export default HeaderTransparent;
+const ForwardedTransparentHeader = React.forwardRef(TransparentHeader);
+
+export default ForwardedTransparentHeader;

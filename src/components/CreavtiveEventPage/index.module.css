@@ -65,7 +65,8 @@
 .herosectionImg {
   position: absolute;
   bottom: 30px;
-  left: 49.9%
+  left: 49.9%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1349px) {

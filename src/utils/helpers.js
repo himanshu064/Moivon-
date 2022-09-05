@@ -52,3 +52,7 @@ export const prepareURL = (url = "") => {
   }
   return `https://${url}`;
 };
+
+export function vhToPixels(vh) {
+  return Math.round(window.innerHeight / (100 / vh));
+}
