@@ -67,7 +67,6 @@ function Home() {
             </Row>
             <Row>
               <Col lg={8} className={styles.customWidth60}>
-
                 <div className={styles.countWrapper1}>
                   <Heading mb="5">2500+</Heading>
                   <Text>Annual Creative Events</Text>
@@ -78,7 +77,10 @@ function Home() {
                   <Text>Venues</Text>
                 </div>
 
-                <div className={styles.countWrapper2} style={{ borderRight: 'none' }}>
+                <div
+                  className={styles.countWrapper2}
+                  style={{ borderRight: "none" }}
+                >
                   <Heading mb="5">5</Heading>
                   <Text>Top Locations</Text>
                 </div>
@@ -92,12 +94,13 @@ function Home() {
         </section>
       </div>
 
-
       <section className="section">
         <Container>
           <Row>
             <Col md={8}>
-              <Heading variant="subHeading">Upcoming for you </Heading>
+              <Heading variant="subHeading">
+                Upcoming Events <br /> for you{" "}
+              </Heading>
             </Col>
             <Col md={4}>
               <div className="d-flex justify-content-end align-items-center mb-4">
@@ -112,7 +115,7 @@ function Home() {
         </Container>
         <Container>
           {/* ${styles.slider} */}
-          <div className={`mx-0 `}>
+          <div className={`mx-0 position-relative`}>
             <EventSlider />
           </div>
         </Container>

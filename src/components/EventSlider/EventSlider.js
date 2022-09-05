@@ -1,16 +1,18 @@
 import React, { useState, useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { BsChevronLeft } from "react-icons/bs";
+import { Navigation, Pagination } from "swiper";
 import Slide from "../Slide";
 import { fetchUpcomingEvents } from "../../services/EventService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader";
+import styles from "./eventslider.module.css";
 
 function EventSlider() {
   const swiperRef = useRef();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
 
   const { data, isLoading, isError, error } = useQuery(
     ALL_QUERIES.QUERY_UPCOMING_EVENTS(),
@@ -26,27 +28,37 @@ function EventSlider() {
 
   return (
     <>
+      {isMinimumThreeSlidesAvailable && (
+        <div
+          className={styles.prevSlideButton}
+          onClick={() => {
+            swiperRef.current.swiper.slidePrev();
+          }}
+        >
+          <BsChevronLeft size={52} />
+        </div>
+      )}
       <Swiper
         ref={swiperRef}
-        className={`swiperSliderHome ${
+        className={`eventSlider ${
           isMinimumThreeSlidesAvailable ? "" : "transform-none"
         }`}
-        modules={[Navigation]}
+        modules={[Navigation, Pagination]}
         initialSlide={0}
-        spaceBetween={20}
-        slidesPerView={3.5}
+        spaceBetween={2}
+        slidesPerView={3.15}
         loop={isMinimumThreeSlidesAvailable}
-        navigation={false}
-        centeredSlides={true}
-        centeredSlidesBounds={true}
+        navigation={isMinimumThreeSlidesAvailable}
+        // centeredSlides={true}
+        // centeredSlidesBounds={true}
         // cannot grab
         allowTouchMove={false}
         onSlideChange={(s) => console.log("slide change", s)}
         onSwiper={(swiper) => console.log(swiper, "swiper")}
-        onActiveIndexChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-        onClick={(swiper) =>
-          swiperRef.current.swiper.slideTo(swiper.clickedIndex)
-        }
+        // onActiveIndexChange={(swiper) => setCurrentIndex(swiper.realIndex)}
+        // onClick={(swiper) =>
+        //   swiperRef.current.swiper.slideTo(swiper.clickedIndex)
+        // }
         breakpoints={{
           // when window width is >= 640px
           0: {
@@ -62,7 +74,7 @@ function EventSlider() {
           },
           // when window width is >= 1200px
           1200: {
-            slidesPerView: 3.5,
+            slidesPerView: 3.15,
           },
         }}
       >
@@ -76,8 +88,6 @@ function EventSlider() {
               <SwiperSlide key={`slide_${index}`}>
                 <Slide
                   event={data}
-                  slideIndex={index}
-                  currentIndex={currentIndex}
                   showPreviousAndNextButton={isMinimumThreeSlidesAvailable}
                   showGalleryOnHover
                 />

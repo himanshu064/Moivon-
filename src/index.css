@@ -149,8 +149,6 @@ code {
   position: relative;
 }
 
-
-
 .navbar-light .navbar-toggler {
   color: var(--theme-white) !important;
 }
@@ -182,7 +180,7 @@ code {
   background-color: var(--transparent) !important;
   text-underline-offset: 8px;
 }
-
+/* 
 .swiper-button-next,
 .swiper-button-prev {
   width: 40px !important;
@@ -222,6 +220,19 @@ code {
 
 .swiper-button-next::before {
   background-image: url(/public/img/next.svg);
+} */
+.eventSlider .swiper-button-next,
+.eventSlider .swiper-button-prev {
+  color: var(--color-white) !important;
+}
+.eventSlider .swiper-button-prev {
+  left: -90px;
+}
+
+@media screen and (max-width: 767px) {
+  .eventSlider .swiper-button-prev {
+    left: 0 !important;
+  }
 }
 
 .swiper-pagination-bullet {
@@ -371,12 +382,7 @@ button:focus {
   font-size: 12px !important;
 }
 
-.swiperSliderHome .swiper-slide {
-  margin-top: 30px !important;
-  margin-bottom: 30px !important;
-}
-
-.swiper-slide.swiper-slide-active {
+/* .swiper-slide.swiper-slide-active {
   position: relative;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -384,7 +390,7 @@ button:focus {
     scaleY(1.15);
   background: #232323;
   z-index: 1;
-}
+} */
 
 .transform-none .swiper-slide-active {
   transform: none !important;
@@ -451,7 +457,7 @@ button:focus {
   }
 }
 
-.next-btn,
+/* .next-btn,
 .prev-btn {
   z-index: 20;
   position: absolute;
@@ -468,28 +474,28 @@ button:focus {
   background-position: center;
   display: none;
   cursor: pointer;
-}
+} */
 
-.prev-btn {
+/* .prev-btn {
   left: 20px;
-}
+} */
 
-.next-btn {
+/* .next-btn {
   right: 20px;
-}
+} */
 
-.prev-btn {
+/* .prev-btn {
   background-image: url(/public/img/back.svg);
-}
+} */
 
-.next-btn {
+/* .next-btn {
   background-image: url(/public/img/next.svg);
-}
+} */
 
-.swiper-slide-active .prev-btn,
+/* .swiper-slide-active .prev-btn,
 .swiper-slide-active .next-btn {
   display: block;
-}
+} */
 
 /* .swiper-slide .carousel-indicators {
   visibility: hidden;
@@ -509,9 +515,9 @@ button:focus {
   flex: 1;
 }
 
-.swiper-slider-no-zoom .swiper-slide.swiper-slide-active {
+/* .swiper-slider-no-zoom .swiper-slide.swiper-slide-active {
   transform: none !important;
-}
+} */
 
 .text-button {
   background: none;
