@@ -5,7 +5,9 @@
   letter-spacing: 0.2px;
   color: var(--theme-white-light);
   font-family: var(--sans-regular);
+  margin-bottom: 25px;
 }
+
 .white {
   color: var(--color-white) !important;
 }

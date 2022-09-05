@@ -176,14 +176,13 @@ function UploadEvent() {
       <RouteTitle title="Upload Event" />
       <section className={`section ${styles.uploadSection}`}>
         <Container>
-          <Row className="mb-4">
+          <Row className={styles.uploadRow}>
             <Col md={12}>
               <div className={`${styles.topHead}`}>
                 <Heading
                   mb="0"
                   customClass="cursor-pointer"
                   variant="subHeading"
-                  style={{ fontSize: 40 }}
                 >
                   UPLOAD
                 </Heading>
@@ -204,6 +203,7 @@ function UploadEvent() {
                 ) : (
                   <Swiper
                     modules={[Pagination, Navigation]}
+                    className="custom-icons"
                     spaceBetween={0}
                     slidesPerView={1}
                     pagination={pagination}
@@ -229,7 +229,7 @@ function UploadEvent() {
                 )}
               </div>
 
-              <div className="d-flex justify-content-between flex-wrap mt-3">
+              <div className="d-flex justify-content-between flex-wrap mt-2">
                 <Text variant="white">PREVIEW</Text>
                 <Text>
                   UPLOAD UP TO {MAX_ALLOWED_IMAGES} IMAGES/ VIDEOS (
@@ -249,17 +249,22 @@ function UploadEvent() {
             </Col>
             <Col md={5} className="mb-3">
               <form onSubmit={handleSubmit(onAddEvent)}>
-                <Form.Group
-                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                  controlId="formGroupTitle"
-                >
-                  <Form.Label>Title:</Form.Label>
-                  <Form.Control type="text" {...register("title")} />
-                </Form.Group>
+                <Row>
+                  <Col xl={12}>
+                    <Form.Group
+                      className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                      controlId="formGroupTitle"
+                    >
+                      <Form.Label>Title:</Form.Label>
+                      <Form.Control type="text" {...register("title")} />
+                    </Form.Group>
+                  </Col>
+                </Row>
+
                 <Row>
                   <Col xl={6}>
                     <Form.Group
-                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-1`}
+                      className={`${styles.formGroup} d-flex align-items-center gap-1`}
                       controlId="formGroupStartDate"
                     >
                       <Form.Label>Start Date:</Form.Label>
@@ -305,7 +310,7 @@ function UploadEvent() {
 
                 {/* Genre and price section */}
                 <Row>
-                  <Col lg={6} className="mb-2">
+                  <Col lg={6}>
                     <Form.Group
                       className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
                       controlId="formGroupGenre"
@@ -324,7 +329,7 @@ function UploadEvent() {
                       </Form.Select>
                     </Form.Group>
                   </Col>
-                  <Col lg={6} className="mb-2">
+                  <Col lg={6}>
                     <div className="d-flex align-items-center gap-3">
                       <Form.Group
                         className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
@@ -386,7 +391,7 @@ function UploadEvent() {
                 </Row>
 
                 <Form.Group
-                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
                   controlId="formGroupLocation"
                 >
                   <Form.Label>location:</Form.Label>
@@ -394,7 +399,7 @@ function UploadEvent() {
                 </Form.Group>
 
                 <Form.Group
-                  className={`${styles.formGroup} mb-2`}
+                  className={`${styles.formGroup}`}
                   controlId="formGroupDescription"
                 >
                   <Form.Label className="mb-1">Description:</Form.Label>
@@ -405,7 +410,7 @@ function UploadEvent() {
                   />
                 </Form.Group>
                 <Form.Group
-                  className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
                   controlId="formGroupVenue"
                 >
                   <Form.Label>Venue:</Form.Label>
@@ -414,7 +419,7 @@ function UploadEvent() {
 
                 {/* Organization and url links */}
                 <Row>
-                  <Col lg={7} className="mb-2">
+                  <Col lg={7}>
                     <Form.Group
                       className={`${styles.formGroup} d-flex align-items-center gap-3`}
                       controlId="formGroupOrganization"
@@ -423,7 +428,7 @@ function UploadEvent() {
                       <Form.Control type="text" {...register("organization")} />
                     </Form.Group>
                   </Col>
-                  <Col lg={5} className="mb-2">
+                  <Col lg={5}>
                     <div className="gap-3">
                       <Form.Group
                         className={`${styles.formGroup} d-flex align-items-center gap-3`}
@@ -440,7 +445,7 @@ function UploadEvent() {
                 </Row>
 
                 <Form.Group
-                  className={`${styles.formGroup} mb-2`}
+                  className={`${styles.formGroup}`}
                   controlId="formGroupDescription"
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
@@ -448,7 +453,7 @@ function UploadEvent() {
                 </Form.Group>
                 {/* Event url link */}
                 <Form.Group
-                  className={`${styles.formGroup} d-flex align-items-center gap-3 mb-4`}
+                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
                   controlId="formGroupOrganization"
                 >
                   <Form.Label>Event URL:</Form.Label>
@@ -470,8 +475,8 @@ function UploadEvent() {
               </form>
             </Col>
           </Row>
-          <Row className={`mt-5 ${styles.footer}`}>
-            <Col>
+          <Row className={styles.footer}>
+            <Col className="p-0">
               <Text
                 variant="white"
                 className="text-uppercase"

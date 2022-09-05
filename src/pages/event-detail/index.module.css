@@ -8,13 +8,18 @@
   padding: 4px 0 10px 0 !important;
 }
 
+.topHead h1 {
+  font-size: 40px !important;
+}
+
 .imgSlider {
-  position: relative;
+  position: sticky;
+  top: 110px;
+  padding-bottom: 3px !important;
 }
 
 .imgSlider img {
   width: 100%;
-  /* height: 550px; */
   height: 450px;
 }
 
@@ -40,10 +45,11 @@
 .content .aboutContent {
   padding: 20px 0;
 }
+
 .content .aboutContent .secondaryButton {
-  width: 150px;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
+  width: 120px;
+  font-size: 12px !important;
+  padding: 7px 0 !important;
 }
 
 .info h4 {
@@ -121,15 +127,12 @@
 }
 
 .armoryStickyRow {
-  height: 500px;
-  padding: 25px 0;
-  overflow: hidden;
+  padding: 35px 0;
 }
 
 .armoryStickyCol {
   height: 100%;
   overflow-y: scroll;
-  margin-top: 22px !important;
 }
 
 .armoryStickyCol::-webkit-scrollbar {
@@ -150,6 +153,12 @@
   background: #252525;
 }
 
+.newTextDeco {
+  text-decoration: underline var(--theme-white) 1px !important;
+  text-underline-offset: 5px;
+  font-size: 14px;
+}
+
 .toggleTitle {
   margin: 0;
   text-transform: uppercase;
@@ -159,6 +168,7 @@
   align-items: center;
   cursor: pointer;
 }
+
 .toggleTitle span {
   color: var(--theme-white-light);
   padding-left: 2px;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useSwipeable } from "react-swipeable";
-import styles from "./slide.module.css";
+import styles from "./_slide.module.css";
 import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link } from "react-router-dom";
@@ -8,28 +8,52 @@ import Carousel from "react-bootstrap/Carousel";
 import { useSwiper } from "swiper/react";
 import { prepareImageSrc } from "../../utils/api";
 import { format } from "date-fns";
-import { formatCurrency, getMapsLocation } from "../../utils/helpers";
+import {
+  formatCurrency,
+  getMapsLocation,
+  isValidURL,
+} from "../../utils/helpers";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
-const ContentWrapper = ({ eventId, children }) => {
-  let Component = () => (
-    <Link to={`/event-detail/${eventId}`} draggable="false">
-      {children}
-    </Link>
-  );
+const ContentWrapper = ({
+  showPreviousAndNextButton,
+  allowClick,
+  eventId,
+  children,
+}) => {
+  let Component = () => <div>{children}</div>;
+
+  if (!showPreviousAndNextButton) {
+    Component = () => (
+      <Link to={`/event-detail/${eventId}`} draggable="false">
+        {children}
+      </Link>
+    );
+  } else if (allowClick) {
+    Component = () => (
+      <Link to={`/event-detail/${eventId}`} draggable="false">
+        {children}
+      </Link>
+    );
+  }
 
   return <Component />;
 };
 
 function Slide({
   event,
+  slideIndex,
+  currentIndex,
   showArrowOnHover,
   showGalleryOnHover,
   customGridClass,
+  showPreviousAndNextButton = true,
 }) {
   const swiper = useSwiper();
   const bootstrapCarouselRef = useRef();
+
+  const allowLinks = slideIndex === currentIndex;
 
   const imageCarouselHandler = useSwipeable({
     onSwipedLeft: () => bootstrapCarouselRef.current.next(),
@@ -48,7 +72,15 @@ function Slide({
   });
 
   const renderMapsLocation = () => {
-    return getMapsLocation(event?.location);
+    let location = "#";
+
+    if (!showPreviousAndNextButton) {
+      location = getMapsLocation(event?.location);
+    } else if (allowLinks) {
+      location = getMapsLocation(event?.location);
+    }
+
+    return location;
   };
 
   return (
@@ -62,13 +94,14 @@ function Slide({
             showArrowOnHover ? "all-event-slider" : ""
           }`}
           {...imageCarouselHandler}
+          // {...(allowLinks && imageCarouselHandler)}
         >
-          {/* {showPreviousAndNextButton && (
+          {showPreviousAndNextButton && (
             <span
               className="prev-btn"
               onClick={() => swiper.slidePrev()}
             ></span>
-          )} */}
+          )}
           <Carousel
             // indicators={allowLinks}
             interval={null}
@@ -86,12 +119,12 @@ function Slide({
               </Carousel.Item>
             ))}
           </Carousel>
-          {/* {showPreviousAndNextButton && (
+          {showPreviousAndNextButton && (
             <span
               className="next-btn"
               onClick={() => swiper.slideNext()}
             ></span>
-          )} */}
+          )}
         </div>
         {showGalleryOnHover && (
           <div className={styles.galleryBtn}>
@@ -100,11 +133,12 @@ function Slide({
             </Link>
           </div>
         )}
-        <div
-          className={styles.content}
-          //  {...contentCarouselHandler}
-        >
-          <ContentWrapper eventId={event._id}>
+        <div className={styles.content} {...contentCarouselHandler}>
+          <ContentWrapper
+            showPreviousAndNextButton={showPreviousAndNextButton}
+            allowClick={allowLinks}
+            eventId={event._id}
+          >
             <div
               className={`${styles.titleContainer} d-flex justify-content-between align-items-center px-3`}
             >

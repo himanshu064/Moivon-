@@ -26,7 +26,7 @@ function HomeSlider() {
     <>
       <Swiper
         modules={[Navigation]}
-        className="swiper-slider-no-zoom"
+        className="swiper-slider-no-zoom custom-icons"
         spaceBetween={30}
         slidesPerView={1}
         navigation={true}

@@ -135,10 +135,10 @@ function EventDetail() {
           </Row>
           <Row className={styles.armoryStickyRow}>
             <Col md={7}>
-              <div className={`${styles.imgSlider} py-4`}>
+              <div className={`${styles.imgSlider}`}>
                 <Swiper
                   modules={[Pagination, Navigation]}
-                  className="swiper-slider-no-zoom"
+                  className="swiper-slider-no-zoom custom-icons"
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}
@@ -210,11 +210,11 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className="mt-4 mb-3">About event</h3>
+                  <h3 className="mt-4 mb-4">About event</h3>
                   <Text>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3>VENUE</h3>
+                  <h3 className="mb-4">VENUE</h3>
                   {isValidURL(data?.data?.data?.venue) ? null : (
                     <Text>{data?.data?.data?.venue}</Text>
                   )}
@@ -266,7 +266,10 @@ function EventDetail() {
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <Button className={styles.secondaryButton} type="outline">
+                  <Button
+                    className={`mb-4  ${styles.secondaryButton}`}
+                    type="outline"
+                  >
                     <a
                       target="_blank"
                       href={prepareURL(data?.data?.data?.organizationUrl)}
@@ -279,18 +282,18 @@ function EventDetail() {
               </div>
             </Col>
           </Row>
-        </Container>
+          {/* </Container>
       </section>
       <section className={`section ${styles.content} ${styles.lastSection}`}>
-        <Container>
-          <Row>
+        <Container> */}
+          <Row className={styles.content}>
             <Col md={6}>
-              <h3>RELATED EVENTS</h3>
+              <h3 className="mb-4">RELATED EVENTS</h3>
             </Col>
             <Col md={6}>
               <div className="d-flex justify-content-end align-items-center mb-4">
                 <Link to="/all-events">
-                  <span>
+                  <span className={styles.newTextDeco}>
                     View All <FiArrowUpRight />
                   </span>
                 </Link>
@@ -322,6 +325,7 @@ function EventDetail() {
               </Row>
             )}
           </div>
+          <div className="spacer"></div>
         </Container>
       </section>
     </>
