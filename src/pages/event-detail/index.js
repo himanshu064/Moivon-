@@ -138,7 +138,7 @@ function EventDetail() {
               <div className={`${styles.imgSlider}`}>
                 <Swiper
                   modules={[Pagination, Navigation]}
-                  className="swiper-slider-no-zoom"
+                  className="swiper-slider-no-zoom custom-icons"
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}
@@ -222,9 +222,10 @@ function EventDetail() {
                     href={
                       data?.data?.data?.venue
                         ? getMapsLocation(
-                          `${data?.data?.data?.venue || ""} ${data?.data?.data?.location || ""
-                          }`
-                        )
+                            `${data?.data?.data?.venue || ""} ${
+                              data?.data?.data?.location || ""
+                            }`
+                          )
                         : "#"
                     }
                     target="_blank"
@@ -265,7 +266,10 @@ function EventDetail() {
                     </div>
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
-                  <Button className={`mb-4  ${styles.secondaryButton}`} type="outline">
+                  <Button
+                    className={`mb-4  ${styles.secondaryButton}`}
+                    type="outline"
+                  >
                     <a
                       target="_blank"
                       href={prepareURL(data?.data?.data?.organizationUrl)}
