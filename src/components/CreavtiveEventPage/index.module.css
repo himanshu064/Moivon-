@@ -10,13 +10,13 @@
 
 .heroHeading {
   position: relative;
-  margin-top: 29vh;
+  margin-top: 15.3rem;
   padding: 0 15px;
 }
 
 .heroHeading h1 {
   font-size: 64px;
-  line-height: 90px;
+  line-height: 78px;
   font-family: var(--manrope-regular) !important;
   letter-spacing: 1px;
   margin-bottom: 3.8rem !important;
@@ -26,7 +26,7 @@
   position: absolute;
   padding-left: 10px;
   right: 14%;
-  top: 105px;
+  top: 85px;
   font-size: 14px;
   font-family: var(--sans-regular);
   font-weight: 400;

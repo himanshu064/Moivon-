@@ -189,6 +189,7 @@ code {
   background-color: var(--transparent) !important;
   text-underline-offset: 8px;
 }
+
 /* 
 .swiper-button-next,
 .swiper-button-prev {
@@ -234,6 +235,7 @@ code {
 .eventSlider .swiper-button-prev {
   color: var(--color-white) !important;
 }
+
 .eventSlider .swiper-button-prev {
   left: -90px;
 }
@@ -287,7 +289,7 @@ button:focus {
 }
 
 .border-b {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color) !important;
   padding: 20px 0 10px 0;
 }
 

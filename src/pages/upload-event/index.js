@@ -473,7 +473,7 @@ function UploadEvent() {
             </Col>
           </Row>
           <Row className={styles.footer}>
-            <Col>
+            <Col className="p-0">
               <Text
                 variant="white"
                 className="text-uppercase"
