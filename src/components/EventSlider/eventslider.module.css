@@ -1,0 +1,19 @@
+.prevSlideButton {
+  position: absolute;
+  left: -70px;
+  top: 50%;
+  /* transform: translate(-50%, -50%); */
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+
+.prevSlideButton svg {
+  fill: rgba(166, 166, 166, 0.25) !important;
+}
+
+@media screen and (min-width: 1191px) {
+  .prevSlideButton {
+    display: block !important;
+  }
+}
