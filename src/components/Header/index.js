@@ -17,7 +17,7 @@ function Header() {
 
   useLayoutEffect(() => {
     const onScroll = debounce(() => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 100) {
         if (transparentHeaderRef.current) {
           transparentHeaderRef.current.classList.remove("scroll-down");
           transparentHeaderRef.current.classList.add("scroll-up");

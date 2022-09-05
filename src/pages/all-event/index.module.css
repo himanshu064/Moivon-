@@ -11,9 +11,11 @@
   border-radius: 60px !important;
   color: var(--theme-white) !important;
 }
+
 .topHead {
   display: flex;
 }
+
 .dropdownBtn {
   outline: none;
   border: none;
@@ -22,6 +24,7 @@
 .dropdownBtn button::after {
   display: none !important;
 }
+
 /* 
 .dropdownBtn .dropdown-item {
   background-color: rebeccapurple !important;
@@ -37,6 +40,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .dropdownBtn .dropdownMenu {
   max-width: 120px;
   min-width: 120px;
@@ -44,6 +48,7 @@
   background-color: var(--navbar-dark-1) !important;
   transform: translate(0px, 48px) !important;
 }
+
 .dropdownBtn .filterItem {
   text-transform: uppercase;
   font-size: 12px !important;
@@ -69,23 +74,24 @@
   font-size: 14px;
   margin-left: 3px;
 }
+
 .infiniteScrollContainer {
   overflow-x: hidden !important;
   padding: 6px 6px 0 6px;
 }
+
 @media screen and (max-width: 768px) {
   .navHead {
     flex-wrap: wrap;
     gap: 1rem !important;
   }
+
   .topHead {
     display: block !important;
   }
-  .customTabs {
-    flex-wrap: nowrap !important;
-    overflow: auto;
-    white-space: nowrap;
-  }
+
+
+
   .sortBtn {
     display: flex;
     justify-content: flex-end;
