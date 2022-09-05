@@ -133,6 +133,7 @@ function UploadEvent() {
   };
 
   const onAddEvent = (data) => {
+    console.log(data);
     toastId.current = toast.loading("Creating event...");
     createPublicEventMutation({
       images: images.map((image) => image.raw),
@@ -368,9 +369,11 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${styles.priceContainer
-                          } ${priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                          }`}
+                        className={`${styles.formGroup} ${
+                          styles.priceContainer
+                        } ${
+                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                        }`}
                       >
                         <Form.Control
                           type="number"
