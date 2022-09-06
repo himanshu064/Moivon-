@@ -250,13 +250,13 @@ code {
 }
 
 .swiper-pagination-bullet {
-  background: var(--theme-white) !important;
+  background: var(--border-color) !important;
   opacity: 1 !important;
-  border-radius: 2px !important;
+  border-radius: 50% !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: var(--theme-black) !important;
+  background: var(--theme-white) !important;
   opacity: 1 !important;
 }
 
@@ -565,4 +565,8 @@ button:focus {
 .dropdown-item:active,
 .dropdown-item.active {
   background-color: var(--bs-dropdown-link-hover-bg) !important;
+}
+
+.customSwiper {
+  height: 445px;
 }
