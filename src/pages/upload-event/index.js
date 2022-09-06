@@ -133,6 +133,7 @@ function UploadEvent() {
   };
 
   const onAddEvent = (data) => {
+    console.log(data);
     toastId.current = toast.loading("Creating event...");
     createPublicEventMutation({
       images: images.map((image) => image.raw),
