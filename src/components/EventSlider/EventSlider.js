@@ -40,10 +40,10 @@ function EventSlider() {
       )}
       <Swiper
         ref={swiperRef}
-        className={`eventSlider ${
-          isMinimumThreeSlidesAvailable ? "" : "transform-none"
-        }`}
+        className={`eventSlider ${isMinimumThreeSlidesAvailable ? "" : "transform-none"
+          }`}
         modules={[Navigation, Pagination]}
+        pagination
         initialSlide={0}
         spaceBetween={2}
         slidesPerView={3.15}

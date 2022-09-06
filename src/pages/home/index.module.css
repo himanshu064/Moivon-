@@ -20,12 +20,10 @@
 }
 
 .teamSection {
-  padding: 25px 0 !important;
+  padding: 17px 0 0 0 !important;
 }
 
-.bottomSection {
-  padding: 60px 0 !important;
-}
+
 
 .spanHead::before {
   content: "";
@@ -83,7 +81,7 @@
 }
 
 .bottomSection {
-  padding: 80px 0;
+  padding: 102px 0 0 0 !important;
   position: relative;
 }
 
@@ -117,7 +115,7 @@
 
 .bgImg {
   background-image: url(/public//img/bgImg.png);
-  padding: 100px 0;
+  padding: 9rem 0 7.5rem 0;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -136,11 +134,11 @@
 
 .connectionSection {
   background-color: var(--theme-black);
-  padding: 40px 0 80px;
+  padding: 8.5rem 0 0 0 !important;
 }
 
 .contactSection {
-  padding: 100px 0;
+  padding: 6.5rem 0 4.2rem 0 !important;
 }
 
 @media screen and (max-width: 1349px) {

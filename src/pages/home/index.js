@@ -94,7 +94,7 @@ function Home() {
         </section>
       </div>
 
-      <section className="section">
+      <section className={`section ${styles.bottomSection}`}>
         <Container>
           <Row>
             <Col md={8}>
@@ -181,7 +181,7 @@ function Home() {
                   src="/img/contact.png"
                   alt="contact"
                   width="100%"
-                  height="252"
+                  height="212"
                 />
               </div>
             </Col>

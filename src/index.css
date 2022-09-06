@@ -293,16 +293,18 @@ button:focus {
 
 .border-b {
   border-bottom: 2px solid var(--border-color) !important;
-  padding: 20px 0 10px 0;
+  padding: 17px 0 10px 0;
 }
 
 .customTab {
   border-bottom: 0 !important;
   flex-wrap: nowrap !important;
 }
+
 .customTab li.nav-item {
   border-bottom: 1px solid;
 }
+
 .customTab li.nav-item:hover {
   border-bottom: 1px solid var(--theme-white) !important;
 }

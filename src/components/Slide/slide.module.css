@@ -34,6 +34,7 @@
   color: var(--theme-white);
   font-size: 16px;
   margin-bottom: 0;
+  font-family: var(--sans-medium);
 }
 
 .eventWrapper .content .descriptionContainer {
@@ -43,7 +44,8 @@
 
 .eventWrapper span {
   color: var(--theme-white);
-  font-size: 12px;
+  font-size: 12px !important;
+  font-family: var(--sans-medium);
 }
 
 .eventWrapper svg {
@@ -55,6 +57,7 @@
   font-size: 12px;
   text-transform: uppercase;
   color: var(--theme-white-light) !important;
+  font-family: var(--sans-medium);
 }
 
 /* events */
