@@ -16,7 +16,8 @@ export default function CreavtiveEventPage() {
             <Col lg={12}>
               <div className={styles.heroHeading}>
                 <Heading>
-                  FINDING YOUR NEXT CREATIVE EVENT SHOULD BE SO EASY{" "}
+                  FINDING YOUR NEXT CREATIVE EVENT
+                  <br /> SHOULD BE SO EASY{" "}
                 </Heading>
                 <span className={styles.spanHead}>
                   Welcome to Moivon, your one source for uncovering
@@ -32,7 +33,8 @@ export default function CreavtiveEventPage() {
                     Explore Now
                   </Button>
                   <span>
-                    <img src="/img/video.svg" alt="video" /> Video of our events
+                    <img src="/img/video.svg" alt="video" />
+                    <h6>Video of our events</h6>
                   </span>
                 </div>
               </div>

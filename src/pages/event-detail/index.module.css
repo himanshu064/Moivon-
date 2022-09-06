@@ -14,7 +14,7 @@
 
 .imgSlider {
   position: sticky;
-  top: 110px;
+  top: 225px;
   padding-bottom: 3px !important;
 }
 
@@ -121,7 +121,7 @@
 
 .armoryStickyDiv {
   position: sticky !important;
-  top: 0 !important;
+  top: 124px !important;
   /* z-index: 1031; */
   background: var(--theme-black);
 }

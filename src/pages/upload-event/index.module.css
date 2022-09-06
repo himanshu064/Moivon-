@@ -46,7 +46,7 @@
   background: var(--theme-black-light);
   border: 0;
   border-radius: 0;
-  height: 30px;
+  height: 25px;
   color: var(--theme-white);
   font-size: 12px;
 }
@@ -108,6 +108,14 @@ button:focus svg {
   color: var(--theme-white) !important;
 }
 
+.textarea1 {
+  height: 110px;
+}
+
+.textarea2 {
+  height: 80px;
+}
+
 /* .uploadText {
   color: var(--theme-white-light) !important;
 } */
@@ -124,6 +132,8 @@ button:focus svg {
 
 .uploadSection p {
   font-family: var(--manrope-bold) !important;
+  color: var(--grey-color);
+  font-size: 15px;
 }
 
 .uploadDiv {
@@ -142,7 +152,7 @@ button:focus svg {
 }
 
 .upload-placeholder {
-  min-height: 472px;
+  min-height: 517px;
   background-color: var(--theme-black);
   border: 2px solid var(--border-color);
 }
@@ -197,6 +207,8 @@ button:focus svg {
 .uploadRow {
   padding: 0 0 30px 0;
 }
+
+
 
 /* label */
 

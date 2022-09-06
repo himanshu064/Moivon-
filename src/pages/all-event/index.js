@@ -145,7 +145,7 @@ function AllEvent() {
                   search
                 </Heading>
                 <div
-                  className={`align-items-center justify-content-between gap-4 ${styles.topHead}`}
+                  className={`justify-content-between gap-4 ${styles.topHead}`}
                 >
                   <Tabs
                     id="controlled-tab-example"

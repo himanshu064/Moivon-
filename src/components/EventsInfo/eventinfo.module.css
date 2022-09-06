@@ -4,14 +4,17 @@ span {
   color: var(--theme-white);
   font-size: 12px;
 }
+
 .borderRight {
   border-right: 2px solid var(--border-color);
   padding-right: 1rem !important;
   padding-left: 1rem !important;
 }
+
 .borderRight:first-child {
   padding-left: 0 !important;
 }
+
 .borderRight:last-child {
   border-right: 0;
 }
@@ -22,8 +25,12 @@ span {
   font-size: 12px !important;
   font-weight: 400 !important;
   text-transform: uppercase;
-  padding: 8px 16px !important;
+  padding: 8px 8px !important;
+  width: 120px;
+  height: 34px;
+  white-space: nowrap;
 }
+
 .gridDiv {
   display: flex !important;
   /* display: grid !important; */
@@ -37,6 +44,7 @@ span {
   text-transform: uppercase;
   color: var(--theme-white-light) !important;
 }
+
 .dateDiv .date {
   text-transform: uppercase;
   font-size: 12px;
@@ -57,6 +65,7 @@ span {
     /* grid-template-columns: 50% 50%; */
     gap: 10px;
   }
+
   .borderRight {
     border-right: 0;
     padding-right: 0 !important;

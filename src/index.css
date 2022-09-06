@@ -42,6 +42,7 @@
   --theme-white-light: #a6a6a6;
   --theme-black-light: #343434;
   --border-color: #575757;
+  --grey-color: #5c5c5c;
   --color-black: #000000;
   --navbar-dark: #1b1b1b;
   --navbar-dark-1: rgba(26, 26, 26, 0.95);
@@ -179,7 +180,7 @@ code {
   text-transform: uppercase;
   font-size: 12px !important;
   color: var(--color-white) !important;
-  padding: 8px 16px;
+  padding: 7px 16px;
 }
 
 .app-header .nav_dropdown .dropdown-menu a:hover,
@@ -194,8 +195,8 @@ code {
 
 .custom-icons .swiper-button-next,
 .custom-icons .swiper-button-prev {
-  width: 40px !important;
-  height: 40px !important;
+  width: 44px !important;
+  height: 44px !important;
   border-radius: 2px;
 }
 
@@ -262,7 +263,7 @@ code {
 
 svg {
   color: var(--theme-white);
-  font-size: 20px;
+  font-size: 25px;
 }
 
 a {
@@ -299,6 +300,7 @@ button:focus {
 .customTab {
   border-bottom: 0 !important;
   flex-wrap: nowrap !important;
+  margin-top: 15px !important;
 }
 
 .customTab li.nav-item {
@@ -434,8 +436,8 @@ button:focus {
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  width: 40px !important;
-  height: 40px !important;
+  width: 44px !important;
+  height: 44px !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: auto !important;
