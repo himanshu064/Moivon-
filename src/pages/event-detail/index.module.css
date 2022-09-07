@@ -122,12 +122,13 @@
 .armoryStickyDiv {
   position: sticky !important;
   top: 0 !important;
-  z-index: 1031 !important;
+  /* z-index: 1031 !important; */
   background: #252525 !important;
+  padding-bottom: 35px;
 }
 
 .armoryStickyRow {
-  padding: 35px 0;
+  /* padding: 35px 0; */
 }
 
 .armoryStickyCol {
