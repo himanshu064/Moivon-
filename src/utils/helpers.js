@@ -56,3 +56,17 @@ export const prepareURL = (url = "") => {
 export function vhToPixels(vh) {
   return Math.round(window.innerHeight / (100 / vh));
 }
+
+export const scrollToTopInstantly = () =>
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant",
+  });
+
+export const scrollToTop = () =>
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "auto",
+  });

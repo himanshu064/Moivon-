@@ -6,16 +6,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Text from "../Text";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
-import { toTitleCase } from "../../utils/helpers";
+import { scrollToTop, toTitleCase } from "../../utils/helpers";
 import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import { createNewsLetterEvent } from "../../services/EventService";
 import toast from "react-hot-toast";
 const Footer = () => {
   const toastId = useRef(null);
   const [email, setEmail] = useState("");
+  const { pathname } = useLocation();
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -81,12 +82,24 @@ const Footer = () => {
                   <h3>EVENTS</h3>
                   <ul>
                     <li>
-                      <Link to="/all-events">All Events</Link>
+                      <Link
+                        to="/all-events"
+                        onClick={
+                          pathname === "/all-events" ? scrollToTop : null
+                        }
+                      >
+                        All Events
+                      </Link>
                     </li>
                     {!allGenresLoading &&
                       allGenres?.data?.data?.map((genre) => (
                         <li key={genre._id}>
-                          <Link to={`/all-events?genre=${genre._id}`}>
+                          <Link
+                            to={`/all-events?genre=${genre._id}`}
+                            onClick={
+                              pathname === "/all-events" ? scrollToTop : null
+                            }
+                          >
                             {toTitleCase(genre.genre)}
                           </Link>
                         </li>
