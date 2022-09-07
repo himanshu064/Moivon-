@@ -11,7 +11,7 @@ import Text from "../../components/Text";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-
+import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 import Event from "../../components/Event";
@@ -116,6 +116,10 @@ function EventDetail() {
                     <span className={styles.type}>
                       {data?.data?.data?.genre?.genre}
                     </span>
+                    <span className={styles.starIcon}>
+                      <AiOutlineStar style={{ marginRight: 5, }} size={18} />
+                      4.2
+                    </span>
                     <Button
                       className={styles.bookNowButton}
                       style={{ width: 180 }}
@@ -137,6 +141,14 @@ function EventDetail() {
           <Row className={styles.armoryStickyRow}>
             <Col md={7}>
               <div className={`${styles.imgSlider}`}>
+                {/* <span className="d-flex">
+                  <AiOutlineStar />
+                  4.2
+                </span> */}
+                <span className={styles.imgSliderIcon}>
+                  <AiOutlineHeart style={{ marginRight: 5 }} />
+                  120
+                </span>
                 <Swiper
                   modules={[Pagination, Navigation]}
                   className="swiper-slider-no-zoom custom-icons"
