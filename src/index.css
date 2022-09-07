@@ -69,19 +69,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--theme-black) !important;
   font-family: var(--sans-regular) !important;
-  /* background-image: url(/public/img/bg.svg); */
+
   background-size: cover;
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden !important;
-  /* overflow: auto !important; */
+
+  /* position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0;
+  margin: 0 3px 0 0 !important;
+  overflow-y: scroll; */
+
 }
+
+/* html {
+  overflow: auto;
+}
+ */
+
 
 body::-webkit-scrollbar {
-  width: 7px;
+  width: 0px;
+
 }
 
+/*
 body::-webkit-scrollbar-track {
   box-shadow: transparent;
   border-radius: 15px;
@@ -90,11 +106,23 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: #d1d1cf;
   border-radius: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  width: 7px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 body::-webkit-scrollbar-thumb:hover {
   background: #d1d1cf;
-}
+} */
+
+
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -112,16 +140,17 @@ code {
 
 .transparent-header .navbar {
   transition-property: all;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
-  transition-delay: 400ms;
+  transition-delay: 50ms;
 }
 
 .scrolling-header .navbar {
   transition-property: all;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-out;
-  transition-delay: 400ms;
+  transition-delay: 50ms;
+
 }
 
 .navbar.active {

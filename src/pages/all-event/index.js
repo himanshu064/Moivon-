@@ -138,66 +138,65 @@ function AllEvent() {
       <RouteTitle title="All Events" />
       <section className="section all-events">
         <Container>
-          <Row>
-            <Col md={12}>
-              <div className={" mb-4 " + styles.navHead}>
-                <Heading mb="0" variant="subHeading">
-                  search
-                </Heading>
-                <div
-                  className={`justify-content-between gap-4 ${styles.topHead}`}
-                >
-                  <Tabs
-                    id="controlled-tab-example"
-                    activeKey={genre}
-                    onSelect={onTabChange}
-                    className="m-auto customTab"
-                  >
-                    <Tab eventKey="all" title="All events"></Tab>
-                    {!allGenresLoading &&
-                      allGenres?.data?.data?.map((genre) => (
-                        <Tab
-                          key={genre._id}
-                          eventKey={genre._id}
-                          title={genre.genre}
-                        ></Tab>
-                      ))}
-                  </Tabs>
-                  <Dropdown className={styles.dropdownBtn} align="end">
-                    <Dropdown.Toggle variant="none" className={styles.sortBtn}>
-                      <Button type="outline">Sort</Button>
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu className={styles.dropdownMenu}>
-                      {Object.entries(ALL_EVENTS_FILTERS).map(
-                        ([field, values], idx) => {
-                          const { key, icon: Icon } = values;
-                          return (
-                            <Dropdown.Item
-                              as="button"
-                              className={styles.filterItem}
-                              key={`filters_${idx}`}
-                              onClick={() => {
-                                const newOrderBy = toggleOrderBy(orderBy);
-                                onFilterChange(field, newOrderBy);
-                              }}
-                              active={sortBy === key}
-                            >
-                              {toTitleCase(field)}
-                              {Icon && key === sortBy && (
-                                <Icon
-                                  orderBy={sortBy === key ? orderBy : "asc"}
-                                />
-                              )}
-                            </Dropdown.Item>
-                          );
-                        }
-                      )}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-              </div>
+          <Row className={styles.topHead}>
+            <Col md={3} lg={2} className={styles.navHead}>
+              <Heading mb="0" variant="subHeading">
+                search
+              </Heading>
             </Col>
+            <Col md={6} lg={8} className={styles.topCustomTab} >
+              <Tabs
+                id="controlled-tab-example"
+                activeKey={genre}
+                onSelect={onTabChange}
+                className="m-auto customTab"
+              >
+                <Tab eventKey="all" title="All events"></Tab>
+                {!allGenresLoading &&
+                  allGenres?.data?.data?.map((genre) => (
+                    <Tab
+                      key={genre._id}
+                      eventKey={genre._id}
+                      title={genre.genre}
+                    ></Tab>
+                  ))}
+              </Tabs>
+            </Col>
+            <Col md={3} lg={2} xl={2} className=" d-flex justify-content-end" >
+              <Dropdown className={styles.dropdownBtn} align="end">
+                <Dropdown.Toggle variant="none" className={styles.sortBtn}>
+                  <Button type="outline">Sort</Button>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className={styles.dropdownMenu}>
+                  {Object.entries(ALL_EVENTS_FILTERS).map(
+                    ([field, values], idx) => {
+                      const { key, icon: Icon } = values;
+                      return (
+                        <Dropdown.Item
+                          as="button"
+                          className={styles.filterItem}
+                          key={`filters_${idx}`}
+                          onClick={() => {
+                            const newOrderBy = toggleOrderBy(orderBy);
+                            onFilterChange(field, newOrderBy);
+                          }}
+                          active={sortBy === key}
+                        >
+                          {toTitleCase(field)}
+                          {Icon && key === sortBy && (
+                            <Icon
+                              orderBy={sortBy === key ? orderBy : "asc"}
+                            />
+                          )}
+                        </Dropdown.Item>
+                      );
+                    }
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+
           </Row>
           <Row>
             {isLoading ? (
@@ -222,7 +221,7 @@ function AllEvent() {
                       >
                         <Row>
                           {computedDataArray.map((event) => (
-                            <Col md={4} className="mb-3" key={event._id}>
+                            <Col md={6} lg={4} key={event._id}>
                               <Event
                                 event={event}
                                 showGalleryOnHover

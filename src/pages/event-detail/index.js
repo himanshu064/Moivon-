@@ -82,19 +82,20 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
-          <h6
-            className={styles.toggleTitle}
-            onClick={() => setShowFullTitle((prev) => !prev)}
-          >
-            <span>Full Title</span>
-            {!showFullTitle ? (
-              <BiPlus color="white" size={12} />
-            ) : (
-              <BiMinus color="white" size={12} />
-            )}
-          </h6>
+
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col>
+              <h6
+                className={styles.toggleTitle}
+                onClick={() => setShowFullTitle((prev) => !prev)}
+              >
+                <span>Full Title</span>
+                {!showFullTitle ? (
+                  <BiPlus color="white" size={12} />
+                ) : (
+                  <BiMinus color="white" size={12} />
+                )}
+              </h6>
               <div className={`border-b ${styles.topHead}`}>
                 <div
                   className={`${styles.eventHead} d-flex align-items-end gap-3 flex-wrap w-100`}
@@ -222,10 +223,9 @@ function EventDetail() {
                     href={
                       data?.data?.data?.venue
                         ? getMapsLocation(
-                            `${data?.data?.data?.venue || ""} ${
-                              data?.data?.data?.location || ""
-                            }`
-                          )
+                          `${data?.data?.data?.venue || ""} ${data?.data?.data?.location || ""
+                          }`
+                        )
                         : "#"
                     }
                     target="_blank"
@@ -286,6 +286,9 @@ function EventDetail() {
       </section>
       <section className={`section ${styles.content} ${styles.lastSection}`}>
         <Container> */}
+
+        </Container>
+        <Container>
           <Row className={styles.content}>
             <Col md={6}>
               <h3 className="mb-4">RELATED EVENTS</h3>
@@ -300,8 +303,6 @@ function EventDetail() {
               </div>
             </Col>
           </Row>
-        </Container>
-        <Container>
           {/* ${styles.slider} */}
           <div className={`mx-0`}>
             {allEventsIsLoading ? (

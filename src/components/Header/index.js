@@ -5,6 +5,7 @@ import { ALL_QUERIES } from "../../utils/endpoints";
 import { fetchAllGenres } from "../../services/GenreService";
 import TransparentHeader from "../TransparentHeader";
 import ScrollingHeader from "../ScrollingHeader";
+import { useLocation } from "react-router-dom";
 
 function Header() {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
@@ -14,6 +15,8 @@ function Header() {
   const transparentHeaderRef = useRef();
   const scrollingHeaderRef = useRef();
   const spacerRef = useRef();
+
+  const { pathname } = useLocation();
 
   useLayoutEffect(() => {
     const onScroll = debounce(() => {
@@ -47,16 +50,28 @@ function Header() {
     };
   }, []);
 
+  // const renderTransparentHeader = () => {
+  //   const restrictedPaths = ["/event-detail"];
+  //   let isAllowed = false;
+  //   restrictedPaths.forEach(path => {
+  //     isAllowed = pathname.startsWith(path) ? false : true;
+  //   });
+  //   console.log(isAllowed, 'isAllowed')
+  //   return isAllowed
+  // }
+
   return (
     <div className="app-header">
       <TransparentHeader
         ref={transparentHeaderRef}
         genres={allGenres?.data?.data}
       />
+      {/* {renderTransparentHeader() &&  */}
       <ScrollingHeader
         ref={scrollingHeaderRef}
         genres={allGenres?.data?.data}
       />
+      {/* // } */}
       <div ref={spacerRef} className="spacer" />
     </div>
   );

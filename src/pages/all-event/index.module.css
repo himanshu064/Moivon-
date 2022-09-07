@@ -1,12 +1,18 @@
-.navHead {
+/* .navHead {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
-}
+} */
 
 .navHead h1 {
   font-size: 40px !important;
+}
+
+.topCustomTab {
+  padding-left: 2px !important;
+  display: flex;
+  justify-content: center;
 }
 
 .sortBtn button {
@@ -20,7 +26,8 @@
 }
 
 .topHead {
-  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .dropdownBtn {
@@ -87,11 +94,28 @@
   padding: 6px 6px 0 6px;
 }
 
+.topCustomTab::-webkit-scrollbar {
+  height: 3px;
+  cursor: pointer !important;
+}
+
+.topCustomTab::-webkit-scrollbar-track {
+  box-shadow: transparent;
+  cursor: pointer !important;
+}
+
+.topCustomTab::-webkit-scrollbar-thumb {
+  background: #a6a6a6;
+  border-radius: 10px;
+  cursor: pointer !important;
+}
+
+
 @media screen and (max-width: 768px) {
-  .navHead {
+  /* .navHead {
     flex-wrap: wrap;
     gap: 1rem !important;
-  }
+  } */
 
   .topHead {
     display: block !important;
@@ -101,5 +125,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .topCustomTab {
+    overflow-x: scroll;
+    justify-content: flex-start !important;
   }
 }

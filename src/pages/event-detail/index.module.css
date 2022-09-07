@@ -14,7 +14,7 @@
 
 .imgSlider {
   position: sticky;
-  top: 225px;
+  top: 125px;
   padding-bottom: 3px !important;
 }
 
@@ -121,9 +121,9 @@
 
 .armoryStickyDiv {
   position: sticky !important;
-  top: 124px !important;
-  /* z-index: 1031; */
-  background: var(--theme-black);
+  top: 0 !important;
+  z-index: 1031 !important;
+  background: #252525 !important;
 }
 
 .armoryStickyRow {
@@ -160,7 +160,7 @@
 }
 
 .toggleTitle {
-  margin: 0;
+  margin: 10px 0 0 0;
   text-transform: uppercase;
   font-family: var(--sans-medium);
   font-size: 12px;

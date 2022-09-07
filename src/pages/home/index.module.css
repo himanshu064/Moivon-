@@ -1,3 +1,23 @@
+/* .homeContainer {
+  padding: 0 !important;
+}
+.homeContainer::-webkit-scrollbar {
+  width: 7px;
+}
+
+.homeContainer::-webkit-scrollbar-track {
+  box-shadow: transparent;
+  border-radius: 15px;
+}
+
+.homeContainer::-webkit-scrollbar-thumb {
+  background: #d1d1cf;
+  border-radius: 15px;
+}
+
+.homeContainer::-webkit-scrollbar-thumb:hover {
+  background: #d1d1cf;
+} */
 .heroSection {
   padding: 40px 0;
 }
