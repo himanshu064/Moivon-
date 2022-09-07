@@ -113,7 +113,7 @@ function Home() {
             </Col>
           </Row>
         </Container>
-        <Container>
+        <Container fluid className={styles.eventSliderContainer}>
           {/* ${styles.slider} */}
           <div className={`mx-0 position-relative`}>
             <EventSlider />

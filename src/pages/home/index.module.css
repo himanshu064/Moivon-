@@ -43,8 +43,6 @@
   padding: 17px 0 0 0 !important;
 }
 
-
-
 .spanHead::before {
   content: "";
   position: absolute;
@@ -168,6 +166,11 @@
   padding: 6.5rem 0 4.2rem 0 !important;
 }
 
+@media screen and (min-width: 1192px) {
+  .eventSliderContainer {
+    max-width: 1390px !important;
+  }
+}
 @media screen and (max-width: 1349px) {
   .heroHeading .spanHead {
     position: unset;
