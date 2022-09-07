@@ -50,15 +50,14 @@ function Header() {
     };
   }, []);
 
-  // const renderTransparentHeader = () => {
-  //   const restrictedPaths = ["/event-detail"];
-  //   let isAllowed = false;
-  //   restrictedPaths.forEach(path => {
-  //     isAllowed = pathname.startsWith(path) ? false : true;
-  //   });
-  //   console.log(isAllowed, 'isAllowed')
-  //   return isAllowed
-  // }
+  const renderScrollingHeader = () => {
+    const restrictedPaths = ["/event-detail"];
+    let isAllowed = false;
+    restrictedPaths.forEach((path) => {
+      isAllowed = pathname.startsWith(path) ? false : true;
+    });
+    return isAllowed;
+  };
 
   return (
     <div className="app-header">
@@ -66,12 +65,12 @@ function Header() {
         ref={transparentHeaderRef}
         genres={allGenres?.data?.data}
       />
-      {/* {renderTransparentHeader() &&  */}
-      <ScrollingHeader
-        ref={scrollingHeaderRef}
-        genres={allGenres?.data?.data}
-      />
-      {/* // } */}
+      {renderScrollingHeader() && (
+        <ScrollingHeader
+          ref={scrollingHeaderRef}
+          genres={allGenres?.data?.data}
+        />
+      )}
       <div ref={spacerRef} className="spacer" />
     </div>
   );
