@@ -162,7 +162,7 @@ function AllEvent() {
                   ))}
               </Tabs>
             </Col>
-            <Col md={3} lg={2} xl={2} className=" d-flex justify-content-end" >
+            <Col md={3} lg={2} xl={2} className={`d-flex justify-content-end ${styles.topCustomCol}`} >
               <Dropdown className={styles.dropdownBtn} align="end">
                 <Dropdown.Toggle variant="none" className={styles.sortBtn}>
                   <Button type="outline">Sort</Button>

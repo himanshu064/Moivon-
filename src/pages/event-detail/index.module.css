@@ -192,3 +192,19 @@
   display: inline-block;
   margin-right: 2px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .topHead h1 {
+    font-size: 30px !important;
+    line-height: 30px !important;
+  }
+
+  .bookNowButton {
+    width: 142px !important;
+    font-size: 12px !important;
+    white-space: nowrap;
+    padding: 10px 5px !important;
+    margin-top: 15px;
+  }
+}

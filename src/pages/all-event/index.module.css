@@ -119,6 +119,24 @@
 
   .topHead {
     display: block !important;
+    margin-top: 40px !important;
+    margin-right: 10px !important;
+  }
+
+  .topHead>.topCustomCol {
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    margin-top: 10px !important;
+  }
+
+
+  .topCustomTab {
+    margin: 0 10px !important;
+  }
+
+  .navHead h1 {
+    font-size: 30px !important;
+    line-height: 16px !important;
   }
 
   .sortBtn {

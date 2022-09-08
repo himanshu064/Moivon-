@@ -156,12 +156,14 @@
   }
 
   .heroIcons {
-    margin-top: 40px;
+    margin-top: 45px;
   }
 
   .heroIcons a {
     width: 115px;
-    padding: 18px 2px !important;
+    padding: 12px 2px !important;
     white-space: nowrap;
+    height: 40px;
   }
+
 }

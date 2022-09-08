@@ -212,7 +212,13 @@ button:focus svg {
   padding: 0 0 30px 0;
 }
 
+@media screen and (max-width: 768px) {
 
+  .topHead h1 {
+    font-size: 30px !important;
+    line-height: 30px !important;
+  }
+}
 
 /* label */
 
