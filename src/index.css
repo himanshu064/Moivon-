@@ -220,9 +220,7 @@ code {
   text-underline-offset: 8px;
 }
 
-.app-header .nav-item.dropdown:hover .dropdown-menu {
-  display: block;
-}
+
 
 /* Custom buttons start */
 
@@ -277,11 +275,6 @@ code {
   left: -90px;
 } */
 
-@media screen and (max-width: 1192px) {
-  .eventSlider .swiper-button-prev {
-    left: 0 !important;
-  }
-}
 
 .swiper-pagination-bullet {
   background: var(--border-color) !important;
@@ -503,17 +496,7 @@ button:focus {
   font-size: 30px;
 }
 
-@media screen and (max-width: 768px) {
-  .section {
-    padding: 20px 0;
-  }
-}
 
-@media screen and (min-width: 992px) {
-  .container {
-    max-width: 1192px !important;
-  }
-}
 
 /* .next-btn,
 .prev-btn {
@@ -604,4 +587,35 @@ button:focus {
 
 .customSwiper {
   height: 445px;
+}
+
+@media screen and (max-width: 1192px) {
+  .eventSlider .swiper-button-prev {
+    left: 0 !important;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .app-header .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .container {
+    max-width: 1192px !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .app-header .nav_dropdown .dropdown-menu {
+    position: absolute;
+    top: 25px;
+    left: -186px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 20px 0;
+  }
 }

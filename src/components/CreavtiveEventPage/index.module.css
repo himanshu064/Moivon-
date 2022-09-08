@@ -76,30 +76,92 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1349px) {
-  .heroHeading .spanHead {
-    position: unset;
+
+@media screen and (max-width:1330px) {
+  .heroHeading h1 {
+    font-size: 56px
   }
 
-  .spanHead::before {
-    display: none;
+  .heroHeading .spanHead {
+    right: 19%;
   }
 
   .heroIcons {
     margin-top: 20px;
   }
+
+  .heroHeading {
+    position: relative;
+    margin-top: 15.3rem;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width:1190px) {
+  .heroHeading h1 {
+    font-size: 56px
+  }
+
+}
+
+@media screen and (max-width:1150px) {
+  .heroHeading {
+    margin-top: 13rem;
+  }
+
+  .heroHeading h1 {
+    font-size: 50px;
+    line-height: 60px;
+    margin-bottom: 10px !important;
+  }
+
+  .heroHeading .spanHead {
+    position: unset;
+  }
+
+  .spanHead::before {
+    height: 0%;
+    position: unset;
+    border: none;
+    left: 0
+  }
+
+  .heroIcons {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .heroHeading h1 {
+    font-size: 38px;
+    line-height: 54px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .heroHeading h1 {
-    font-size: 40px !important;
-    line-height: 55px !important;
+    font-size: 28px !important;
+    line-height: 35px !important;
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 560px) {
+  .heroHeading {
+    margin-top: 18rem;
+  }
+
   .heroHeading h1 {
-    font-size: 30px !important;
-    line-height: 45px !important;
+    font-size: 19px !important;
+    line-height: 32px !important;
+  }
+
+  .heroIcons {
+    margin-top: 70px;
+  }
+
+  .heroIcons a {
+    width: 130px;
+    padding: 18px 2px !important;
+    white-space: nowrap;
   }
 }

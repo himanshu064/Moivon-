@@ -61,4 +61,39 @@
   .last {
     justify-content: flex-start;
   }
+
+  .navBarCustom {
+    display: flex;
+    width: auto !important;
+    flex-direction: row !important;
+    gap: 20px;
+  }
+
+  .navbarCollapse {
+    position: absolute;
+    border: 1px solid #a47c07;
+    top: 60px;
+    right: 0px;
+    border-radius: 15px;
+    width: 145px;
+    background: #1B1B1B;
+  }
+}
+
+.navBarCustom {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 570px) {
+  .navBarCustom .last {
+    display: none !important;
+  }
+
+  .navbarCollapse {
+
+    top: 45px;
+  }
 }

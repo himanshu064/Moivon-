@@ -53,6 +53,13 @@
   color: #c8af66 !important;
 }
 
+.navBarCustom {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
 @media screen and (max-width: 991px) {
   .navLink {
     gap: 10px;
@@ -60,5 +67,36 @@
 
   .last {
     justify-content: flex-start;
+  }
+
+  .navBarCustom {
+    display: flex;
+    width: auto !important;
+    flex-direction: row !important;
+    gap: 20px;
+  }
+
+  .navbarCollapse {
+    position: absolute;
+    border: 1px solid #a47c07;
+    top: 60px;
+    right: 0px;
+    border-radius: 15px;
+    width: 145px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .navBarCustom .last {
+    display: none !important;
+  }
+
+  .navbarCollapse {
+    position: absolute;
+    border: 1px solid #a47c07;
+    top: 45px;
+    right: 0px;
+    border-radius: 15px;
+    width: 145px;
   }
 }
