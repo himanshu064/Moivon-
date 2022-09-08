@@ -147,20 +147,20 @@
 
 @media screen and (max-width: 560px) {
   .heroHeading {
-    margin-top: 18rem;
+    margin-top: 11rem;
   }
 
   .heroHeading h1 {
-    font-size: 19px !important;
+    font-size: 18px !important;
     line-height: 32px !important;
   }
 
   .heroIcons {
-    margin-top: 70px;
+    margin-top: 40px;
   }
 
   .heroIcons a {
-    width: 130px;
+    width: 115px;
     padding: 18px 2px !important;
     white-space: nowrap;
   }
