@@ -94,7 +94,7 @@ function Home() {
         </section>
       </div>
 
-      <section className="section">
+      <section className={`section ${styles.bottomSection}`}>
         <Container>
           <Row>
             <Col md={8}>
@@ -105,7 +105,7 @@ function Home() {
             <Col md={4}>
               <div className="d-flex justify-content-end align-items-center mb-4">
                 <Link to="/all-events">
-                  <span>
+                  <span className={styles.newTextDeco}>
                     View All <FiArrowUpRight />
                   </span>
                 </Link>
@@ -113,7 +113,7 @@ function Home() {
             </Col>
           </Row>
         </Container>
-        <Container>
+        <Container fluid className={styles.eventSliderContainer}>
           {/* ${styles.slider} */}
           <div className={`mx-0 position-relative`}>
             <EventSlider />
@@ -181,7 +181,7 @@ function Home() {
                   src="/img/contact.png"
                   alt="contact"
                   width="100%"
-                  height="252"
+                  height="225"
                 />
               </div>
             </Col>

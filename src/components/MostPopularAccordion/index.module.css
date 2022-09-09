@@ -16,3 +16,13 @@
     padding-right: 30px;
   }
 }
+
+@media screen and (max-width: 776px) {
+  .customcontainer {
+    height: auto !important;
+  }
+
+  .image {
+    margin-top: 20px;
+  }
+}

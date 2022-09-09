@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
+import classnames from "classnames";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { BsChevronLeft } from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { Navigation, Pagination } from "swiper";
 import Slide from "../Slide";
 import { fetchUpcomingEvents } from "../../services/EventService";
@@ -28,31 +29,39 @@ function EventSlider() {
 
   return (
     <>
-      {isMinimumThreeSlidesAvailable && (
+      {/* {isMinimumThreeSlidesAvailable && (
         <div
           className={styles.prevSlideButton}
           onClick={() => {
-            swiperRef.current.swiper.slidePrev();
+            if (swiperRef.current.swiper.activeIndex > 1) {
+              swiperRef.current.swiper.slidePrev();
+            }
           }}
         >
           <BsChevronLeft size={52} />
         </div>
-      )}
+      )} */}
       <Swiper
         ref={swiperRef}
-        className={`eventSlider ${
-          isMinimumThreeSlidesAvailable ? "" : "transform-none"
-        }`}
+        className={classnames(
+          `eventSlider customSwiper ${styles.swiperContainer}`,
+          {
+            "transform-none": isMinimumThreeSlidesAvailable,
+          }
+        )}
         modules={[Navigation, Pagination]}
-        initialSlide={0}
+        pagination={{
+          clickable: true,
+        }}
+        initialSlide={1}
         spaceBetween={2}
-        slidesPerView={3.15}
-        loop={isMinimumThreeSlidesAvailable}
-        navigation={isMinimumThreeSlidesAvailable}
-        // centeredSlides={true}
-        // centeredSlidesBounds={true}
+        slidesPerView={3.5}
+        // loop={isMinimumThreeSlidesAvailable}
+        // navigation={isMinimumThreeSlidesAvailable}
+        navigation={true}
+        centeredSlides={true}
         // cannot grab
-        allowTouchMove={false}
+        // allowTouchMove={false}
         onSlideChange={(s) => console.log("slide change", s)}
         onSwiper={(swiper) => console.log(swiper, "swiper")}
         // onActiveIndexChange={(swiper) => setCurrentIndex(swiper.realIndex)}
@@ -74,7 +83,7 @@ function EventSlider() {
           },
           // when window width is >= 1200px
           1200: {
-            slidesPerView: 3.15,
+            slidesPerView: 3.5,
           },
         }}
       >
@@ -96,6 +105,19 @@ function EventSlider() {
           </>
         )}
       </Swiper>
+      {/* {isMinimumThreeSlidesAvailable && (
+        <div
+          className={styles.nextSlideButton}
+          onClick={() => {
+            const totalSlideLength = data?.data?.data?.length;
+            if (swiperRef.current.swiper.activeIndex < totalSlideLength - 2) {
+              swiperRef.current.swiper.slideNext();
+            }
+          }}
+        >
+          <BsChevronRight size={52} />
+        </div>
+      )} */}
     </>
   );
 }

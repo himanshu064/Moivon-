@@ -34,7 +34,7 @@
   padding: 0px 5px;
   font-size: 12px;
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 3px;
   color: var(--color-disabled) !important;
 }
 
@@ -44,26 +44,22 @@
 
 .uploadButton button {
   border-radius: 30px !important;
-  /* width: 200px;
-  height: 50px; */
+  width: 200px;
+  height: 50px;
 }
 
 .transparent span {
   background-color: #978036 !important;
   color: #c8af66 !important;
 }
-.close-navbar-toggler{
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  width:100%;
-  z-index:1;
-  cursor:pointer;
+
+.navBarCustom {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
 }
-.close-navbar-toggler.collapsed{
-  z-index:-1;
-}
+
 @media screen and (max-width: 991px) {
   .navLink {
     gap: 10px;
@@ -71,5 +67,43 @@
 
   .last {
     justify-content: flex-start;
+  }
+
+  .navBarCustom {
+    display: flex;
+    width: auto !important;
+    flex-direction: row !important;
+    gap: 20px;
+  }
+
+  .navbarCollapse {
+    position: absolute;
+    border: 1px solid #a47c07;
+    top: 60px;
+    right: 0px;
+    border-radius: 15px;
+    width: 145px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .last .customIcon {
+    display: none !important;
+  }
+
+  .uploadButton button {
+    border-radius: 15px !important;
+    width: 120px !important;
+    height: 40px !important;
+    padding: 0 0 !important;
+  }
+
+  .navbarCollapse {
+    position: absolute;
+    border: 1px solid #a47c07;
+    top: 45px;
+    right: 0px;
+    border-radius: 15px;
+    width: 145px;
   }
 }

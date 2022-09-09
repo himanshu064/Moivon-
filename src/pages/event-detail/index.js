@@ -11,7 +11,7 @@ import Text from "../../components/Text";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-
+import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 import Event from "../../components/Event";
@@ -82,19 +82,20 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
-          <h6
-            className={styles.toggleTitle}
-            onClick={() => setShowFullTitle((prev) => !prev)}
-          >
-            <span>Full Title</span>
-            {!showFullTitle ? (
-              <BiPlus color="white" size={12} />
-            ) : (
-              <BiMinus color="white" size={12} />
-            )}
-          </h6>
+
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col>
+              <h6
+                className={styles.toggleTitle}
+                onClick={() => setShowFullTitle((prev) => !prev)}
+              >
+                <span>Full Title</span>
+                {!showFullTitle ? (
+                  <BiPlus color="white" size={12} />
+                ) : (
+                  <BiMinus color="white" size={12} />
+                )}
+              </h6>
               <div className={`border-b ${styles.topHead}`}>
                 <div
                   className={`${styles.eventHead} d-flex align-items-end gap-3 flex-wrap w-100`}
@@ -114,6 +115,10 @@ function EventDetail() {
                   <div>
                     <span className={styles.type}>
                       {data?.data?.data?.genre?.genre}
+                    </span>
+                    <span className={styles.starIcon}>
+                      <AiOutlineStar style={{ marginRight: 5, }} size={18} />
+                      4.2
                     </span>
                     <Button
                       className={styles.bookNowButton}
@@ -136,6 +141,14 @@ function EventDetail() {
           <Row className={styles.armoryStickyRow}>
             <Col md={7}>
               <div className={`${styles.imgSlider}`}>
+                {/* <span className="d-flex">
+                  <AiOutlineStar />
+                  4.2
+                </span> */}
+                <span className={styles.imgSliderIcon}>
+                  <AiOutlineHeart style={{ marginRight: 5 }} />
+                  120
+                </span>
                 <Swiper
                   modules={[Pagination, Navigation]}
                   className="swiper-slider-no-zoom custom-icons"
@@ -222,10 +235,9 @@ function EventDetail() {
                     href={
                       data?.data?.data?.venue
                         ? getMapsLocation(
-                            `${data?.data?.data?.venue || ""} ${
-                              data?.data?.data?.location || ""
-                            }`
-                          )
+                          `${data?.data?.data?.venue || ""} ${data?.data?.data?.location || ""
+                          }`
+                        )
                         : "#"
                     }
                     target="_blank"
@@ -286,6 +298,9 @@ function EventDetail() {
       </section>
       <section className={`section ${styles.content} ${styles.lastSection}`}>
         <Container> */}
+
+        </Container>
+        <Container>
           <Row className={styles.content}>
             <Col md={6}>
               <h3 className="mb-4">RELATED EVENTS</h3>
@@ -300,8 +315,6 @@ function EventDetail() {
               </div>
             </Col>
           </Row>
-        </Container>
-        <Container>
           {/* ${styles.slider} */}
           <div className={`mx-0`}>
             {allEventsIsLoading ? (

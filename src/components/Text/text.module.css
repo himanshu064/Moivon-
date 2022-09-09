@@ -1,11 +1,11 @@
 .text {
   font-weight: 400;
   font-size: 14px;
-  line-height: 26px;
+  line-height: 19px;
   letter-spacing: 0.2px;
   color: var(--theme-white-light);
   font-family: var(--sans-regular);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .white {

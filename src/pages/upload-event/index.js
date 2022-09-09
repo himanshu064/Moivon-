@@ -374,11 +374,9 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${
-                          styles.priceContainer
-                        } ${
-                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                        }`}
+                        className={`${styles.formGroup} ${styles.priceContainer
+                          } ${priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                          }`}
                       >
                         <Form.Control
                           type="number"
@@ -406,6 +404,7 @@ function UploadEvent() {
                   <Form.Control
                     as="textarea"
                     rows="3"
+                    className={styles.textarea1}
                     {...register("description")}
                   />
                 </Form.Group>
@@ -449,7 +448,7 @@ function UploadEvent() {
                   controlId="formGroupDescription"
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
-                  <Form.Control as="textarea" {...register("eventOrgDetail")} />
+                  <Form.Control as="textarea" className={styles.textarea2} {...register("eventOrgDetail")} />
                 </Form.Group>
                 {/* Event url link */}
                 <Form.Group

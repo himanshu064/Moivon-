@@ -102,7 +102,7 @@ const HomeForm = () => {
         />
       </Form.Group>
       <div
-        className={`d-flex gap-4 align-items-center flex-wrap ${styles.btnDiv}`}
+        className={`d-flex gap-3 align-items-center flex-wrap ${styles.btnDiv}`}
       >
         <Button
           type="primary"

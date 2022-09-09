@@ -14,13 +14,29 @@
 
 .imgSlider {
   position: sticky;
-  top: 110px;
+  top: 125px;
   padding-bottom: 3px !important;
+}
+
+.imgSliderIcon {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  z-index: 2;
+  background: rgba(37, 37, 37, 0.6);
+  padding: 8px 12px;
 }
 
 .imgSlider img {
   width: 100%;
   height: 450px;
+  position: relative;
+}
+
+.starIcon {
+  margin-right: 1rem;
+  border: 1px solid white;
+  padding: 7px 9px;
 }
 
 .type {
@@ -31,6 +47,10 @@
   padding: 5px 10px;
   font-family: var(--sans-medium);
   margin-right: 1rem;
+}
+
+.content {
+  margin-top: 42px !important;
 }
 
 .content h3 {
@@ -122,12 +142,13 @@
 .armoryStickyDiv {
   position: sticky !important;
   top: 0 !important;
-  /* z-index: 1031; */
-  background: var(--theme-black);
+  /* z-index: 1031 !important; */
+  background: #252525 !important;
+  padding-bottom: 35px;
 }
 
 .armoryStickyRow {
-  padding: 35px 0;
+  /* padding: 35px 0; */
 }
 
 .armoryStickyCol {
@@ -160,7 +181,7 @@
 }
 
 .toggleTitle {
-  margin: 0;
+  margin: 10px 0 0 0;
   text-transform: uppercase;
   font-family: var(--sans-medium);
   font-size: 12px;
@@ -174,4 +195,33 @@
   padding-left: 2px;
   display: inline-block;
   margin-right: 2px;
+}
+
+@media screen and (max-width: 1115px) {
+
+  .dateDiv .date,
+  .locationDiv .location,
+  .entryDiv .entry {
+    white-space: normal !important;
+    width: auto !important;
+  }
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+  .topHead h1 {
+    font-size: 30px !important;
+    line-height: 30px !important;
+  }
+
+  .bookNowButton {
+    width: 142px !important;
+    font-size: 12px !important;
+    white-space: nowrap;
+    padding: 10px 5px !important;
+    margin-top: 15px;
+  }
 }

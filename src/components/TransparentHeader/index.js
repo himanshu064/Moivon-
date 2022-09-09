@@ -41,59 +41,7 @@ function TransparentHeader({ genres = [] }, headerRef) {
             >
               <img src="/img/moivon.png" alt="logo" width={45} />
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav">
-              <BiMenuAltRight />
-            </Navbar.Toggle>
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className={styles.navLink + " me-auto"}>
-                <NavigationDropdown
-                  title="All Events"
-                  id="basic-nav-dropdown"
-                  options={[
-                    { _id: "all", link: "/all-events", value: "All Events" },
-                    ...genres.map((option) => ({
-                      _id: option._id,
-                      link: `/all-events?genre=${option._id}`,
-                      value: option?.genre,
-                    })),
-                  ]}
-                  isTransparent={pathname === "/"}
-                />
-                <Nav.Link
-                  to="/"
-                  as={Link}
-                  onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("about-page")
-                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                    }, 200);
-                  }}
-                >
-                  About Us
-                </Nav.Link>
-                <Nav.Link
-                  to="/"
-                  as={Link}
-                  onClick={() => {
-                    setTimeout(() => {
-                      document
-                        .getElementById("contact-page")
-                        .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-                    }, 200);
-                  }}
-                >
-                  Contact Us
-                </Nav.Link>
-                <Nav.Link
-                  href="#"
-                  eventKey="disabled"
-                  className={styles.disabledLink}
-                  disabled
-                >
-                  Calendar <span className={styles.soon}>SOON</span>
-                </Nav.Link>
-              </Nav>
+            <div className={styles.navBarCustom}>
               <div className={`d-flex align-items-center gap-4 ${styles.last}`}>
                 <div
                   className={
@@ -111,7 +59,65 @@ function TransparentHeader({ genres = [] }, headerRef) {
                   <Button type="primary">Upload Event</Button>
                 </Link>
               </div>
-            </Navbar.Collapse>
+
+              <Navbar.Toggle aria-controls="basic-navbar-nav">
+                <BiMenuAltRight />
+              </Navbar.Toggle>
+              <Navbar.Collapse className={styles.navbarCollapse} id="basic-navbar-nav">
+                <Nav className={styles.navLink + " me-auto"}>
+                  <NavigationDropdown
+                    title="All Events"
+                    id="basic-nav-dropdown"
+                    options={[
+                      { _id: "all", link: "/all-events", value: "All Events" },
+                      ...genres.map((option) => ({
+                        _id: option._id,
+                        link: `/all-events?genre=${option._id}`,
+                        value: option?.genre,
+                      })),
+                    ]}
+                    isTransparent={pathname === "/"}
+                  />
+                  <Nav.Link
+                    to="/"
+                    as={Link}
+                    onClick={() => {
+                      setTimeout(() => {
+                        document
+                          .getElementById("about-page")
+                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+                      }, 200);
+                    }}
+                  >
+                    About Us
+                  </Nav.Link>
+                  <Nav.Link
+                    to="/"
+                    as={Link}
+                    onClick={() => {
+                      setTimeout(() => {
+                        document
+                          .getElementById("contact-page")
+                          .scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+                      }, 200);
+                    }}
+                  >
+                    Contact Us
+                  </Nav.Link>
+                  <Nav.Link
+                    href="#"
+                    eventKey="disabled"
+                    className={styles.disabledLink}
+                    disabled
+                  >
+                    Calendar <span className={styles.soon}>SOON</span>
+                  </Nav.Link>
+                </Nav>
+
+              </Navbar.Collapse>
+            </div>
+
+
           </Container>
         </Navbar>
       </header>

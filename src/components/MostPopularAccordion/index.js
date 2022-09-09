@@ -46,7 +46,7 @@ const MostPopularAccordion = () => {
   return (
     <Container className={`position-relative ${styles.customcontainer}`}>
       <Row>
-        <Col md={5} className="mb-4">
+        <Col md={5}>
           <div className={styles.paddingRight}>
             <Heading variant="subHeading">
               Most popular

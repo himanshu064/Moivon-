@@ -3,31 +3,32 @@
   background-repeat: no-repeat;
   background-image: url(/public/img/Creativebackground.png);
   background-size: cover;
-  background-position: center center;
   position: relative;
   top: -70px;
-  background-position: fixed;
+
 }
+
 
 .heroHeading {
   position: relative;
-  margin-top: 15.3rem;
+  margin-top: 18.3rem;
   padding: 0 15px;
 }
 
 .heroHeading h1 {
   font-size: 64px;
   line-height: 78px;
-  font-family: var(--manrope-regular) !important;
-  letter-spacing: 1px;
-  margin-bottom: 3.8rem !important;
+  font-family: var(--manrope-bold) !important;
+  letter-spacing: .2px;
+  margin-bottom: 3.4rem !important;
+  white-space: nowrap;
 }
 
 .heroHeading .spanHead {
   position: absolute;
   padding-left: 10px;
-  right: 14%;
-  top: 85px;
+  right: 13%;
+  top: 80px;
   font-size: 14px;
   font-family: var(--sans-regular);
   font-weight: 400;
@@ -57,10 +58,15 @@
 }
 
 .heroIcons span {
+  display: flex;
+}
+
+.heroIcons span h6 {
   color: var(--theme-white);
   font-size: 14px;
   font-family: var(--sans-medium);
   line-height: 18px;
+  margin: 17px 0px 0 0;
 }
 
 .herosectionImg {
@@ -70,30 +76,94 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1349px) {
-  .heroHeading .spanHead {
-    position: unset;
+
+@media screen and (max-width:1330px) {
+  .heroHeading h1 {
+    font-size: 56px
   }
 
-  .spanHead::before {
-    display: none;
+  .heroHeading .spanHead {
+    right: 19%;
   }
 
   .heroIcons {
     margin-top: 20px;
   }
+
+  .heroHeading {
+    position: relative;
+    margin-top: 15.3rem;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width:1190px) {
+  .heroHeading h1 {
+    font-size: 56px
+  }
+
+}
+
+@media screen and (max-width:1150px) {
+  .heroHeading {
+    margin-top: 13rem;
+  }
+
+  .heroHeading h1 {
+    font-size: 50px;
+    line-height: 60px;
+    margin-bottom: 10px !important;
+  }
+
+  .heroHeading .spanHead {
+    position: unset;
+  }
+
+  .spanHead::before {
+    height: 0%;
+    position: unset;
+    border: none;
+    left: 0
+  }
+
+  .heroIcons {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .heroHeading h1 {
+    font-size: 38px;
+    line-height: 54px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .heroHeading h1 {
-    font-size: 40px !important;
-    line-height: 55px !important;
+    font-size: 28px !important;
+    line-height: 35px !important;
   }
 }
 
-@media screen and (max-width: 576px) {
-  .heroHeading h1 {
-    font-size: 30px !important;
-    line-height: 45px !important;
+@media screen and (max-width: 560px) {
+  .heroHeading {
+    margin-top: 11rem;
   }
+
+  .heroHeading h1 {
+    font-size: 18px !important;
+    line-height: 32px !important;
+  }
+
+  .heroIcons {
+    margin-top: 45px;
+  }
+
+  .heroIcons a {
+    width: 115px;
+    padding: 12px 2px !important;
+    white-space: nowrap;
+    height: 40px;
+  }
+
 }
