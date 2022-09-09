@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -11,22 +11,33 @@ import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
 
 function TransparentHeader({ genres = [] }, headerRef) {
+  const { pathname } = useLocation();
+  const transparentRef = useRef("");
   useEffect(() => {
-    document.addEventListener("click", handleOutside, true);
+    document.addEventListener("click", handleOutside);
   }, []);
   const handleOutside = (e) => {
-    if (!refOne.current.contains(e.target)) {
+    if (!transparentRef.current.contains(e.target)) {
       document
-        .querySelector(".transparent-header .navbar-collapse")
+        .querySelector(".app-header .transparent-header .navbar-collapse")
         .classList.remove("show");
     }
   };
-  const refOne = useRef(null);
-  const { pathname } = useLocation();
+  let path = window.location.pathname;
+  useEffect(() => {
+    if (path) {
+      let header = document.querySelector(
+        ".transparent-header .navbar-collapse"
+      );
+      header.classList.remove("show");
+    }
+  });
+
   const navigate = useNavigate();
+
   return (
     <>
-      <header className="transparent-header" ref={refOne}>
+      <header className="transparent-header" ref={transparentRef}>
         <Navbar
           // fixed-top for sticky header, active for adding black background
           className="navbar scroll-down"
@@ -63,7 +74,10 @@ function TransparentHeader({ genres = [] }, headerRef) {
               <Navbar.Toggle aria-controls="basic-navbar-nav">
                 <BiMenuAltRight />
               </Navbar.Toggle>
-              <Navbar.Collapse className={styles.navbarCollapse} id="basic-navbar-nav">
+              <Navbar.Collapse
+                className={styles.navbarCollapse}
+                id="basic-navbar-nav"
+              >
                 <Nav className={styles.navLink + " me-auto"}>
                   <NavigationDropdown
                     title="All Events"
@@ -113,11 +127,8 @@ function TransparentHeader({ genres = [] }, headerRef) {
                     Calendar <span className={styles.soon}>SOON</span>
                   </Nav.Link>
                 </Nav>
-
               </Navbar.Collapse>
             </div>
-
-
           </Container>
         </Navbar>
       </header>

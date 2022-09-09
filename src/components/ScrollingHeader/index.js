@@ -11,22 +11,29 @@ import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
 
 function ScrollingHeader({ genres = [] }, headerRef) {
-  useEffect(() => {
-    document.addEventListener("click", handleOutsideScroll, true);
-  }, []);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const scrollRef = useRef("");
+  let path = window.location.pathname;
+  const scrollingref = useRef("");
+  useEffect(() => {
+    if (path) {
+      let header = document.querySelector(".scrolling-header .navbar-collapse");
+      header.classList.remove("show");
+    }
+  });
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideScroll);
+  }, []);
   const handleOutsideScroll = (e) => {
-    if (!scrollRef.current.contains(e.target)) {
+    if (!scrollingref.current.contains(e.target)) {
       document
-        .querySelector(".scrolling-header .navbar-collapse")
+        .querySelector(".app-header .scrolling-header .navbar-collapse")
         .classList.remove("show");
     }
   };
+  const navigate = useNavigate();
   return (
     <>
-      <header className="scrolling-header" ref={scrollRef}>
+      <header className="scrolling-header" ref={scrollingref}>
         <Navbar
           // fixed-top for sticky header, active for adding black background
           className="navbar scroll-up active"
@@ -34,8 +41,6 @@ function ScrollingHeader({ genres = [] }, headerRef) {
           expand="lg"
           ref={headerRef}
         >
-
-
           <Container>
             <Navbar.Brand
               className={styles.logo}
@@ -48,7 +53,6 @@ function ScrollingHeader({ genres = [] }, headerRef) {
               <img src="/img/moivon.png" alt="logo" width={45} />
             </Navbar.Brand>
             <div className={styles.navBarCustom}>
-
               <div className={`d-flex align-items-center gap-4 ${styles.last}`}>
                 <div
                   className={
@@ -70,7 +74,10 @@ function ScrollingHeader({ genres = [] }, headerRef) {
               <Navbar.Toggle aria-controls="basic-navbar-nav">
                 <BiMenuAltRight />
               </Navbar.Toggle>
-              <Navbar.Collapse className={styles.navbarCollapse} id="basic-navbar-nav">
+              <Navbar.Collapse
+                className={styles.navbarCollapse}
+                id="basic-navbar-nav"
+              >
                 <Nav className={styles.navLink + " me-auto"}>
                   <NavigationDropdown
                     title="All Events"
@@ -122,7 +129,6 @@ function ScrollingHeader({ genres = [] }, headerRef) {
                     Calendar <span className={styles.soon}>SOON</span>
                   </Nav.Link>
                 </Nav>
-
               </Navbar.Collapse>
             </div>
           </Container>
