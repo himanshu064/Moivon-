@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -11,11 +11,22 @@ import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
 
 function TransparentHeader({ genres = [] }, headerRef) {
+  useEffect(() => {
+    document.addEventListener("click", handleOutside, true);
+  }, []);
+  const handleOutside = (e) => {
+    if (!refOne.current.contains(e.target)) {
+      document
+        .querySelector(".transparent-header .navbar-collapse")
+        .classList.remove("show");
+    }
+  };
+  const refOne = useRef(null);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
     <>
-      <header className="transparent-header">
+      <header className="transparent-header" ref={refOne}>
         <Navbar
           // fixed-top for sticky header, active for adding black background
           className="navbar scroll-down"

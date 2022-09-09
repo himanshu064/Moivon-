@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./index.module.css";
 import Container from "react-bootstrap/Container";
@@ -11,11 +11,22 @@ import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
 
 function ScrollingHeader({ genres = [] }, headerRef) {
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideScroll, true);
+  }, []);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const scrollRef = useRef("");
+  const handleOutsideScroll = (e) => {
+    if (!scrollRef.current.contains(e.target)) {
+      document
+        .querySelector(".scrolling-header .navbar-collapse")
+        .classList.remove("show");
+    }
+  };
   return (
     <>
-      <header className="scrolling-header">
+      <header className="scrolling-header" ref={scrollRef}>
         <Navbar
           // fixed-top for sticky header, active for adding black background
           className="navbar scroll-up active"
