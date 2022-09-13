@@ -13,6 +13,7 @@ import HomeForm from "../../components/Form";
 import { Link } from "react-router-dom";
 import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
+import { usePageView } from "../../hooks/usePageView";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import MostPopularAccordion from "../../components/MostPopularAccordion";
 import CreavtiveEventPage from "../../components/CreavtiveEventPage";
@@ -20,7 +21,7 @@ import CreavtiveEventPage from "../../components/CreavtiveEventPage";
 function Home() {
   useBackgroundImage();
   useBackgroundVideo();
-
+  usePageView();
   return (
     <>
       <CreavtiveEventPage />

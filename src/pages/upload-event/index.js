@@ -15,7 +15,7 @@ import { Navigation, Pagination } from "swiper";
 import Form from "react-bootstrap/Form";
 import moment from "moment";
 import DateTime from "react-datetime";
-
+import { usePageView } from "../../hooks/usePageView";
 import Text from "../../components/Text";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
@@ -51,6 +51,7 @@ const EVENT_PRICE = {
 
 function UploadEvent() {
   useBackgroundVideo();
+  usePageView();
   const resolver = useYupValidationResolver(validationSchema);
 
   const toastId = useRef(null);
@@ -374,9 +375,11 @@ function UploadEvent() {
                         </div>
                       </Form.Group>
                       <Form.Group
-                        className={`${styles.formGroup} ${styles.priceContainer
-                          } ${priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                          }`}
+                        className={`${styles.formGroup} ${
+                          styles.priceContainer
+                        } ${
+                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                        }`}
                       >
                         <Form.Control
                           type="number"
@@ -448,7 +451,11 @@ function UploadEvent() {
                   controlId="formGroupDescription"
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
-                  <Form.Control as="textarea" className={styles.textarea2} {...register("eventOrgDetail")} />
+                  <Form.Control
+                    as="textarea"
+                    className={styles.textarea2}
+                    {...register("eventOrgDetail")}
+                  />
                 </Form.Group>
                 {/* Event url link */}
                 <Form.Group
