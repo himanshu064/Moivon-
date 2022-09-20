@@ -589,6 +589,12 @@ button:focus {
   height: 445px;
 }
 
+.preFormattedTextArea pre {
+  white-space: pre-wrap;
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
 @media screen and (max-width: 1192px) {
   .eventSlider .swiper-button-prev {
     left: 0 !important;

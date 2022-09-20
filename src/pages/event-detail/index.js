@@ -82,7 +82,6 @@ function EventDetail() {
       <RouteTitle title="Event Detail" />
       <section className="section">
         <Container>
-
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col>
               <h6
@@ -117,7 +116,7 @@ function EventDetail() {
                       {data?.data?.data?.genre?.genre}
                     </span>
                     <span className={styles.starIcon}>
-                      <AiOutlineStar style={{ marginRight: 5, }} size={18} />
+                      <AiOutlineStar style={{ marginRight: 5 }} size={18} />
                       4.2
                     </span>
                     <Button
@@ -224,7 +223,15 @@ function EventDetail() {
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3 className="mt-4 mb-4">About event</h3>
-                  <Text>{data?.data?.data?.description}</Text>
+                  <Text
+                    className="preFormattedTextArea"
+                    style={{
+                      fontFamily: `var(--manrope-bold) !important`,
+                      fontSize: '14px !important',
+                    }}
+                  >
+                    <pre>{data?.data?.data?.description}</pre>
+                  </Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3 className="mb-4">VENUE</h3>
@@ -235,9 +242,10 @@ function EventDetail() {
                     href={
                       data?.data?.data?.venue
                         ? getMapsLocation(
-                          `${data?.data?.data?.venue || ""} ${data?.data?.data?.location || ""
-                          }`
-                        )
+                            `${data?.data?.data?.venue || ""} ${
+                              data?.data?.data?.location || ""
+                            }`
+                          )
                         : "#"
                     }
                     target="_blank"
@@ -298,7 +306,6 @@ function EventDetail() {
       </section>
       <section className={`section ${styles.content} ${styles.lastSection}`}>
         <Container> */}
-
         </Container>
         <Container>
           <Row className={styles.content}>
