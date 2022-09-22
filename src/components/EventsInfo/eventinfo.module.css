@@ -6,7 +6,7 @@ span {
 }
 
 .borderRight {
-  border-right: 2px solid var(--border-color);
+  border-right: 1.2px solid var(--border-color);
   padding-right: 1rem !important;
   padding-left: 1rem !important;
 }
@@ -25,8 +25,8 @@ span {
   font-size: 12px !important;
   font-weight: 400 !important;
   text-transform: uppercase;
-  padding: 8px 8px !important;
-  width: 120px;
+  padding: 0 !important;
+  width: 135px;
   height: 34px;
   white-space: nowrap;
 }
@@ -49,6 +49,7 @@ span {
 .dateDiv .date {
   text-transform: uppercase;
   font-size: 12px;
+  display: block;
 }
 
 .locationDiv .location {

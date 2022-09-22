@@ -57,10 +57,22 @@ function EventDetail() {
   } = useQuery(ALL_QUERIES.QUERY_RELATED_EVENTS(), fetchRelatedEvents);
 
   const armoryRef = useRef();
+
+  const setImageContTop = () => {
+    // setTimeout(() => {
+      document.getElementById('imag-cont').style.top = getImageContTop() + 'px';
+    // }, 20)
+  }
+
+  const getImageContTop = () => {
+    return armoryRef.current.clientHeight + 40;
+  }
+
   useLayoutEffect(() => {
     const onScroll = () => {
       if (armoryRef.current) {
-        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop)
+        setImageContTop();
+        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
         if (window.pageYOffset <= 35) {
           armoryRef.current.style.position = 'relative';
           armoryRef.current.style.top = 0;
@@ -68,31 +80,43 @@ function EventDetail() {
           for (let i = 0; i < itms.length; i ++) {
             const itm = itms[i];
             itm.style.removeProperty('top');
-            itm.style.removeProperty('transitionDelay');
-            itm.style.removeProperty('transitionDuration');
+            itm.style.removeProperty('transition-delay');
+            itm.style.removeProperty('transition-duration');
+            itm.classList.add('scroll-down');
+            itm.classList.remove('scroll-up');
           }
         }
-        else if (window.pageYOffset > 35 && (window.pageYOffset + 50) < document.getElementById('imag-cont').offsetTop) {
+        else if (window.pageYOffset > 35 && (window.pageYOffset) < (document.getElementById('imag-cont').offsetTop - getImageContTop() + 74 ) ) {
           armoryRef.current.style.position = 'sticky';
           armoryRef.current.style.top = 0;
           const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
           for (let i = 0; i < itms.length; i ++) {
             const itm = itms[i];
-            itm.style.transitionDelay = '0s';
-            itm.style.transitionDuration = '0s';
-            itm.style.top = (35 - window.pageYOffset) + 'px';
+            if ((35 - window.pageYOffset) < -80) {
+              itm.style.removeProperty('transition-delay');
+              itm.style.removeProperty('transition-duration');
+              itm.style.removeProperty('top');
+              itm.classList.add('scroll-up');
+              itm.classList.remove('scroll-down');
+            } else {
+              itm.style.transitionDelay = '0s';
+              itm.style.transitionDuration = '0s';
+              itm.style.top = (35 - window.pageYOffset) + 'px';
+            }
           }
         } else {
+          console.log('ffff');
           armoryRef.current.style.position = 'sticky';
-          console.log(armoryRef.current.style)
-          armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + 55)) + 'px';
-          if ((window.pageYOffset + 120) < document.getElementById('imag-cont').offsetTop || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
+          armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + getImageContTop() - 70)) + 'px';
+          if ((window.pageYOffset + getImageContTop()) < document.getElementById('imag-cont').offsetTop || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
             const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
             for (let i = 0; i < itms.length; i ++) {
               const itm = itms[i];
-              itm.style.removeProperty('top');
               itm.style.removeProperty('transitionDelay');
               itm.style.removeProperty('transitionDuration');
+              itm.style.removeProperty('top');
+              itm.classList.add('scroll-down');
+              itm.classList.remove('scroll-up');
             }
           }
         }
@@ -105,7 +129,6 @@ function EventDetail() {
     };
   }, []);
   React.useEffect(() => {
-
     const resized = () => {
       let fullTitleShow = false;
       const itm = document.getElementById('header')
@@ -134,7 +157,7 @@ function EventDetail() {
                 fullTitleShow ? (
                   <h6
                     className={styles.toggleTitle}
-                    onClick={() => setShowFullTitle((prev) => !prev)}
+                    onClick={() => { setShowFullTitle((prev) => !prev); setImageContTop(); }}
                   >
                     <span>Full Title</span>
                     {!showFullTitle ? (
@@ -188,7 +211,7 @@ function EventDetail() {
           </Row>
           <Row className={styles.armoryStickyRow}>
             <Col md={7} className={styles.myCol7}>
-              <div className={`${styles.imgSlider}`} id="imag-cont">
+              <div className={`${styles.imgSlider}`} style={{top: '114px'}} id="imag-cont">
                 {/* <span className="d-flex">
                   <AiOutlineStar />
                   4.2

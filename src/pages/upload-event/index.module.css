@@ -93,7 +93,7 @@
 
 .formGroup .dateTimePicker {
   flex: 1;
-  margin-left: 4px;
+  /* margin-left: 4px; */
 }
 
 .formGroup .dateTimePicker input {
@@ -138,6 +138,11 @@ button:focus svg {
 /* .uploadText {
   color: var(--theme-white-light) !important;
 } */
+
+.formGroup>input {
+  width: 1px;
+  flex-grow: 1;
+}
 
 .formGroup input:focus {
   box-shadow: none;

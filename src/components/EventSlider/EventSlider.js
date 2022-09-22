@@ -75,6 +75,10 @@ function EventSlider() {
         }}
         initialSlide={0}
         spaceBetween={2}
+        slidesOffsetBefore={75}
+        slidesOffsetAfter={75}
+        slidesPerGroup={1}
+        // slidesOffsetAfter={150}
         // slidesPerView={3.5}
         // loop={isMinimumThreeSlidesAvailable}
         // navigation={isMinimumThreeSlidesAvailable}
@@ -115,7 +119,7 @@ function EventSlider() {
             No upcoming events!
           </h3>
         ) : (
-          <>
+          <div className="few">
             {data?.data?.data?.map((data, index) => (
               <SwiperSlide key={`slide_${index}`} className={styles.swiperSlide}>
                 <Slide
@@ -125,7 +129,7 @@ function EventSlider() {
                 />
               </SwiperSlide>
             ))}
-          </>
+          </div>
         )}
       </Swiper>
       {/* {isMinimumThreeSlidesAvailable && (

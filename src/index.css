@@ -430,6 +430,14 @@ button:focus {
   display: flex !important;
 }
 
+.event-single-sliderr .carousel-control-prev,
+.event-single-sliderr .carousel-control-next,
+.event-single-sliderr .carousel-indicators,
+.eventWrapper:hover .event-single-sliderr .carousel-control-prev,
+.eventWrapper:hover .event-single-sliderr .carousel-control-next {
+  display: none !important;
+}
+
 .hide-gallery-btn {
   display: none;
 }

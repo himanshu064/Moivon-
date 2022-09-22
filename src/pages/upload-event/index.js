@@ -164,6 +164,11 @@ function UploadEvent() {
     if (!allGenresLoading && allGenres?.data?.data?.length) {
       setValue("genre", allGenres?.data?.data?.[0]?._id);
     }
+    const datepicks = document.getElementsByClassName('datepick');
+    for (let i = 0; i < datepicks.length; i ++) {
+
+      datepicks[i].firstElementChild.setAttribute('readonly', true);
+    }
   }, [allGenresLoading]);
 
   const onDeleteLocalImage = (idx) => {
@@ -256,7 +261,7 @@ function UploadEvent() {
                       className={`${styles.formGroup} d-flex align-items-start gap-3`}
                       controlId="formGroupTitle"
                     >
-                      <Form.Label>Title:</Form.Label>
+                      <Form.Label style={{width: '55px'}}>Title:</Form.Label>
                       <Form.Control type="text" {...register("title")} />
                     </Form.Group>
                   </Col>
@@ -269,7 +274,7 @@ function UploadEvent() {
                       className={`${styles.formGroup} w-auto d-flex align-items-start gap-3`}
                       controlId="formGroupGenre"
                     >
-                      <Form.Label>Genre:</Form.Label>
+                      <Form.Label style={{width: '55px'}}>Genre:</Form.Label>
                       <Form.Select
                         aria-label="ALL EVENTS"
                         {...register("genre")}
@@ -350,14 +355,14 @@ function UploadEvent() {
                       className={`${styles.formGroup} d-flex align-items-start gap-1`}
                       controlId="formGroupStartDate"
                     >
-                      <Form.Label>Start Date:</Form.Label>
+                      <Form.Label style={{width: '80px'}}>Start Date:</Form.Label>
                       <Controller
                         name="startDate"
                         control={control}
                         render={({ field }) => (
                           <DateTime
                             dateFormat='MMM DD   '
-                            className={styles.dateTimePicker}
+                            className={styles.dateTimePicker + ' datepick'}
                             onChange={field.onChange}
                             value={field.value}
                             {...dateTimePickerProps}
@@ -368,16 +373,16 @@ function UploadEvent() {
                   </Col>
                   <Col xl={6}>
                     <Form.Group
-                      className={`${styles.formGroup} d-flex align-items-start gap-3`}
+                      className={`${styles.formGroup} d-flex align-items-start gap-1`}
                       controlId="formGroupEndDate"
                     >
-                      <Form.Label>End Date:</Form.Label>
+                      <Form.Label style={{width: '80px'}}>End Date:</Form.Label>
                       <Controller
                         name="endDate"
                         control={control}
                         render={({ field }) => (
                           <DateTime
-                            className={styles.dateTimePicker}
+                            className={styles.dateTimePicker + ' datepick'}
                             onChange={field.onChange}
                             dateFormat='MMM DD   '
                             value={field.value}
@@ -394,10 +399,10 @@ function UploadEvent() {
                 </Row>
 
                 <Form.Group
-                  className={`${styles.formGroup} d-flex align-items-start gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-start gap-1`}
                   controlId="formGroupLocation"
                 >
-                  <Form.Label>location:</Form.Label>
+                  <Form.Label style={{width: '80px'}}>location:</Form.Label>
                   <Form.Control type="text" {...register("location")} />
                 </Form.Group>
 

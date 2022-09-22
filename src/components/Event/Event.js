@@ -56,9 +56,9 @@ function Event({
 }) {
   const navigate = useNavigate();
   const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
-  // const isFutureDate = true
 
   const isFutureDate = !['PAST', 'TODAY', 'TOMORROW'].includes(eventText);
+  // const isFutureDate = true
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
   
@@ -100,7 +100,7 @@ function Event({
             "all-event-slider": showArrowOnHover && isFutureDate,
           })}
         >
-          <Carousel interval={null}>
+          <Carousel interval={null} className={ (event?.images?.length > 1) ? '' : 'event-single-sliderr' }>
             {event?.images?.map((imageData, index) => (
               <Carousel.Item key={`image_slide_${index}`}>
                 <Link to={getEventDetailPath(event._id)} draggable="false">

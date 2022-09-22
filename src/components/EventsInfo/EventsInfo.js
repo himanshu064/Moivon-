@@ -35,12 +35,14 @@ function EventsInfo({ event }) {
           <Button>{getGenereText()}</Button>
         </div>
         <div className={`${styles.dateDiv}  ${styles.borderRight}`}>
-          <span className={styles.title}>Date</span>
-          {event?.startDate && (
-            <span className={styles.date}>
-              {format(parseISO(event?.startDate), "dd MMM")}
-            </span>
-          )}
+          <a>
+            <span className={styles.title}>Date</span>
+            {event?.startDate && (
+              <span className={styles.date}>
+                {format(parseISO(event?.startDate), "dd MMM")}
+              </span>
+            )}
+          </a>
         </div>
         <div
           className={`text-truncate ${styles.locationDiv} ${styles.borderRight}`}
