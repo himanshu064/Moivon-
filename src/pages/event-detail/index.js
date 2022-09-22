@@ -108,7 +108,7 @@ function EventDetail() {
           console.log('ffff');
           armoryRef.current.style.position = 'sticky';
           armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + getImageContTop() - 70)) + 'px';
-          if ((window.pageYOffset + getImageContTop()) < document.getElementById('imag-cont').offsetTop || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
+          if ((window.pageYOffset + getImageContTop()) > document.getElementById('imag-cont').offsetTop + getImageContTop() || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
             const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
             for (let i = 0; i < itms.length; i ++) {
               const itm = itms[i];
@@ -372,6 +372,7 @@ function EventDetail() {
                   <Button
                     className={`${styles.secondaryButton}`}
                     type="outline"
+                    style={{marginTop: '18px'}}
                   >
                     <a
                       target="_blank"

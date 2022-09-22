@@ -139,7 +139,7 @@ button:focus svg {
   color: var(--theme-white-light) !important;
 } */
 
-.formGroup>input {
+.formGroup>input, .formGroup>select {
   width: 1px;
   flex-grow: 1;
 }

@@ -44,7 +44,7 @@ function Home(props) {
       <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
         <Mask />
       </div>
-      <CreavtiveEventPage />
+      <CreavtiveEventPage goTo={props.goTo} />
       <RouteTitle title="Home" />
 
       {/* <section className={`${styles.heroSection} section`}>

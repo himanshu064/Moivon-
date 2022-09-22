@@ -112,7 +112,7 @@ function Event({
                       alt={imageData?._id}
                     />
                     <div className={styles.pastContent}>
-                      <p style={{zIndex: 100000, marginBottom: '0px'}}>PAST</p>
+                      <p style={{zIndex: 201, marginBottom: '0px'}}>PAST</p>
                     </div>
                   </div>
                 </Link>

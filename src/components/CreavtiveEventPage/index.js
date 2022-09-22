@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
 import Button from "../Button";
 
-export default function CreavtiveEventPage() {
+export default function CreavtiveEventPage(props) {
   return (
     <>
       <div className={styles.CustomContainer}>
@@ -29,7 +29,7 @@ export default function CreavtiveEventPage() {
                 <div
                   className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
                 >
-                  <Button type="primary" to="/all-events" as={Link}>
+                  <Button type="primary" onClick={() => props.goTo('/all-events')}>
                     Explore Now
                   </Button>
                   <span>

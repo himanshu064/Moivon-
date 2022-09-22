@@ -74,9 +74,9 @@ function EventSlider() {
           clickable: true,
         }}
         initialSlide={0}
-        spaceBetween={2}
+        spaceBetween={9}
         slidesOffsetBefore={75}
-        slidesOffsetAfter={75}
+        slidesOffsetAfter={74}
         slidesPerGroup={1}
         // slidesOffsetAfter={150}
         // slidesPerView={3.5}
