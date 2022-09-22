@@ -5,13 +5,45 @@ import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { format, isFuture, parseISO } from "date-fns";
+import { format, parseISO, isPast, isWithinInterval, isToday, isTomorrow } from "date-fns";
 import { prepareImageSrc } from "../../utils/api";
 import {
   formatCurrency,
   getMapsLocation,
   isValidURL,
 } from "../../utils/helpers";
+
+const getEventText = (startDate, endDate) => {
+  const parsedStartDate = parseISO(startDate);
+  const parsedEndDate = parseISO(endDate);
+
+  // is end date lies in past
+  const isPastDate = isPast(parsedEndDate);
+  if(isPastDate) {
+    return "PAST";
+  }
+
+  const now = Date.now();
+
+  const isWithin = isWithinInterval(now, {
+    start: parsedStartDate,
+    end: parsedEndDate
+  });
+
+  if(isWithin) {
+    // check if date is today?
+    const isTodayDate = isToday(parsedEndDate);
+    if(isTodayDate) {
+      return 'TODAY';
+    }
+
+    // check if date is tomorrow
+    const isTomorrowDate = isTomorrow(parsedEndDate);
+    if(isTomorrowDate) {
+      return 'TOMORROW';
+    }
+  }
+}
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
@@ -22,8 +54,9 @@ function Event({
   customGridClass,
 }) {
   const navigate = useNavigate();
-  const parsedDate = event?.startDate && parseISO(event?.startDate);
-  const isFutureDate = parsedDate ? isFuture(parsedDate) : false;
+  const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
+
+  const isFutureDate = !['PAST', 'TODAY', 'TOMORROW'].includes(eventText);
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
 
@@ -57,7 +90,7 @@ function Event({
                       alt={imageData?._id}
                     />
                     <div className={styles.pastContent}>
-                      <p>PAST</p>
+                      <p>{eventText}</p>
                     </div>
                   </div>
                 </Link>
