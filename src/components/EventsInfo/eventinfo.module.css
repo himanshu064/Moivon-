@@ -33,6 +33,7 @@ span {
 
 .gridDiv {
   display: flex !important;
+  margin: 20px 0 14px;
   /* display: grid !important; */
   /* flex-wrap: wrap; */
   /* grid-template-columns: auto auto auto; */

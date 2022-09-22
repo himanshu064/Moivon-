@@ -191,14 +191,14 @@ function UploadEvent() {
             </Col>
           </Row>
           <Row>
-            <Col md={7} className="mb-3">
+            <Col md={7} className={styles.myCol7}>
               <div className={`${styles.imgSlider}`}>
                 {images.length === 0 ? (
                   <div
                     className={`${styles["upload-placeholder"]} d-flex justify-content-center align-items-center  cursor-pointer`}
                     onClick={() => inputFileRef.current.click()}
                   >
-                    <p className="text-white">Upload Some Images</p>
+                    <p className="text-white">Upload Some Images / Videos</p>
                   </div>
                 ) : (
                   <Swiper
@@ -247,12 +247,12 @@ function UploadEvent() {
                 </div>
               </div>
             </Col>
-            <Col md={5} className="mb-3">
+            <Col md={5} className={styles.myCol5}>
               <form onSubmit={handleSubmit(onAddEvent)}>
                 <Row>
                   <Col xl={12}>
                     <Form.Group
-                      className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                      className={`${styles.formGroup} d-flex align-items-start gap-3`}
                       controlId="formGroupTitle"
                     >
                       <Form.Label>Title:</Form.Label>
@@ -261,58 +261,11 @@ function UploadEvent() {
                   </Col>
                 </Row>
 
-                <Row>
-                  <Col xl={6}>
-                    <Form.Group
-                      className={`${styles.formGroup} d-flex align-items-center gap-1`}
-                      controlId="formGroupStartDate"
-                    >
-                      <Form.Label>Start Date:</Form.Label>
-                      <Controller
-                        name="startDate"
-                        control={control}
-                        render={({ field }) => (
-                          <DateTime
-                            className={styles.dateTimePicker}
-                            onChange={field.onChange}
-                            value={field.value}
-                            {...dateTimePickerProps}
-                          />
-                        )}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xl={6}>
-                    <Form.Group
-                      className={`${styles.formGroup} mb-2 d-flex align-items-center gap-3`}
-                      controlId="formGroupEndDate"
-                    >
-                      <Form.Label>End Date:</Form.Label>
-                      <Controller
-                        name="endDate"
-                        control={control}
-                        render={({ field }) => (
-                          <DateTime
-                            className={styles.dateTimePicker}
-                            onChange={field.onChange}
-                            value={field.value}
-                            isValidDate={(current) => {
-                              const date = moment(minDate).subtract(1, "day");
-                              return current.isAfter(date);
-                            }}
-                            {...dateTimePickerProps}
-                          />
-                        )}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
                 {/* Genre and price section */}
                 <Row>
-                  <Col lg={6}>
+                  <Col lg={6} className={styles.myCol6}>
                     <Form.Group
-                      className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
+                      className={`${styles.formGroup} w-auto d-flex align-items-start gap-3`}
                       controlId="formGroupGenre"
                     >
                       <Form.Label>Genre:</Form.Label>
@@ -329,15 +282,15 @@ function UploadEvent() {
                       </Form.Select>
                     </Form.Group>
                   </Col>
-                  <Col lg={6}>
-                    <div className="d-flex align-items-center gap-3">
+                  <Col lg={6} className={styles.myCol55}>
+                    <div className="d-flex align-items-start gap-1">
                       <Form.Group
-                        className={`${styles.formGroup} w-auto d-flex align-items-center gap-3`}
+                        className={`${styles.formGroup} w-auto d-flex align-items-start gap-3`}
                         controlId="formGroupPrice"
                       >
                         {/* <Form.Label>price:</Form.Label> */}
                         <div
-                          className={`d-flex gap-3 align-items-center ${styles.radioBtn}`}
+                          className={`d-flex gap-2 align-items-start ${styles.radioBtn}`}
                         >
                           <div className="form-check">
                             <input
@@ -388,8 +341,57 @@ function UploadEvent() {
                   </Col>
                 </Row>
 
+                <Row>
+                  <Col xl={6}>
+                    <Form.Group
+                      className={`${styles.formGroup} d-flex align-items-start gap-1`}
+                      controlId="formGroupStartDate"
+                    >
+                      <Form.Label>Start Date:</Form.Label>
+                      <Controller
+                        name="startDate"
+                        control={control}
+                        render={({ field }) => (
+                          <DateTime
+                            dateFormat='MMM DD   '
+                            className={styles.dateTimePicker}
+                            onChange={field.onChange}
+                            value={field.value}
+                            {...dateTimePickerProps}
+                          />
+                        )}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xl={6}>
+                    <Form.Group
+                      className={`${styles.formGroup} d-flex align-items-start gap-3`}
+                      controlId="formGroupEndDate"
+                    >
+                      <Form.Label>End Date:</Form.Label>
+                      <Controller
+                        name="endDate"
+                        control={control}
+                        render={({ field }) => (
+                          <DateTime
+                            className={styles.dateTimePicker}
+                            onChange={field.onChange}
+                            dateFormat='MMM DD   '
+                            value={field.value}
+                            isValidDate={(current) => {
+                              const date = moment(minDate).subtract(1, "day");
+                              return current.isAfter(date);
+                            }}
+                            {...dateTimePickerProps}
+                          />
+                        )}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+
                 <Form.Group
-                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-start gap-3`}
                   controlId="formGroupLocation"
                 >
                   <Form.Label>location:</Form.Label>
@@ -397,7 +399,7 @@ function UploadEvent() {
                 </Form.Group>
 
                 <Form.Group
-                  className={`${styles.formGroup}`}
+                  className={`${styles.formGroup1 + ' ' + styles.formGroup}`}
                   controlId="formGroupDescription"
                 >
                   <Form.Label className="mb-1">Description:</Form.Label>
@@ -409,7 +411,7 @@ function UploadEvent() {
                   />
                 </Form.Group>
                 <Form.Group
-                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-start gap-3`}
                   controlId="formGroupVenue"
                 >
                   <Form.Label>Venue:</Form.Label>
@@ -420,7 +422,7 @@ function UploadEvent() {
                 <Row>
                   <Col lg={7}>
                     <Form.Group
-                      className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                      className={`${styles.formGroup} d-flex align-items-start gap-3`}
                       controlId="formGroupOrganization"
                     >
                       <Form.Label>Organization:</Form.Label>
@@ -430,7 +432,7 @@ function UploadEvent() {
                   <Col lg={5}>
                     <div className="gap-3">
                       <Form.Group
-                        className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                        className={`${styles.formGroup} d-flex align-items-start gap-3`}
                         controlId="formGroupOrganizationUrl"
                       >
                         <Form.Label>Url:</Form.Label>
@@ -444,7 +446,7 @@ function UploadEvent() {
                 </Row>
 
                 <Form.Group
-                  className={`${styles.formGroup}`}
+                  className={`${styles.formGroup1 + ' ' + styles.formGroup}`}
                   controlId="formGroupDescription"
                 >
                   <Form.Label>Describe your event organization:</Form.Label>
@@ -452,7 +454,7 @@ function UploadEvent() {
                 </Form.Group>
                 {/* Event url link */}
                 <Form.Group
-                  className={`${styles.formGroup} d-flex align-items-center gap-3`}
+                  className={`${styles.formGroup} d-flex align-items-start gap-3`}
                   controlId="formGroupOrganization"
                 >
                   <Form.Label>Event URL:</Form.Label>
@@ -462,7 +464,7 @@ function UploadEvent() {
                     style={{ flex: 1 }}
                   />
                 </Form.Group>
-                <div className="d-flex justify-content-end align-items-center">
+                <div className="d-flex pt-2 justify-content-end align-items-start">
                   <button
                     className="text-button"
                     htmlType="submit"

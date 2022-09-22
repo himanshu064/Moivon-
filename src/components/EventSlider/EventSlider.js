@@ -20,12 +20,32 @@ function EventSlider() {
     fetchUpcomingEvents
   );
 
+  // const disablePrev = () => {
+  //   if (document.getElementsByClassName('swiper-button-prev').length >= 2)
+  //     document.getElementsByClassName('swiper-button-prev')[1].classList.add('swiper-button-disabled')
+  // }
+  // const enablePrev = () => {
+  //   document.getElementsByClassName('swiper-button-prev')[1].classList.remove('swiper-button-disabled')
+  // }
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     if (disablePrev)
+  //     disablePrev();
+  //   }, 100)    
+  // }, [data])
+
   if (isLoading) return <Loader />;
 
   if (isError) return <p>{error}</p>;
 
   const isMinimumThreeSlidesAvailable =
     !isLoading && data?.data?.eventPresent >= 3;
+  
+  const slideChange = (s) => {
+    console.log(s, 'changed')
+    // if (s.width >= 1200 && s.activeIndex <= 1) disablePrev();
+    // else if (s.width >= 1200) enablePrev();
+  }
 
   return (
     <>
@@ -53,39 +73,42 @@ function EventSlider() {
         pagination={{
           clickable: true,
         }}
-        initialSlide={1}
+        initialSlide={0}
         spaceBetween={2}
-        slidesPerView={3.5}
+        // slidesPerView={3.5}
         // loop={isMinimumThreeSlidesAvailable}
         // navigation={isMinimumThreeSlidesAvailable}
         navigation={true}
-        centeredSlides={true}
+        centeredSlides={false}
         // cannot grab
         // allowTouchMove={false}
-        onSlideChange={(s) => console.log("slide change", s)}
+        onSlideChange={slideChange}
         onSwiper={(swiper) => console.log(swiper, "swiper")}
         // onActiveIndexChange={(swiper) => setCurrentIndex(swiper.realIndex)}
         // onClick={(swiper) =>
         //   swiperRef.current.swiper.slideTo(swiper.clickedIndex)
         // }
-        breakpoints={{
-          // when window width is >= 640px
-          0: {
-            slidesPerView: 1.1,
-          },
-          // when window width is >= 576px
-          576: {
-            slidesPerView: 1.5,
-          },
-          // when window width is >= 768px
-          768: {
-            slidesPerView: 2.5,
-          },
-          // when window width is >= 1200px
-          1200: {
-            slidesPerView: 3.5,
-          },
-        }}
+        onNavigationPrev={(swiper) => console.log('prev', swiper)}
+        slidesPerView='auto'
+        // breakpoints={{
+        //   // when window width is >= 640px
+        //   0: {
+        //     slidesPerView: 1,
+        //   },
+        //   // when window width is >= 576px
+        //   576: {
+        //     slidesPerView: 1,
+        //   },
+        //   // when window width is >= 768px
+        //   768: {
+        //     slidesPerView: 2
+        //   },
+        //   // when window width is >= 1200px
+        //   1200: {
+        //     slidesPerView: 3,
+        //     initialSlide: 1
+        //   },
+        // }}
       >
         {data?.data?.data?.length === 0 && !isLoading ? (
           <h3 className="mt-2 text-center text-base text-white">
@@ -94,7 +117,7 @@ function EventSlider() {
         ) : (
           <>
             {data?.data?.data?.map((data, index) => (
-              <SwiperSlide key={`slide_${index}`}>
+              <SwiperSlide key={`slide_${index}`} className={styles.swiperSlide}>
                 <Slide
                   event={data}
                   showPreviousAndNextButton={isMinimumThreeSlidesAvailable}

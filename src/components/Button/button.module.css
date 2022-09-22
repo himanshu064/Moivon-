@@ -27,6 +27,9 @@
 border: 2px solid var(--theme-white-light) !important;
 color: var(--theme-white) !important;
   }
+  .no-bg {
+    background:rgba(0, 0, 0, 0);
+  }
  .rounded{
   border-radius: 30px;
  }

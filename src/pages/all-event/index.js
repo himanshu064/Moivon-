@@ -25,6 +25,7 @@ import {
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
 import AllEventLoadingPlaceholder from "./AllEventLoadingPlaceholder";
+import Mask from "../../components/Mask";
 
 const PER_PAGE = 10;
 
@@ -33,15 +34,15 @@ export const ALL_EVENTS_FILTERS = {
     key: "latest",
   },
   earliest: { key: "earliest" },
-  alphabetical: {
-    key: "title",
-    icon: (props) =>
-      props.orderBy === "asc" ? (
-        <AiFillCaretDown {...props} />
-      ) : (
-        <AiFillCaretUp {...props} />
-      ),
-  },
+  // alphabetical: {
+  //   key: "title",
+  //   icon: (props) =>
+  //     props.orderBy === "asc" ? (
+  //       <AiFillCaretDown {...props} />
+  //     ) : (
+  //       <AiFillCaretUp {...props} />
+  //     ),
+  // },
   price: {
     key: "price",
     icon: (props) =>
@@ -78,6 +79,22 @@ function AllEvent() {
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
+  
+  const [maskState, setMaskState] = React.useState(0);
+
+  function goTo(url) {
+    setMaskState(1);
+    setTimeout(() => {
+      setMaskState(2);
+      setTimeout(() => {
+        setMaskState(3);
+        navigate(url);
+        setTimeout(() => {
+          setMaskState(0);
+        }, 1000)
+      }, 1500);
+    }, 100);
+  }
 
   const {
     isLoading,
@@ -135,16 +152,19 @@ function AllEvent() {
 
   return (
     <>
+      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
+        <Mask />
+      </div>
       <RouteTitle title="All Events" />
       <section className="section all-events">
         <Container>
-          <Row className={styles.topHead}>
-            <Col md={3} lg={2} className={styles.navHead}>
+          <div className={`${styles.topHead} d-flex`}>
+            <div className={styles.navHead}>
               <Heading mb="0" variant="subHeading">
                 search
               </Heading>
-            </Col>
-            <Col md={6} lg={8} className={styles.topCustomTab} >
+            </div>
+            <div className={styles.topCustomTab} >
               <Tabs
                 id="controlled-tab-example"
                 activeKey={genre}
@@ -161,8 +181,8 @@ function AllEvent() {
                     ></Tab>
                   ))}
               </Tabs>
-            </Col>
-            <Col md={3} lg={2} xl={2} className={`d-flex justify-content-end ${styles.topCustomCol}`} >
+            </div>
+            <div className={`d-flex justify-content-end ${styles.topCustomCol}`} >
               <Dropdown className={styles.dropdownBtn} align="end">
                 <Dropdown.Toggle variant="none" className={styles.sortBtn}>
                   <Button type="outline">Sort</Button>
@@ -175,7 +195,7 @@ function AllEvent() {
                       return (
                         <Dropdown.Item
                           as="button"
-                          className={styles.filterItem}
+                          className={styles.filterItem + ' ' + ((sortBy === key) ? styles.active : '') }
                           key={`filters_${idx}`}
                           onClick={() => {
                             const newOrderBy = toggleOrderBy(orderBy);
@@ -195,9 +215,9 @@ function AllEvent() {
                   )}
                 </Dropdown.Menu>
               </Dropdown>
-            </Col>
+            </div>
 
-          </Row>
+          </div>
           <Row>
             {isLoading ? (
               <AllEventLoadingPlaceholder />

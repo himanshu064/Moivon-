@@ -3,7 +3,7 @@
 }
 
 .imgSlider>div {
-  height: 517px;
+  height: 500px;
 }
 
 .topHead h1 {
@@ -33,9 +33,14 @@
 
 /* form css */
 
-.formGroup {
+.formGroup:not(.formGroup1) {
   width: 100%;
-  margin-bottom: 12px !important;
+  height: 34px;
+  /* margin-bottom: 12px !important; */
+}
+
+.formGroup1 {
+  margin-top: -3px;
 }
 
 .formGroup label {
@@ -50,7 +55,7 @@
   background: var(--theme-black-light);
   border: 0;
   border-radius: 0;
-  height: 25px;
+  height: 21px;
   color: var(--theme-white);
   font-size: 12px;
 }
@@ -63,6 +68,10 @@
   font-size: 12px;
   appearance: auto;
   background: var(--theme-black-light);
+
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 21px;
 }
 
 .formGroup select option {
@@ -79,11 +88,17 @@
 
 .formGroup textarea {
   font-size: 12px;
+  margin-bottom: 14px;
 }
 
 .formGroup .dateTimePicker {
   flex: 1;
   margin-left: 4px;
+}
+
+.formGroup .dateTimePicker input {
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .formGroup .dateTimePicker span {
@@ -134,6 +149,10 @@ button:focus svg {
   background: rgba(109, 109, 109, 0.5);
 }
 
+.uploadSection {
+  padding-top: 50px !important;
+}
+
 .uploadSection p {
   font-family: var(--manrope-bold) !important;
   color: var(--grey-color);
@@ -156,9 +175,9 @@ button:focus svg {
 }
 
 .upload-placeholder {
-  min-height: 517px;
+  min-height: 500px;
   background-color: var(--theme-black);
-  border: 2px solid var(--border-color);
+  border: 1.2px solid var(--border-color);
 }
 
 .radioBtn input {
@@ -176,7 +195,7 @@ button:focus svg {
 }
 
 .headingBorder {
-  border-bottom: 1.5px solid var(--border-color);
+  border-bottom: 1.2px solid var(--border-color);
   padding: 6px 0;
   margin-bottom: 6px;
 }
@@ -187,7 +206,7 @@ button:focus svg {
 
 .uploadSection .footer {
   font-family: var(--sans-regular) !important;
-  margin: 38px 0 23px 0;
+  margin: 80px 0 23px 0;
 }
 
 .uploadSection .footer ol {
@@ -217,6 +236,23 @@ button:focus svg {
   .topHead h1 {
     font-size: 30px !important;
     line-height: 30px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .myCol7 {
+    width: 63% !important;
+  }
+  .myCol5 {
+    width: 37% !important;
+  }
+}
+@media screen and (min-width: 1199px) {
+  .myCol6 {
+    width: 55% !important;
+  }
+  .myCol55 {
+    width: 45% !important;
   }
 }
 

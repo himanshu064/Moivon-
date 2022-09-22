@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 const EventAccordion = ({ event, isExpanded, onExpand }) => {
   return (
     <>
-      <div className="border-b">
+      <div className="border-b1">
         <h3
           className={`text-truncate ${styles.title}`}
           title={event.title}
@@ -15,8 +15,8 @@ const EventAccordion = ({ event, isExpanded, onExpand }) => {
           {event.title}
         </h3>
         {isExpanded && (
-          <div className={`pb-3 ${styles.evnts}`}>
-            <Text>{event.description}</Text>
+          <div className={`${styles.evnts}`}>
+            <Text className={styles.textClass}>{event.description}</Text>
             <EventsInfo event={event} />
           </div>
         )}

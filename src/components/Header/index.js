@@ -19,40 +19,76 @@ function Header() {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    const onScroll = debounce(() => {
-      if (window.scrollY > 100) {
-        if (transparentHeaderRef.current) {
-          transparentHeaderRef.current.classList.remove("scroll-down");
-          transparentHeaderRef.current.classList.add("scroll-up");
-        }
+    console.log(pathname)
+    transparentHeaderRef.current.classList.add('transition-0');
+    scrollingHeaderRef.current.classList.add("transition-0");
+    if (pathname === '/') {
+      const onScroll = debounce(() => {
+        if (window.scrollY > 100) {
+          if (transparentHeaderRef.current) {
+            transparentHeaderRef.current.classList.remove("scroll-down");
+            transparentHeaderRef.current.classList.add("scroll-up");
+          }
 
-        if (scrollingHeaderRef.current) {
-          scrollingHeaderRef.current.classList.remove("scroll-up");
-          scrollingHeaderRef.current.classList.add("scroll-down");
+          if (scrollingHeaderRef.current) {
+            scrollingHeaderRef.current.classList.remove("scroll-up");
+            scrollingHeaderRef.current.classList.add("scroll-down");
+          }
+        } else {
+          if (transparentHeaderRef.current) {
+            transparentHeaderRef.current.classList.remove("scroll-up");
+            transparentHeaderRef.current.classList.add("scroll-down");
+          }
+
+          if (scrollingHeaderRef.current) {
+            scrollingHeaderRef.current.classList.remove("scroll-down");
+            scrollingHeaderRef.current.classList.add("scroll-up");
+          }
         }
-      } else {
+      }, 100)
+
+      document.addEventListener("scroll", onScroll);
+
+      if (window.scrollY <= 100) {
         if (transparentHeaderRef.current) {
-          transparentHeaderRef.current.classList.remove("scroll-up");
           transparentHeaderRef.current.classList.add("scroll-down");
+          transparentHeaderRef.current.classList.remove("scroll-up");
         }
-
+  
         if (scrollingHeaderRef.current) {
-          scrollingHeaderRef.current.classList.remove("scroll-down");
           scrollingHeaderRef.current.classList.add("scroll-up");
+          scrollingHeaderRef.current.classList.remove("scroll-down");
         }
+        setTimeout(() => {
+          transparentHeaderRef.current.classList.remove('transition-0');
+          scrollingHeaderRef.current.classList.remove("transition-0");
+        }, 100);
       }
-    }, 100);
+  
+      return () => {
+        document.removeEventListener("scroll", onScroll);
+      };
+    } else {
+      if (transparentHeaderRef.current) {
+        transparentHeaderRef.current.classList.remove("scroll-down");
+        transparentHeaderRef.current.classList.add("scroll-up");
+      }
 
-    document.addEventListener("scroll", onScroll);
-
-    return () => {
-      document.removeEventListener("scroll", onScroll);
-    };
-  }, []);
+      if (scrollingHeaderRef.current) {
+        scrollingHeaderRef.current.classList.remove("scroll-up");
+        scrollingHeaderRef.current.classList.add("scroll-down");
+      }
+      setTimeout(() => {
+        transparentHeaderRef.current.classList.remove('transition-0');
+        scrollingHeaderRef.current.classList.remove("transition-0");
+      }, 100);
+    }
+  }, [pathname]);
 
   const renderScrollingHeader = () => {
-    const restrictedPaths = ["/event-detail"];
-    let isAllowed = false;
+    // const restrictedPaths = ["/event-detail"];
+    const restrictedPaths = [];
+    let isAllowed = true;
     restrictedPaths.forEach((path) => {
       isAllowed = pathname.startsWith(path) ? false : true;
     });

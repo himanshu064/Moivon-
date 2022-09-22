@@ -8,3 +8,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+
+.textClass {
+  margin: 8px 0 !important;
+}
+
+.eventInfo {
+  margin: 14px 0;
+}

@@ -36,6 +36,7 @@ import AllEventLoadingPlaceholder from "../all-event/AllEventLoadingPlaceholder"
 
 function EventDetail() {
   const [showFullTitle, setShowFullTitle] = useState(false);
+  const [fullTitleShow, setFullTitleShow] = useState(false);
   const pagination = {
     clickable: true,
   };
@@ -59,10 +60,41 @@ function EventDetail() {
   useLayoutEffect(() => {
     const onScroll = () => {
       if (armoryRef.current) {
-        if (window.pageYOffset > 100) {
-          armoryRef.current.style.zIndex = 1031;
+        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop)
+        if (window.pageYOffset <= 35) {
+          armoryRef.current.style.position = 'relative';
+          armoryRef.current.style.top = 0;
+          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
+          for (let i = 0; i < itms.length; i ++) {
+            const itm = itms[i];
+            itm.style.removeProperty('top');
+            itm.style.removeProperty('transitionDelay');
+            itm.style.removeProperty('transitionDuration');
+          }
+        }
+        else if (window.pageYOffset > 35 && (window.pageYOffset + 50) < document.getElementById('imag-cont').offsetTop) {
+          armoryRef.current.style.position = 'sticky';
+          armoryRef.current.style.top = 0;
+          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
+          for (let i = 0; i < itms.length; i ++) {
+            const itm = itms[i];
+            itm.style.transitionDelay = '0s';
+            itm.style.transitionDuration = '0s';
+            itm.style.top = (35 - window.pageYOffset) + 'px';
+          }
         } else {
-          armoryRef.current.style.zIndex = 1;
+          armoryRef.current.style.position = 'sticky';
+          console.log(armoryRef.current.style)
+          armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + 55)) + 'px';
+          if ((window.pageYOffset + 120) < document.getElementById('imag-cont').offsetTop || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
+            const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
+            for (let i = 0; i < itms.length; i ++) {
+              const itm = itms[i];
+              itm.style.removeProperty('top');
+              itm.style.removeProperty('transitionDelay');
+              itm.style.removeProperty('transitionDuration');
+            }
+          }
         }
       }
     };
@@ -72,6 +104,19 @@ function EventDetail() {
       document.removeEventListener("scroll", onScroll);
     };
   }, []);
+  React.useEffect(() => {
+
+    const resized = () => {
+      let fullTitleShow = false;
+      const itm = document.getElementById('header')
+      if ((itm && !showFullTitle && itm.clientWidth < itm.scrollWidth) || (itm && itm.clientHeight > 50)) fullTitleShow = true;
+      setFullTitleShow(fullTitleShow);
+    }
+
+    resized();
+    window.addEventListener('resize', resized);
+    console.log(data)
+  }, [data])
 
   if (isLoading) return <Loader />;
 
@@ -80,78 +125,81 @@ function EventDetail() {
   return (
     <>
       <RouteTitle title="Event Detail" />
-      <section className="section">
-        <Container>
+      <section className={'section ' + styles.detailSection}>
+        <Container style={{marginBottom: '60px'}}>
 
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
-            <Col>
-              <h6
-                className={styles.toggleTitle}
-                onClick={() => setShowFullTitle((prev) => !prev)}
-              >
-                <span>Full Title</span>
-                {!showFullTitle ? (
-                  <BiPlus color="white" size={12} />
-                ) : (
-                  <BiMinus color="white" size={12} />
-                )}
-              </h6>
+            <Col style={{paddingTop: fullTitleShow?'2px':'11px'}}>
+              {
+                fullTitleShow ? (
+                  <h6
+                    className={styles.toggleTitle}
+                    onClick={() => setShowFullTitle((prev) => !prev)}
+                  >
+                    <span>Full Title</span>
+                    {!showFullTitle ? (
+                      <BiPlus color="white" size={12} />
+                    ) : (
+                      <BiMinus color="white" size={12} />
+                    )}
+                  </h6>
+                ) : ''
+              }
               <div className={`border-b ${styles.topHead}`}>
                 <div
-                  className={`${styles.eventHead} d-flex align-items-end gap-3 flex-wrap w-100`}
+                  className={`${styles.eventHead} d-flex align-items-end w-100`}
                 >
                   <Heading
-                    mb="0"
+                    mb="-6"
                     variant="subHeading"
-                    customClass={styles.eventHeader}
+                    customClass={styles.eventHeader + ' ' + styles.maxCol7}
                     title={data?.data?.data?.title}
                     style={{
-                      "white-space": showFullTitle ? "normal" : "nowrap",
+                      "whiteSpace": showFullTitle ? "normal" : "nowrap",
                     }}
+                    id='header'
                   >
                     {data?.data?.data?.title}
                   </Heading>
                   {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
-                  <div>
-                    <span className={styles.type}>
-                      {data?.data?.data?.genre?.genre}
-                    </span>
-                    <span className={styles.starIcon}>
-                      <AiOutlineStar style={{ marginRight: 5, }} size={18} />
-                      4.2
-                    </span>
-                    <Button
-                      className={styles.bookNowButton}
-                      style={{ width: 180 }}
-                      type="outline"
+                  <span className={styles.type}>
+                    {data?.data?.data?.genre?.genre}
+                  </span>
+                  {/* <span className={styles.starIcon}>
+                    <AiOutlineStar style={{ marginRight: 5, }} size={18} />
+                    4.2
+                  </span> */}
+                  <Button
+                    className={styles.bookNowButton}
+                    style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
+                    type="outline"
+                  >
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={data?.data?.data?.eventUrl}
                     >
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={data?.data?.data?.eventUrl}
-                      >
-                        Book Now
-                      </a>
-                    </Button>
-                  </div>
+                      Book Now
+                    </a>
+                  </Button>
                 </div>
               </div>
             </Col>
           </Row>
           <Row className={styles.armoryStickyRow}>
-            <Col md={7}>
-              <div className={`${styles.imgSlider}`}>
+            <Col md={7} className={styles.myCol7}>
+              <div className={`${styles.imgSlider}`} id="imag-cont">
                 {/* <span className="d-flex">
                   <AiOutlineStar />
                   4.2
                 </span> */}
-                <span className={styles.imgSliderIcon}>
+                {/* <span className={styles.imgSliderIcon}>
                   <AiOutlineHeart style={{ marginRight: 5 }} />
                   120
-                </span>
+                </span> */}
                 <Swiper
                   modules={[Pagination, Navigation]}
-                  className="swiper-slider-no-zoom custom-icons"
+                  className="swiper-slider-no-zoom custom-icons eventDetailSlider"
                   spaceBetween={0}
                   slidesPerView={1}
                   pagination={pagination}
@@ -224,13 +272,30 @@ function EventDetail() {
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3 className="mt-4 mb-4">About event</h3>
-                  <Text>{data?.data?.data?.description}</Text>
+                  <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3 className="mb-4">VENUE</h3>
                   {isValidURL(data?.data?.data?.venue) ? null : (
-                    <Text>{data?.data?.data?.venue}</Text>
+                    <>
+                      <Text>{data?.data?.data?.venue}</Text>
+                    </>
                   )}
+                  <Text>{data?.data?.data?.location}</Text>
+                  <Text>{data?.data?.data?.startDate &&
+                    format(
+                      new Date(data?.data?.data?.startDate),
+                      "dd LLL"
+                    )} - {data?.data?.data?.startDate &&
+                      format(
+                        new Date(data?.data?.data?.startDate),
+                        "dd LLL yyyy"
+                      )} | Doors open: {data?.data?.data?.startDate &&
+                      format(
+                        parseISO(data?.data?.data?.startDate),
+                        "hh:mm a"
+                      )}
+                  </Text>
                   <a
                     href={
                       data?.data?.data?.venue
@@ -243,17 +308,18 @@ function EventDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className={styles.secondaryButton} type="outline">
+                    <Button className={styles.secondaryButton} style={{marginTop: '18px'}} type="outline">
                       OPEN MAP
                     </Button>
                   </a>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3>ABOUT INSTITUTION</h3>
-                  <div className="d-flex align-items-center gap-4 py-3">
+                  <div className="d-flex gap-2 py-3">
                     <a
                       target="_blank"
-                      href={prepareURL(data?.data?.data?.organizationUrl)}
+                      className="d-flex align-items-center"
+                      // href={prepareURL(data?.data?.data?.organizationUrl)}
                       rel="noopener noreferrer"
                     >
                       {/* <img src="/img/bg-logo.png" alt="" /> */}
@@ -262,12 +328,13 @@ function EventDetail() {
                           data?.data?.data?.organizationUrl
                         )}&size=32`}
                         alt=""
+                        style={{width: '32px'}}
                       />
                     </a>
                     <div className={styles.info}>
                       <a
                         target="_blank"
-                        href={prepareURL(data?.data?.data?.organizationUrl)}
+                        // href={prepareURL(data?.data?.data?.organizationUrl)}
                         rel="noopener noreferrer"
                       >
                         <h4 className="text-uppercase">
@@ -279,7 +346,7 @@ function EventDetail() {
                   </div>
                   <Text>{data?.data?.data?.eventOrgDetail}</Text>
                   <Button
-                    className={`mb-4  ${styles.secondaryButton}`}
+                    className={`${styles.secondaryButton}`}
                     type="outline"
                   >
                     <a
@@ -338,7 +405,7 @@ function EventDetail() {
               </Row>
             )}
           </div>
-          <div className="spacer"></div>
+          <div className="spacer-sm"></div>
         </Container>
       </section>
     </>

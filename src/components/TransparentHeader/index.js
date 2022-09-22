@@ -9,12 +9,31 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
+import Mask from "../Mask";
 
 function TransparentHeader({ genres = [] }, headerRef) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [maskState, setMaskState] = React.useState(0);
+
+  function goTo(url) {
+    setMaskState(1);
+    setTimeout(() => {
+      setMaskState(2);
+      setTimeout(() => {
+        setMaskState(3);
+        navigate(url);
+        setTimeout(() => {
+          setMaskState(0);
+        }, 2000)
+      }, 1500);
+    }, 100);
+  }
   return (
     <>
+      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
+        <Mask />
+      </div>
       <header className="transparent-header">
         <Navbar
           // fixed-top for sticky header, active for adding black background
@@ -26,7 +45,7 @@ function TransparentHeader({ genres = [] }, headerRef) {
           <Container>
             <Navbar.Brand
               className={styles.logo}
-              onClick={() => (pathname === "/" ? null : navigate("/"))}
+              onClick={() => (pathname === "/" ? null : goTo("/"))}
             >
               <img src="/img/moivon.png" alt="logo" width={45} />
             </Navbar.Brand>
@@ -44,9 +63,9 @@ function TransparentHeader({ genres = [] }, headerRef) {
                     </Dropdown.Toggle>
                   </Dropdown>
                 </div>
-                <Link to="/upload-event" className={styles.uploadButton}>
-                  <Button type="primary">Upload Event</Button>
-                </Link>
+                <a className={styles.uploadButton}>
+                  <Button type="primary" onClick={() => goTo("/upload-event" )}>Upload Event</Button>
+                </a>
               </div>
 
               <Navbar.Toggle aria-controls="basic-navbar-nav">

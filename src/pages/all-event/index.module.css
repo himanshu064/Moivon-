@@ -12,7 +12,9 @@
 .topCustomTab {
   padding-left: 2px !important;
   display: flex;
-  justify-content: center;
+  margin-left: 46px;
+  margin-right: auto;
+  /* justify-content: center; */
 }
 
 .sortBtn button {
@@ -27,7 +29,7 @@
 
 .topHead {
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 38px;
 }
 
 .dropdownBtn {
@@ -74,6 +76,7 @@
   align-items: center;
 }
 
+.dropdownBtn .dropdownMenu .filterItem.active,
 .dropdownBtn .dropdownMenu .filterItem:active,
 .dropdownBtn .dropdownMenu .filterItem:focus,
 .dropdownBtn .dropdownMenu .filterItem:hover,
@@ -90,8 +93,9 @@
 }
 
 .infiniteScrollContainer {
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
   padding: 6px 6px 0 6px;
+  overflow: unset !important;
 }
 
 .topCustomTab::-webkit-scrollbar {
@@ -136,7 +140,7 @@
 
   .navHead h1 {
     font-size: 30px !important;
-    line-height: 16px !important;
+    /* line-height: 16px !important; */
   }
 
   .sortBtn {

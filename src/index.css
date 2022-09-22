@@ -67,7 +67,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--theme-black) !important;
+  /* background-color: var(--theme-black) !important; */
+  background-color: rgb(37, 37, 37) !important;
   font-family: var(--sans-regular) !important;
 
   background-size: cover;
@@ -153,8 +154,14 @@ code {
 
 }
 
+.transition-0 {
+  transition-duration: 0s !important;
+}
+
 .navbar.active {
-  background-color: var(--navbar-dark) !important;
+  /* background-color: var(--navbar-dark) !important; */
+  background-color: #202020E0 !important;
+  backdrop-filter: blur(5px);
 }
 
 .transparent-header .navbar.scroll-up {
@@ -177,6 +184,10 @@ code {
   height: 70px;
 }
 
+.spacer-sm {
+  height: 40px;
+}
+
 .section {
   padding: 40px 0;
   position: relative;
@@ -186,8 +197,13 @@ code {
   color: var(--theme-white) !important;
 }
 
+.dropdown-menu {
+  border: none;
+}
+
 .app-header .nav_dropdown.transparent .dropdown-menu {
-  background-color: var(--color-yellow) !important;
+  /* background-color: var(--color-yellow) !important; */
+  background-color: #00000010 !important
 }
 
 .app-header .nav_dropdown .dropdown-menu {
@@ -199,10 +215,14 @@ code {
   left: -10px;
 }
 
+.all-events {
+  padding-top: 50px !important;
+}
+
 .all-events .dropdown .dropdown-item {
   background-color: var(--navbar-dark-1) !important;
   text-underline-offset: 8px;
-  text-decoration: underline !important;
+  /* text-decoration: underline !important; */
 }
 
 .app-header .nav_dropdown .dropdown-menu a {
@@ -319,14 +339,19 @@ button:focus {
 }
 
 .border-b {
-  border-bottom: 2px solid var(--border-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
   padding: 17px 0 10px 0;
+}
+
+.border-b1 {
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 20px 0;
 }
 
 .customTab {
   border-bottom: 0 !important;
   flex-wrap: nowrap !important;
-  margin-top: 15px !important;
+  margin-top: 17px !important;
 }
 
 .customTab li.nav-item {
@@ -334,7 +359,7 @@ button:focus {
 }
 
 .customTab li.nav-item:hover {
-  border-bottom: 1px solid var(--theme-white) !important;
+  border-bottom: 1px solid #9c9c9c !important;
 }
 
 .customTab li.nav-item {
@@ -361,7 +386,7 @@ button:focus {
 
 .customTab .nav-link:focus,
 .customTab .nav-link:hover {
-  color: var(--theme-white);
+  /* color: var(--theme-white); */
 }
 
 .react-datetime-picker__wrapper {
@@ -422,6 +447,17 @@ button:focus {
 
 .backgroundImage {
   background-image: url(/public/img/bg.svg);
+  background-size: 100%;
+}
+
+.backgroundImageDown {
+  background-image: url(/public/img/bg1.svg);
+  background-position: bottom;
+  background-size: 100%;
+}
+
+.backgroundImageOverlay {
+  background-image: url(/public/img/bg2.svg);
 }
 
 .customGridClass .title {
@@ -596,12 +632,16 @@ button:focus {
 }
 
 @media screen and (min-width: 992px) {
-  .app-header .nav-item.dropdown:hover .dropdown-menu {
+  /* .app-header .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  } */
+  .app-header .nav-item.dropdown.active .dropdown-menu {
     display: block;
   }
 
   .container {
-    max-width: 1192px !important;
+    max-width: 1200px !important;
+    padding: 0 !important;
   }
 }
 
@@ -618,4 +658,85 @@ button:focus {
   .section {
     padding: 20px 0;
   }
+}
+
+
+.mask-container {
+  display: none;
+  position: fixed;
+  z-index: 10000000;
+  left: 0;
+  width: 100vw;
+  top: 0;
+  height: 100vh;
+}
+
+.mask-content {
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-black) !important;
+  transform: translateY(-100%);
+  transition: all 1s;
+}
+
+.m-active .mask-container {
+  display: block;
+}
+
+.state1 .mask-content {
+  transform: translateY(0);
+}
+
+.state2 .mask-content {
+  transform: translateY(100%);
+}
+
+
+.white-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 1;
+  z-index: 1000000;
+  transition: all 2s;
+}
+
+.white-mask.fade-out {
+  opacity: 0;
+}
+
+.white-mask.hide {
+  display: none;
+}
+
+.eventDetailSlider .swiper-button-next, .eventDetailSlider .swiper-button-prev {
+  opacity: 0.3 !important;
+  transition: all .3s;
+}
+
+.eventDetailSlider .swiper-button-next:hover:not(.swiper-button-disabled), .eventDetailSlider .swiper-button-prev:hover:not(.swiper-button-disabled) {
+  opacity: 1 !important;
+}
+
+.form-select, .form-control {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.form-check {
+  margin-bottom: 0;
 }

@@ -47,7 +47,7 @@ export default function CreavtiveEventPage() {
                 src="/img/Arrow.svg"
                 alt="Arrow"
                 onClick={() => {
-                  window.scrollBy(0, window.innerHeight);
+                  // window.scrollBy(0, window.innerHeight);
                 }}
               />
             </Col>

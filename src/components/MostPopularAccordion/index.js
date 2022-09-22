@@ -46,31 +46,34 @@ const MostPopularAccordion = () => {
   return (
     <Container className={`position-relative ${styles.customcontainer}`}>
       <Row>
-        <Col md={5}>
-          <div className={styles.paddingRight}>
-            <Heading variant="subHeading">
-              Most popular
-              <br /> this week
-            </Heading>
-            <div className={`${styles.dreamContent} `}>
-              {data?.data?.data?.length > 0 ? (
-                data?.data?.data?.map((event, idx) => (
-                  <EventAccordion
-                    isExpanded={event._id === show}
-                    onExpand={() => setShow(event._id)}
-                    key={event._id}
-                    event={event}
-                  />
-                ))
-              ) : (
-                <h3 className="mt-2 text-base text-white">
-                  No popular events added!
-                </h3>
-              )}
+        <Col md={5} className={styles.col5}>
+          <div className={styles.paddingRight + ' ' + styles.totalContent}>
+            <div style={{height:'100%', position: 'relative'}}>
+              <Heading variant="subHeading" style={{marginBottom: '29px'}}>
+                Most popular
+                <br /> this week
+              </Heading>
+              <div className={`${styles.dreamContent} `}>
+                {data?.data?.data?.length > 0 ? (
+                  data?.data?.data?.map((event, idx) => (
+                    <EventAccordion
+                      isExpanded={event._id === show}
+                      onExpand={() => setShow(event._id)}
+                      key={event._id}
+                      event={event}
+                    />
+                  ))
+                ) : (
+                  <h3 className="mt-2 text-base text-white">
+                    No popular events added!
+                  </h3>
+                )}
+              </div>
+              {/* <div className={styles.borderBottom}></div> */}
             </div>
           </div>
         </Col>
-        <Col md={7}>
+        <Col md={7} className={styles.col7} style={{paddingLeft: 0}}>
           <div className="w-100 h-100">
             {!isLoading && data?.data?.data?.length > 0 && (
               <Link to={`/event-detail/${getEventLink()}`}>

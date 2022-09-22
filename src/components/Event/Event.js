@@ -12,6 +12,7 @@ import {
   getMapsLocation,
   isValidURL,
 } from "../../utils/helpers";
+import Mask from "../../components/Mask";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
@@ -23,12 +24,32 @@ function Event({
 }) {
   const navigate = useNavigate();
   const parsedDate = event?.startDate && parseISO(event?.startDate);
+  // const isFutureDate = true
   const isFutureDate = parsedDate ? isFuture(parsedDate) : false;
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
+  
+  const [maskState, setMaskState] = React.useState(0);
+
+  function goTo(url) {
+    setMaskState(1);
+    setTimeout(() => {
+      setMaskState(2);
+      setTimeout(() => {
+        setMaskState(3);
+        navigate(url);
+        setTimeout(() => {
+          setMaskState(0);
+        }, 2000)
+      }, 1500);
+    }, 100);
+  }
 
   return (
     <>
+      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
+        <Mask />
+      </div>
       <div
         className={classnames(`eventWrapper ${styles.eventWrapper}`, {
           [styles.hideLightening]: !isFutureDate,
@@ -49,7 +70,8 @@ function Event({
           <Carousel interval={null}>
             {event?.images?.map((imageData, index) => (
               <Carousel.Item key={`image_slide_${index}`}>
-                <Link to={getEventDetailPath(event._id)}>
+                <Link to={getEventDetailPath(event._id)} draggable="false">
+                {/* <span onClick={() => goTo(getEventDetailPath(event._id))}> */}
                   <div className={!isFutureDate ? styles.imageContainer : ""}>
                     <img
                       draggable="false"
@@ -57,7 +79,7 @@ function Event({
                       alt={imageData?._id}
                     />
                     <div className={styles.pastContent}>
-                      <p>PAST</p>
+                      <p style={{zIndex: 100000, marginBottom: '0px'}}>PAST</p>
                     </div>
                   </div>
                 </Link>
@@ -65,15 +87,17 @@ function Event({
             ))}
           </Carousel>
         </div>
-        {event?.genre && showGalleryOnHover && (
+        {event?.genre && showGalleryOnHover && isFutureDate && (
           <div className={styles.galleryBtn}>
-            <Link to={getEventDetailPath(event._id)}>
+            {/* <span onClick={() => goTo()}> */}
+            <Link to={getEventDetailPath(event._id)} draggable="false">
               <Button>{event?.genre?.genre}</Button>
             </Link>
           </div>
         )}
         <div className={styles.content}>
-          <Link to={getEventDetailPath(event._id)}>
+          {/* <span onClick={() => goTo(getEventDetailPath(event._id))}> */}
+          <Link to={getEventDetailPath(event._id)} draggable="false">
             <div
               className={`${styles.titleContainer} d-flex justify-content-between align-items-center px-3`}
             >
@@ -82,11 +106,11 @@ function Event({
               </h3>
 
               <div className="d-flex gap-2">
-                <span className="d-flex">
+                <span className="d-flex align-items-center">
                   <AiOutlineStar />
                   4.2
                 </span>
-                <span className="d-flex">
+                <span className="d-flex align-items-center">
                   <AiOutlineHeart />
                   120
                 </span>

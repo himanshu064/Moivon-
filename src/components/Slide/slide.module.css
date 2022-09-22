@@ -63,7 +63,7 @@
 /* events */
 
 .borderRight {
-  border-right: 2px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
   padding: 0 1rem;
   /* padding-right: 1rem !important;
   padding-left: 1rem !important; */
@@ -84,7 +84,10 @@
   /* backdrop-filter: blur(16px); */
   color: #e8e8e8 !important;
   z-index: 200;
-  padding: 0.75rem 1.5rem !important;
+  /* padding: 0.75rem 1rem !important; */
+  padding: 0 0 !important;
+  width: 135px;
+  height: 36px;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }

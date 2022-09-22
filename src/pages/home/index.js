@@ -10,19 +10,39 @@ import HomeSlider from "../../components/HomeSlider";
 import EventSlider from "../../components/EventSlider";
 import { FiArrowUpRight } from "react-icons/fi";
 import HomeForm from "../../components/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useBackgroundImage } from "../../hooks/useBackgroundImage";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
 import MostPopularAccordion from "../../components/MostPopularAccordion";
 import CreavtiveEventPage from "../../components/CreavtiveEventPage";
+import Mask from "../../components/Mask";
 
-function Home() {
+function Home(props) {
   useBackgroundImage();
   useBackgroundVideo();
+  const navigate = useNavigate();
+  const [maskState, setMaskState] = React.useState(0);
+
+  function goTo(url) {
+    setMaskState(1);
+    setTimeout(() => {
+      setMaskState(2);
+      setTimeout(() => {
+        setMaskState(3);
+        navigate(url);
+        setTimeout(() => {
+          setMaskState(0);
+        }, 1000)
+      }, 1500);
+    }, 100);
+  }
 
   return (
     <>
+      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
+        <Mask />
+      </div>
       <CreavtiveEventPage />
       <RouteTitle title="Home" />
 
@@ -55,7 +75,7 @@ function Home() {
         </Container>
       </section> */}
 
-      <div className="backgroundImage">
+      <div className="backgroundImage" style={{ marginTop: '-70px', paddingTop: '70px' }}>
         <section className={`section ${styles.teamSection} `}>
           <Container>
             <Row>
@@ -94,7 +114,7 @@ function Home() {
         </section>
       </div>
 
-      <section className={`section ${styles.bottomSection}`}>
+      <section className={`section ${styles.bottomSection} backgroundImageOverlay`}>
         <Container>
           <Row>
             <Col md={8}>
@@ -104,11 +124,11 @@ function Home() {
             </Col>
             <Col md={4}>
               <div className="d-flex justify-content-end align-items-center mb-4">
-                <Link to="/all-events">
-                  <span className={styles.newTextDeco}>
+                <span style={{cursor: "pointer"}}>
+                  <span onClick={() => props.goTo("/all-events")} className={styles.newTextDeco}>
                     View All <FiArrowUpRight />
                   </span>
-                </Link>
+                </span>
               </div>
             </Col>
           </Row>
@@ -121,7 +141,7 @@ function Home() {
         </Container>
       </section>
       <section
-        className={`section ${styles.connectionSection}`}
+        className={`section ${styles.connectionSection} backgroundImageOverlay`}
         id="about-page"
       >
         <div className={styles.paddingAll}>
@@ -164,7 +184,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className={`section ${styles.contactSection}`} id="contact-page">
+      <section className={`section ${styles.contactSection} backgroundImageDown`} id="contact-page">
         <Container>
           <Row>
             <Col md={7} className="mb-4">

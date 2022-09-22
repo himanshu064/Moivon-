@@ -1,7 +1,7 @@
 .text {
   font-weight: 400;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 150%;
   letter-spacing: 0.2px;
   color: var(--theme-white-light);
   font-family: var(--sans-regular);
