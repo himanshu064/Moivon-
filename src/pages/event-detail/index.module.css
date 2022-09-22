@@ -23,7 +23,7 @@
   top: 20px;
   right: 40px;
   z-index: 2;
-  background: rgb(53, 47, 42);
+  background: rgba(37, 37, 37, 0.6);
   padding: 8px 12px;
 }
 
@@ -53,6 +53,10 @@
   height: 36px;
   display: inline-block;
   text-align: center;
+}
+
+.content {
+  margin-top: 42px !important;
 }
 
 .content h3 {

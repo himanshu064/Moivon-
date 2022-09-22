@@ -300,9 +300,10 @@ function EventDetail() {
                     href={
                       data?.data?.data?.venue
                         ? getMapsLocation(
-                          `${data?.data?.data?.venue || ""} ${data?.data?.data?.location || ""
-                          }`
-                        )
+                            `${data?.data?.data?.venue || ""} ${
+                              data?.data?.data?.location || ""
+                            }`
+                          )
                         : "#"
                     }
                     target="_blank"
@@ -365,7 +366,6 @@ function EventDetail() {
       </section>
       <section className={`section ${styles.content} ${styles.lastSection}`}>
         <Container> */}
-
         </Container>
         <Container>
           <Row className={styles.content}>
