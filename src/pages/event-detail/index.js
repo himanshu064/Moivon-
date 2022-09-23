@@ -298,7 +298,7 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className="mb-4" style={{marginTop:'12px'}}>About event</h3>
+                  <h3 className="mb-4" style={{marginTop:'6px'}}>About event</h3>
                   <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>

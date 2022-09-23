@@ -767,3 +767,15 @@ input[type=number] {
 .swiper-button-prev {
   left: 0;
 }
+
+.eventDetailSlider .swiper-button-next, .eventDetailSlider .swiper-button-prev {
+  top: 50%;
+}
+
+.eventDetailSlider .swiper-button-next {
+  right: 30px;
+}
+
+.eventDetailSlider .swiper-button-prev {
+  left: 30px;
+}
