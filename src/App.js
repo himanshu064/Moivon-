@@ -12,20 +12,29 @@ const queryClient = new QueryClient();
 // ReactGA.initialize(MEASUREMENTID);
 
 function App() {
-  const [ maskState, setMaskState ] = React.useState(0);
+  const [maskState, setMaskState] = React.useState(0);
 
   React.useState(() => {
     setTimeout(() => {
       setMaskState(1);
       setTimeout(() => {
-        setMaskState(2)
-      }, 2000)
-    }, 500)
+        setMaskState(2);
+      }, 2000);
+    }, 500);
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={'white-mask ' + (maskState === 1 ? 'fade-out' : (maskState === 2 ? 'fade-out hide' : ''))}/>
+      <div
+        className={
+          "white-mask " +
+          (maskState === 1
+            ? "fade-out"
+            : maskState === 2
+            ? "fade-out hide"
+            : "")
+        }
+      />
       <NavigationRoutes />
       <Toaster />
       <ReactQueryDevtools initialIsOpen={false} />

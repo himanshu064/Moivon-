@@ -97,6 +97,29 @@
   opacity: 1 !important;
 }
 
+.daysReminingInfo button {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(52, 52, 52, 0.55) !important;
+  /* backdrop-filter: blur(16px); */
+  color: #e8e8e8 !important;
+  z-index: 200;
+  /* padding: 0.75rem 1rem !important; */
+  padding: 0 0 !important;
+  width: 135px;
+  height: 36px;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.eventWrapper:hover .daysReminingInfo button {
+  opacity: 1 !important;
+}
+
 .gridDiv {
   display: grid !important;
   grid-template-columns: 26% 33% 40%;

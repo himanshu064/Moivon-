@@ -5,7 +5,7 @@ import { AiOutlineStar, AiOutlineHeart } from "react-icons/ai";
 import Button from "../Button";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { format, parseISO, isPast, isWithinInterval, isToday, isTomorrow } from "date-fns";
+import { format } from "date-fns";
 import { prepareImageSrc } from "../../utils/api";
 import {
   formatCurrency,
@@ -14,35 +14,37 @@ import {
 } from "../../utils/helpers";
 import Mask from "../../components/Mask";
 
-const getEventText = (startDate, endDate) => {
-  const parsedStartDate = parseISO(startDate);
-  const parsedEndDate = parseISO(endDate);
 
-  // is end date lies in past
-  const isPastDate = isPast(parsedEndDate);
-  if(isPastDate) {
+const getEventText = (startDate, endDate) => {
+  const parsedStartDate = Date.parse(startDate);
+  const parsedEndDate = Date.parse(endDate);
+  const todayDate = Date.now();
+  // is future event
+  const isFutureDate = todayDate < parsedStartDate && todayDate < parsedEndDate;
+  if (isFutureDate) {
+    return "FUTURE";
+  }
+
+  // is past event
+  const isPastDate = todayDate > parsedStartDate && todayDate > parsedEndDate;
+  if (isPastDate) {
     return "PAST";
   }
 
-  const now = Date.now();
 
-  const isWithin = isWithinInterval(now, {
-    start: parsedStartDate,
-    end: parsedEndDate
-  });
+  const isEventBetweenStartAndEndDate = todayDate > parsedStartDate && todayDate < parsedEndDate;
+  if(isEventBetweenStartAndEndDate) {
+    // if the difference in days > 1, show days remaining
+    const difference = parsedEndDate - todayDate;
+    const differenceInDays = Math.ceil(
+      Math.abs(difference / (24 * 60 * 60 * 1000))
+    );
 
-  if(isWithin) {
-    // check if date is today?
-    const isTodayDate = isToday(parsedEndDate);
-    if(isTodayDate) {
-      return 'TODAY';
+    if(differenceInDays <= 1) {
+      return "FINAL DAY";
     }
 
-    // check if date is tomorrow
-    const isTomorrowDate = isTomorrow(parsedEndDate);
-    if(isTomorrowDate) {
-      return 'TOMORROW';
-    }
+    return differenceInDays;
   }
 }
 
@@ -57,8 +59,9 @@ function Event({
   const navigate = useNavigate();
   const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
 
-  const isFutureDate = !['PAST', 'TODAY', 'TOMORROW'].includes(eventText);
-  // const isFutureDate = true
+  const isFutureDate = typeof eventText === 'number' || ["FINAL DAY", 'FUTURE'].includes(eventText);
+  const isDayRemainingMode = typeof eventText === "number" || ["FINAL DAY"].includes(eventText);
+  const remainingDaysText = typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText;
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
   
@@ -121,12 +124,21 @@ function Event({
           </Carousel>
         </div>
         {event?.genre && showGalleryOnHover && isFutureDate && (
-          <div className={styles.galleryBtn}>
-            {/* <span onClick={() => goTo()}> */}
-            <Link to={getEventDetailPath(event._id)} draggable="false">
-              <Button>{event?.genre?.genre}</Button>
-            </Link>
-          </div>
+          <>
+            {isDayRemainingMode && (
+              <div className={styles.daysReminingInfo}>
+                <Link to={getEventDetailPath(event._id)} draggable="false">
+                  <Button>{remainingDaysText}</Button>
+                </Link>
+              </div>
+            )}
+            <div className={styles.galleryBtn}>
+              {/* <span onClick={() => goTo()}> */} 
+              <Link to={getEventDetailPath(event._id)} draggable="false">
+                <Button>{event?.genre?.genre}</Button>
+              </Link>
+            </div>
+          </>
         )}
         <div className={styles.content}>
           {/* <span onClick={() => goTo(getEventDetailPath(event._id))}> */}
