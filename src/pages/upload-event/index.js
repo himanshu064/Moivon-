@@ -342,6 +342,7 @@ function UploadEvent() {
                         <Form.Control
                           type="number"
                           step="any"
+                          style={{width: '100%'}}
                           {...register("price")}
                         />
                       </Form.Group>
