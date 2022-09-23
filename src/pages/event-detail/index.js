@@ -108,15 +108,19 @@ function EventDetail() {
           console.log('ffff');
           armoryRef.current.style.position = 'sticky';
           armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + getImageContTop() - 70)) + 'px';
-          if ((window.pageYOffset + getImageContTop()) > document.getElementById('imag-cont').offsetTop + getImageContTop() || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
-            const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
-            for (let i = 0; i < itms.length; i ++) {
-              const itm = itms[i];
+          
+          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
+          for (let i = 0; i < itms.length; i ++) {
+            const itm = itms[i];
+            if ((window.pageYOffset + getImageContTop()) > document.getElementById('imag-cont').offsetTop + getImageContTop() + 250 || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
               itm.style.removeProperty('transitionDelay');
               itm.style.removeProperty('transitionDuration');
               itm.style.removeProperty('top');
               itm.classList.add('scroll-down');
               itm.classList.remove('scroll-up');
+            } else {
+              itm.classList.add('scroll-up');
+              itm.classList.remove('scroll-down');
             }
           }
         }
@@ -270,7 +274,7 @@ function EventDetail() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {data?.data?.data?.location}
+                        {(data?.data?.data?.location || '').split(',')[0]}
                       </a>
                     </span>
                   </div>
@@ -294,7 +298,7 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className="mt-4 mb-4">About event</h3>
+                  <h3 className="mb-4" style={{marginTop:'12px'}}>About event</h3>
                   <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
