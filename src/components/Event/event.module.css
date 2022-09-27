@@ -113,6 +113,7 @@
   width: 135px;
   height: 36px;
   opacity: 1;
+  backdrop-filter: blur(3px);
   transition: opacity 0.2s ease-in-out;
 }
 

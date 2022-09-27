@@ -15,16 +15,20 @@ export default function CreavtiveEventPage(props) {
           <Row>
             <Col lg={12}>
               <div className={styles.heroHeading}>
-                <Heading>
+                <Heading mb={0}>
                   FINDING YOUR NEXT CREATIVE EVENT
-                  <br /> SHOULD BE SO EASY{" "}
                 </Heading>
-                <span className={styles.spanHead}>
-                  Welcome to Moivon, your one source for uncovering
-                  <br /> art, creative, and design events. Explore our curated
-                  <br />
-                  list made for you and fall in love in each!
-                </span>
+                <div className={styles.headingWithDesc}>
+                  <Heading mb={0}>
+                    SHOULD BE SO EASY{" "}
+                  </Heading>
+                  <span className={styles.spanHeadUp}>
+                    Welcome to Moivon, your one source for uncovering
+                    <br /> art, creative, and design events. Explore our curated
+                    <br />
+                    list made for you and fall in love in each!
+                  </span>
+                </div>
 
                 <div
                   className={`${styles.heroIcons} d-flex gap-4 align-items-center flex-wrap`}
