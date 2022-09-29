@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import EventAccordion from "../EventAccordion";
+import EventFooter from "../EventAccordion/EventFooter";
 import Heading from "../Heading";
 import styles from "./index.module.css";
 import { useQuery } from "@tanstack/react-query";
@@ -43,16 +44,28 @@ const MostPopularAccordion = () => {
     return foundObject?._id;
   };
 
+  const selectedEvent = () => {
+    return data?.data?.data?.find(itm => itm._id === show);
+  }
+
   return (
     <Container className={`position-relative ${styles.customcontainer}`}>
       <Row>
         <Col md={5} className={styles.col5}>
           <div className={styles.paddingRight + ' ' + styles.totalContent}>
             <div style={{height:'100%', position: 'relative'}}>
-              <Heading variant="subHeading" style={{marginBottom: '29px'}}>
-                Most popular
-                <br /> this week
-              </Heading>
+              <div className={styles.headingTablet}>
+                <Heading customClass={styles.heading} variant="subHeading" style={{marginBottom: '29px', whiteSpace: 'nowrap'}}>
+                  Most popular
+                  <br /> this week
+                </Heading>
+                <div className={styles.navTablet}>
+                  {data?.data?.data?.map((event, idx) => (
+                    <div key={event._id} onClick={() => setShow(event._id)}
+                      className={styles.navLinkTablet + ' ' + ((event._id === show) ? styles.active:'') }>{idx + 1}</div>
+                  ))}
+                </div>
+              </div>
               <div className={`${styles.dreamContent} `}>
                 {data?.data?.data?.length > 0 ? (
                   data?.data?.data?.map((event, idx) => (
@@ -69,12 +82,15 @@ const MostPopularAccordion = () => {
                   </h3>
                 )}
               </div>
+              <div className={styles.eventHeaderTablet}>
+                {selectedEvent() && selectedEvent()?.title}
+              </div>
               {/* <div className={styles.borderBottom}></div> */}
             </div>
           </div>
         </Col>
         <Col md={7} className={styles.col7} style={{paddingLeft: 0}}>
-          <div className="w-100 h-100">
+          <div className="w-100 h-100 overflow-hidden">
             {!isLoading && data?.data?.data?.length > 0 && (
               <Link to={`/event-detail/${getEventLink()}`}>
                 <img
@@ -88,6 +104,9 @@ const MostPopularAccordion = () => {
             )}
           </div>
         </Col>
+        <div className={styles.eventFooterTablet}>
+          {selectedEvent() && <EventFooter event={selectedEvent()}></EventFooter>}
+        </div>
       </Row>
     </Container>
   );

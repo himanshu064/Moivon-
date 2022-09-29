@@ -70,6 +70,7 @@ function EventDetail() {
 
   useLayoutEffect(() => {
     const onScroll = () => {
+      if (window.innerWidth < 992) return;
       if (armoryRef.current) {
         setImageContTop();
         console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
@@ -105,7 +106,6 @@ function EventDetail() {
             }
           }
         } else {
-          console.log('ffff');
           armoryRef.current.style.position = 'sticky';
           armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + getImageContTop() - 70)) + 'px';
           
@@ -243,6 +243,62 @@ function EventDetail() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
+              </div>
+            </Col>
+            <Col className={styles.colTablet} style={{paddingTop: fullTitleShow?'2px':'11px'}}>
+              {
+                fullTitleShow ? (
+                  <h6
+                    className={styles.toggleTitle}
+                    onClick={() => { setShowFullTitle((prev) => !prev); setImageContTop(); }}
+                  >
+                    <span>Full Title</span>
+                    {!showFullTitle ? (
+                      <BiPlus color="white" size={12} />
+                    ) : (
+                      <BiMinus color="white" size={12} />
+                    )}
+                  </h6>
+                ) : ''
+              }
+              <div className={`border-b ${styles.topHead}`}>
+                <div
+                  className={`${styles.eventHead} d-flex align-items-end w-100`}
+                >
+                  <Heading
+                    mb="-6"
+                    variant="subHeading"
+                    customClass={styles.eventHeader + ' ' + styles.maxCol7}
+                    title={data?.data?.data?.title}
+                    style={{
+                      "whiteSpace": showFullTitle ? "normal" : "nowrap",
+                    }}
+                    id='header'
+                  >
+                    {data?.data?.data?.title}
+                  </Heading>
+                  {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
+                  <span className={styles.type}>
+                    {data?.data?.data?.genre?.genre}
+                  </span>
+                  {/* <span className={styles.starIcon}>
+                    <AiOutlineStar style={{ marginRight: 5, }} size={18} />
+                    4.2
+                  </span> */}
+                  <Button
+                    className={styles.bookNowButton}
+                    style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
+                    type="outline"
+                  >
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={data?.data?.data?.eventUrl}
+                    >
+                      Book Now
+                    </a>
+                  </Button>
+                </div>
               </div>
             </Col>
             <Col md={5} className={styles.armoryStickyCol}>

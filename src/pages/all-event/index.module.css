@@ -25,6 +25,7 @@
   color: var(--theme-white) !important;
   height: 34px;
   font-size: 12px !important;
+  border-width: 1.2px !important;
 }
 
 .topHead {
@@ -114,45 +115,67 @@
   cursor: pointer !important;
 }
 
-
-@media screen and (max-width: 768px) {
-  /* .navHead {
-    flex-wrap: wrap;
-    gap: 1rem !important;
-  } */
-
-  .topHead {
-    display: block !important;
-    margin-top: 40px !important;
-    margin-right: 10px !important;
-  }
-
-  .topHead>.topCustomCol {
-    justify-content: flex-start !important;
-    padding: 0 !important;
-    margin-top: 10px !important;
-  }
-
-
-  .topCustomTab {
-    margin: 0 10px !important;
-  }
-
-  .navHead h1 {
-    font-size: 30px !important;
-    /* line-height: 16px !important; */
-  }
-
-  .sortBtn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-}
-
 @media screen and (max-width: 1200px) {
   .topCustomTab {
     overflow-x: scroll;
     justify-content: flex-start !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .topHead {
+    margin-bottom: 28px;
+  }
+  .navHead h1 {
+    font-size: 30px !important;
+    line-height: 120% !important;
+  }
+  .sortBtn button {
+    width: 75px;
+    height: 22px;
+    font-size: 11px !important;
+    padding: 1px 0 0 !important;
+  }
+  .sortBtn {
+    padding: 0 !important;
+    padding-left: 15px !important;
+  }
+  .dropdownBtn .dropdownMenu {
+    overflow: hidden;
+    max-width: 75px;
+    min-width: 75px;
+    border-radius: 15px;
+    right: 0 !important;
+    padding: 0;
+    transform: translate(0px, 38px) !important;
+  }
+  
+  .dropdownBtn .filterItem {
+    font-size: 12px !important;
+    line-height: 12px !important;
+    padding: 8px;
+  }
+}
+
+.topCustomTab.mobile {
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  .cardMobile {
+    padding: 0 0px !important;
+  }
+  .topCustomTab:not(.mobile) {
+    display: none;
+  }
+  .topCustomTab.mobile {
+    margin-left: 0 !important;
+    margin-bottom: 30px;
+    display: block;
+  }
+  .topHead {
+    margin-bottom: 0px !important;
+  }
+  .infiniteScrollContainer {
+    padding: 0;
   }
 }

@@ -65,11 +65,11 @@ span {
 @media screen and (max-width: 520px) {
   .gridDiv {
     /* grid-template-columns: 50% 50%; */
-    gap: 10px;
+    /* gap: 10px; */
   }
 
   .borderRight {
-    border-right: 0;
-    padding-right: 0 !important;
+    /* border-right: 0;
+    padding-right: 0 !important; */
   }
 }

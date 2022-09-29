@@ -44,3 +44,16 @@
     display: block !important;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .swiperSlide {
+    width: calc(50vw - 20px) !important;
+    min-width: 380px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .swiperSlide {
+    width: calc(100vw - 20px) !important;
+  }
+}

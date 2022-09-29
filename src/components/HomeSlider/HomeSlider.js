@@ -54,6 +54,7 @@ function HomeSlider() {
                 <div className={styles.image}>
                   {hero?.images?.map((heroImg, idx) => (
                     <img
+                      className={styles.mobileImg}
                       key={`heroimage_${idx}`}
                       src={prepareImageSrc(heroImg?.image)}
                       alt={heroImg?._id}

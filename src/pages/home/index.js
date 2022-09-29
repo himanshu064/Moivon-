@@ -76,12 +76,12 @@ function Home(props) {
         </Container>
       </section> */}
 
-      <div className="backgroundImage" style={{ marginTop: '-70px', paddingTop: '70px' }}>
+      <div className={"backgroundImage " + styles.noPaddingMobile + " " + styles.homeArtSection}>
         <section className={`section ${styles.teamSection} `}>
-          <Container>
+          <Container className="noPaddingMobile">
             <Row>
               <Col>
-                <div className={`mx-0 ${styles.sliderTeam}`}>
+                <div className={`mx-0 home-slider ${styles.sliderTeam}`}>
                   <HomeSlider />
                 </div>
               </Col>
@@ -99,7 +99,7 @@ function Home(props) {
                 </div>
 
                 <div
-                  className={styles.countWrapper2}
+                  className={styles.countWrapper2 + ' ' + styles.countWrapper3}
                   style={{ borderRight: "none" }}
                 >
                   <Heading mb="5">5</Heading>
@@ -110,29 +110,29 @@ function Home(props) {
           </Container>
         </section>
 
-        <section className={`section ${styles.bottomSection}`}>
+        <section className={`section ${styles.bottomSection + ' ' + styles.mostPopularSection}`}>
           <MostPopularAccordion />
         </section>
       </div>
 
-      <section className={`section ${styles.bottomSection} backgroundImageOverlay`}>
+      <section className={`section ${styles.bottomSection}  ${styles.upcomingSection} backgroundImageOverlay`}>
         <Container>
-          <Row>
-            <Col md={8}>
-              <Heading variant="subHeading">
+          <div className="d-flex justify-content-between align-items-start">
+            <div>
+              <Heading variant="subHeading" customClass={styles.upcomingHeader}>
                 Upcoming Events <br /> for you{" "}
               </Heading>
-            </Col>
-            <Col md={4}>
-              <div className="d-flex justify-content-end align-items-center mb-4">
+            </div>
+            <div>
+              <div className="d-flex justify-content-end align-items-center mb-4 mt-2">
                 <span style={{cursor: "pointer"}}>
                   <span onClick={() => props.goTo("/all-events")} className={styles.newTextDeco}>
                     View All <FiArrowUpRight />
                   </span>
                 </span>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Container>
         <Container fluid className={styles.eventSliderContainer}>
           {/* ${styles.slider} */}
@@ -145,12 +145,12 @@ function Home(props) {
         className={`section ${styles.connectionSection} backgroundImageOverlay`}
         id="about-page"
       >
-        <div className={styles.paddingAll}>
+        <div className={styles.paddingAll + ' ' + styles.noPaddingTablet}>
           <div className={styles.bgImg}>
             <Container>
-              <Row>
-                <Col md={7}>
-                  <div className={styles.paddingR}>
+              <Row className={styles.connectDiv}>
+                <Col md={7} className={styles.colMD7}>
+                  <div className={styles.paddingR + ' ' + styles.noPaddingTablet}>
                     <Heading variant="subHeading">
                       IT BEGINS WITH THE CONNECTION...
                     </Heading>
@@ -172,7 +172,7 @@ function Home(props) {
                     </Text>
                   </div>
                 </Col>
-                <Col md={5}>
+                <Col md={5} className={styles.colMD5}>
                   <div className="d-flex h-100">
                     <span className={styles.divider}></span>
                     <div className="d-flex justify-content-center align-items-center w-100 h-100">
@@ -189,7 +189,7 @@ function Home(props) {
         <Container>
           <Row>
             <Col md={7} className="mb-4">
-              <div className={`${styles.contactWrapper} ${styles.paddingR}`}>
+              <div className={`${styles.contactWrapper} ${styles.paddingR + ' ' + styles.noPaddingTablet}`}>
                 <Heading variant="subHeading">
                   CONTACT US FOR ANY QUESTIONS
                 </Heading>

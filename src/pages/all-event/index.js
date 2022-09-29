@@ -182,7 +182,7 @@ function AllEvent() {
                   ))}
               </Tabs>
             </div>
-            <div className={`d-flex justify-content-end ${styles.topCustomCol}`} >
+            <div className={`d-flex justify-content-end align-items-center ${styles.topCustomCol}`} >
               <Dropdown className={styles.dropdownBtn} align="end">
                 <Dropdown.Toggle variant="none" className={styles.sortBtn}>
                   <Button type="outline">Sort</Button>
@@ -218,11 +218,29 @@ function AllEvent() {
             </div>
 
           </div>
+          <div className={styles.topCustomTab + ' ' + styles.mobile} >
+            <Tabs
+              id="controlled-tab-example"
+              activeKey={genre}
+              onSelect={onTabChange}
+              className="m-auto customTab"
+            >
+              <Tab eventKey="all" title="All events"></Tab>
+              {!allGenresLoading &&
+                allGenres?.data?.data?.map((genre) => (
+                  <Tab
+                    key={genre._id}
+                    eventKey={genre._id}
+                    title={genre.genre}
+                  ></Tab>
+                ))}
+            </Tabs>
+          </div>
           <Row>
             {isLoading ? (
               <AllEventLoadingPlaceholder />
             ) : (
-              <Col>
+              <Col className={styles.cardMobile}>
                 {!isLoading && isError ? (
                   <p className="no-data">
                     {error?.response?.data?.error || error.toString()}

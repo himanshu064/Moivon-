@@ -8,7 +8,7 @@ import { getMapsLocation } from "../../utils/helpers";
 import { fetchAllGenres } from "../../services/GenreService";
 import { ALL_QUERIES } from "../../utils/endpoints";
 
-function EventsInfo({ event }) {
+function EventsInfo({ event, className }) {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -30,7 +30,7 @@ function EventsInfo({ event }) {
 
   return (
     <>
-      <div className={styles.gridDiv}>
+      <div className={styles.gridDiv + ' ' + className}>
         <div className={`${styles.galleryBtn} ${styles.borderRight}`}>
           <Button>{getGenereText()}</Button>
         </div>
@@ -55,7 +55,7 @@ function EventsInfo({ event }) {
             <span className={styles.title}>Location</span>
             <span className={`text-uppercase ${styles.location}`}>
               {/* {isValidURL(event.location) ? "Open Map" : event.location} */}
-              {event.location}
+              {event.location.split(',')[0]}
             </span>
           </a>
         </div>

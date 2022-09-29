@@ -18,3 +18,28 @@
 .eventInfo {
   margin: 14px 0;
 }
+
+.tablet {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eventInfoTablet, .textClassTablet {
+  width: 360px;
+}
+
+.textClassTablet {
+  height: 40px;
+  margin: 3px 0 0 !important;
+}
+
+@media screen and (max-width: 750px) {
+  .eventInfoTablet, .textClassTablet {
+    width: 100%;
+  }
+  .textClass {
+    margin-bottom: 20px !important;
+  }
+}

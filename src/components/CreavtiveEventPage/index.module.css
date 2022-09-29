@@ -18,7 +18,7 @@
   padding: 0 15px;
 }
 
-.heroHeading h1 {
+.heroHeading h1, .heroHeading h1 span {
   font-size: 64px;
   line-height: 78px;
   font-family: var(--manrope-bold) !important;
@@ -73,6 +73,11 @@
   opacity: 0.8;
 }
 
+.heroIcons {
+  padding: 0 15px;
+  display: flex;
+}
+
 .heroIcons a {
   background-color: var(--theme-white) !important;
   color: black !important;
@@ -105,9 +110,12 @@
   /* cursor: pointer; */
 }
 
+.exploreBtnTablet {
+  display: none !important;
+}
 
 @media screen and (max-width:1330px) {
-  .heroHeading h1 {
+  .heroHeading h1, .heroHeading h1 span {
     font-size: 56px
   }
 
@@ -126,19 +134,12 @@
   }
 }
 
-@media screen and (max-width:1190px) {
-  .heroHeading h1 {
-    font-size: 56px
-  }
-
-}
-
 @media screen and (max-width:1150px) {
   .heroHeading {
     margin-top: 13rem;
   }
 
-  .heroHeading h1 {
+  .heroHeading h1, .heroHeading h1 span {
     font-size: 50px;
     line-height: 60px;
     margin-bottom: 10px;
@@ -162,38 +163,91 @@
 }
 
 @media screen and (max-width:992px) {
-  .heroHeading h1 {
-    font-size: 38px;
-    line-height: 54px;
+  .CustomContainer {
+    top: -50px;
   }
-}
-
-@media screen and (max-width: 768px) {
-  .heroHeading h1 {
-    font-size: 28px !important;
-    line-height: 35px !important;
-  }
-}
-
-@media screen and (max-width: 560px) {
   .heroHeading {
-    margin-top: 11rem;
+    position: absolute;
+    margin: 0 !important;
+    padding: 0;
+    left: calc(50% - 487px / 2);
+    top: calc(32vh - 163px / 2);
+  }
+  .heroHeading h1, .heroHeading h1>span:first-child {
+    font-size: 36px;
+    line-height: 43.2px;
+    margin: 0;
+    letter-spacing: -0.02em;
+    color: #FFE69D;
+  }
+  .heroHeading h1>span:not(:first-child) {
+    display: block;
+    font-size: 64px;
+    line-height: 120%;
+    margin: 0;
+    letter-spacing: -0.03em;
+    color: white;
+  }
+  .headingWithDesc {
+    margin-bottom: 0;
   }
 
-  .heroHeading h1 {
-    font-size: 18px !important;
-    line-height: 32px !important;
+  .spanHeadUp {
+    display: block;
+    width: 354px;
+    max-width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: calc(-32vh + 163px / 2 + 77vh - 72px / 2);
+    left: calc(50% - 354px / 2);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
   }
-
-  .heroIcons {
-    margin-top: 45px;
+  .exploreBtnTablet {
+    display: block !important;
+    position: absolute;
+    bottom: 10vh;
+    width: 200px;
+    height: 51px;
+    background: rgba(248, 248, 248, 0.1) !important;
+    color: white !important;
+    left: calc(50% - 100px);
+    top: calc(77vh + 72px / 2 + 4vh);
+    box-shadow: none;
+    font-size: 16px !important;
   }
-
-  .heroIcons a {
-    width: 115px;
-    padding: 12px 2px !important;
-    white-space: nowrap;
-    height: 40px;
+  .spanHeadUp::before {
+    border: none;
   }
+  .herosectionImg, .heroIcons {
+    display: none !important;
+  }
+}
 
+@media screen and (max-width:576px) {
+  .heroHeading {
+    position: absolute;
+    margin: 0 !important;
+    padding: 0;
+    left: calc(50% - 320px / 2);
+    top: calc(32vh - 114px / 2);
+  }
+  .heroHeading h1, .heroHeading h1>span:first-child {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .heroHeading h1>span:not(:first-child) {
+    font-size: 42px;
+    line-height: 50px;
+    margin: 8px 0;
+  }
+  .exploreBtnTablet {
+    left: calc(50% - 82.5px);
+    width: 165px;
+    height: 42px;
+    padding: 0 !important;
+  }
 }

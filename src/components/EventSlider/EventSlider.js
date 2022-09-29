@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,12 +13,18 @@ import styles from "./eventslider.module.css";
 
 function EventSlider() {
   const swiperRef = useRef();
+  const [width, setWidth] = useState(0);
   // const [currentIndex, setCurrentIndex] = useState(0);
 
   const { data, isLoading, isError, error } = useQuery(
     ALL_QUERIES.QUERY_UPCOMING_EVENTS(),
     fetchUpcomingEvents
   );
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, [])
 
   // const disablePrev = () => {
   //   if (document.getElementsByClassName('swiper-button-prev').length >= 2)
@@ -75,8 +81,8 @@ function EventSlider() {
         }}
         initialSlide={0}
         spaceBetween={9}
-        slidesOffsetBefore={75}
-        slidesOffsetAfter={74}
+        slidesOffsetBefore={(width > 991) ? 75 : 0}
+        slidesOffsetAfter={(width > 991) ? 75 : 0}
         slidesPerGroup={1}
         // slidesOffsetAfter={150}
         // slidesPerView={3.5}

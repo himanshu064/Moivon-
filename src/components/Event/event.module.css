@@ -191,3 +191,9 @@
   color: #DCDCDC;
   opacity: 1;
 }
+
+@media screen and (max-width: 576px) {
+  .eventWrapper {
+    margin-bottom: 10px;
+  }
+}
