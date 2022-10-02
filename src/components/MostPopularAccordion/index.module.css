@@ -8,7 +8,7 @@
 }
 
 .image {
-  /* object-fit: cover; */
+  object-fit: cover;
   width: 100%;
   height: unset;
   aspect-ratio: 712 / 477;
@@ -88,7 +88,7 @@
     font-size: 32px;
     line-height: 120%;
     color: #F8F8F8;
-    padding: 15px 0 12px;
+    padding: 10px 0;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -104,8 +104,6 @@
 @media screen and (max-width: 576px) {
   .image {
     height: 480px !important;
-    width: auto !important;
-    background-position: center;
   }
   .heading {
     font-size: 30px;

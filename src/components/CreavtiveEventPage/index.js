@@ -13,7 +13,7 @@ export default function CreavtiveEventPage(props) {
       <div className={styles.CustomContainer}>
         <Container>
           <Row>
-            <Col lg={12}>
+            <Col lg={12} className={styles.rowTablet}>
               <div className={styles.heroHeading}>
                 <Heading mb={0}>
                   <span>FINDING YOUR NEXT</span> <span>CREATIVE EVENT</span>
@@ -30,9 +30,15 @@ export default function CreavtiveEventPage(props) {
                   </span>
                 </div>
               </div>
+              <span className={styles.spanHeadUpTablet}>
+                Welcome to Moivon, your one source for uncovering
+                <br /> art, creative, and design events. Explore our curated
+                <br />
+                list made for you and fall in love in each!
+              </span>
               <Button type="primary" className={styles.exploreBtnTablet} onClick={() => props.goTo('/all-events')}>
-                  Explore Now
-                </Button>
+                Explore Now
+              </Button>
               <div
                 className={`${styles.heroIcons} gap-4 align-items-center flex-wrap`}
               >

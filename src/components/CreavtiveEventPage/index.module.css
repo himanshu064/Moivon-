@@ -110,7 +110,7 @@
   /* cursor: pointer; */
 }
 
-.exploreBtnTablet {
+.exploreBtnTablet, .spanHeadUpTablet {
   display: none !important;
 }
 
@@ -163,15 +163,21 @@
 }
 
 @media screen and (max-width:992px) {
+  .rowTablet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .CustomContainer {
     top: -50px;
   }
   .heroHeading {
-    position: absolute;
-    margin: 0 !important;
+    /* position: absolute; */
+    width: min-content;
+    margin: calc(30vh - 163px / 2) 0 0 !important;
     padding: 0;
-    left: calc(50% - 487px / 2);
-    top: calc(32vh - 163px / 2);
+    /* left: calc(50% - 487px / 2);
+    top: calc(30vh - 163px / 2); */
   }
   .heroHeading h1, .heroHeading h1>span:first-child {
     font-size: 36px;
@@ -179,48 +185,46 @@
     margin: 0;
     letter-spacing: -0.02em;
     color: #FFE69D;
+    width: min-content;
   }
   .heroHeading h1>span:not(:first-child) {
     display: block;
+    width: min-content;
     font-size: 64px;
     line-height: 120%;
     margin: 0;
     letter-spacing: -0.03em;
     color: white;
   }
-  .headingWithDesc {
-    margin-bottom: 0;
-  }
-
-  .spanHeadUp {
-    display: block;
-    width: 354px;
-    max-width: 100vw;
-    overflow: hidden;
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    top: calc(-32vh + 163px / 2 + 77vh - 72px / 2);
-    left: calc(50% - 354px / 2);
+  .spanHeadUpTablet {
+    display: block !important;
+    width: min-content;
+    white-space: nowrap;
+    margin: calc(-30vh - 163px / 2 + 75vh - 72px / 2) 0 0;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
   }
+  .headingWithDesc {
+    margin-bottom: 0;
+  }
+
   .exploreBtnTablet {
     display: block !important;
-    position: absolute;
+    /* position: absolute; */
     bottom: 10vh;
     width: 200px;
     height: 51px;
     background: rgba(248, 248, 248, 0.1) !important;
     color: white !important;
-    left: calc(50% - 100px);
-    top: calc(77vh + 72px / 2 + 4vh);
+    /* left: calc(50% - 100px);
+    top: calc(77vh + 72px / 2 + 4vh); */
     box-shadow: none;
     font-size: 16px !important;
+    margin: 3vh 0 0;
   }
-  .spanHeadUp::before {
-    border: none;
+  .spanHeadUp {
+    display: none;
   }
   .herosectionImg, .heroIcons {
     display: none !important;
@@ -229,11 +233,7 @@
 
 @media screen and (max-width:576px) {
   .heroHeading {
-    position: absolute;
-    margin: 0 !important;
-    padding: 0;
-    left: calc(50% - 320px / 2);
-    top: calc(32vh - 114px / 2);
+    margin-top: calc(30vh - 114px / 2) !important;
   }
   .heroHeading h1, .heroHeading h1>span:first-child {
     font-size: 20px;
@@ -245,9 +245,11 @@
     margin: 8px 0;
   }
   .exploreBtnTablet {
-    left: calc(50% - 82.5px);
     width: 165px;
     height: 42px;
     padding: 0 !important;
+  }
+  .spanHeadUpTablet {
+    margin-top: calc(-30vh - 114px / 2 + 75vh - 72px / 2);
   }
 }
