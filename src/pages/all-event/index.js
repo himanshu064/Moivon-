@@ -25,7 +25,6 @@ import {
 } from "react-router-dom";
 import { fetchAllGenres } from "../../services/GenreService";
 import AllEventLoadingPlaceholder from "./AllEventLoadingPlaceholder";
-import Mask from "../../components/Mask";
 
 const PER_PAGE = 10;
 
@@ -79,22 +78,6 @@ function AllEvent() {
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
   );
-  
-  const [maskState, setMaskState] = React.useState(0);
-
-  function goTo(url) {
-    setMaskState(1);
-    setTimeout(() => {
-      setMaskState(2);
-      setTimeout(() => {
-        setMaskState(3);
-        navigate(url);
-        setTimeout(() => {
-          setMaskState(0);
-        }, 1000)
-      }, 1500);
-    }, 100);
-  }
 
   const {
     isLoading,
@@ -152,9 +135,6 @@ function AllEvent() {
 
   return (
     <>
-      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
-        <Mask />
-      </div>
       <RouteTitle title="All Events" />
       <section className="section all-events">
         <Container>

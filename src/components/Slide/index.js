@@ -12,6 +12,39 @@ import { formatCurrency, getMapsLocation } from "../../utils/helpers";
 
 const getEventDetailPath = (id) => `/event-detail/${id}`;
 
+const getEventText = (startDate, endDate) => {
+  const parsedStartDate = Date.parse(startDate);
+  const parsedEndDate = Date.parse(endDate);
+  const todayDate = Date.now();
+  // is future event
+  const isFutureDate = todayDate < parsedStartDate && todayDate < parsedEndDate;
+  if (isFutureDate) {
+    return "FUTURE";
+  }
+
+  // is past event
+  const isPastDate = todayDate > parsedStartDate && todayDate > parsedEndDate;
+  if (isPastDate) {
+    return "PAST";
+  }
+
+
+  const isEventBetweenStartAndEndDate = todayDate > parsedStartDate && todayDate < parsedEndDate;
+  if(isEventBetweenStartAndEndDate) {
+    // if the difference in days > 1, show days remaining
+    const difference = parsedEndDate - todayDate;
+    const differenceInDays = Math.ceil(
+      Math.abs(difference / (24 * 60 * 60 * 1000))
+    );
+
+    if(differenceInDays <= 1) {
+      return "FINAL DAY";
+    }
+
+    return differenceInDays;
+  }
+}
+
 const ContentWrapper = ({ eventId, children }) => {
   let Component = () => (
     <Link to={`/event-detail/${eventId}`} draggable="false">
@@ -30,6 +63,9 @@ function Slide({
 }) {
   const swiper = useSwiper();
   const bootstrapCarouselRef = useRef();
+  const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
+  const isDayRemainingMode = typeof eventText === "number" || ["FINAL DAY"].includes(eventText);
+  const remainingDaysText = typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText;
 
   const imageCarouselHandler = useSwipeable({
     onSwipedLeft: () => bootstrapCarouselRef.current.next(),
@@ -86,6 +122,13 @@ function Slide({
               </Carousel.Item>
             ))}
           </Carousel>
+          {isDayRemainingMode && (
+            <div className={styles.daysReminingInfo}>
+              <Link to={getEventDetailPath(event._id)} draggable="false">
+                <Button>{remainingDaysText}</Button>
+              </Link>
+            </div>
+          )}
           {/* {showPreviousAndNextButton && (
             <span
               className="next-btn"
@@ -135,7 +178,7 @@ function Slide({
                   <span className={`${styles.title} title`}>Date</span>
                   <span className={`${styles.date} date`}>
                     {event?.startDate &&
-                      format(new Date(event?.startDate), "dd LLL yyyy")}
+                      format(new Date(event?.startDate), "dd LLL")}
                   </span>
                 </div>
                 <div
@@ -153,7 +196,7 @@ function Slide({
                     <span
                       className={`text-uppercase ${styles.location} location`}
                     >
-                      {event?.location}
+                      {event?.location.split(',')[0]}
                       {/* {" "}
                       {isValidURL(event?.location)
                         ? "Open Map"

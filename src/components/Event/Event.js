@@ -12,7 +12,6 @@ import {
   getMapsLocation,
   isValidURL,
 } from "../../utils/helpers";
-import Mask from "../../components/Mask";
 
 
 const getEventText = (startDate, endDate) => {
@@ -65,27 +64,8 @@ function Event({
 
   const onOverlayClick = () => navigate(getEventDetailPath(event._id));
   
-  const [maskState, setMaskState] = React.useState(0);
-
-  function goTo(url) {
-    setMaskState(1);
-    setTimeout(() => {
-      setMaskState(2);
-      setTimeout(() => {
-        setMaskState(3);
-        navigate(url);
-        setTimeout(() => {
-          setMaskState(0);
-        }, 2000)
-      }, 1500);
-    }, 100);
-  }
-
   return (
     <>
-      <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
-        <Mask />
-      </div>
       <div
         className={classnames(`eventWrapper ${styles.eventWrapper}`, {
           [styles.hideLightening]: !isFutureDate,
@@ -107,7 +87,6 @@ function Event({
             {event?.images?.map((imageData, index) => (
               <Carousel.Item key={`image_slide_${index}`}>
                 <Link to={getEventDetailPath(event._id)} draggable="false">
-                {/* <span onClick={() => goTo(getEventDetailPath(event._id))}> */}
                   <div className={!isFutureDate ? styles.imageContainer : ""}>
                     <img
                       draggable="false"
@@ -133,7 +112,6 @@ function Event({
               </div>
             )}
             <div className={styles.galleryBtn}>
-              {/* <span onClick={() => goTo()}> */} 
               <Link to={getEventDetailPath(event._id)} draggable="false">
                 <Button>{event?.genre?.genre}</Button>
               </Link>
@@ -141,7 +119,6 @@ function Event({
           </>
         )}
         <div className={styles.content}>
-          {/* <span onClick={() => goTo(getEventDetailPath(event._id))}> */}
           <Link to={getEventDetailPath(event._id)} draggable="false">
             <div
               className={`${styles.titleContainer} d-flex justify-content-between align-items-center px-3`}
@@ -172,7 +149,7 @@ function Event({
                   <span className={`${styles.title} title`}>Date</span>
                   <span className={`${styles.date} date`}>
                     {event?.startDate &&
-                      format(new Date(event?.startDate), "dd LLL yyyy")}
+                      format(new Date(event?.startDate), "dd LLL")}
                   </span>
                 </div>
                 <div
@@ -188,7 +165,7 @@ function Event({
                     <span
                       className={`text-uppercase ${styles.location} location`}
                     >
-                      {event?.location}
+                      {event?.location.split(',')[0]}
                       {/* {" "}
                       {isValidURL(event?.location)
                         ? "Open Map"

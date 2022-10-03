@@ -102,14 +102,22 @@ function TransparentHeader({ genres = [] }, headerRef) {
                     customClass={styles.navDropdown}
                     id="basic-nav-dropdown"
                     goTo={goTo}
-                    options={[
-                      { _id: "all", link: "/all-events", value: "All Events" },
-                      ...genres.map((option) => ({
-                        _id: option._id,
-                        link: `/all-events?genre=${option._id}`,
-                        value: option?.genre,
-                      })),
-                    ]}
+                    options={
+                      (window.innerWidth <= 992) ? [
+                        ...genres.map((option) => ({
+                          _id: option._id,
+                          link: `/all-events?genre=${option._id}`,
+                          value: option?.genre,
+                        })),
+                      ] : [
+                        { _id: "all", link: "/all-events", value: "All Events" },
+                        ...genres.map((option) => ({
+                          _id: option._id,
+                          link: `/all-events?genre=${option._id}`,
+                          value: option?.genre,
+                        })),                        
+                      ]
+                    }
                     isTransparent={pathname === "/"}
                   />
                   <Nav.Link

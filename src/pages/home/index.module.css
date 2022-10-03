@@ -199,6 +199,10 @@
   padding-top: 70px;
 }
 
+.mobileFlexEnd {
+  align-items: flex-start;
+}
+
 @media screen and (max-width: 992px) {
   .customWidth60 {
     width: 100% !important;

@@ -50,6 +50,7 @@ span {
   text-transform: uppercase;
   font-size: 12px;
   display: block;
+  white-space: nowrap;
 }
 
 .locationDiv .location {
@@ -62,14 +63,8 @@ span {
   display: block;
 }
 
-@media screen and (max-width: 520px) {
-  .gridDiv {
-    /* grid-template-columns: 50% 50%; */
-    /* gap: 10px; */
-  }
-
-  .borderRight {
-    /* border-right: 0;
-    padding-right: 0 !important; */
+@media screen and (max-width: 526px) {
+  .locationDiv .location {
+    /* text-overflow: unset; */
   }
 }

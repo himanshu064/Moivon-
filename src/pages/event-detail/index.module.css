@@ -246,6 +246,51 @@
   -webkit-line-clamp: 2;
 }
 
+
+.daysReminingInfo button {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(52, 52, 52, 0.55) !important;
+  /* backdrop-filter: blur(16px); */
+  color: #e8e8e8 !important;
+  z-index: 200;
+  /* padding: 0.75rem 1rem !important; */
+  padding: 0 0 !important;
+  width: 135px;
+  height: 36px;
+  opacity: 1;
+  backdrop-filter: blur(3px);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.eventWrapper:hover .daysReminingInfo button {
+  opacity: 1 !important;
+}
+
+.galleryBtn button {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(52, 52, 52, 0.55) !important;
+  /* backdrop-filter: blur(16px); */
+  color: #e8e8e8 !important;
+  z-index: 200;
+  /* padding: 0.75rem 1rem !important; */
+  padding: 0 0 !important;
+  width: 135px;
+  height: 36px;
+  opacity: 1;
+  backdrop-filter: blur(3px);
+  transition: opacity 0.2s ease-in-out;
+}
+
 @media screen and (max-width: 992px) {
   .eventDetailContainer {
     margin-bottom: 22px;
@@ -318,6 +363,7 @@
     z-index: 1;
   }
   .barPriceStatic {
+    margin-bottom: -5px;
     font-weight: 500;
     font-size: 12px;
     line-height: 150%;
@@ -336,6 +382,13 @@
     padding: 0 !important;
     border-radius: 30px !important;
     margin: 0 !important;
+    border: 1.2px solid var(--theme-white) !important;
+  }
+  .entryDiv {
+    border: none !important;
+  }
+  .noneTablet {
+    display: none;
   }
 }
 
@@ -349,7 +402,7 @@
   }
 
   .colTablet {
-    margin-top: 327px !important;
+    margin-top: 322px !important;
   }
 
   .eventHeader {

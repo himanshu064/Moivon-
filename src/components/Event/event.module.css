@@ -196,4 +196,7 @@
   .eventWrapper {
     margin-bottom: 10px;
   }
+  .location {
+    /* text-overflow: unset; */
+  }
 }

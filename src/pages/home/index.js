@@ -117,7 +117,7 @@ function Home(props) {
 
       <section className={`section ${styles.bottomSection}  ${styles.upcomingSection} backgroundImageOverlay`}>
         <Container>
-          <div className={"d-flex justify-content-between align-items-start " +  styles.mobileFlexEnd}>
+          <div className={"d-flex justify-content-between " +  styles.mobileFlexEnd}>
             <div>
               <Heading variant="subHeading" customClass={styles.upcomingHeader}>
                 Upcoming Events <br /> for you{" "}

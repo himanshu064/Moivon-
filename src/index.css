@@ -160,15 +160,18 @@ code {
 
 .navbar.active {
   /* background-color: var(--navbar-dark) !important; */
-  background-color: #202020E0 !important;
+  background-color: rgba(27, 27, 27, 0.8) !important;
   backdrop-filter: blur(5px);
 }
 
 @media screen and (max-width: 992px){
   .collapseC .navbar {
     transition: none !important;
-    background-color: #202020 !important;
+    background-color: rgba(27, 27, 27, 1) !important;
     backdrop-filter: none;
+  }
+  .navbar.event-detail {
+    background-color: rgba(27, 27, 27, 1) !important;
   }
   .collapseC .transparent-header .navbar {
     transition: none !important;
@@ -228,7 +231,7 @@ code {
 }
 
 .app-header .nav_dropdown:not(.transparent) .dropdown-menu {
-  background-color: #202020E0 !important;
+  background-color: rgba(27, 27, 27, 0.8) !important;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   left: -10px;
@@ -393,7 +396,17 @@ button:focus {
 }
 
 .customTab li.nav-item {
-  margin-right: 20px;
+  margin-right: 24px;
+  font-family: var(--sans-regular);
+}
+
+@media screen and (max-width: 992px) {
+  .customTab li.nav-item:hover {
+    border-bottom: unset !important;
+  }
+  .customTab li.nav-item {
+    margin-right: 12px;
+  }
 }
 
 .customTab .nav-link.active {
@@ -867,6 +880,10 @@ input[type=number] {
 
 .navbar-toggler:not(.collapsed)>div {
   transform: rotate(90deg);
+}
+
+.navbar-brand {
+  margin-right: 39px;
 }
 
 @media screen and (max-width: 992px) {

@@ -34,6 +34,41 @@ import {
 import Loader from "../../components/Loader";
 import AllEventLoadingPlaceholder from "../all-event/AllEventLoadingPlaceholder";
 
+const getEventDetailPath = (id) => `/event-detail/${id}`;
+
+const getEventText = (startDate, endDate) => {
+  const parsedStartDate = Date.parse(startDate);
+  const parsedEndDate = Date.parse(endDate);
+  const todayDate = Date.now();
+  // is future event
+  const isFutureDate = todayDate < parsedStartDate && todayDate < parsedEndDate;
+  if (isFutureDate) {
+    return "FUTURE";
+  }
+
+  // is past event
+  const isPastDate = todayDate > parsedStartDate && todayDate > parsedEndDate;
+  if (isPastDate) {
+    return "PAST";
+  }
+
+
+  const isEventBetweenStartAndEndDate = todayDate > parsedStartDate && todayDate < parsedEndDate;
+  if(isEventBetweenStartAndEndDate) {
+    // if the difference in days > 1, show days remaining
+    const difference = parsedEndDate - todayDate;
+    const differenceInDays = Math.ceil(
+      Math.abs(difference / (24 * 60 * 60 * 1000))
+    );
+
+    if(differenceInDays <= 1) {
+      return "FINAL DAY";
+    }
+
+    return differenceInDays;
+  }
+}
+
 function EventDetail() {
   const [showFullTitle, setShowFullTitle] = useState(false);
   const [fullTitleShow, setFullTitleShow] = useState(false);
@@ -66,6 +101,18 @@ function EventDetail() {
 
   const getImageContTop = () => {
     return armoryRef.current.clientHeight + 40;
+  }
+
+  const isDayRemainingMode = () => {
+    const event = data?.data?.data;
+    const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
+    return (typeof eventText === "number" || ["FINAL DAY"].includes(eventText));
+  }
+
+  const remainingDaysText = () => {
+    const event = data?.data?.data;
+    const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
+    return (typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText);
   }
 
   useLayoutEffect(() => {
@@ -144,6 +191,7 @@ function EventDetail() {
 
     resized();
     window.addEventListener('resize', resized);
+
     console.log(data)
   }, [data])
 
@@ -167,9 +215,9 @@ function EventDetail() {
                   >
                     <span>Full Title</span>
                     {!showFullTitle ? (
-                      <BiPlus color="white" size={12} />
+                      <BiPlus color="#F8F8F8" size={12} />
                     ) : (
-                      <BiMinus color="white" size={12} />
+                      <BiMinus color="#F8F8F8" size={12} />
                     )}
                   </h6>
                 ) : ''
@@ -245,6 +293,18 @@ function EventDetail() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
+                {(!isLoading && isDayRemainingMode() && window.innerWidth <= 992) && (
+                  <div className={styles.daysReminingInfo}>
+                    <Button>{remainingDaysText()}</Button>
+                  </div>
+                )}
+                {!isLoading && (
+                  <div className={styles.galleryBtn}>
+                    <Link to={getEventDetailPath(data?.data?.data?._id)} draggable="false">
+                      <Button>{data?.data?.data?.genre?.genre}</Button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </Col>
             <Col className={styles.colTablet} style={{paddingTop: fullTitleShow?'2px':'11px'}}>
@@ -256,9 +316,9 @@ function EventDetail() {
                   >
                     <span>Full Title</span>
                     {!showFullTitle ? (
-                      <BiPlus color="white" size={12} />
+                      <BiPlus color="#F8F8F8" size={12} />
                     ) : (
-                      <BiMinus color="white" size={12} />
+                      <BiMinus color="#F8F8F8" size={12} />
                     )}
                   </h6>
                 ) : ''
@@ -322,7 +382,7 @@ function EventDetail() {
                         )}
                     </span>
                   </div>
-                  <div className={`${styles.entryDiv} ${styles.borderRight}`}>
+                  <div className={`${styles.entryDiv + ' ' + styles.noneTablet} ${styles.borderRight}`}>
                     <span className={styles.title}>Entry fee</span>
                     <span className={styles.entry}>
                       {data?.data?.data?.price !== 0

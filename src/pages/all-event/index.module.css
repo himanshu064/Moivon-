@@ -25,7 +25,7 @@
   color: var(--theme-white) !important;
   height: 34px;
   font-size: 12px !important;
-  border-width: 1.2px !important;
+  border: 1.2px solid var(--theme-white) !important;
 }
 
 .topHead {

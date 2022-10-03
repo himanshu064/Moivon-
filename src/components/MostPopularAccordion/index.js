@@ -22,13 +22,13 @@ const MostPopularAccordion = () => {
   const [show, setShow] = useState(null);
 
   useEffect(() => {
-    setShow(
-      !isLoading
-        ? data?.data?.data?.length >= 2
-          ? data?.data?.data?.[1]?._id
-          : data?.data?.data?.[0]?._id
-        : null
-    );
+    if (!isLoading) {
+      if (window.innerWidth <= 992 || data?.data?.data?.length === 1) {
+        setShow(data?.data?.data?.[0]?._id)
+      } else {
+        setShow(data?.data?.data?.[1]?._id)
+      }
+    }
   }, [data?.data]);
 
   if (isLoading) return <Loader />;

@@ -23,8 +23,10 @@ function ScrollingHeader({ genres = [] }, headerRef) {
     //     hideCollapse();
     // })
     const menus = document.getElementsByClassName('navbar-collapse');
-    for (let i = 0; i < menus.length; i ++)
+    for (let i = 0; i < menus.length; i ++) {
       menus[i].addEventListener('mousewheel', (e)=> {e.preventDefault()})
+      menus[i].addEventListener('touchmove', (e)=> {e.preventDefault()})
+    }
   }, [])
 
   function hideCollapse() {
@@ -56,7 +58,7 @@ function ScrollingHeader({ genres = [] }, headerRef) {
       <header className={"scrolling-header " + (collapse ? styles.collapseC + ' collapseC' : '')}>
         <Navbar
           // fixed-top for sticky header, active for adding black background
-          className="navbar scroll-up active"
+          className={"navbar scroll-up active " + (pathname.includes('event-detail') ? 'event-detail' : '')}
           bg="transparent"
           expand="lg"
           ref={headerRef}
@@ -105,14 +107,22 @@ function ScrollingHeader({ genres = [] }, headerRef) {
                     customClass={styles.navDropdown}
                     id="basic-nav-dropdown"
                     goTo={goTo}
-                    options={[
-                      { _id: "all", link: "/all-events", value: "All Events" },
-                      ...genres.map((option) => ({
-                        _id: option._id,
-                        link: `/all-events?genre=${option._id}`,
-                        value: option?.genre,
-                      })),
-                    ]}
+                    options={
+                      (window.innerWidth <= 992) ? [
+                        ...genres.map((option) => ({
+                          _id: option._id,
+                          link: `/all-events?genre=${option._id}`,
+                          value: option?.genre,
+                        })),
+                      ] : [
+                        { _id: "all", link: "/all-events", value: "All Events" },
+                        ...genres.map((option) => ({
+                          _id: option._id,
+                          link: `/all-events?genre=${option._id}`,
+                          value: option?.genre,
+                        })),                        
+                      ]
+                    }
                   />
                   <Nav.Link
                     to="/"
