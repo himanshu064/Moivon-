@@ -174,7 +174,7 @@
   .heroHeading {
     /* position: absolute; */
     width: min-content;
-    margin: calc(30vh - 163px / 2) 0 0 !important;
+    margin: calc(32vh - 163px / 2) 0 0 !important;
     padding: 0;
     /* left: calc(50% - 487px / 2);
     top: calc(30vh - 163px / 2); */
@@ -200,7 +200,7 @@
     display: block !important;
     width: min-content;
     white-space: nowrap;
-    margin: calc(-30vh - 163px / 2 + 75vh - 72px / 2) 0 0;
+    margin: calc(-32vh - 163px / 2 + 75vh - 72px / 2) 0 0;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
@@ -233,7 +233,7 @@
 
 @media screen and (max-width:576px) {
   .heroHeading {
-    margin-top: calc(30vh - 114px / 2) !important;
+    margin-top: calc(32vh - 114px / 2) !important;
   }
   .heroHeading h1, .heroHeading h1>span:first-child {
     font-size: 20px;
@@ -250,6 +250,6 @@
     padding: 0 !important;
   }
   .spanHeadUpTablet {
-    margin-top: calc(-30vh - 114px / 2 + 75vh - 72px / 2);
+    margin-top: calc(-32vh - 114px / 2 + 75vh - 72px / 2);
   }
 }

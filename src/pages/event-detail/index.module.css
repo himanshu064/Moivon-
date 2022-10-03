@@ -1,3 +1,7 @@
+.eventDetailContainer {
+  margin-bottom: 60px;
+}
+
 .topHead {
   display: flex;
   align-items: center;
@@ -117,6 +121,7 @@
 }
 
 .title {
+  white-space: nowrap;
   display: block;
   font-size: 12px;
   text-transform: uppercase;
@@ -232,11 +237,19 @@
   white-space: break-spaces;
 }
 
-.colTablet {
+.colTablet, .tabletBar {
   display: none;
 }
 
+.nowrap {
+  white-space: nowrap;
+  -webkit-line-clamp: 2;
+}
+
 @media screen and (max-width: 992px) {
+  .eventDetailContainer {
+    margin-bottom: 22px;
+  }
   .detailSection {
     padding: 0 !important;
   }
@@ -248,13 +261,14 @@
     position: fixed;
     width: 100%;
     height: 530px;
-    padding: 15px !important;
+    padding: 13px 15px !important;
     left: 0;
     top: 50px !important;
     background-color: rgb(37, 37, 37) !important;
+    z-index: 10;
   }
 
-  .armoryStickyCol {
+  .armoryStickyCol, .myCol7 {
     width: 100% !important;
   }
 
@@ -262,13 +276,92 @@
     display: block;
     margin-top: 530px !important;
   }
+
+  .topHead {
+    padding-bottom: 22px !important;
+  }
+  .topHead h1 {
+    font-size: 30px !important;
+    line-height: 120%;
+  }
+
+  .gridDiv {
+    display: flex !important;
+  }
+  .date,
+  .location,
+  .entry {
+    width: unset;
+  }
+  .locationDiv {
+    flex: unset;
+  }
+  .content .aboutContent {
+    padding: 22px 0;
+  }
+  .aboutEvent {
+    margin: 0 0 22px !important;
+  }
+
+  .tabletBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    background-color: rgba(27, 27, 27, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 0 40px;
+    z-index: 1;
+  }
+  .barPriceStatic {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 150%;
+    text-transform: uppercase;
+    color: #A6A6A6;
+  }
+  .barPriceValue {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    color: #F8F8F8;
+  }
+  .bookNowButton {
+    width: 132px !important;
+    height: 33px !important;
+    padding: 0 !important;
+    border-radius: 30px !important;
+    margin: 0 !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
   .imgSlider {
-    height: 350px;
+    height: 320px;
+    padding: 0 !important;
   }
   .imgSlider img {
     height: 320px;
+  }
+
+  .colTablet {
+    margin-top: 327px !important;
+  }
+
+  .eventHeader {
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 400px;
+    white-space: unset !important;
+  }
+
+  .topHead {
+    padding-bottom: 20px !important;
   }
 }

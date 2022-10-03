@@ -135,7 +135,9 @@ function EventDetail() {
   React.useEffect(() => {
     const resized = () => {
       let fullTitleShow = false;
-      const itm = document.getElementById('header')
+      let itm;
+      if (window.innerWidth <= 992) itm = document.getElementById('header_tablet');
+      else itm = document.getElementById('header')
       if ((itm && !showFullTitle && itm.clientWidth < itm.scrollWidth) || (itm && itm.clientHeight > 50)) fullTitleShow = true;
       setFullTitleShow(fullTitleShow);
     }
@@ -153,7 +155,7 @@ function EventDetail() {
     <>
       <RouteTitle title="Event Detail" />
       <section className={'section ' + styles.detailSection}>
-        <Container style={{marginBottom: '60px'}}>
+        <Container className={styles.eventDetailContainer}>
 
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
             <Col style={{paddingTop: fullTitleShow?'2px':'11px'}}>
@@ -261,43 +263,19 @@ function EventDetail() {
                   </h6>
                 ) : ''
               }
-              <div className={`border-b ${styles.topHead}`}>
+              <div className={`${styles.topHead}`}>
                 <div
                   className={`${styles.eventHead} d-flex align-items-end w-100`}
                 >
                   <Heading
                     mb="-6"
                     variant="subHeading"
-                    customClass={styles.eventHeader + ' ' + styles.maxCol7}
+                    customClass={styles.eventHeader + ' ' + styles.maxCol7 + ' ' + (showFullTitle ? '' : styles.nowrap)}
                     title={data?.data?.data?.title}
-                    style={{
-                      "whiteSpace": showFullTitle ? "normal" : "nowrap",
-                    }}
-                    id='header'
+                    id='header_tablet'
                   >
                     {data?.data?.data?.title}
                   </Heading>
-                  {/* <span className={styles.type}>CLASSIC MUSEUM</span> */}
-                  <span className={styles.type}>
-                    {data?.data?.data?.genre?.genre}
-                  </span>
-                  {/* <span className={styles.starIcon}>
-                    <AiOutlineStar style={{ marginRight: 5, }} size={18} />
-                    4.2
-                  </span> */}
-                  <Button
-                    className={styles.bookNowButton}
-                    style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
-                    type="outline"
-                  >
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={data?.data?.data?.eventUrl}
-                    >
-                      Book Now
-                    </a>
-                  </Button>
                 </div>
               </div>
             </Col>
@@ -354,7 +332,7 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className="mb-4" style={{marginTop:'6px'}}>About event</h3>
+                  <h3 className={"mb-4 " + styles.aboutEvent} style={{marginTop:'6px'}}>About event</h3>
                   <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
@@ -491,6 +469,29 @@ function EventDetail() {
           </div>
           <div className="spacer-sm"></div>
         </Container>
+        <div className={styles.tabletBar}>
+          <div className={styles.barPrice}>
+            <div className={styles.barPriceStatic}>
+              ENTER FEE
+            </div>
+            <div className={styles.barPriceValue}>
+              $250
+            </div>
+          </div>
+          <Button
+            className={styles.bookNowButton}
+            style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
+            type="outline"
+          >
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={data?.data?.data?.eventUrl}
+            >
+              Book Now
+            </a>
+          </Button>
+        </div>
       </section>
     </>
   );

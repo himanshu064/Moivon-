@@ -236,15 +236,7 @@ button:focus svg {
   padding: 0 0 30px 0;
 }
 
-@media screen and (max-width: 768px) {
-
-  .topHead h1 {
-    font-size: 30px !important;
-    line-height: 30px !important;
-  }
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .myCol7 {
     width: 63% !important;
   }
@@ -258,6 +250,154 @@ button:focus svg {
   }
   .myCol55 {
     width: 45% !important;
+  }
+}
+
+.tablet {
+  display: none;
+}
+.tabletBar {
+  display: none;
+}
+.saveButton {
+  display: none;
+}
+.dflex {
+  display: flex;
+}
+
+@media screen and (max-width: 992px) {
+  .noneTablet {
+    display: none;
+  }
+  .uploadSection {
+    padding-top: 0 !important;
+  }
+  .uploadRow {
+    display: none !important;
+  }
+  .myCol7, .myCol5 {
+    width: 100% !important;
+  }
+  .myCol7 {
+    padding-top: 15px;
+  }
+  .imgSlider>div {
+    height: 536px;
+  }
+
+  .noneTablet {
+    display: none !important;
+  }
+  .topHead {
+    margin: 24px 0 12px !important;
+  }
+  .topHead h1 {
+    display: block;
+    font-size: 30px !important;
+    line-height: 120%;
+  }
+  .footer {
+    margin-top: 40px !important;
+  }
+
+  .tabletBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    background-color: rgba(27, 27, 27, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 0 40px 0 60px;
+    z-index: 1;
+  }
+  .submitButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 132px !important;
+    height: 33px !important;
+    padding: 0 !important;
+    border-radius: 30px !important;
+    margin: 0 !important;
+    color: #F8F8F8;
+    border: 1.2px solid #F8F8F8;
+    background-color: transparent;
+    font-size: 14px;
+  }
+  .enterFee {
+    cursor: pointer;
+    color: #F8F8F8;
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 3px;
+    display: block;
+  }
+  .plus {
+    font-size: 24px;
+    line-height: 36px;
+    margin-right: 7px;
+    display: block;
+  }
+  .tabletModal {
+    display: none !important;
+  }
+  .tabletModal.show {
+    display: block !important;
+    position: fixed;
+    top: 30vh;
+    width: 270px;
+    height: 150px;
+    left: calc(50vw - 135px);
+    background: rgba(27, 27, 27, 0.9);
+    z-index: 11;
+    padding: 24px 48px;
+  }
+  .saveButton {
+    height: 32px;
+    width: 100%;
+    cursor: pointer;
+    background: #494949;
+    border-radius: 19px;
+    font-size: 14px;
+    line-height: 150%;
+    text-transform: uppercase;
+    color: #F8F8F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .modalBody {
+    display: flex;
+    align-items: flex-end;
+  }
+  .tabletModal .formGroup {
+    height: unset;
+    width: 50% !important;
+  }
+  .radioBtn {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .myCol7 {
+    padding: 0 !important;
+  }
+  .imgSlider>div {
+    height: 320px;
+    min-height: unset;
+  }
+  .topHead h1 {
+    padding: 0 12px;
+  }
+  .uploadSection .footer ol {
+    font-size: 14px !important;
   }
 }
 

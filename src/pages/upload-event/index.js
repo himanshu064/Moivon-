@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Heading from "../../components/Heading";
+import { AiOutlinePlus } from "react-icons/ai";
 import Button from "../../components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
@@ -58,6 +59,7 @@ function UploadEvent() {
   const inputFileRef = useRef();
   const [images, setImages] = useState([]);
   const [priceType, setPriceType] = useState(EVENT_PRICE.FREE);
+  const [paidModal, showPaidModal] = useState(false);
 
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
@@ -235,7 +237,7 @@ function UploadEvent() {
                 )}
               </div>
 
-              <div className="d-flex justify-content-between flex-wrap mt-2">
+              <div className={"justify-content-between flex-wrap mt-2 " + styles.noneTablet + " " + styles.dflex}>
                 <Text variant="white">PREVIEW</Text>
                 <Text>
                   UPLOAD UP TO {MAX_ALLOWED_IMAGES} IMAGES/ VIDEOS (
@@ -251,6 +253,15 @@ function UploadEvent() {
                   />
                   <Text variant="white">UPLOAD</Text>
                 </div>
+              </div>
+              <div className={`${styles.topHead}`}>
+                <Heading
+                  mb="0"
+                  customClass="cursor-pointer"
+                  variant="subHeading"
+                >
+                  UPLOAD
+                </Heading>
               </div>
             </Col>
             <Col md={5} className={styles.myCol5}>
@@ -289,66 +300,84 @@ function UploadEvent() {
                     </Form.Group>
                   </Col>
                   <Col lg={6} className={styles.myCol55}>
-                    <div className="d-flex align-items-start gap-1">
-                      <Form.Group
-                        className={`${styles.formGroup} w-auto d-flex align-items-start gap-3`}
-                        controlId="formGroupPrice"
-                      >
-                        {/* <Form.Label>price:</Form.Label> */}
-                        <div
-                          className={`d-flex gap-2 align-items-start ${styles.radioBtn}`}
+                    <div className={"align-items-start gap-1 " + styles.tabletModal + ' ' + (paidModal ? styles.show : '')}>
+                      <div className={styles.modalBody}>
+                        <Form.Group
+                          className={`${styles.formGroup} w-auto d-flex align-items-start gap-3`}
+                          controlId="formGroupPrice"
                         >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault2"
-                              checked={priceType === EVENT_PRICE.FREE}
-                              onClick={() => setPriceType(EVENT_PRICE.FREE)}
-                            />
-                            <label
-                              className="form-check-label"
-                              for="flexRadioDefault2"
-                            >
-                              Free
-                            </label>
+                          {/* <Form.Label>price:</Form.Label> */}
+                          <div
+                            className={`d-flex gap-2 align-items-start ${styles.radioBtn}`}
+                          >
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault2"
+                                checked={priceType === EVENT_PRICE.FREE}
+                                onClick={() => setPriceType(EVENT_PRICE.FREE)}
+                              />
+                              <label
+                                className="form-check-label"
+                                for="flexRadioDefault2"
+                              >
+                                Free
+                              </label>
+                            </div>
+                            <div className={`form-check ${styles.formCheck}`}>
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
+                                checked={priceType === EVENT_PRICE.PAID}
+                                onClick={() => setPriceType(EVENT_PRICE.PAID)}
+                              />
+                              <label
+                                className="form-check-label"
+                                for="flexRadioDefault1"
+                              >
+                                Paid
+                              </label>
+                            </div>
                           </div>
-                          <div className={`form-check ${styles.formCheck}`}>
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                              checked={priceType === EVENT_PRICE.PAID}
-                              onClick={() => setPriceType(EVENT_PRICE.PAID)}
-                            />
-                            <label
-                              className="form-check-label"
-                              for="flexRadioDefault1"
-                            >
-                              Paid
-                            </label>
-                          </div>
-                        </div>
-                      </Form.Group>
-                      <Form.Group
-                        className={`${styles.formGroup} ${
-                          styles.priceContainer
-                        } ${
-                          priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
-                        }`}
-                      >
-                        <Form.Control
-                          type="number"
-                          step="any"
-                          style={{width: '100%'}}
-                          {...register("price")}
-                        />
-                      </Form.Group>
+                        </Form.Group>
+                        <Form.Group
+                          className={`${styles.formGroup} ${
+                            styles.priceContainer
+                          } ${
+                            priceType === EVENT_PRICE.PAID ? "d-block" : "d-none"
+                          }`}
+                        >
+                          <Form.Control
+                            type="number"
+                            step="any"
+                            style={{width: '100%'}}
+                            {...register("price")}
+                          />
+                        </Form.Group>
+                      </div>
+                      <div className={styles.saveButton} onClick={() => showPaidModal(false)}>
+                          SAVE
+                      </div>
                     </div>
                   </Col>
                 </Row>
+                <div className={styles.tabletBar}>
+                  <div className="d-flex align-items-center" onClick={() => showPaidModal(true)}>
+                    {/* <AiOutlinePlus style={{ width: '17px', height: '17px', marginTop: '-3px' }} /> */}
+                    <span className={styles.plus}>+</span>
+                    <span className={styles.enterFee}>ENTER FEE</span>
+                  </div>                  
+                  <button
+                    className={styles.submitButton}
+                    htmlType="submit"
+                    disabled={!isDirty || !isValid || images.length === 0}
+                  >SUBMIT
+                  </button>
+                </div>
 
                 <Row>
                   <Col xl={6}>
@@ -477,7 +506,7 @@ function UploadEvent() {
                     style={{ flex: 1 }}
                   />
                 </Form.Group>
-                <div className="d-flex pt-2 justify-content-end align-items-start">
+                <div className={"pt-2 justify-content-end align-items-start " + styles.noneTablet + " " + styles.dflex}>
                   <button
                     className="text-button"
                     htmlType="submit"
