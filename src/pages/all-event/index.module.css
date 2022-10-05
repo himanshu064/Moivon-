@@ -17,6 +17,10 @@
   /* justify-content: center; */
 }
 
+.sortBtn {
+  padding-right: 0 !important;
+}
+
 .sortBtn button {
   text-transform: uppercase;
   padding: 6px 16px !important;

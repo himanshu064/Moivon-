@@ -156,13 +156,13 @@ function Slide({
               </h3>
 
               <div className="d-flex gap-2">
-                <span className="d-flex align-items-center">
+                {/* <span className="d-flex align-items-center">
                   <AiOutlineStar />
                   4.2
-                </span>
+                </span> */}
                 <span className="d-flex align-items-center">
                   <AiOutlineHeart />
-                  120
+                  {/* 120 */}
                 </span>
               </div>
             </div>

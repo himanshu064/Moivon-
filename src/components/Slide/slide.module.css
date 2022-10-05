@@ -29,7 +29,8 @@
 .eventWrapper .content {
   height: 96px;
   /* padding: 10px 0 0; */
-  border: 1px solid var(--border-color);
+  border: 1.2px solid var(--border-color);
+  border-top: none;
 }
 
 .eventWrapper .content .titleContainer {
@@ -69,7 +70,7 @@
 /* events */
 
 .borderRight {
-  border-right: 1px solid var(--border-color);
+  border-right: 1.2px solid var(--border-color);
   padding: 0 1rem;
   /* padding-right: 1rem !important;
   padding-left: 1rem !important; */
@@ -122,7 +123,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* width: 90px; */
+  width: 90px;
   display: block;
 }
 

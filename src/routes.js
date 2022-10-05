@@ -11,6 +11,7 @@ import Mask from "./components/Mask";
 function NavigationRoutes() {
   const navigate = useNavigate();
   const [maskState, setMaskState] = React.useState(0);
+  const [menuMask, setMenuMask] = React.useState(false);
   function goTo(url) {
     setMaskState(1);
     setTimeout(() => {
@@ -29,7 +30,8 @@ function NavigationRoutes() {
       <div className={maskState===1?'m-active':(maskState===2?'m-active state1':(maskState===3?'m-active state2':''))}>
         <Mask />
       </div>
-      <Header />
+      <div className={'menu-mask ' + (menuMask ? 'active' : '')}></div>
+      <Header setMenuMask={setMenuMask} />
       <Routes>
         <Route path="/" element={<Home goTo={goTo} />} name='home' />
         <Route path="/all-events" element={<AllEvent />} />

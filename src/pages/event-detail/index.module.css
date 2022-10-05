@@ -80,6 +80,7 @@
   width: 120px;
   font-size: 12px !important;
   padding: 7px 0 !important;
+  border: 1.2px solid #f8f8f8 !important
 }
 
 .m0 {
@@ -96,6 +97,7 @@
 .info span {
   color: var(--theme-white-light);
   font-size: 12px;
+  display: block;
   text-transform: uppercase;
 }
 
@@ -209,6 +211,7 @@
 }
 
 .newTextDeco {
+  white-space: nowrap;
   text-decoration: underline var(--theme-white) 1px !important;
   text-underline-offset: 5px;
   font-size: 14px;
@@ -265,6 +268,7 @@
   opacity: 1;
   backdrop-filter: blur(3px);
   transition: opacity 0.2s ease-in-out;
+  display: none;
 }
 
 .eventWrapper:hover .daysReminingInfo button {
@@ -287,11 +291,37 @@
   width: 135px;
   height: 36px;
   opacity: 1;
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: blur(3px); */
   transition: opacity 0.2s ease-in-out;
+  display: none;
+}
+
+.marginBot {
+  margin-bottom: 28px !important;
+}
+
+.noMarginB {
+  margin-bottom: 0 !important;
+}
+.noMarginBS {
+  margin-bottom: 3px !important;
 }
 
 @media screen and (max-width: 992px) {
+  .daysReminingInfo button, .galleryBtn button {
+    display: block;
+  }
+  .daysReminingInfo button {
+    bottom: 10px;
+    left: 25px;
+  }
+  .galleryBtn button {
+    bottom: 10px;
+    right: 25px;
+  }
+  .marginBot {
+    margin-bottom: 22px !important;
+  }
   .eventDetailContainer {
     margin-bottom: 22px;
   }
@@ -305,8 +335,8 @@
   .imgSlider {
     position: fixed;
     width: 100%;
-    height: 530px;
-    padding: 13px 15px !important;
+    height: 515px;
+    padding: 13px 15px 0 !important;
     left: 0;
     top: 50px !important;
     background-color: rgb(37, 37, 37) !important;
@@ -339,7 +369,7 @@
     width: unset;
   }
   .locationDiv {
-    flex: unset;
+    flex: unset !important;
   }
   .content .aboutContent {
     padding: 22px 0;
@@ -403,6 +433,14 @@
 
   .colTablet {
     margin-top: 322px !important;
+  }
+  .daysReminingInfo button {
+    bottom: 10px;
+    left: 10px;
+  }
+  .galleryBtn button {
+    bottom: 10px;
+    right: 10px;
   }
 
   .eventHeader {

@@ -115,6 +115,17 @@ function EventDetail() {
     return (typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText);
   }
 
+  const checkWithinADay = (event) => {
+    if (format(
+      new Date(event?.startDate),
+      "dd LLL yyyy"
+    ) === format(
+        new Date(data?.data?.data?.endDate),
+        "dd LLL yyyy"
+      )) return true;
+    return false;
+  }
+
   useLayoutEffect(() => {
     const onScroll = () => {
       if (window.innerWidth < 992) return;
@@ -392,24 +403,25 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className={"mb-4 " + styles.aboutEvent} style={{marginTop:'6px'}}>About event</h3>
+                  <h3 className={styles.marginBot + ' ' + styles.aboutEvent} style={{marginTop:'6px'}}>About event</h3>
                   <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className="mb-4">VENUE</h3>
+                  <h3 className={styles.marginBot}>VENUE</h3>
                   {isValidURL(data?.data?.data?.venue) ? null : (
                     <>
-                      <Text>{data?.data?.data?.venue}</Text>
+                      <Text className={styles.noMarginBS}>{data?.data?.data?.venue}</Text>
                     </>
                   )}
-                  <Text>{data?.data?.data?.location}</Text>
-                  <Text>{data?.data?.data?.startDate &&
+                  <Text className={styles.noMarginBS}>{data?.data?.data?.location}</Text>
+                  <Text className={styles.noMarginBS}>{
+                    !checkWithinADay(data?.data?.data) && data?.data?.data?.startDate &&
                     format(
                       new Date(data?.data?.data?.startDate),
                       "dd LLL"
-                    )} - {data?.data?.data?.startDate &&
+                    ) + ' - '}{data?.data?.data?.endDate &&
                       format(
-                        new Date(data?.data?.data?.startDate),
+                        new Date(data?.data?.data?.endDate),
                         "dd LLL yyyy"
                       )} | Doors open: {data?.data?.data?.startDate &&
                       format(

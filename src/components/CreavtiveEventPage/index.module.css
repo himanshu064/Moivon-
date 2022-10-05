@@ -183,7 +183,7 @@
     font-size: 36px;
     line-height: 43.2px;
     margin: 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     color: #FFE69D;
     width: min-content;
   }
@@ -247,9 +247,11 @@
   .exploreBtnTablet {
     width: 165px;
     height: 42px;
+    font-family: var(--sans-regular) !important;
     padding: 0 !important;
   }
   .spanHeadUpTablet {
     margin-top: calc(-32vh - 114px / 2 + 75vh - 72px / 2);
+    font-size: 14px;
   }
 }

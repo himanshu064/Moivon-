@@ -7,7 +7,7 @@ import TransparentHeader from "../TransparentHeader";
 import ScrollingHeader from "../ScrollingHeader";
 import { useLocation } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
     ALL_QUERIES.QUERY_ALL_GENRES(),
     fetchAllGenres
@@ -98,11 +98,13 @@ function Header() {
   return (
     <div className="app-header">
       <TransparentHeader
+        setMenuMask={props.setMenuMask}
         ref={transparentHeaderRef}
         genres={allGenres?.data?.data}
       />
       {renderScrollingHeader() && (
         <ScrollingHeader
+          setMenuMask={props.setMenuMask}
           ref={scrollingHeaderRef}
           genres={allGenres?.data?.data}
         />

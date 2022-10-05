@@ -11,7 +11,7 @@ import { SCROLL_INTO_VIEW_OPTIONS } from "../../utils/constants";
 import NavigationDropdown from "../NavigationDropdown";
 import Mask from "../Mask";
 
-function ScrollingHeader({ genres = [] }, headerRef) {
+function ScrollingHeader({ genres = [], setMenuMask }, headerRef) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [maskState, setMaskState] = React.useState(0);
@@ -33,6 +33,11 @@ function ScrollingHeader({ genres = [] }, headerRef) {
     if (collapse || document.getElementsByClassName('scrolling-header collapseC').length) {
       document.getElementById('navbar-toggle1').click();
     }
+  }
+
+  function setMenuCollapse(collapse) {
+    setCollapse(collapse);
+    setMenuMask(collapse);
   }
 
   function goTo(url) {
@@ -64,7 +69,7 @@ function ScrollingHeader({ genres = [] }, headerRef) {
           ref={headerRef}
         >
           <Container>
-            <Navbar.Toggle id="navbar-toggle1" className={styles.collapseButton} aria-controls="basic-navbar-nav" onClick={() => setCollapse(!collapse)}>
+            <Navbar.Toggle id="navbar-toggle1" className={styles.collapseButton} aria-controls="basic-navbar-nav" onClick={() => setMenuCollapse(!collapse)}>
               {/* <BiMenuAltRight /> */}
               <div className={styles.collapseIcon}></div>
             </Navbar.Toggle>

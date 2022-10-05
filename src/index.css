@@ -121,7 +121,11 @@ body::-webkit-scrollbar-thumb:hover {
   background: #d1d1cf;
 } */
 
-
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 
 
@@ -167,8 +171,7 @@ code {
 @media screen and (max-width: 992px){
   .collapseC .navbar {
     transition: none !important;
-    background-color: rgba(27, 27, 27, 1) !important;
-    backdrop-filter: none;
+    background-color: rgba(27, 27, 27, 0.8) !important;
   }
   .navbar.event-detail {
     background-color: rgba(27, 27, 27, 1) !important;
@@ -244,9 +247,10 @@ code {
 @media screen and (max-width: 992px) {
   .all-events {
     padding-top: 22px !important;
-  }  
-  .app-header .nav_dropdown.transparent .dropdown-menu {
-    background-color: unset !important;
+  } 
+  .app-header .nav_dropdown.transparent .dropdown-menu, .app-header .nav_dropdown:not(.transparent) .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0) !important;
+    backdrop-filter: unset !important;
   }
 }
 
@@ -582,7 +586,8 @@ button:focus {
 .carousel-indicators [data-bs-target] {
   width: 8px !important;
   height: 8px !important;
-  border-radius: 6px !important;
+  /* border-radius: 6px !important; */
+  border-radius: 50%;
   opacity: 1 !important;
   background-color: var(--theme-white) !important;
 }
@@ -855,25 +860,6 @@ input[type=number] {
   top: 0;
 }
 
-/* .swiper-button-next {
-  right: 0;
-}
-.swiper-button-prev {
-  left: 0;
-}
-
-.eventDetailSlider .swiper-button-next, .eventDetailSlider .swiper-button-prev, .home-slider .swiper-button-next, .home-slider .swiper-button-prev {
-  top: 50%;
-}
-
-.eventDetailSlider .swiper-button-next, .home-slider .swiper-button-next {
-  right: 30px;
-}
-
-.eventDetailSlider .swiper-button-prev, .home-slider .swiper-button-prev {
-  left: 30px;
-} */
-
 .navbar-toggler {
   padding: 0 !important;
 }
@@ -896,5 +882,26 @@ input[type=number] {
   }
   .navbar-brand img {
     width: 35px;
+  }
+  .eventDetailSlider .swiper-button-next, .eventDetailSlider .swiper-button-prev {
+    display: none;
+  }
+}
+
+.menu-mask {
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(27, 27, 27, 0);
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .menu-mask.active {
+    display: block;
   }
 }

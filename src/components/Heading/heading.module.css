@@ -15,6 +15,12 @@
 
 @media screen and (max-width: 768px) {
   .heading {
+    letter-spacing: -0.03em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
     font-size: 40px;
     line-height: 55px;
   }

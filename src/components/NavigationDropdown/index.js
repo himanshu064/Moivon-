@@ -17,7 +17,10 @@ const NavigationDropdown = ({
   return (
     <>
       <NavDropdown
-        onClick={() => setNavShow(!navShow)}
+        onClick={() => {
+          if (window.innerWidth <= 992) goTo('/all-events')
+          else setNavShow(!navShow)
+        }}
         renderMenuOnMount
         title={title}
         id={id}

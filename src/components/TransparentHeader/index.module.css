@@ -50,6 +50,7 @@
   border-radius: 30px !important;
   width: 200px;
   height: 50px;
+  font-size: 14.5px !important;
 }
 
 .transparent span {
@@ -102,17 +103,6 @@
     gap: 20px;
   }
 
-  /* .navbarCollapse {
-    position: absolute;
-    top: 50px;
-    left: 15px;
-    border-radius: 15px;
-    width: 145px;
-    background-color: #00000010 !important;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-  } */
-
   .navbarCollapse {
     position: absolute;
     left: 0;
@@ -120,7 +110,8 @@
     right: 0;
     height: calc(100vh - 50px);
     overflow: auto;
-    background-color: rgba(27, 27, 27, 1) !important;
+    background-color: rgba(27, 27, 27, 0.8) !important;
+    backdrop-filter: blur(5px);
     padding: 41px 35px !important;
   }
   .navLink a {
