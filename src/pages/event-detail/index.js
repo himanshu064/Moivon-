@@ -144,10 +144,10 @@ function EventDetail() {
         }
         return ;
       }
-      if (armoryRef.curr
-        ) {
+      if (armoryRef.current) {
+        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
         setImageContTop();
-        // console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
+        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
         if (window.pageYOffset <= 35) {
           armoryRef.current.style.position = 'relative';
           armoryRef.current.style.top = 0;
