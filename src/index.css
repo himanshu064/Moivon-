@@ -285,7 +285,7 @@ code {
 .custom-icons .swiper-button-prev {
   width: 44px !important;
   height: 44px !important;
-  border-radius: 2px;
+  /* border-radius: 2px; */
 }
 
 .custom-icons .swiper-button-prev {
@@ -589,11 +589,11 @@ button:focus {
   /* border-radius: 6px !important; */
   border-radius: 50%;
   opacity: 1 !important;
-  background-color: var(--theme-white) !important;
+  background-color: #E8E8E8 !important;
 }
 
 .carousel-indicators .active {
-  background-color: var(--theme-black) !important;
+  background-color: rgba(135, 135, 135, 0.7) !important;
 }
 
 .no-data {

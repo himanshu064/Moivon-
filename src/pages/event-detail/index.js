@@ -128,10 +128,25 @@ function EventDetail() {
 
   useLayoutEffect(() => {
     const onScroll = () => {
-      if (window.innerWidth < 992) return;
-      if (armoryRef.current) {
+      if (window.innerWidth < 992) {
+        if (armoryRef.current) {
+          const aboutIns = document.getElementById('about-inst');
+          const imgCont = document.getElementById('imag-cont');
+          const top = Math.min(50, aboutIns.offsetTop - window.scrollY - imgCont.clientHeight + 50);
+          if (top < 50) {
+            imgCont.style.position = 'absolute';
+            imgCont.style.top = aboutIns.offsetTop - imgCont.clientHeight + 'px';
+          } else {
+            imgCont.style.top = top + 'px';
+            imgCont.style.position = 'fixed';
+          }          
+        }
+        return ;
+      }
+      if (armoryRef.curr
+        ) {
         setImageContTop();
-        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
+        // console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
         if (window.pageYOffset <= 35) {
           armoryRef.current.style.position = 'relative';
           armoryRef.current.style.top = 0;
@@ -276,7 +291,7 @@ function EventDetail() {
           </Row>
           <Row className={styles.armoryStickyRow}>
             <Col md={7} className={styles.myCol7}>
-              <div className={`${styles.imgSlider}`} style={{top: '114px'}} id="imag-cont">
+              <div className={`${styles.imgSlider}`} style={{top: (window.innerWidth <= 992) ? '50px' : '114px'}} id="imag-cont">
                 {/* <span className="d-flex">
                   <AiOutlineStar />
                   4.2
@@ -447,7 +462,7 @@ function EventDetail() {
                     </Button>
                   </a>
                 </div>
-                <div className={`border-b ${styles.aboutContent}`}>
+                <div className={`border-b ${styles.aboutContent}`} id="about-inst">
                   <h3>ABOUT INSTITUTION</h3>
                   <div className="d-flex gap-2 py-3">
                     <a

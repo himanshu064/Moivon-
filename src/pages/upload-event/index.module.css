@@ -235,6 +235,17 @@ button:focus svg {
 .uploadRow {
   padding: 0 0 30px 0;
 }
+.modalMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(27, 27, 27, 0.4);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 
 @media screen and (min-width: 992px) {
   .myCol7 {
@@ -266,7 +277,14 @@ button:focus svg {
   display: flex;
 }
 
+.modalBody {
+  display: flex;
+}
+
 @media screen and (max-width: 992px) {
+  .tablet {
+    display: block;
+  }
   .noneTablet {
     display: none;
   }
@@ -356,6 +374,14 @@ button:focus svg {
     background: rgba(27, 27, 27, 0.9);
     z-index: 11;
     padding: 24px 48px;
+    border-radius: 16px;
+  }
+  .tabletModal.show .modalBody {
+    z-index: 11;
+  }
+  .modalMask.show {
+    opacity: 1;
+    z-index: 10;
   }
   .saveButton {
     height: 32px;

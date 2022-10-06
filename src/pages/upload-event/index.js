@@ -83,6 +83,12 @@ function UploadEvent() {
     }
   );
 
+  React.useEffect(() => {
+    const modal = document.getElementById('modal-mask');
+    modal.addEventListener('mousewheel', (e)=> {e.preventDefault()})
+    modal.addEventListener('touchmove', (e)=> {e.preventDefault()})
+  }, [])
+
   const onInputFileReset = () => (inputFileRef.current.value = "");
 
   const onImageChange = (event) => {
@@ -254,7 +260,7 @@ function UploadEvent() {
                   <Text variant="white">UPLOAD</Text>
                 </div>
               </div>
-              <div className={`${styles.topHead}`}>
+              <div className={`${styles.topHead} ${styles.tablet}`}>
                 <Heading
                   mb="0"
                   customClass="cursor-pointer"
@@ -300,6 +306,7 @@ function UploadEvent() {
                     </Form.Group>
                   </Col>
                   <Col lg={6} className={styles.myCol55}>
+                    <div className={styles.modalMask + ' ' + (paidModal ? styles.show : '')} id="modal-mask"></div>
                     <div className={"align-items-start gap-1 " + styles.tabletModal + ' ' + (paidModal ? styles.show : '')}>
                       <div className={styles.modalBody}>
                         <Form.Group

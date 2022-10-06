@@ -20,6 +20,35 @@ const MostPopularAccordion = () => {
   );
 
   const [show, setShow] = useState(null);
+  const [lastShow, setLastShow] = useState(Date.now());
+  const [time, setTime] = useState(null);
+  const [hide, setHide] = useState(false);
+  let interval = null;
+
+  function changeShow(next) {
+    setLastShow(Date.now());
+    setHide(true)
+    setTimeout(() => {
+      setShow(data?.data?.data[next]._id);
+      setHide(false);
+    }, 1000)
+  }
+
+  function resetInterval() {
+    if (interval) return;
+    interval = setInterval(() => {
+      setTime(Date.now());
+    }, 100);
+  }
+
+  useEffect(() => {
+    if (Date.now() - lastShow >= 8000 && data?.data?.data.length) {
+      const current = data?.data?.data?.findIndex((e) => e._id === show);
+      const next = (current + 1) % data?.data?.data?.length;
+      if (current < 0 || current === next) return;
+      changeShow(next);
+    }
+  }, [time])
 
   useEffect(() => {
     if (!isLoading) {
@@ -28,7 +57,10 @@ const MostPopularAccordion = () => {
       } else {
         setShow(data?.data?.data?.[1]?._id)
       }
+      setLastShow(Date.now());
+      resetInterval();
     }
+    return () => { clearInterval(interval) };
   }, [data?.data]);
 
   if (isLoading) return <Loader />;
@@ -49,8 +81,8 @@ const MostPopularAccordion = () => {
   }
 
   return (
-    <Container className={`position-relative ${styles.customcontainer}`}>
-      <Row>
+    <Container className={`position-relative ${styles.customcontainer} ${hide ? styles.hideTransition : ''}`}>
+      <Row className={styles.noPaddingMobileRow}>
         <Col md={5} className={styles.col5}>
           <div className={styles.paddingRight + ' ' + styles.totalContent}>
             <div style={{height:'100%', position: 'relative'}}>
@@ -66,7 +98,7 @@ const MostPopularAccordion = () => {
                   ))}
                 </div>
               </div>
-              <div className={`${styles.dreamContent} `}>
+              <div className={`${styles.dreamContent}`}>
                 {data?.data?.data?.length > 0 ? (
                   data?.data?.data?.map((event, idx) => (
                     <EventAccordion
