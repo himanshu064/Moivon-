@@ -526,7 +526,7 @@ function EventDetail() {
               <div className="d-flex justify-content-end align-items-center mb-4">
                 <Link to="/all-events">
                   <span className={styles.newTextDeco}>
-                    View All <FiArrowUpRight />
+                    <span>View All</span> <FiArrowUpRight />
                   </span>
                 </Link>
               </div>

@@ -105,11 +105,13 @@
 
 .newTextDeco {
   white-space: nowrap;
-  text-decoration: underline var(--theme-white) 1px !important;
-  -webkit-text-decoration: underline var(--theme-white) 1px !important;
-  text-underline-offset: 5px;
-  -webkit-text-underline-offset: 5px;
+  /* text-decoration: underline var(--theme-white) 1px !important;
+  text-underline-offset: 5px; */
   font-size: 14px;
+}
+
+.newTextDeco span {
+  border-bottom: 1px solid var(--theme-white);
 }
 
 .bottomSection::before {

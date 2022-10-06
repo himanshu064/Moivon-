@@ -127,7 +127,7 @@ function Home(props) {
               <div className="d-flex justify-content-end align-items-center mt-2 mb-3">
                 <span style={{cursor: "pointer"}}>
                   <span onClick={() => props.goTo("/all-events")} className={styles.newTextDeco}>
-                    View All <FiArrowUpRight className={styles.noMobile} />
+                    <span>View All</span> <FiArrowUpRight className={styles.noMobile} />
                   </span>
                 </span>
               </div>
