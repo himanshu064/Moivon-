@@ -139,6 +139,7 @@ const MostPopularAccordion = () => {
         <div className={styles.eventFooterTablet}>
           {selectedEvent() && <EventFooter event={selectedEvent()}></EventFooter>}
         </div>
+        <div className={styles.mobileBorder}><div className={styles.borderB1} ></div></div>
       </Row>
     </Container>
   );

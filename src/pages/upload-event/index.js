@@ -16,7 +16,7 @@ import { Navigation, Pagination } from "swiper";
 import Form from "react-bootstrap/Form";
 import moment from "moment";
 import DateTime from "react-datetime";
-// import { usePageView } from "../../hooks/usePageView";
+import { usePageView } from "../../hooks/usePageView";
 import Text from "../../components/Text";
 import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
 import RouteTitle from "../../components/RouteTitle/RouteTitle";
@@ -52,7 +52,7 @@ const EVENT_PRICE = {
 
 function UploadEvent() {
   useBackgroundVideo();
-  // usePageView();
+  usePageView();
   const resolver = useYupValidationResolver(validationSchema);
 
   const toastId = useRef(null);

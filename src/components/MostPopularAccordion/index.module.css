@@ -44,9 +44,20 @@
 
 .hideTransition .dreamContent, .hideTransition .eventHeaderTablet, .hideTransition .col7, .hideTransition .eventFooterTablet {
   opacity: 0 !important;
-} 
+}
+
+.mobileBorder {
+  display: none;
+}
 
 @media screen and (max-width: 992px) {
+  .mobileBorder {
+    display: block;
+    padding: 0 12px !important;
+  }
+  .borderB1 {
+    border-bottom: 1px solid var(--border-color);
+  }
   .customcontainer {
     height: unset;
   }

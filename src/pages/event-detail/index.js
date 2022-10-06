@@ -94,6 +94,7 @@ function EventDetail() {
   const armoryRef = useRef();
 
   const setImageContTop = () => {
+    if (window.innerWidth <= 992) return;
     // setTimeout(() => {
       document.getElementById('imag-cont').style.top = getImageContTop() + 'px';
     // }, 20)
@@ -241,9 +242,9 @@ function EventDetail() {
                   >
                     <span>Full Title</span>
                     {!showFullTitle ? (
-                      <BiPlus color="#F8F8F8" size={12} />
+                      <BiPlus color="#A6A6A6" size={12} />
                     ) : (
-                      <BiMinus color="#F8F8F8" size={12} />
+                      <BiMinus color="#A6A6A6" size={12} />
                     )}
                   </h6>
                 ) : ''
@@ -342,9 +343,9 @@ function EventDetail() {
                   >
                     <span>Full Title</span>
                     {!showFullTitle ? (
-                      <BiPlus color="#F8F8F8" size={12} />
+                      <BiPlus color="#A6A6A6" size={12} />
                     ) : (
-                      <BiMinus color="#F8F8F8" size={12} />
+                      <BiMinus color="#A6A6A6" size={12} />
                     )}
                   </h6>
                 ) : ''

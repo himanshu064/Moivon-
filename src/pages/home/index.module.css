@@ -106,7 +106,9 @@
 .newTextDeco {
   white-space: nowrap;
   text-decoration: underline var(--theme-white) 1px !important;
+  -webkit-text-decoration: underline var(--theme-white) 1px !important;
   text-underline-offset: 5px;
+  -webkit-text-underline-offset: 5px;
   font-size: 14px;
 }
 
@@ -273,6 +275,9 @@
 
 
 @media screen and (max-width: 576px) {
+  .noMobile {
+    display: none;
+  }
   .eventSliderContainer {
     padding: 0 !important
   }

@@ -109,6 +109,7 @@ function Slide({
             // indicators={allowLinks}
             interval={null}
             ref={bootstrapCarouselRef}
+            className={ (event?.images?.length > 1) ? '' : 'event-single-sliderr' }
           >
             {event?.images?.map((imageData, index) => (
               <Carousel.Item key={`image_slide_${index}`}>
