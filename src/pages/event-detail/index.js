@@ -273,19 +273,19 @@ function EventDetail() {
                     <AiOutlineStar style={{ marginRight: 5, }} size={18} />
                     4.2
                   </span> */}
-                  <Button
-                    className={styles.bookNowButton}
-                    style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
-                    type="outline"
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={data?.data?.data?.eventUrl}
+                    style={{
+                      marginLeft: "auto",
+                      marginBottom: "-9px",
+                    }}
                   >
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={data?.data?.data?.eventUrl}
-                    >
+                    <Button className={styles.bookNowButton} type="outline" style={{ width: 200 }}>
                       Book Now
-                    </a>
-                  </Button>
+                    </Button>
+                  </a>
                 </div>
               </div>
             </Col>
