@@ -71,7 +71,7 @@ function AllEvent() {
   const {
     genre = "all",
     sortBy = ALL_EVENTS_FILTERS.latest.key,
-    orderBy,
+    orderBy = 'desc',
   } = queryParams;
 
   const { data: allGenres, isLoading: allGenresLoading } = useQuery(
