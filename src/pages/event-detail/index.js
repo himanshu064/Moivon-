@@ -52,22 +52,22 @@ const getEventText = (startDate, endDate) => {
     return "PAST";
   }
 
-
-  const isEventBetweenStartAndEndDate = todayDate > parsedStartDate && todayDate < parsedEndDate;
-  if(isEventBetweenStartAndEndDate) {
+  const isEventBetweenStartAndEndDate =
+    todayDate > parsedStartDate && todayDate < parsedEndDate;
+  if (isEventBetweenStartAndEndDate) {
     // if the difference in days > 1, show days remaining
     const difference = parsedEndDate - todayDate;
     const differenceInDays = Math.ceil(
       Math.abs(difference / (24 * 60 * 60 * 1000))
     );
 
-    if(differenceInDays <= 1) {
+    if (differenceInDays <= 1) {
       return "FINAL DAY";
     }
 
     return differenceInDays;
   }
-}
+};
 
 function EventDetail() {
   const [showFullTitle, setShowFullTitle] = useState(false);
@@ -96,105 +96,145 @@ function EventDetail() {
   const setImageContTop = () => {
     if (window.innerWidth <= 992) return;
     // setTimeout(() => {
-      document.getElementById('imag-cont').style.top = getImageContTop() + 'px';
+    document.getElementById("imag-cont").style.top = getImageContTop() + "px";
     // }, 20)
-  }
+  };
 
   const getImageContTop = () => {
     return armoryRef.current.clientHeight + 40;
-  }
+  };
 
   const isDayRemainingMode = () => {
     const event = data?.data?.data;
-    const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
-    return (typeof eventText === "number" || ["FINAL DAY"].includes(eventText));
-  }
+    const eventText =
+      event.startDate &&
+      event.endDate &&
+      getEventText(event?.startDate, event?.endDate);
+    return typeof eventText === "number" || ["FINAL DAY"].includes(eventText);
+  };
 
   const remainingDaysText = () => {
     const event = data?.data?.data;
-    const eventText = event.startDate && event.endDate && getEventText(event?.startDate, event?.endDate);
-    return (typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText);
-  }
+    const eventText =
+      event.startDate &&
+      event.endDate &&
+      getEventText(event?.startDate, event?.endDate);
+    return typeof eventText === "number" ? `${eventText} DAYS LEFT` : eventText;
+  };
 
   const checkWithinADay = (event) => {
-    if (format(
-      new Date(event?.startDate),
-      "dd LLL yyyy"
-    ) === format(
-        new Date(data?.data?.data?.endDate),
-        "dd LLL yyyy"
-      )) return true;
+    if (
+      format(new Date(event?.startDate), "dd LLL yyyy") ===
+      format(new Date(data?.data?.data?.endDate), "dd LLL yyyy")
+    )
+      return true;
     return false;
-  }
+  };
 
   useLayoutEffect(() => {
     const onScroll = () => {
       if (window.innerWidth < 992) {
         if (armoryRef.current) {
-          const aboutIns = document.getElementById('about-inst');
-          const imgCont = document.getElementById('imag-cont');
-          const top = Math.min(50, aboutIns.offsetTop - window.scrollY - imgCont.clientHeight + 50);
+          const aboutIns = document.getElementById("about-inst");
+          const imgCont = document.getElementById("imag-cont");
+          const top = Math.min(
+            50,
+            aboutIns.offsetTop - window.scrollY - imgCont.clientHeight + 50
+          );
           if (top < 50) {
-            imgCont.style.position = 'absolute';
-            imgCont.style.top = aboutIns.offsetTop - imgCont.clientHeight + 'px';
+            imgCont.style.position = "absolute";
+            imgCont.style.top =
+              aboutIns.offsetTop - imgCont.clientHeight + "px";
           } else {
-            imgCont.style.top = top + 'px';
-            imgCont.style.position = 'fixed';
-          }          
-        }
-        return ;
-      }
-      if (armoryRef.current) {
-        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
-        setImageContTop();
-        console.log(window.pageYOffset, document.getElementById('imag-cont').offsetTop, getImageContTop())
-        if (window.pageYOffset <= 35) {
-          armoryRef.current.style.position = 'relative';
-          armoryRef.current.style.top = 0;
-          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
-          for (let i = 0; i < itms.length; i ++) {
-            const itm = itms[i];
-            itm.style.removeProperty('top');
-            itm.style.removeProperty('transition-delay');
-            itm.style.removeProperty('transition-duration');
-            itm.classList.add('scroll-down');
-            itm.classList.remove('scroll-up');
+            imgCont.style.top = top + "px";
+            imgCont.style.position = "fixed";
           }
         }
-        else if (window.pageYOffset > 35 && (window.pageYOffset) < (document.getElementById('imag-cont').offsetTop - getImageContTop() + 74 ) ) {
-          armoryRef.current.style.position = 'sticky';
+        return;
+      }
+      if (armoryRef.current) {
+        console.log(
+          window.pageYOffset,
+          document.getElementById("imag-cont").offsetTop,
+          getImageContTop()
+        );
+        setImageContTop();
+        console.log(
+          window.pageYOffset,
+          document.getElementById("imag-cont").offsetTop,
+          getImageContTop()
+        );
+        if (window.pageYOffset <= 35) {
+          armoryRef.current.style.position = "relative";
           armoryRef.current.style.top = 0;
-          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
-          for (let i = 0; i < itms.length; i ++) {
+          const itms = document.getElementsByClassName(
+            "navbar navbar-expand-lg navbar-light bg-transparent"
+          );
+          for (let i = 0; i < itms.length; i++) {
             const itm = itms[i];
-            if ((35 - window.pageYOffset) < -80) {
-              itm.style.removeProperty('transition-delay');
-              itm.style.removeProperty('transition-duration');
-              itm.style.removeProperty('top');
-              itm.classList.add('scroll-up');
-              itm.classList.remove('scroll-down');
+            itm.style.removeProperty("top");
+            itm.style.removeProperty("transition-delay");
+            itm.style.removeProperty("transition-duration");
+            itm.classList.add("scroll-down");
+            itm.classList.remove("scroll-up");
+          }
+        } else if (
+          window.pageYOffset > 35 &&
+          window.pageYOffset <
+            document.getElementById("imag-cont").offsetTop -
+              getImageContTop() +
+              74
+        ) {
+          armoryRef.current.style.position = "sticky";
+          armoryRef.current.style.top = 0;
+          const itms = document.getElementsByClassName(
+            "navbar navbar-expand-lg navbar-light bg-transparent"
+          );
+          for (let i = 0; i < itms.length; i++) {
+            const itm = itms[i];
+            if (35 - window.pageYOffset < -80) {
+              itm.style.removeProperty("transition-delay");
+              itm.style.removeProperty("transition-duration");
+              itm.style.removeProperty("top");
+              itm.classList.add("scroll-up");
+              itm.classList.remove("scroll-down");
             } else {
-              itm.style.transitionDelay = '0s';
-              itm.style.transitionDuration = '0s';
-              itm.style.top = (35 - window.pageYOffset) + 'px';
+              itm.style.transitionDelay = "0s";
+              itm.style.transitionDuration = "0s";
+              itm.style.top = 35 - window.pageYOffset + "px";
             }
           }
         } else {
-          armoryRef.current.style.position = 'sticky';
-          armoryRef.current.style.top = (-(window.pageYOffset - document.getElementById('imag-cont').offsetTop + getImageContTop() - 70)) + 'px';
-          
-          const itms = document.getElementsByClassName('navbar navbar-expand-lg navbar-light bg-transparent');
-          for (let i = 0; i < itms.length; i ++) {
+          armoryRef.current.style.position = "sticky";
+          armoryRef.current.style.top =
+            -(
+              window.pageYOffset -
+              document.getElementById("imag-cont").offsetTop +
+              getImageContTop() -
+              70
+            ) + "px";
+
+          const itms = document.getElementsByClassName(
+            "navbar navbar-expand-lg navbar-light bg-transparent"
+          );
+          for (let i = 0; i < itms.length; i++) {
             const itm = itms[i];
-            if ((window.pageYOffset + getImageContTop()) > document.getElementById('imag-cont').offsetTop + getImageContTop() + 250 || document.body.clientHeight-window.scrollY <= window.innerHeight + 5) {
-              itm.style.removeProperty('transitionDelay');
-              itm.style.removeProperty('transitionDuration');
-              itm.style.removeProperty('top');
-              itm.classList.add('scroll-down');
-              itm.classList.remove('scroll-up');
+            if (
+              window.pageYOffset + getImageContTop() >
+                document.getElementById("imag-cont").offsetTop +
+                  getImageContTop() +
+                  250 ||
+              document.body.clientHeight - window.scrollY <=
+                window.innerHeight + 5
+            ) {
+              itm.style.removeProperty("transitionDelay");
+              itm.style.removeProperty("transitionDuration");
+              itm.style.removeProperty("top");
+              itm.classList.add("scroll-down");
+              itm.classList.remove("scroll-up");
             } else {
-              itm.classList.add('scroll-up');
-              itm.classList.remove('scroll-down');
+              itm.classList.add("scroll-up");
+              itm.classList.remove("scroll-down");
             }
           }
         }
@@ -210,17 +250,22 @@ function EventDetail() {
     const resized = () => {
       let fullTitleShow = false;
       let itm;
-      if (window.innerWidth <= 992) itm = document.getElementById('header_tablet');
-      else itm = document.getElementById('header')
-      if ((itm && !showFullTitle && itm.clientWidth < itm.scrollWidth) || (itm && itm.clientHeight > 50)) fullTitleShow = true;
+      if (window.innerWidth <= 992)
+        itm = document.getElementById("header_tablet");
+      else itm = document.getElementById("header");
+      if (
+        (itm && !showFullTitle && itm.clientWidth < itm.scrollWidth) ||
+        (itm && itm.clientHeight > 50)
+      )
+        fullTitleShow = true;
       setFullTitleShow(fullTitleShow);
-    }
+    };
 
     resized();
-    window.addEventListener('resize', resized);
+    window.addEventListener("resize", resized);
 
-    console.log(data)
-  }, [data])
+    console.log(data);
+  }, [data]);
 
   if (isLoading) return <Loader />;
 
@@ -229,26 +274,28 @@ function EventDetail() {
   return (
     <>
       <RouteTitle title="Event Detail" />
-      <section className={'section ' + styles.detailSection}>
+      <section className={"section " + styles.detailSection}>
         <Container className={styles.eventDetailContainer}>
-
           <Row ref={armoryRef} className={styles.armoryStickyDiv}>
-            <Col style={{paddingTop: fullTitleShow?'2px':'11px'}}>
-              {
-                fullTitleShow ? (
-                  <h6
-                    className={styles.toggleTitle}
-                    onClick={() => { setShowFullTitle((prev) => !prev); setImageContTop(); }}
-                  >
-                    <span>Full Title</span>
-                    {!showFullTitle ? (
-                      <BiPlus color="#A6A6A6" size={12} />
-                    ) : (
-                      <BiMinus color="#A6A6A6" size={12} />
-                    )}
-                  </h6>
-                ) : ''
-              }
+            <Col style={{ paddingTop: fullTitleShow ? "2px" : "11px" }}>
+              {fullTitleShow ? (
+                <h6
+                  className={styles.toggleTitle}
+                  onClick={() => {
+                    setShowFullTitle((prev) => !prev);
+                    setImageContTop();
+                  }}
+                >
+                  <span>Full Title</span>
+                  {!showFullTitle ? (
+                    <BiPlus color="#A6A6A6" size={12} />
+                  ) : (
+                    <BiMinus color="#A6A6A6" size={12} />
+                  )}
+                </h6>
+              ) : (
+                ""
+              )}
               <div className={`border-b ${styles.topHead}`}>
                 <div
                   className={`${styles.eventHead} d-flex align-items-end w-100`}
@@ -256,12 +303,12 @@ function EventDetail() {
                   <Heading
                     mb="-6"
                     variant="subHeading"
-                    customClass={styles.eventHeader + ' ' + styles.maxCol7}
+                    customClass={styles.eventHeader + " " + styles.maxCol7}
                     title={data?.data?.data?.title}
                     style={{
-                      "whiteSpace": showFullTitle ? "normal" : "nowrap",
+                      whiteSpace: showFullTitle ? "normal" : "nowrap",
                     }}
-                    id='header'
+                    id="header"
                   >
                     {data?.data?.data?.title}
                   </Heading>
@@ -282,7 +329,11 @@ function EventDetail() {
                       marginBottom: "-9px",
                     }}
                   >
-                    <Button className={styles.bookNowButton} type="outline" style={{ width: 200 }}>
+                    <Button
+                      className={styles.bookNowButton}
+                      type="outline"
+                      style={{ width: 200 }}
+                    >
                       Book Now
                     </Button>
                   </a>
@@ -292,7 +343,11 @@ function EventDetail() {
           </Row>
           <Row className={styles.armoryStickyRow}>
             <Col md={7} className={styles.myCol7}>
-              <div className={`${styles.imgSlider}`} style={{top: (window.innerWidth <= 992) ? '50px' : '114px'}} id="imag-cont">
+              <div
+                className={`${styles.imgSlider}`}
+                style={{ top: window.innerWidth <= 992 ? "50px" : "114px" }}
+                id="imag-cont"
+              >
                 {/* <span className="d-flex">
                   <AiOutlineStar />
                   4.2
@@ -320,36 +375,47 @@ function EventDetail() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                {(!isLoading && isDayRemainingMode() && window.innerWidth <= 992) && (
-                  <div className={styles.daysReminingInfo}>
-                    <Button>{remainingDaysText()}</Button>
-                  </div>
-                )}
+                {!isLoading &&
+                  isDayRemainingMode() &&
+                  window.innerWidth <= 992 && (
+                    <div className={styles.daysReminingInfo}>
+                      <Button>{remainingDaysText()}</Button>
+                    </div>
+                  )}
                 {!isLoading && (
                   <div className={styles.galleryBtn}>
-                    <Link to={getEventDetailPath(data?.data?.data?._id)} draggable="false">
+                    <Link
+                      to={getEventDetailPath(data?.data?.data?._id)}
+                      draggable="false"
+                    >
                       <Button>{data?.data?.data?.genre?.genre}</Button>
                     </Link>
                   </div>
                 )}
               </div>
             </Col>
-            <Col className={styles.colTablet} style={{paddingTop: fullTitleShow?'2px':'11px'}}>
-              {
-                fullTitleShow ? (
-                  <h6
-                    className={styles.toggleTitle}
-                    onClick={() => { setShowFullTitle((prev) => !prev); setImageContTop(); }}
-                  >
-                    <span>Full Title</span>
-                    {!showFullTitle ? (
-                      <BiPlus color="#A6A6A6" size={12} />
-                    ) : (
-                      <BiMinus color="#A6A6A6" size={12} />
-                    )}
-                  </h6>
-                ) : ''
-              }
+            <Col
+              className={styles.colTablet}
+              style={{ paddingTop: fullTitleShow ? "2px" : "11px" }}
+            >
+              {fullTitleShow ? (
+                <h6
+                  className={styles.toggleTitle}
+                  onClick={() => {
+                    setShowFullTitle((prev) => !prev);
+                    setImageContTop();
+                  }}
+                >
+                  <span>Full Title</span>
+                  {!showFullTitle ? (
+                    <BiPlus color="#A6A6A6" size={12} />
+                  ) : (
+                    <BiMinus color="#A6A6A6" size={12} />
+                  )}
+                </h6>
+              ) : (
+                ""
+              )}
               <div className={`${styles.topHead}`}>
                 <div
                   className={`${styles.eventHead} d-flex align-items-end w-100`}
@@ -357,9 +423,15 @@ function EventDetail() {
                   <Heading
                     mb="-6"
                     variant="subHeading"
-                    customClass={styles.eventHeader + ' ' + styles.maxCol7 + ' ' + (showFullTitle ? '' : styles.nowrap)}
+                    customClass={
+                      styles.eventHeader +
+                      " " +
+                      styles.maxCol7 +
+                      " " +
+                      (showFullTitle ? "" : styles.nowrap)
+                    }
                     title={data?.data?.data?.title}
-                    id='header_tablet'
+                    id="header_tablet"
                   >
                     {data?.data?.data?.title}
                   </Heading>
@@ -395,7 +467,7 @@ function EventDetail() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {(data?.data?.data?.location || '').split(',')[0]}
+                        {(data?.data?.data?.location || "").split(",")[0]}
                       </a>
                     </span>
                   </div>
@@ -409,7 +481,11 @@ function EventDetail() {
                         )}
                     </span>
                   </div>
-                  <div className={`${styles.entryDiv + ' ' + styles.noneTablet} ${styles.borderRight}`}>
+                  <div
+                    className={`${styles.entryDiv + " " + styles.noneTablet} ${
+                      styles.borderRight
+                    }`}
+                  >
                     <span className={styles.title}>Entry fee</span>
                     <span className={styles.entry}>
                       {data?.data?.data?.price !== 0
@@ -419,31 +495,41 @@ function EventDetail() {
                   </div>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
-                  <h3 className={styles.marginBot + ' ' + styles.aboutEvent} style={{marginTop:'6px'}}>About event</h3>
-                  <Text className={styles.m0 + ' ' + styles.breakSpace}>{data?.data?.data?.description}</Text>
+                  <h3
+                    className={styles.marginBot + " " + styles.aboutEvent}
+                    style={{ marginTop: "6px" }}
+                  >
+                    About event
+                  </h3>
+                  <Text className={styles.m0 + " " + styles.breakSpace}>
+                    {data?.data?.data?.description}
+                  </Text>
                 </div>
                 <div className={`border-b ${styles.aboutContent}`}>
                   <h3 className={styles.marginBot}>VENUE</h3>
                   {isValidURL(data?.data?.data?.venue) ? null : (
                     <>
-                      <Text className={styles.noMarginBS}>{data?.data?.data?.venue}</Text>
+                      <Text className={styles.noMarginBS}>
+                        {data?.data?.data?.venue}
+                      </Text>
                     </>
                   )}
-                  <Text className={styles.noMarginBS}>{data?.data?.data?.location}</Text>
-                  <Text className={styles.noMarginBS}>{
-                    !checkWithinADay(data?.data?.data) && data?.data?.data?.startDate &&
-                    format(
-                      new Date(data?.data?.data?.startDate),
-                      "dd LLL"
-                    ) + ' - '}{data?.data?.data?.endDate &&
+                  <Text className={styles.noMarginBS}>
+                    {data?.data?.data?.location}
+                  </Text>
+                  <Text className={styles.noMarginBS}>
+                    {!checkWithinADay(data?.data?.data) &&
+                      data?.data?.data?.startDate &&
+                      format(new Date(data?.data?.data?.startDate), "dd LLL") +
+                        " - "}
+                    {data?.data?.data?.endDate &&
                       format(
                         new Date(data?.data?.data?.endDate),
                         "dd LLL yyyy"
-                      )} | Doors open: {data?.data?.data?.startDate &&
-                      format(
-                        parseISO(data?.data?.data?.startDate),
-                        "hh:mm a"
-                      )}
+                      )}{" "}
+                    | Doors open:{" "}
+                    {data?.data?.data?.startDate &&
+                      format(parseISO(data?.data?.data?.startDate), "hh:mm a")}
                   </Text>
                   <a
                     href={
@@ -458,12 +544,19 @@ function EventDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className={styles.secondaryButton} style={{marginTop: '18px'}} type="outline">
+                    <Button
+                      className={styles.secondaryButton}
+                      style={{ marginTop: "18px" }}
+                      type="outline"
+                    >
                       OPEN MAP
                     </Button>
                   </a>
                 </div>
-                <div className={`border-b ${styles.aboutContent}`} id="about-inst">
+                <div
+                  className={`border-b ${styles.aboutContent}`}
+                  id="about-inst"
+                >
                   <h3>ABOUT INSTITUTION</h3>
                   <div className="d-flex gap-2 py-3">
                     <a
@@ -478,7 +571,7 @@ function EventDetail() {
                           data?.data?.data?.organizationUrl
                         )}&size=32`}
                         alt=""
-                        style={{width: '32px'}}
+                        style={{ width: "32px" }}
                       />
                     </a>
                     <div className={styles.info}>
@@ -498,7 +591,7 @@ function EventDetail() {
                   <Button
                     className={`${styles.secondaryButton}`}
                     type="outline"
-                    style={{marginTop: '18px'}}
+                    style={{ marginTop: "18px" }}
                   >
                     <a
                       target="_blank"
@@ -559,26 +652,23 @@ function EventDetail() {
         </Container>
         <div className={styles.tabletBar}>
           <div className={styles.barPrice}>
-            <div className={styles.barPriceStatic}>
-              ENTER FEE
-            </div>
-            <div className={styles.barPriceValue}>
-              $250
-            </div>
+            <div className={styles.barPriceStatic}>ENTER FEE</div>
+            <div className={styles.barPriceValue}>$250</div>
           </div>
-          <Button
-            className={styles.bookNowButton}
-            style={{ width: 200, marginLeft: 'auto', marginBottom: '-9px' }}
-            type="outline"
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={data?.data?.data?.eventUrl}
+            style={{ marginLeft: "auto", marginBottom: "-9px" }}
           >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={data?.data?.data?.eventUrl}
+            <Button
+              className={styles.bookNowButton}
+              style={{ width: 200 }}
+              type="outline"
             >
               Book Now
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </section>
     </>
